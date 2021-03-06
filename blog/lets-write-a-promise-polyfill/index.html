@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <meta charset="utf-8">
+
+    <title>Let&#39;s write a Promise polyfill | Bruno Scopelliti</title>
+
+    
+    <meta name="description" content="JavaScript Promise shim, polyfill built from scratch">
+    
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@brunoscopelliti">
+<meta name="twitter:title" content="Let&#39;s write a Promise polyfill">
+
+
+
+<meta name="twitter:image" content="/images/post-cards/lets-write-a-promise-polyfill.png">
+<meta name="twitter:description" content="Everybody in this industry know the ancient wisdom for which it&#39;s better avoid reinventing the wheel. Anyway, that&#39;s often necessary to really understand how things work.">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    
+    <script>
+      (function(){function s(e,n,r){return e===r?null:e.matches(n)?e:e.parentNode?s(e.parentNode,n,r):null}function c(e,n){return function(u){var a=s(u.target,n,this);a!=null&&e.call(a,u)}}function i(e,n){return function(){n(),e.apply(this,[].slice.call(arguments))}}function o(e,n,r,u){u=u||{};var a=u.useCapture||!1;function t(){n.removeEventListener(e,l,a)}var l=u.once?i(r,t):r;return n.addEventListener(e,l,a),t}function d(e,n){return(n||document.body).querySelector(e)}var f=[].slice;function p(e,n){return f.call((n||document.body).querySelectorAll(e))}function h(e,n,r,u,a){var t=new XMLHttpRequest;t.open(e,n),t.setRequestHeader("Accept","application/json"),t.onreadystatechange=function(){if(t.readyState!==XMLHttpRequest.DONE)return;t.status===200?u(t.response,t.responseType):a(t.status,t.response,t.responseType)},t.send(r)}window.BS_blog={ajax:h,delegate:c,$1:d,$:p,listen:o};})();
+
+    </script>
+  </head>
+  <body class="">
+    <a id="skip-nav" href="#main">Go to content</a>
+
+    <header class="site-header">
+      <div class="site-width-wrapper">
+        <div class="site-nav">
+            <a class="avatar-home-link" href="/">
+              <span class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></span>
+              <span>Bruno Scopelliti</span>
+            </a><button class="menu-btn" data-js="hamburger" aria-label="Open menu">
+  <i class="hamburger" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </i>
+</button>
+<nav class="menu">
+  <ul class="menu-links">
+    
+    
+      <li class="">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="">
+        <a href="/blog/">Blog</a>
+      </li>
+    
+      <li class="">
+        <a href="/about/">About</a>
+      </li>
+    
+    <li class="search">
+      <a href="/blog/search" aria-label="Search">
+        <svg aria-hidden="true" height="18" viewBox="0 0 48 48" width="18" xmlns="http://www.w3.org/2000/svg">
+          <path fill="white" d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"/>
+          <path d="M0 0h48v48H0z" fill="none"/>
+        </svg>
+        <span>Search</span>
+      </a>
+    </li>
+    <li class="socials"><div class="social-links">
+  <a href="https://twitter.com/brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg height="24px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path fill="#fff" d="M346.8,80c22.3,0,43.8,9.3,59,25.6l6.1,6.5l8.7-1.7c4.5-0.9,8.9-1.9,13.3-3.1c-1,1.4-5.7,6.1-11,10.8  c-4.5,4-17.8,16.5-17.8,16.5s13,4.1,21.1,5s17.4-0.6,18.9-0.8c-2.8,2.3-7.8,5.8-10.8,7.9l-7,5.1l0.4,8.6c0.2,3.8,0.3,7.8,0.3,11.8  c0,30.2-5.9,61.8-17,91.5c-11.7,31.2-28.5,59.4-50,83.8c-23,26.1-50.2,46.5-81.1,60.8c-33.8,15.7-71.3,23.6-111.5,23.6  c-28.9,0-57.4-4.8-84.5-14.2c9.9-1.9,19.6-4.6,29.1-7.9c21.7-7.6,41.9-18.7,60.1-33l35.3-27.7l-44.9-0.8  c-26.1-0.5-49.7-13.4-64.3-33.9c7.3-0.5,14.5-1.8,21.5-3.7l60.7-20.2l-61.7-10.9c-29.6-5.9-52.8-27.9-61.3-55.8  c7.8,2,15.4,2.8,23.9,3.3c0,0,31.8,1.4,55.8-0.1c-13-6.2-46.4-29.2-46.4-29.2c-22.5-15.1-36-40.2-36-67.4c0-6.4,0.8-12.8,2.2-19  c21.9,22.4,47,41.1,75.1,55.5c37,19.1,76.9,29.8,118.6,31.9l21.2,1.1l-4.8-20.7c-1.4-5.9-2.1-12.1-2.1-18.5  C265.9,116.3,302.2,80,346.8,80 M346.8,64c-53.5,0-96.8,43.4-96.8,96.9c0,7.6,0.8,15,2.5,22.1C172,179,100.6,140.4,52.9,81.7  c-8.3,14.3-13.1,31-13.1,48.7c0,33.6,17.1,63.3,43.1,80.7C67,210.7,52,206.3,39,199c0,0.4,0,0.8,0,1.2c0,47,33.4,86.1,77.7,95  c-8.1,2.2-16.7,3.4-25.5,3.4c-6.2,0-12.3-0.6-18.2-1.8c12.3,38.5,48.1,66.5,90.5,67.3c-33.1,26-74.9,41.5-120.3,41.5  c-7.8,0-15.5-0.5-23.1-1.4C62.9,432,113.8,448,168.4,448C346.6,448,444,300.3,444,172.2c0-4.2-0.1-8.4-0.3-12.5  c18.9-13.7,35.3-30.7,48.3-50.2c-17.4,7.7-36,12.9-55.6,15.3c20-12,35.4-31,42.6-53.6c-18.7,11.1-39.4,19.2-61.5,23.5  C399.8,75.8,374.6,64,346.8,64L346.8,64z"/>
+</svg></a>
+  <a href="https://github.com/brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg height="24px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+  <path fill="#fff" d="M256,48.3c28,0,55.2,5.6,80.8,16.7c24.8,10.7,47,26.1,66.1,45.7c19.1,19.6,34.2,42.5,44.7,67.9  c10.9,26.4,16.4,54.4,16.4,83.3c0,45.8-13.9,89.5-40.2,126.3c-12.6,17.7-27.8,33.2-45,46.2c-15.8,11.9-33,21.3-51.2,28.2  c0-1.9,0-4.1,0-6.5c0.1-11.9,0.2-29.8,0.2-50.4c0-12.4-2-22.5-4.9-30.5c37.2-8.3,92-33.7,92-125.4c0-24.6-7.1-46.5-21.2-65.1  c3.1-12.9,5.5-35.6-5.1-63l-2.7-7.1l-7.2-2.4c-1.5-0.5-4.8-1.3-10-1.3c-11.5,0-30.9,3.9-59.5,22.6c-17-4.2-34.8-6.6-53.1-6.6H256  h-0.1c-18.3,0-36.2,2.4-53.1,6.6c-28.6-18.7-48-22.7-59.5-22.7c-5.2,0-8.5,0.9-10,1.4l-7.2,2.4l-2.7,7.1c-10.6,27.5-8.2,50.2-5.1,63  c-14.1,18.7-21.2,40.6-21.2,65.1c0,49.6,16,79.9,36.6,98.5c-8.1-6.6-18.6-12.1-31.2-13l-0.5,0l-0.5,0l-0.3,0  c-13.1,0-22.3,5.4-25.2,14.7c-4.7,14.8,9.8,25,14.6,28.4l0.5,0.6l1.5,0.6c1.6,1,10.1,7,16.9,24.5c2,6.2,6.3,14.5,13.6,22.2  c-13.1-11.2-24.8-24-34.9-38.1C61.9,351.5,48,307.8,48,262c0-28.9,5.5-56.9,16.4-83.3c10.5-25.5,25.5-48.3,44.7-67.9  c19.1-19.6,41.4-35,66.1-45.7C200.8,54,228,48.3,256,48.3 M136.7,351c16.8,14.1,36.3,20.9,52.3,24.5c-0.8,2.2-1.5,4.5-2.1,6.9  c-3.4,1-7.5,1.8-11.7,1.8c-10.9,0-19-5.4-25.6-16.9C147.2,362.7,142.8,356.6,136.7,351 M140.4,439.6c9.8,5.3,22.1,8.8,37.2,8.8  c2.2,0,4.4-0.1,6.7-0.2c0,2.8,0,5.5,0.1,7.9c0,2.4,0,4.6,0.1,6.5C168.9,456.8,154.2,449.1,140.4,439.6 M256,32.3  C132.3,32.3,32,135.2,32,262c0,101.5,64.2,187.5,153.2,217.9c1.4,0.3,2.6,0.4,3.8,0.4c8.3,0,11.5-6.1,11.5-11.4  c0-5.5-0.2-19.9-0.3-39.1c-8.4,1.9-15.9,2.7-22.6,2.7c-43.1,0-52.9-33.5-52.9-33.5c-10.2-26.5-24.9-33.8-24.9-33.8  c-19.5-13.7-0.1-14.2,1.4-14.2c0.1,0,0.1,0,0.1,0c22.5,2,34.3,23.9,34.3,23.9c11.2,19.6,26.2,25.2,39.6,25.2c10.5,0,20-3.4,25.6-6  c2-14.8,7.8-24.9,14.2-30.7c-49.7-5.8-102-25.5-102-113.5c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,1.6-0.5,5-0.5  c8.1,0,26.4,3.1,56.6,24.1c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7c30.2-21,48.5-24.1,56.6-24.1c3.4,0,5,0.5,5,0.5  c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3c8,7.1,15.2,21.1,15.2,42.5  c0,30.7-0.3,55.5-0.3,63c0,5.4,3.1,11.5,11.4,11.5c1.2,0,2.6-0.1,4-0.4C415.9,449.5,480,363.4,480,262  C480,135.2,379.7,32.3,256,32.3L256,32.3z"/>
+</svg></a>
+  <a href="/blog/index.xml" aria-label="RSS"><svg height="24px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g fill="#fff">
+    <path d="M119.9,336.1c-30.8,0-55.9,25.1-55.9,55.8c0,30.8,25.1,55.6,55.9,55.6c30.9,0,55.9-24.9,55.9-55.6   C175.8,361.2,150.8,336.1,119.9,336.1z M119.9,431.5c-22,0-39.9-17.8-39.9-39.6c0-21.9,17.9-39.8,39.9-39.8   c22,0,39.9,17.9,39.9,39.8C159.8,413.7,141.9,431.5,119.9,431.5z"/>
+    <path d="M64,192v79.9c48,0,94.1,14.2,128,48.1c33.9,33.9,48,79.9,48,128h80C320,308.1,204,192,64,192z M303.5,432h-48   c-3.1-49.7-21-92.1-52.2-123.3C172.1,277.4,130,259.5,80,256.4v-47.8c26,1.8,52.1,8,76.7,18.5c28.5,12.2,54.2,29.6,76.4,51.8   c22.2,22.2,39.6,47.9,51.8,76.4C295.5,379.9,301.7,405.6,303.5,432z"/>
+    <path d="M64,64v79.9c171,0,303.9,133,303.9,304.1H448C448,236.3,276,64,64,64z M291.4,220.5C235.4,164.4,161,132,80,128.2V80.3   C270,88.5,423.5,241.8,431.7,432h-48.2C379.7,351.1,347.3,276.5,291.4,220.5z"/>
+  </g>
+</svg></a>
+</div></li>
+  </ul>
+</nav>
+
+<script>
+  (function(){var u=window.BS_blog,l=u.$1,a=u.listen,t={open:!1};function o(){return l("[data-js='hamburger']")}function s(n){n.which===27&&(e&&(e(),e=null),i())}var e;function r(){t.open?e=a("keyup",document,s):(e(),e=null)}function c(){var n=o();document.body.classList.add("menu-open"),n.setAttribute("aria-label","Close menu"),t.open=!0}function i(){var n=o();document.body.classList.remove("menu-open"),n.setAttribute("aria-label","Open menu"),t.open=!1}function f(){t.open?i():c(),r()}a("click",o(),f);})();
+
+</script></div>
+        <div class="page-highlights">
+        </div>
+      </div>
+    </header>
+
+    <div class="page-main-content">
+      <main id="main">
+<article class="post" data-js="post">
+  <div class="post-breadcrumbs">
+    <a href="/blog" aria-label="View all articles">Blog</a>
+    <span>/</span>
+    
+    <a href="/blog/search/javascript/">JavaScript</a>
+    <span>/</span>
+    
+  </div>
+  <h1>Let&#39;s write a Promise polyfill</h1>
+  <div class="post-body"><p>TL:DR; You can watch me live coding a promise&rsquo;s polyfill on YouTube.
+Watch <a href="https://www.youtube.com/watch?v=E_p-PVNqhZE&amp;list=PLZYZ2RjeQoPiJcbCzArwMQXr3gr8tXCLC">Let&rsquo;s build a promise polyfill</a> playlist.</p>
+<br/>
+<p>We&rsquo;re going to build a Promise polyfill; it&rsquo;s the best way to understand how things work under the hood, after all.</p>
+<p>My goal is not to have the most performant, or feature rich, implementation, but I&rsquo;ll try to optimize for ease of readability.</p>
+<p>A brief disclaimer before we even start: you might have heard that Promise are going to disappear soon, cause <code>async function</code> permit to further improve how we handle asynchronous code.
+That&rsquo;s only partially true, because async functions are built on top of Promise, having a solid understanding of how Promise works is important as never before.</p>
+<p>So let&rsquo;s start from the very beginning: <strong>What&rsquo;s a Promise?</strong></p>
+<p>A promise represents the result of an operation (usually an asynchronous operation), it is a wrapper around a value, that may, or may not be available sometimes in the future. We stop to care about this.
+It&rsquo;s useful because it permits developers to more easily work with a future value, as it was already available.</p>
+<p>We create a new promise using the <code>new</code> operator.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; {
+  resolve(<span style="color:#bd93f9">42</span>);
+});
+</code></pre></div><p>Despite being a <code>function</code> under the hood, <code>class</code> in JavaScript can&rsquo;t be executed without the <code>new</code> operator.
+So it does make sense to model our shim as a class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  constructor () {}
+}
+</code></pre></div><p>A promise is characterized by its <code>value</code> and <code>state</code>.</p>
+<p>A promise could have as value, whatever existing JavaScript value. It makes sense to consider <code>undefined</code> as initial value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  constructor () {
+    <span style="color:#ff79c6">this</span>.value <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">void</span> <span style="color:#bd93f9">0</span>;
+  }
+}
+</code></pre></div><p>Differently the state could assume only three possibile <em>values</em>:</p>
+<ul>
+<li>
+<p><strong>FULFILLED</strong>, when the operation represented by the promise has been successfully completed, and its result has been used to define promise&rsquo;s value.</p>
+</li>
+<li>
+<p><strong>REJECTED</strong>, when the operation represented by the promise has been completed, but it failed. In this case, the reason for the failure is used to define promise&rsquo;s value.</p>
+</li>
+<li>
+<p><strong>PENDING</strong>, when the operation represented by the promise has not yet been completed.</p>
+</li>
+</ul>
+<p>Also, very important to remind is that once a promise is fulfilled, or rejected, there&rsquo;s no way its value, and state could be further modified.</p>
+<p>Domenic Denicola has written very clearly about <a href="https://github.com/domenic/promises-unwrapping/blob/4a1c72c0fc4f9e47dbc7ae866970caf261aa46ab/docs/states-and-fates.md">the nomenclature</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> [
+  FULFILLED,
+  REJECTED,
+  PENDING
+] <span style="color:#ff79c6">=</span> [<span style="color:#ff79c6">true</span>, <span style="color:#ff79c6">false</span>, <span style="color:#ff79c6">void</span> <span style="color:#bd93f9">0</span>];
+
+<span style="color:#ff79c6">class</span> Promifill {
+  constructor () {
+    <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">=</span> PENDING;
+    <span style="color:#ff79c6">this</span>.value <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">void</span> <span style="color:#bd93f9">0</span>;
+  }
+}
+</code></pre></div><p>Let&rsquo;s now add to the <code>constructor</code> signature the <code>executor</code> parameter.
+It is a mandatory parameter, and it must be enforced as such.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">constructor (executor) {
+  <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> executor <span style="color:#ff79c6">!=</span> <span style="color:#f1fa8c">&#34;function&#34;</span>) {
+    <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> TypeError(<span style="color:#f1fa8c">`Promise resolver must be a function`</span>);
+  }
+}
+</code></pre></div><p>The <code>executor</code> is sinchronously executed, receiving as arguments two functions, <code>resolve</code>
+and <code>reject</code>, which have the power to settle the fate of the promise.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">constructor (executor) {
+  <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> executor <span style="color:#ff79c6">!=</span> <span style="color:#f1fa8c">&#34;function&#34;</span>) {
+    <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> TypeError(<span style="color:#f1fa8c">`Promise resolver must be a function`</span>);
+  }
+
+  <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">=</span> PENDING;
+  <span style="color:#ff79c6">this</span>.value <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">void</span> <span style="color:#bd93f9">0</span>;
+
+  executor(resolve, reject);
+}
+</code></pre></div><p><code>resolve</code> takes as argument the value that should be used to define value of the promise. For now, let&rsquo;s consider the state of the promise as fulfilled. That&rsquo;s not correct&hellip; but we&rsquo;ll fix this later.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
+  (value) =&gt; {
+    <span style="color:#ff79c6">this</span>.value <span style="color:#ff79c6">=</span> value;
+    <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">=</span> FULFILLED; <span style="color:#6272a4">// #FIXME
+</span><span style="color:#6272a4"></span>  };
+</code></pre></div><p>Also <code>reject</code> takes as input parameter the value, that should be used to define the value of the promise; for a rejected promise, the reason for the rejection is considered as the value.
+The state in this case could be safely assumed as always rejected.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> reject <span style="color:#ff79c6">=</span>
+  (reason) =&gt; {
+    <span style="color:#ff79c6">this</span>.value <span style="color:#ff79c6">=</span> reason;
+    <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">=</span> REJECTED;
+  };
+</code></pre></div><p>The biggest flaw in current implementation is that it gives everybody free access to promise&rsquo;s internal state and value. Native promises keep this data into <em>internal slots</em>.</p>
+<p>It&rsquo;s not possible to replicate internal slots in userland, but we can go pretty close.</p>
+<p>Let&rsquo;s start by replacing the instance&rsquo;s fields with readonly accessors on the class prototype.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  get state () {
+    <span style="color:#ff79c6">return</span> PENDING;
+  }
+
+  get value () {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">void</span> <span style="color:#bd93f9">0</span>;
+  }
+
+  constructor (executor) {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> executor <span style="color:#ff79c6">!=</span> <span style="color:#f1fa8c">&#34;function&#34;</span>) {
+      <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> TypeError(<span style="color:#f1fa8c">`Promise resolver must be a function`</span>);
+    }
+
+    <span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
+      (value) =&gt; {
+        <span style="color:#ff79c6">this</span>.value <span style="color:#ff79c6">=</span> value;
+        <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">=</span> FULFILLED; <span style="color:#6272a4">// #FIXME
+</span><span style="color:#6272a4"></span>      };
+
+    <span style="color:#ff79c6">const</span> reject <span style="color:#ff79c6">=</span>
+      (reason) =&gt; {
+        <span style="color:#ff79c6">this</span>.value <span style="color:#ff79c6">=</span> reason;
+        <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">=</span> REJECTED;
+      };
+
+    executor(resolve, reject);
+  }
+}
+</code></pre></div><p><code>resolve</code> and <code>reject</code> are going to shadow those fields when executing, by creating instance fields, which are not enumerable, not configurable, and not writable.</p>
+<p>Let&rsquo;s create a simple utility for this job:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> defineProperty <span style="color:#ff79c6">=</span>
+  (target, propName, propValue) =&gt; {
+    <span style="color:#8be9fd;font-style:italic">Object</span>.defineProperty(target, propName, { value<span style="color:#ff79c6">:</span> propValue });
+  };
+</code></pre></div><p>With this in place we can rewrite <code>resolve</code> and <code>reject</code> as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
+  (value) =&gt; {
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>, value);
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>, FULFILLED); <span style="color:#6272a4">// #FIXME
+</span><span style="color:#6272a4"></span>  };
+
+<span style="color:#ff79c6">const</span> reject <span style="color:#ff79c6">=</span>
+  (reason) =&gt; {
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>, reason);
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>, REJECTED);
+  };
+</code></pre></div><p>Finally let&rsquo;s also add a check to exit early in case the state of the promise has already
+been settled.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  get state () {
+    <span style="color:#ff79c6">return</span> PENDING;
+  }
+
+  get value () {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">void</span> <span style="color:#bd93f9">0</span>;
+  }
+
+  get settled () {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
+  }
+
+  constructor (executor) {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> executor <span style="color:#ff79c6">!=</span> <span style="color:#f1fa8c">&#34;function&#34;</span>) {
+      <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> TypeError(<span style="color:#f1fa8c">`Promise resolver must be a function`</span>);
+    }
+
+    <span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
+      (value) =&gt; {
+        <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.settled) {
+          <span style="color:#ff79c6">return</span>;
+        }
+
+        defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;settled&#34;</span>, <span style="color:#ff79c6">true</span>);
+
+        defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>, value);
+        defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>, FULFILLED); <span style="color:#6272a4">// #FIXME
+</span><span style="color:#6272a4"></span>      };
+
+    <span style="color:#ff79c6">const</span> reject <span style="color:#ff79c6">=</span>
+      (reason) =&gt; {
+        <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.settled) {
+          <span style="color:#ff79c6">return</span>;
+        }
+
+        defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;settled&#34;</span>, <span style="color:#ff79c6">true</span>);
+
+        defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>, reason);
+        defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>, REJECTED);
+      };
+
+    executor(resolve, reject);
+  }
+}
+</code></pre></div><p>Looking at the code written so far, we can see how the <code>executor</code> is immediately invoked.
+We can&rsquo;t know, nor should we care, about the kind of code we&rsquo;re running&hellip;
+It might throw, and we should be ready for this possibility.</p>
+<p>When <code>executor</code> throws an exception, we still get back a promise, that is rejected, with the error been thrown as value.
+Implementing this behaviour in our shim is pretty straightforward.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">try</span> {
+  executor(resolve, reject);
+} <span style="color:#ff79c6">catch</span> (error) {
+  reject(error);
+}
+</code></pre></div><p>If we take a look at code from a certain distance, there&rsquo;s a thing that certainly will
+stand out. I mean that <em>#FIXME</em> comment we&rsquo;ve left earlier.
+It&rsquo;s quite time to fix it&hellip; but just before that, what&rsquo;s wrong there?</p>
+<p>We&rsquo;ve assumed so far, that <code>reject</code> always set promise&rsquo;s state to <code>REJECTED</code>, but also
+that <code>resolve</code> always set promise&rsquo;s state to <code>FULFILLED</code>; but this is not always the case.
+There&rsquo;s an important exception indeed.
+In case <code>resolve</code> receives as input, a value, that is itself a promise, the new promise
+should be resolved with state, and value of this promise (once its fate is set).</p>
+<p>So, how to know when a promise becomes fulfilled, or gets rejected?
+<em>It&rsquo;s possible to be somehow notified</em> of a promise changing its state using the <code>then</code>
+method, that each promise shares on the class' prototype.</p>
+<p><code>then</code> accepts as arguments two functions: <code>onfulfill</code> and <code>onreject</code>; the first is
+executed when the promise becomes fulfilled, the latter when it gets rejected.
+<code>then</code> itself returns a new promise, that is settled with the value <code>onfulfill</code>, or
+<code>onreject</code> will return.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  constructor (executor) {}
+
+  then (onfulfill, onreject) {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#ff79c6">this</span>.constructor((resolve, reject) =&gt; {
+      <span style="color:#6272a4">// ?
+</span><span style="color:#6272a4"></span>    });
+  }
+}
+</code></pre></div><p>However <code>onfulfill</code>, and <code>onreject</code> are not synchronously executed after promise&rsquo;s state changes.
+Their execution is asynchronous; the JavaScript engine schedules their execution as a microtask. This should guarantee that they&rsquo;re executed asynchronously, but anyway before any other task.</p>
+<p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Jake Archibald has a great post on this topic</a>, and more recently <a href="https://www.youtube.com/watch?v=cCOL7MC4Pl0">he has also spoken about JavaScript event loop at JSConf.Asia 2018</a>. I absolutely recommend these resources.</p>
+<p>We&rsquo;ll see later how to mock this behaviour in our polyfill; for now the take away is that since <code>onfulfill</code>, and <code>onreject</code> are not immediately executed, we need a place to store them for when the right moment arrives.
+Let&rsquo;s prepare a such place:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  constructor (executor) {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> executor <span style="color:#ff79c6">!=</span> <span style="color:#f1fa8c">&#34;function&#34;</span>) {
+      <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> TypeError(<span style="color:#f1fa8c">`Promise resolver must be a function`</span>);
+    }
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;observers&#34;</span>, []);
+  }
+}
+</code></pre></div><p>So, it&rsquo;s time to implement <code>then</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">then (onfulfill, onreject) {
+  <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#ff79c6">this</span>.constructor((resolve, reject) =&gt; {
+    <span style="color:#ff79c6">const</span> internalOnfulfill <span style="color:#ff79c6">=</span>
+      (value) =&gt; {
+        resolve(onfulfill(value));
+      }
+
+    <span style="color:#ff79c6">const</span> internalOnreject <span style="color:#ff79c6">=</span>
+      (reason) =&gt; {
+        resolve(onreject(reason));
+      };
+
+    <span style="color:#ff79c6">this</span>.observers.push({
+      onfulfill<span style="color:#ff79c6">:</span> internalOnfulfill,
+      onreject<span style="color:#ff79c6">:</span> internalOnreject
+    });
+  });
+}
+</code></pre></div><p>The above implementation is still incomplete, but it&rsquo;s a good starting point to understand
+what&rsquo;s going on.</p>
+<p>We&rsquo;ve wrapped the <code>onfulfill</code>, <code>onreject</code> functions (arguments of <code>then</code>) into another couple of functions, which capture in the closure <code>resolve</code>, and <code>reject</code>, and doing so, also the capability to resolve, reject the returned promise.
+These functions are then stored into <code>observers</code> field, so that later we can reference, and execute them.</p>
+<p><code>internalOnfulfill</code>, and <code>internalOnreject</code> are mostly incomplete at this point.</p>
+<p>For instance <code>internalOnfulfill</code> should also put into account the fact that <code>onfulfill</code> may not be provided, or that it may throw an exception.
+So it&rsquo;s better written as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> internalOnfulfill <span style="color:#ff79c6">=</span>
+  (value) =&gt; {
+    <span style="color:#ff79c6">try</span> {
+      resolve(
+        <span style="color:#ff79c6">typeof</span> onfulfill <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>
+          <span style="color:#ff79c6">?</span> onfulfill(value)
+          <span style="color:#ff79c6">:</span> value
+      );
+    } <span style="color:#ff79c6">catch</span> (error) {
+      reject(error);
+    }
+  };
+</code></pre></div><p>And almost the same consideration could be done about <code>internalOnreject</code>, so that it could be rewritten as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> internalOnreject <span style="color:#ff79c6">=</span>
+  (reason) =&gt; {
+    <span style="color:#ff79c6">try</span> {
+      <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> onreject <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>) {
+        resolve(onreject(reason));
+      } <span style="color:#ff79c6">else</span> {
+        reject(reason);
+      }
+    } <span style="color:#ff79c6">catch</span> (error) {
+      reject(error);
+    }
+  };
+</code></pre></div><p>So, let&rsquo;s have a look at <code>then</code> in its completeness:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">then (onfulfill, onreject) {
+  <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#ff79c6">this</span>.constructor((resolve, reject) =&gt; {
+    <span style="color:#ff79c6">const</span> internalOnfulfill <span style="color:#ff79c6">=</span>
+      (value) =&gt; {
+        <span style="color:#ff79c6">try</span> {
+          resolve(
+            <span style="color:#ff79c6">typeof</span> onfulfill <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>
+              <span style="color:#ff79c6">?</span> onfulfill(value)
+              <span style="color:#ff79c6">:</span> value
+          );
+        } <span style="color:#ff79c6">catch</span> (error) {
+          reject(error);
+        }
+      };
+
+    <span style="color:#ff79c6">const</span> internalOnreject <span style="color:#ff79c6">=</span>
+      (reason) =&gt; {
+        <span style="color:#ff79c6">try</span> {
+          <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> onreject <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>) {
+            resolve(onreject(reason));
+          } <span style="color:#ff79c6">else</span> {
+            reject(reason);
+          }
+        } <span style="color:#ff79c6">catch</span> (error) {
+          reject(error);
+        }
+      };
+
+    <span style="color:#ff79c6">this</span>.observers.push({
+      onfulfill<span style="color:#ff79c6">:</span> internalOnfulfill,
+      onreject<span style="color:#ff79c6">:</span> internalOnreject
+    });
+  });
+}
+</code></pre></div><p>Having completed <code>then</code>, we can now use it to fix <code>resolve</code>.
+Do you remember the problem?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
+  (value) =&gt; {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.settled) {
+      <span style="color:#ff79c6">return</span>;
+    }
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;settled&#34;</span>, <span style="color:#ff79c6">true</span>);
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>, value);
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>, FULFILLED); <span style="color:#6272a4">// #FIXME
+</span><span style="color:#6272a4"></span>  };
+</code></pre></div><p>We had assumed that <code>resolve</code> always produce a fulfilled promise, but this doesn&rsquo;t always hold true: that&rsquo;s not the case when the value <code>resolve</code> receives as argument is itself a promise.</p>
+<p>So, first step is to determine whether a value is a promise (or better a <em>thenable</em>), or not.
+I use <em>duck checking</em> for this purpose:</p>
+<blockquote>
+<p>If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.</p>
+</blockquote>
+<p>I consider a value to be a <em>thenable</em> when it has a <code>then</code> method attached to it.
+Let&rsquo;s write an utility to detect this kind of objects.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> isThenable <span style="color:#ff79c6">=</span>
+  (subject) =&gt; subject <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#ff79c6">typeof</span> subject.then <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>;
+</code></pre></div><p>Being a thenable is not a big deal on its own.
+We&rsquo;re much more interested into distinguish <em>unsettled thenable</em> from whatever else.
+That&rsquo;s cause we can easily access state, and value of promises created by our shim.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
+  (value) =&gt; {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.settled) {
+      <span style="color:#ff79c6">return</span>;
+    }
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;settled&#34;</span>, <span style="color:#ff79c6">true</span>);
+
+    <span style="color:#ff79c6">const</span> thenable <span style="color:#ff79c6">=</span> isThenable(value);
+
+    <span style="color:#ff79c6">if</span> (thenable <span style="color:#ff79c6">&amp;&amp;</span> value.state <span style="color:#ff79c6">===</span> PENDING) {
+      <span style="color:#6272a4">// ?
+</span><span style="color:#6272a4"></span>    } <span style="color:#ff79c6">else</span> {
+      defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>,
+        thenable
+          <span style="color:#ff79c6">?</span> value.value
+          <span style="color:#ff79c6">:</span> value);
+      defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>,
+        thenable
+          <span style="color:#ff79c6">?</span> value.state
+          <span style="color:#ff79c6">:</span> FULFILLED);
+    }
+  };
+</code></pre></div><p>So, what can we do when the thenable is not yet settled?
+We&rsquo;re going to register an observer on it, in order to be notified when its state changes.
+However we can&rsquo;t simply write it like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">value.then(resolve, reject);
+</code></pre></div><p>Otherwise the guard on <code>this.settled</code>, that we&rsquo;ve put in place earlier to protect the value/state from unlegitimate changes, won&rsquo;t permit us to proceed further.
+We need to put in place a mechanism to bypass that safety guard.</p>
+<p>Sure there are different ways to make this&hellip;
+I&rsquo;m going to setup a bypass mechanism based on a key that simply is not possible to have
+from outside the class' constructor.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> secret <span style="color:#ff79c6">=</span> [];
+
+<span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
+  (value, bypassKey) =&gt; {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.settled <span style="color:#ff79c6">&amp;&amp;</span> bypassKey <span style="color:#ff79c6">!==</span> secret) {
+      <span style="color:#ff79c6">return</span>;
+    }
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;settled&#34;</span>, <span style="color:#ff79c6">true</span>);
+
+    <span style="color:#ff79c6">const</span> thenable <span style="color:#ff79c6">=</span> isThenable(value);
+
+    <span style="color:#ff79c6">if</span> (thenable <span style="color:#ff79c6">&amp;&amp;</span> value.state <span style="color:#ff79c6">===</span> PENDING) {
+      value.then(
+        (v) =&gt;
+          resolve(v, secret),
+        (r) =&gt;
+          reject(r, secret)
+      );
+    } <span style="color:#ff79c6">else</span> {
+      defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>,
+        thenable
+          <span style="color:#ff79c6">?</span> value.value
+          <span style="color:#ff79c6">:</span> value);
+      defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>,
+        thenable
+          <span style="color:#ff79c6">?</span> value.state
+          <span style="color:#ff79c6">:</span> FULFILLED);
+    }
+  };
+</code></pre></div><p>Current implementation works, but triggers <code>then</code>&rsquo;s getter twice: first time is for the
+type check <code>typeof obj.then == &quot;function&quot;</code>, and the second for the execution.
+It&rsquo;s required that <code>then</code>&rsquo;s getter gets invoked only once per use.
+Let&rsquo;s fix this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
+  (value, bypassKey) =&gt; {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.settled <span style="color:#ff79c6">&amp;&amp;</span> bypassKey <span style="color:#ff79c6">!==</span> secret) {
+      <span style="color:#ff79c6">return</span>;
+    }
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;settled&#34;</span>, <span style="color:#ff79c6">true</span>);
+
+    <span style="color:#ff79c6">const</span> then_ <span style="color:#ff79c6">=</span> value <span style="color:#ff79c6">&amp;&amp;</span> value.then;
+    <span style="color:#ff79c6">const</span> thenable <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">typeof</span> then_ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>;
+
+    <span style="color:#ff79c6">if</span> (thenable <span style="color:#ff79c6">&amp;&amp;</span> value.state <span style="color:#ff79c6">===</span> PENDING) {
+      then_.call(
+        value,
+        (v) =&gt;
+          resolve(v, secret),
+        (r) =&gt;
+          reject(r, secret)
+      );
+    } <span style="color:#ff79c6">else</span> {
+      defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>,
+        thenable
+          <span style="color:#ff79c6">?</span> value.value
+          <span style="color:#ff79c6">:</span> value);
+      defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>,
+        thenable
+          <span style="color:#ff79c6">?</span> value.state
+          <span style="color:#ff79c6">:</span> FULFILLED);
+    }
+  };
+</code></pre></div><p>On the other hand, <code>reject</code> was already pretty fine.
+At the point it&rsquo;s executed, is already pretty clear that we&rsquo;re going to end up with a new rejected promise, so there&rsquo;s no reason to wait:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> lateRejection <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((_, reject) =&gt; {
+  setTimeout(reject, <span style="color:#bd93f9">60000</span>, <span style="color:#f1fa8c">&#34;A minute late rejection.&#34;</span>);
+});
+
+<span style="color:#ff79c6">const</span> promise <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve) =&gt; {
+  resolve(lateRejection);
+});
+
+promise.<span style="color:#ff79c6">catch</span>(() =&gt; console.log(<span style="color:#f1fa8c">&#34;Immediate, instead!&#34;</span>));
+</code></pre></div><p>It should simply be extended to recognize the secret key, when provided.
+So it ends up being as below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> reject <span style="color:#ff79c6">=</span>
+  (reason, bypassKey) =&gt; {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.settled <span style="color:#ff79c6">&amp;&amp;</span> bypassKey <span style="color:#ff79c6">!==</span> secret) {
+      <span style="color:#ff79c6">return</span>;
+    }
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;settled&#34;</span>, <span style="color:#ff79c6">true</span>);
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>, reason);
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>, REJECTED);
+  };
+</code></pre></div><p>Having fixed the <code>constructor</code>, let&rsquo;s recap what we&rsquo;ve done till this point.</p>
+<p>We&rsquo;ve in place a reliable mechanism to mark an object representing a promise as fulfilled, or rejected. We&rsquo;ve also a way to register an handler that should be invoked as microtask - that is before any other task - when promise&rsquo;s fate is set.</p>
+<p>What is still missing is something that triggers the execution of all the registered observers when a promise changes its state.</p>
+<p>But, at this point is not hard to find where promise&rsquo;s fate is defined: in the <code>resolve</code>, and <code>reject</code> functions, which are declared in the <code>constructor</code>.
+That&rsquo;s the best place to schedule the observers as microtask.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
+  (value, bypassKey) =&gt; {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.settled <span style="color:#ff79c6">&amp;&amp;</span> bypassKey <span style="color:#ff79c6">!==</span> secret) {
+      <span style="color:#ff79c6">return</span>;
+    }
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;settled&#34;</span>, <span style="color:#ff79c6">true</span>);
+
+    <span style="color:#ff79c6">const</span> then_ <span style="color:#ff79c6">=</span> value <span style="color:#ff79c6">&amp;&amp;</span> value.then;
+    <span style="color:#ff79c6">const</span> thenable <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">typeof</span> then_ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>;
+
+    <span style="color:#ff79c6">if</span> (thenable <span style="color:#ff79c6">&amp;&amp;</span> value.state <span style="color:#ff79c6">===</span> PENDING) {
+      then_.call(
+        value,
+        (v) =&gt;
+          resolve(v, secret),
+        (r) =&gt;
+          reject(r, secret)
+      );
+    } <span style="color:#ff79c6">else</span> {
+      defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>,
+        thenable
+          <span style="color:#ff79c6">?</span> value.value
+          <span style="color:#ff79c6">:</span> value);
+      defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>,
+        thenable
+          <span style="color:#ff79c6">?</span> value.state
+          <span style="color:#ff79c6">:</span> FULFILLED);
+
+      schedule(<span style="color:#ff79c6">this</span>.observers);
+    }
+  };
+
+<span style="color:#ff79c6">const</span> reject <span style="color:#ff79c6">=</span>
+  (reason, bypassKey) =&gt; {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.settled <span style="color:#ff79c6">&amp;&amp;</span> bypassKey <span style="color:#ff79c6">!==</span> secret) {
+      <span style="color:#ff79c6">return</span>;
+    }
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;settled&#34;</span>, <span style="color:#ff79c6">true</span>);
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>, reason);
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>, REJECTED);
+
+    schedule(<span style="color:#ff79c6">this</span>.observers);
+  };
+</code></pre></div><p>Let for a moment <code>schedule</code> not implemented.
+The instance&rsquo;s <code>observers</code> field is an <code>array</code> of <code>object</code>s, each containing an <code>onfulfill</code>, and <code>onreject</code> handler&hellip; but only one of these is effectively executed, on the basis of the promise&rsquo;s state.
+When <code>schedule</code> is executed the promise&rsquo;s state is already known, so that we can pass to <code>schedule</code> the correct handler, together with the promise&rsquo;s value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">schedule(
+  <span style="color:#ff79c6">this</span>.observers.map((observer) =&gt; ({
+    handler<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">===</span> FULFILLED
+      <span style="color:#ff79c6">?</span> observer.onfulfilled
+      <span style="color:#ff79c6">:</span> observer.onrejected,
+    value<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">this</span>.value
+  }))
+);
+</code></pre></div><p>Before moving on, it&rsquo;s important to consider that, <code>then</code> may happen to be called on a promise, that is already fulfilled, or rejected.
+To determine whether that&rsquo;s the case we can check promise&rsquo;s state, and consequently registering, or scheduling the observers.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">===</span> PENDING) {
+  <span style="color:#ff79c6">this</span>.observers.push({
+    onfulfill<span style="color:#ff79c6">:</span> internalOnfulfill,
+    onreject<span style="color:#ff79c6">:</span> internalOnreject
+  });
+} <span style="color:#ff79c6">else</span> {
+  schedule([{
+    handler<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">===</span> FULFILLED
+      <span style="color:#ff79c6">?</span> internalOnfulfill
+      <span style="color:#ff79c6">:</span> internalOnreject,
+    value<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">this</span>.value
+  }]);
+}
+</code></pre></div><p>It&rsquo;s quite time to implement <code>schedule</code>.
+The problem we&rsquo;re going to solve could be summerized as:</p>
+<blockquote>
+<p>How can we mock in a pre-promise environment the execution of a microtask?</p>
+</blockquote>
+<p>Let&rsquo;s consider for now only browsers as target environment of our shim.
+Later we&rsquo;re going to extend it, to be environment-independent, but let&rsquo;s keep it simple for now.</p>
+<p>Since we&rsquo;re just considering browsers, we can exploit the fact that the handler passed to a <a href="https://developer.mozilla.org/it/docs/Web/API/MutationObserver">mutation observer</a> is scheduled as a microtask.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> func <span style="color:#ff79c6">=</span>
+  () =&gt; console.log(<span style="color:#f1fa8c">&#34;A microtask&#34;</span>);
+
+<span style="color:#ff79c6">const</span> observer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> MutationObserver(func);
+<span style="color:#ff79c6">const</span> node <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createTextNode(<span style="color:#f1fa8c">&#34;&#34;</span>);
+
+observer.observe(node, { characterData<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span> });
+
+setTimeout(() =&gt; console.log(<span style="color:#f1fa8c">&#34;A task&#34;</span>), <span style="color:#bd93f9">0</span>);
+node.data <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+</code></pre></div><p>In the above snippet, <code>func</code> is scheduled as microtask when <code>node</code>&rsquo;s data changes, and it&rsquo;s invoked before the handler passed to <code>setTimeout</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> schedule <span style="color:#ff79c6">=</span>
+  (() =&gt; {
+    <span style="color:#8be9fd;font-style:italic">let</span> microtasks <span style="color:#ff79c6">=</span> [];
+
+    <span style="color:#ff79c6">const</span> run <span style="color:#ff79c6">=</span>
+      () =&gt; {
+        <span style="color:#8be9fd;font-style:italic">let</span> handler, value;
+        <span style="color:#ff79c6">while</span> (microtask.length <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">&amp;&amp;</span>
+          ({ handler, value } <span style="color:#ff79c6">=</span> microtasks.shift())) {
+          handler(value);
+        }
+      };
+
+    <span style="color:#ff79c6">const</span> observer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> MutationObserver(run);
+    <span style="color:#ff79c6">const</span> node <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createTextNode(<span style="color:#f1fa8c">&#34;&#34;</span>);
+
+    observer.observe(node, { characterData<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span> });
+
+    <span style="color:#ff79c6">return</span> (observers) =&gt; {
+      <span style="color:#ff79c6">if</span> (observers.length <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">0</span>) {
+        <span style="color:#ff79c6">return</span>;
+      }
+
+      microtasks <span style="color:#ff79c6">=</span> microtasks.concat(observers);
+      observers.length <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+
+      node.data <span style="color:#ff79c6">=</span> node.data <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">1</span>
+        <span style="color:#ff79c6">?</span> <span style="color:#bd93f9">0</span>
+        <span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>;
+    };
+  })();
+</code></pre></div><p>This code is not super beautiful; we&rsquo;ll improve it later, anyway.
+Let&rsquo;s look better at the <code>while</code> loop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">while</span> (queue.length <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">&amp;&amp;</span> ({ handler, value } <span style="color:#ff79c6">=</span> queue.shift())) {
+  handler(value);
+}
+</code></pre></div><p>What do you think should happen in case <code>handler</code> throws an exception?</p>
+<p>We&rsquo;ve sprinkled a few <code>try... catch</code>es around, which helps create rejected promises whenever an otherwise uncaught exception occurs.
+But they are somehow overprotective.
+In fact what would have been an uncaught exception using the native built-in, is always caught somewhere in our shim.</p>
+<p>We’ve to re-throw the exception, immediately (not synchronously) after having marked the promise rejected.</p>
+<p>The only condition is that the promise&rsquo;s rejection remains uncaught, that is there&rsquo;s at least a promise&rsquo;s chain branch that is not recovered with <code>then(*, onreject)</code>.</p>
+<p>In order to know whether that&rsquo;s the case we need to know the whole promises' chain.
+So, let&rsquo;s start by adding to our class another field, to track the chain.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  constructor (executor) {
+    <span style="color:#6272a4">// ...
+</span><span style="color:#6272a4"></span>
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;chain&#34;</span>, []);
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;observers&#34;</span>, []);
+
+    <span style="color:#6272a4">// ...
+</span><span style="color:#6272a4"></span>  }
+
+  then (onfulfill, onreject) {
+    <span style="color:#ff79c6">const</span> chainedPromise <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#ff79c6">this</span>.contructor((resolve, reject) =&gt; {
+      <span style="color:#6272a4">// ...
+</span><span style="color:#6272a4"></span>    });
+
+    <span style="color:#ff79c6">this</span>.chain.push(chainedPromise);
+    <span style="color:#ff79c6">return</span> chainedPromise;
+  }
+}
+</code></pre></div><p>Let&rsquo;s now consider the following utilities, <code>defer</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> defer <span style="color:#ff79c6">=</span>
+  (handler) =&gt;
+    (...args) =&gt; {
+      setTimeout(handler, <span style="color:#bd93f9">0</span>, ...args);
+    }
+</code></pre></div><p>and, <code>thrower</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> thrower <span style="color:#ff79c6">=</span>
+  (error) =&gt; {
+    <span style="color:#ff79c6">throw</span> error <span style="color:#ff79c6">instanceof</span> <span style="color:#8be9fd;font-style:italic">Error</span>
+      <span style="color:#ff79c6">?</span> error
+      <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Error</span>(error);
+  };
+</code></pre></div><p>so that, we can write <code>raiseUnhandledPromiseRejectionException</code> as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> raiseUnhandledPromiseRejectionException <span style="color:#ff79c6">=</span>
+  defer((error, promise) =&gt; {
+    <span style="color:#ff79c6">if</span> (promise.chain.length <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>) {
+      <span style="color:#ff79c6">return</span>;
+    }
+    thrower(error);
+  });
+</code></pre></div><p>We can now use <code>raiseUnhandledPromiseRejectionException</code> to schedule the throwing of an exception when a promise gets rejected.</p>
+<p>So it should be used in <code>reject</code> of course:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> reject <span style="color:#ff79c6">=</span>
+  (reason, bypassKey) =&gt; {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.settled <span style="color:#ff79c6">&amp;&amp;</span> bypassKey <span style="color:#ff79c6">!==</span> secret) {
+      <span style="color:#ff79c6">return</span>;
+    }
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;settled&#34;</span>, <span style="color:#ff79c6">true</span>);
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>, reason);
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>, REJECTED);
+
+    schedule(
+      <span style="color:#ff79c6">this</span>.observers.map((observer) =&gt; ({
+        handler<span style="color:#ff79c6">:</span> observer.onrejected,
+        value<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">this</span>.value
+      }))
+    );
+
+    raiseUnhandledPromiseRejectionException(<span style="color:#ff79c6">this</span>.value, <span style="color:#ff79c6">this</span>);
+  };
+</code></pre></div><p>&hellip; but also in <code>resolve</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
+  (value, bypassKey) =&gt; {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.settled <span style="color:#ff79c6">&amp;&amp;</span> bypassKey <span style="color:#ff79c6">!==</span> secret) {
+      <span style="color:#ff79c6">return</span>;
+    }
+
+    defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;settled&#34;</span>, <span style="color:#ff79c6">true</span>);
+
+    <span style="color:#ff79c6">const</span> then_ <span style="color:#ff79c6">=</span> value <span style="color:#ff79c6">&amp;&amp;</span> value.then;
+    <span style="color:#ff79c6">const</span> thenable <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">typeof</span> then_ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>;
+
+    <span style="color:#ff79c6">if</span> (thenable <span style="color:#ff79c6">&amp;&amp;</span> value.state <span style="color:#ff79c6">===</span> PENDING) {
+      then_.call(
+        value,
+        (v) =&gt;
+          resolve(v, secret),
+        (r) =&gt;
+          reject(r, secret)
+      );
+    } <span style="color:#ff79c6">else</span> {
+      defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>,
+        thenable
+          <span style="color:#ff79c6">?</span> value.value
+          <span style="color:#ff79c6">:</span> value);
+      defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>,
+        thenable
+          <span style="color:#ff79c6">?</span> value.state
+          <span style="color:#ff79c6">:</span> FULFILLED);
+
+      schedule(
+        <span style="color:#ff79c6">this</span>.observers.map((observer) =&gt; ({
+          handler<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">===</span> FULFILLED
+            <span style="color:#ff79c6">?</span> observer.onfulfilled
+            <span style="color:#ff79c6">:</span> observer.onrejected,
+          value<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">this</span>.value
+        }))
+      );
+
+      <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">===</span> REJECTED) {
+        raiseUnhandledPromiseRejectionException(<span style="color:#ff79c6">this</span>.value, <span style="color:#ff79c6">this</span>);
+      }
+    }
+  };
+</code></pre></div><p>Current implementation works quite well; but it has still a few problems in some edge cases, in which it ends up throwing more than what&rsquo;s due. As example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> immediateRejection <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((_, reject) =&gt; {
+  reject(<span style="color:#f1fa8c">&#34;Boom&#34;</span>);
+});
+
+<span style="color:#ff79c6">const</span> promise <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve) =&gt; {
+  resolve(immediateRejection);
+});
+</code></pre></div><p>When a promise is resolved to a rejected promise, there should be only one throw after the promise is resolved.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
+  (value, bypassKey) =&gt; {
+    <span style="color:#6272a4">// ...
+</span><span style="color:#6272a4"></span>
+    <span style="color:#ff79c6">const</span> then_ <span style="color:#ff79c6">=</span> value <span style="color:#ff79c6">&amp;&amp;</span> value.then;
+    <span style="color:#ff79c6">const</span> thenable <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">typeof</span> then_ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>;
+
+    <span style="color:#ff79c6">if</span> (thenable) {
+      defineProperty(value, <span style="color:#f1fa8c">&#34;preventThrow&#34;</span>, <span style="color:#ff79c6">true</span>);
+    }
+
+    <span style="color:#6272a4">// ...
+</span><span style="color:#6272a4"></span>  };
+</code></pre></div><p>This information is gold, and permits <code>raiseUnhandledPromiseRejectionException</code> to further restrict the condition on which it throws:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> raiseUnhandledPromiseRejectionException <span style="color:#ff79c6">=</span>
+  defer((error, promise) =&gt; {
+    <span style="color:#ff79c6">if</span> (promise.preventThrow <span style="color:#ff79c6">||</span> promise.chain.length <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>) {
+      <span style="color:#ff79c6">return</span>;
+    }
+    thrower(error);
+  });
+</code></pre></div><p>Our scheduler works now pretty well on every browsers supporting <code>MutationObservers</code>; but it throws pretty fast when executed as Node.js module. That&rsquo;s cause there&rsquo;s no such a thing as mutation observers in node.
+Let&rsquo;s now try to extend <code>schedule</code>, so that it works indifferently both on browsers, both in Node.js.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> schedule <span style="color:#ff79c6">=</span>
+  (() =&gt; {
+    <span style="color:#8be9fd;font-style:italic">let</span> microtasks <span style="color:#ff79c6">=</span> [];
+
+    <span style="color:#ff79c6">const</span> run <span style="color:#ff79c6">=</span>
+      () =&gt; {
+        <span style="color:#8be9fd;font-style:italic">let</span> handler, value;
+        <span style="color:#ff79c6">while</span> (microtask.length <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">&amp;&amp;</span>
+          ({ handler, value } <span style="color:#ff79c6">=</span> microtasks.shift())) {
+          handler(value);
+        }
+      };
+
+    <span style="color:#ff79c6">const</span> observer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> MutationObserver(run);
+    <span style="color:#ff79c6">const</span> node <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createTextNode(<span style="color:#f1fa8c">&#34;&#34;</span>);
+
+    observer.observe(node, { characterData<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span> });
+
+    <span style="color:#ff79c6">return</span> (observers) =&gt; {
+      <span style="color:#ff79c6">if</span> (observers.length <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">0</span>) {
+        <span style="color:#ff79c6">return</span>;
+      }
+
+      microtasks <span style="color:#ff79c6">=</span> microtasks.concat(observers);
+      observers.length <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+
+      node.data <span style="color:#ff79c6">=</span> node.data <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">1</span>
+        <span style="color:#ff79c6">?</span> <span style="color:#bd93f9">0</span>
+        <span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>;
+    };
+  })();
+</code></pre></div><p>In our <code>schedule</code>&rsquo;s implementation we can recognize two environment specific operations.
+Initially it setups the <code>MutationObserver</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> observer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> MutationObserver(run);
+<span style="color:#ff79c6">const</span> node <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createTextNode(<span style="color:#f1fa8c">&#34;&#34;</span>);
+
+observer.observe(node, { characterData<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span> });
+</code></pre></div><p>&hellip; and later, it triggers a mutation on the observed element:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">node.data <span style="color:#ff79c6">=</span> node.data <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">1</span>
+  <span style="color:#ff79c6">?</span> <span style="color:#bd93f9">0</span>
+  <span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>;
+</code></pre></div><p>Let&rsquo;s extract these operations outside our scheduler.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> MutationObserverStrategy {
+  constructor (handler) {
+    <span style="color:#ff79c6">const</span> node <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>.node <span style="color:#ff79c6">=</span>
+      <span style="color:#8be9fd;font-style:italic">document</span>.createTextNode(<span style="color:#f1fa8c">&#34;&#34;</span>);
+    <span style="color:#ff79c6">const</span> observer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> MutationObserver(handler);
+    observer.observe(node, { characterData<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span> });
+  }
+
+  trigger () {
+    <span style="color:#ff79c6">this</span>.node <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>.node.data <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">1</span>
+      <span style="color:#ff79c6">?</span> <span style="color:#bd93f9">0</span>
+      <span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>;
+  }
+}
+</code></pre></div><p>So that now the <code>schedule</code> can be written as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> schedule <span style="color:#ff79c6">=</span>
+  (() =&gt; {
+    <span style="color:#8be9fd;font-style:italic">let</span> microtasks <span style="color:#ff79c6">=</span> [];
+
+    <span style="color:#ff79c6">const</span> run <span style="color:#ff79c6">=</span>
+      () =&gt; {
+        <span style="color:#8be9fd;font-style:italic">let</span> handler, value;
+        <span style="color:#ff79c6">while</span> (microtask.length <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">&amp;&amp;</span>
+          ({ handler, value } <span style="color:#ff79c6">=</span> microtasks.shift())) {
+          handler(value);
+        }
+      };
+
+    <span style="color:#ff79c6">const</span> ctrl <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> MutationObserverStrategy(run);
+
+    <span style="color:#ff79c6">return</span> (observers) =&gt; {
+      <span style="color:#ff79c6">if</span> (observers.length <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">0</span>) {
+        <span style="color:#ff79c6">return</span>;
+      }
+
+      microtasks <span style="color:#ff79c6">=</span> microtasks.concat(observers);
+      observers.length <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+
+      ctrl.trigger();
+    };
+  })();
+</code></pre></div><p>Current version works exactly how the previous implementation, but it&rsquo;s far easier to extend; we only need to provide a different <em>strategy</em> for Node.js, or for browsers which don&rsquo;t support <code>MutationObserver</code>; and that&rsquo;s exactly what we&rsquo;re going to do now.</p>
+<p>The only requirement we&rsquo;ve is that all the strategies match the same unwritten interface, that is implement the <code>trigger</code> method.</p>
+<p>We can use the built-in <code>process.nextTick</code> to schedule a microtask in Node.js.
+I would have preferred <code>setImmediate</code>, <a href="https://github.com/nodejs/node/issues/7145">but it appears to not be completely reliable yet</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> NextTickStrategy {
+  constructor (handler) {
+    <span style="color:#ff79c6">this</span>.scheduleNextTick <span style="color:#ff79c6">=</span>
+      () =&gt; process.nextTick(handler);
+  }
+
+  trigger () {
+    <span style="color:#ff79c6">this</span>.scheduleNextTick();
+  }
+}
+</code></pre></div><p>Finally in a browser that does not support <code>MutationObserver</code>, there&rsquo;s no way I am aware of to schedule a microtask. For such cases we can still provide a strategy that mostly works, despite not being 100% spec compliant.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> BetterThanNothingStrategy {
+  constructor (handler) {
+    <span style="color:#ff79c6">this</span>.scheduleAsap <span style="color:#ff79c6">=</span>
+      () =&gt; setTimeout(handler, <span style="color:#bd93f9">0</span>);
+  }
+
+  trigger () {
+    <span style="color:#ff79c6">this</span>.scheduleAsap();
+  }
+}
+</code></pre></div><p>Now that we&rsquo;ve a lib of possible strategies, what&rsquo;s missing is an orchestrator, that picks the most appropriate strategy, given the current environment. Despite this sounding as a really smart move, it&rsquo;s as simple as writing a function, with a couple of <code>if</code>s inside.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> getStrategy <span style="color:#ff79c6">=</span>
+  () =&gt; {
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> <span style="color:#8be9fd;font-style:italic">window</span> <span style="color:#ff79c6">!=</span> <span style="color:#f1fa8c">&#34;undefined&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span>
+      <span style="color:#ff79c6">typeof</span> <span style="color:#8be9fd;font-style:italic">window</span>.MutationObserver <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>) {
+      <span style="color:#ff79c6">return</span> MutationObserverStrategy;
+    }
+
+    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> process <span style="color:#ff79c6">!=</span> <span style="color:#f1fa8c">&#34;undefined&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span>
+      <span style="color:#ff79c6">typeof</span> process.nextTick <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>) {
+      <span style="color:#ff79c6">return</span> NextTickStrategy;
+    }
+
+    <span style="color:#ff79c6">return</span> BetterThanNothingStrategy;
+  }
+</code></pre></div><p>At this point, making the scheduler isomorphic (or universal, or whatever it&rsquo;s used these days) it&rsquo;s just a matter of replacing the hardcoded use of <code>MutationObserverStrategy</code> with the code below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> Strategy <span style="color:#ff79c6">=</span> getStrategy();
+<span style="color:#ff79c6">const</span> ctrl <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Strategy(run);
+</code></pre></div><p>At this point our shim works pretty well, both on browsers, both in Node.js.
+What&rsquo;s still missing is to complete its public interface, with both the <em>instance</em>, and <em>static</em> methods.</p>
+<p>Beyond <code>then</code> (that is already completed), each promise instance has two other methods, <code>catch</code> and <code>finally</code>.</p>
+<p><code>catch</code> takes as argument a function, <code>onreject</code>, that is invoked in case the promise on which <code>catch</code> is called gets rejected. It returns a new promise that is fulfilled with the value <code>onreject</code> will return.
+This description might sound familiar&hellip; and for good reasons.
+It&rsquo;s pretty much what <code>then(*, onreject)</code> does.
+In fact we can think of <code>catch</code> as a shortcut for <code>then(null, onreject)</code>, and we can also implement it as such:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  constructor (executor) {
+  }
+
+  <span style="color:#ff79c6">catch</span> (onreject) {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>.then(<span style="color:#ff79c6">null</span>, onreject);
+  }
+
+  then (onfulfill, onreject) {
+  }
+}
+</code></pre></div><p><code>finally</code> is a recent addition; it is introduced with ES2018, mostly to make Promise&rsquo;s public api match the historic <code>try {} catch (error) {} finally {}</code> block.</p>
+<p>You might need <code>finally</code> in the same scenarios you would have used the <code>finally</code> clause of a <code>try {} catch (error) {}</code> block, that is when you want the same instruction to be executed indipendently from the fact the code has thrown an exception or not.</p>
+<p><code>finally</code> receives as input parameter a function, <code>oncomplete</code>, that is executed when the promise on which it&rsquo;s called becomes fulfilled, or gets rejected. <code>oncomplete</code> does not receive anything as input parameter, neither its return value is used for something; in fact <code>finally</code> returns a new promise, that has the exact same state, and value of the promise on which <code>finally</code> has been called.
+The only case in which <code>finally</code> can produce a promise with different state, and value is when <code>oncomplete</code> throws an exception.</p>
+<p>So let&rsquo;s implement this behaviour:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  constructor (executor) {
+  }
+
+  <span style="color:#ff79c6">catch</span> (onreject) {
+  }
+
+  <span style="color:#ff79c6">finally</span> (oncomplete) {
+    <span style="color:#ff79c6">const</span> chainedPromise <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#ff79c6">this</span>.contructor((resolve, reject) =&gt; {
+      <span style="color:#ff79c6">const</span> internalOncomplete <span style="color:#ff79c6">=</span>
+        () =&gt; {
+          <span style="color:#ff79c6">try</span> {
+            oncomplete();
+            <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">===</span> FULFILLED) {
+              resolve(<span style="color:#ff79c6">this</span>.value);
+            } <span style="color:#ff79c6">else</span> {
+              reject(<span style="color:#ff79c6">this</span>.value);
+            }
+          } <span style="color:#ff79c6">catch</span> (error) {
+            reject(error);
+          }
+        };
+
+        <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">===</span> PENDING) {
+          <span style="color:#ff79c6">this</span>.observers.push({
+            onfulfill<span style="color:#ff79c6">:</span> internalOncomplete,
+            onreject<span style="color:#ff79c6">:</span> internalOncomplete
+          });
+        } <span style="color:#ff79c6">else</span> {
+          schedule([{
+            handler<span style="color:#ff79c6">:</span> internalOncomplete
+          }]);
+        }
+    });
+
+    <span style="color:#ff79c6">this</span>.chain.push(chainedPromise);
+    <span style="color:#ff79c6">return</span> chainedPromise;
+  }
+
+  then (onfulfill, onreject) {
+  }
+}
+</code></pre></div><p>To complete our implementation of Promise built-in at this point we&rsquo;re only missing a couple of static methods.</p>
+<p><code>Promise.resolve</code>, and <code>Promise.reject</code> despite some important difference are quite similar, at least for what concern the scope of usability.
+They are pretty useful in case you&rsquo;re not sure about a value you need to work with, and want to be sure it&rsquo;s a promise, or in case you know it&rsquo;s a promise built with a different library, and want to cast it to a genuine <code>Promifill</code> promise.</p>
+<p>Let&rsquo;s talk about <code>Promise.resolve</code>.
+In case the provided value is already an original Promifill&rsquo;s promise it returns it unchanged. Otherwise it creates a new promise that is resolved with the provided value, following - in case it&rsquo;s a thenable - its <code>then</code> method.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  <span style="color:#ff79c6">static</span> resolve (value) {
+    <span style="color:#ff79c6">return</span> value.constructor <span style="color:#ff79c6">===</span> Promifill
+      <span style="color:#ff79c6">?</span> value
+      <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> Promifill((resolve) =&gt; {
+        resolve(value);
+      });
+  }
+}
+</code></pre></div><p>Since we&rsquo;ve implemented <code>Promise.resolve</code> on the basis of our internal <code>resolve</code> function, we&rsquo;ve got for free the correct behaviour in case the value passed to <code>Promise.resolve</code> is a generic <em>thenable</em>.</p>
+<p><code>Promise.reject</code> creates always a new promise that is immediately rejected with the given reason. So it&rsquo;s pretty straightforward to implement.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  <span style="color:#ff79c6">static</span> reject (reason) {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> Promifill((_, reject) =&gt; {
+      reject(reason);
+    });
+  }
+}
+</code></pre></div><p>Finally the other two functions <code>Promise.all</code>, and <code>Promise.race</code> are more the kind of utilities you could find in other libraries.</p>
+<p><code>Promise.all</code> receives as input an <em>iterable</em>, such as an array, and returns a new promise that is fulfilled only when all the values in the iterable are fulfilled. In this case the value of the promise is an array containing the fulfilled values of each element of the iterable. In case at least one of the element in the iterable gets rejected, the new promise is rejected as well, with the reason of the first element in the iterable been rejected.</p>
+<p>Let&rsquo;s implement this behaviour.</p>
+<p>We start by validating the input parameters: it&rsquo;s required that it is an <code>iterable</code>.
+Let&rsquo;s create a couple of utility for this task; let&rsquo;s have an <code>isIterable</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> isIterable <span style="color:#ff79c6">=</span>
+  (subject) =&gt; subject <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span>
+    <span style="color:#ff79c6">typeof</span> subject[Symbol.iterator] <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;function&#34;</span>;
+</code></pre></div><p>that&rsquo;s used by <code>validateIterable</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> validateIterable <span style="color:#ff79c6">=</span>
+  (subject) =&gt; {
+    <span style="color:#ff79c6">if</span> (isIterable(subject)) {
+      <span style="color:#ff79c6">return</span>;
+    }
+
+    <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> TypeError(<span style="color:#f1fa8c">`Cannot read property &#39;Symbol(Symbol.iterator)&#39; of </span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">Object</span>.prototype.toString.call(subject)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">.`</span>);
+  };
+</code></pre></div><p>We can now use <code>validateIterable</code> to validate the input parameter <code>Promise.all</code> receives.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  <span style="color:#ff79c6">static</span> all (iterable) {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> Promifill((resolve, reject) =&gt; {
+      validateIterable(iterable);
+
+      <span style="color:#6272a4">// ?
+</span><span style="color:#6272a4"></span>    });
+  }
+}
+</code></pre></div><p>To implement <code>Promise.all</code> behaviour, we&rsquo;ll need an array where to store the fulfilled value of all the element in the iterable. It starts empty, and we&rsquo;ll add element to it as soon as each one become fulfilled.</p>
+<p>So we start iterating on all the element in the iterable.
+We use <code>Promifill.resolve</code> to normalize each entry to a genuine <code>Promifill</code> object.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  <span style="color:#ff79c6">static</span> all (iterable) {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> Promifill((resolve, reject) =&gt; {
+      validateIterable(iterable);
+
+      <span style="color:#8be9fd;font-style:italic">let</span> iterableSize <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+      <span style="color:#ff79c6">const</span> values <span style="color:#ff79c6">=</span> [];
+
+      <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> item <span style="color:#ff79c6">of</span> iterable) {
+        ((entry, index) =&gt; {
+          Promifill.resolve(entry)
+            .then(
+              (value) =&gt;
+                add(value, index),
+              reject
+            );
+        })(item, iterableSize<span style="color:#ff79c6">++</span>);
+      }
+    });
+  }
+}
+</code></pre></div><p>The internal <code>add</code> method should also check that all the elements in the iterable have been fulfilled, hence resolve the new promise.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> add <span style="color:#ff79c6">=</span>
+  (value, index) =&gt; {
+    values[index] <span style="color:#ff79c6">=</span> value;
+    <span style="color:#ff79c6">if</span> (values.length <span style="color:#ff79c6">===</span> iterableSize) {
+      resolve(values);
+    }
+  };
+</code></pre></div><p>Current <code>add</code>&rsquo;s implementation might result bugged; in fact in case the last element in the iterable is not the last element to be fulfilled/rejected <code>values.length === iterableSize</code> results <code>true</code> (<code>values</code> becomes a sparse array) and the promise becomes fulfilled too early.
+That&rsquo;s could be fixed by remembering that <code>Array#filter</code> skips array&rsquo;s hole; so that the check becomes something like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> add <span style="color:#ff79c6">=</span>
+  (value, index) =&gt; {
+    values[index] <span style="color:#ff79c6">=</span> value;
+    <span style="color:#ff79c6">if</span> (values.filter(() =&gt; <span style="color:#ff79c6">true</span>).length <span style="color:#ff79c6">===</span> iterableSize) {
+      resolve(values);
+    }
+  };
+</code></pre></div><p>To complete <code>Promise.all</code> we need to cover a last edge case.
+What would happen in case the iterable is empty?
+Current implementation returns a promise that never gets settled; but that&rsquo;s not what it&rsquo;s supposed to do.
+In this case it should return a promise that&rsquo;s fulfilled, and has as value an empty array.</p>
+<p>So first task is to determine whether an iterable is empty.
+So let&rsquo;s add <code>isEmptyIterable</code> in our lib:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> isEmptyIterable <span style="color:#ff79c6">=</span>
+  (subject) =&gt; {
+    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> _ <span style="color:#ff79c6">of</span> subject) {
+      <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
+    }
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span>;
+  };
+</code></pre></div><p>So that in the end we can write our complete <code>Promise.all</code> as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  <span style="color:#ff79c6">static</span> all (iterable) {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> Promifill((resolve, reject) =&gt; {
+      validateIterable(iterable);
+
+      <span style="color:#8be9fd;font-style:italic">let</span> iterableSize <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+      <span style="color:#ff79c6">const</span> values <span style="color:#ff79c6">=</span> [];
+
+      <span style="color:#ff79c6">if</span> (isEmptyIterable(iterable)) {
+        <span style="color:#ff79c6">return</span> resolve(values);
+      }
+
+      <span style="color:#ff79c6">const</span> add <span style="color:#ff79c6">=</span>
+        (value, index) =&gt; {
+          values[index] <span style="color:#ff79c6">=</span> value;
+          <span style="color:#ff79c6">if</span> (values.filter(() =&gt; <span style="color:#ff79c6">true</span>).length <span style="color:#ff79c6">===</span> iterableSize) {
+            resolve(values);
+          }
+        };
+
+      <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> item <span style="color:#ff79c6">of</span> iterable) {
+        ((entry, index) =&gt; {
+          Promifill.resolve(entry)
+            .then(
+              (value) =&gt;
+                add(value, index),
+              reject
+            );
+        })(item, iterableSize<span style="color:#ff79c6">++</span>);
+      }
+    });
+  }
+}
+</code></pre></div><p>Finally <code>Promise.race</code>.
+It accepts an iterable as input parameter, and returns a new promise, that is fulfilled, or gets rejected as soon the first element in the iterable is fulfilled, or gets rejected with that value, or reason.</p>
+<p>Strange enough, in case it receives an empty iterable, the promise it returns, never gets settled.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
+  <span style="color:#ff79c6">static</span> race (iterable) {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> Promifill((resolve, reject) =&gt; {
+      validateIterable(iterable);
+
+      <span style="color:#ff79c6">if</span> (isEmptyIterable(iterable)) {
+        <span style="color:#ff79c6">return</span>;
+      }
+
+      <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> entry <span style="color:#ff79c6">of</span> iterable) {
+        Promifill.resolve(entry)
+          .then(resolve, reject);
+      }
+    });
+  }
+}
+</code></pre></div></div>
+  <div class="post-footer">
+    <div class="post-date">February 26, 2018</div>
+    <div class="post-links">
+      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2flets-write-a-promise-polyfill%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
+      <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
+      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/lets-write-a-promise-polyfill.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
+    </div>
+    <div class="post-share">
+      <span class="post-share-line"></span>
+      <span class="post-share-text">Share article</span>
+      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2flets-write-a-promise-polyfill%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
+      <a class="post-share-link" href="https://www.reddit.com/submit?title=Let%27s%20write%20a%20Promise%20polyfill&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2flets-write-a-promise-polyfill%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
+    </div>
+    <div class="post-author">
+      <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>
+      <div class="post-author-bio">
+        <strong>Bruno Scopelliti</strong> is an independent software engineer, with focus on frontend development.
+        <br/>He lives in nice Bologna, Italy.
+      </div>
+    </div>
+  </div>
+</article>
+
+<script>
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+
+</script>
+
+<script>
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+
+</script>
+
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="site-width-wrapper">
+        <div class="footer-content"><div class="contact-form">
+  <h2>Contact me</h2><svg class="svg-airplane" enable-background="new 0 0 32 32" height="24px" version="1.1" viewBox="0 0 32 32" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+  <g>
+    <g>
+      <path d="M1.911,16.179c-1.084,0.568-1.039,1.4,0.098,1.852l3.364,1.331c1.137,0.449,2.856,0.204,3.821-0.55    L23.806,7.289c0.961-0.757,1.064-0.645,0.229,0.249L12.483,19.902c-0.837,0.892-0.59,1.984,0.55,2.425l0.394,0.154    c1.14,0.44,3,1.182,4.132,1.642l3.732,1.521c1.133,0.46,2.06,0.842,2.062,0.849c0.001,0.007,0.006,0.028,0.012,0.03    s0.273-0.962,0.594-2.141l5.688-20.908c0.321-1.18-0.302-1.681-1.385-1.113L1.911,16.179z" fill="#fff"/>
+    </g>
+    <g>
+      <path d="M11.146,29.864c-0.067,0.199,2.301-3.429,2.301-3.429c0.669-1.022,0.29-2.241-0.842-2.703l-2.582-1.058    c-1.132-0.463-1.674,0.08-1.205,1.212C8.818,23.887,11.214,29.66,11.146,29.864z" fill="#fff"/>
+    </g>
+  </g>
+</svg><form action="https://formspree.io/f/xwkwjvzd" method="POST" data-js="contact">
+    <div class="form-field">
+      <label>
+        Your email:
+        <input type="email" name="email" autocomplete="off" placeholder="you@example.com"/>
+      </label>
+    </div>
+    <div  class="form-field">
+      <label>
+        Message:
+        <textarea type="text" name="message" rows="7" placeholder="Hi Bruno!"></textarea>
+      </label>
+    </div>
+    <button type="submit" class="btn-submit">Send</button>
+    <div class="error" data-js="result"></div>
+  </form>
+</div>
+
+<script>
+  (function(){var e=window.BS_blog,n=e.$1,i=e.listen,u=e.ajax,t=n("[data-js='contact']"),l=n("[type='submit']",t);function v(r){r.preventDefault(),u(t.method,t.action,new FormData(t),s,o);function s(){var a=n("[data-js='result']",t);l.style="display: none ",t.reset(),a&&(a.innerHTML="Thanks!")}function o(){var a=n("[data-js='result']",t);a&&(a.innerHTML="Oops! There was a problem.")}}i("submit",t,v);})();
+
+</script><div class="social-links">
+  <a href="https://twitter.com/brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg height="32px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path fill="#fff" d="M346.8,80c22.3,0,43.8,9.3,59,25.6l6.1,6.5l8.7-1.7c4.5-0.9,8.9-1.9,13.3-3.1c-1,1.4-5.7,6.1-11,10.8  c-4.5,4-17.8,16.5-17.8,16.5s13,4.1,21.1,5s17.4-0.6,18.9-0.8c-2.8,2.3-7.8,5.8-10.8,7.9l-7,5.1l0.4,8.6c0.2,3.8,0.3,7.8,0.3,11.8  c0,30.2-5.9,61.8-17,91.5c-11.7,31.2-28.5,59.4-50,83.8c-23,26.1-50.2,46.5-81.1,60.8c-33.8,15.7-71.3,23.6-111.5,23.6  c-28.9,0-57.4-4.8-84.5-14.2c9.9-1.9,19.6-4.6,29.1-7.9c21.7-7.6,41.9-18.7,60.1-33l35.3-27.7l-44.9-0.8  c-26.1-0.5-49.7-13.4-64.3-33.9c7.3-0.5,14.5-1.8,21.5-3.7l60.7-20.2l-61.7-10.9c-29.6-5.9-52.8-27.9-61.3-55.8  c7.8,2,15.4,2.8,23.9,3.3c0,0,31.8,1.4,55.8-0.1c-13-6.2-46.4-29.2-46.4-29.2c-22.5-15.1-36-40.2-36-67.4c0-6.4,0.8-12.8,2.2-19  c21.9,22.4,47,41.1,75.1,55.5c37,19.1,76.9,29.8,118.6,31.9l21.2,1.1l-4.8-20.7c-1.4-5.9-2.1-12.1-2.1-18.5  C265.9,116.3,302.2,80,346.8,80 M346.8,64c-53.5,0-96.8,43.4-96.8,96.9c0,7.6,0.8,15,2.5,22.1C172,179,100.6,140.4,52.9,81.7  c-8.3,14.3-13.1,31-13.1,48.7c0,33.6,17.1,63.3,43.1,80.7C67,210.7,52,206.3,39,199c0,0.4,0,0.8,0,1.2c0,47,33.4,86.1,77.7,95  c-8.1,2.2-16.7,3.4-25.5,3.4c-6.2,0-12.3-0.6-18.2-1.8c12.3,38.5,48.1,66.5,90.5,67.3c-33.1,26-74.9,41.5-120.3,41.5  c-7.8,0-15.5-0.5-23.1-1.4C62.9,432,113.8,448,168.4,448C346.6,448,444,300.3,444,172.2c0-4.2-0.1-8.4-0.3-12.5  c18.9-13.7,35.3-30.7,48.3-50.2c-17.4,7.7-36,12.9-55.6,15.3c20-12,35.4-31,42.6-53.6c-18.7,11.1-39.4,19.2-61.5,23.5  C399.8,75.8,374.6,64,346.8,64L346.8,64z"/>
+</svg></a>
+  <a href="https://github.com/brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg height="32px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+  <path fill="#fff" d="M256,48.3c28,0,55.2,5.6,80.8,16.7c24.8,10.7,47,26.1,66.1,45.7c19.1,19.6,34.2,42.5,44.7,67.9  c10.9,26.4,16.4,54.4,16.4,83.3c0,45.8-13.9,89.5-40.2,126.3c-12.6,17.7-27.8,33.2-45,46.2c-15.8,11.9-33,21.3-51.2,28.2  c0-1.9,0-4.1,0-6.5c0.1-11.9,0.2-29.8,0.2-50.4c0-12.4-2-22.5-4.9-30.5c37.2-8.3,92-33.7,92-125.4c0-24.6-7.1-46.5-21.2-65.1  c3.1-12.9,5.5-35.6-5.1-63l-2.7-7.1l-7.2-2.4c-1.5-0.5-4.8-1.3-10-1.3c-11.5,0-30.9,3.9-59.5,22.6c-17-4.2-34.8-6.6-53.1-6.6H256  h-0.1c-18.3,0-36.2,2.4-53.1,6.6c-28.6-18.7-48-22.7-59.5-22.7c-5.2,0-8.5,0.9-10,1.4l-7.2,2.4l-2.7,7.1c-10.6,27.5-8.2,50.2-5.1,63  c-14.1,18.7-21.2,40.6-21.2,65.1c0,49.6,16,79.9,36.6,98.5c-8.1-6.6-18.6-12.1-31.2-13l-0.5,0l-0.5,0l-0.3,0  c-13.1,0-22.3,5.4-25.2,14.7c-4.7,14.8,9.8,25,14.6,28.4l0.5,0.6l1.5,0.6c1.6,1,10.1,7,16.9,24.5c2,6.2,6.3,14.5,13.6,22.2  c-13.1-11.2-24.8-24-34.9-38.1C61.9,351.5,48,307.8,48,262c0-28.9,5.5-56.9,16.4-83.3c10.5-25.5,25.5-48.3,44.7-67.9  c19.1-19.6,41.4-35,66.1-45.7C200.8,54,228,48.3,256,48.3 M136.7,351c16.8,14.1,36.3,20.9,52.3,24.5c-0.8,2.2-1.5,4.5-2.1,6.9  c-3.4,1-7.5,1.8-11.7,1.8c-10.9,0-19-5.4-25.6-16.9C147.2,362.7,142.8,356.6,136.7,351 M140.4,439.6c9.8,5.3,22.1,8.8,37.2,8.8  c2.2,0,4.4-0.1,6.7-0.2c0,2.8,0,5.5,0.1,7.9c0,2.4,0,4.6,0.1,6.5C168.9,456.8,154.2,449.1,140.4,439.6 M256,32.3  C132.3,32.3,32,135.2,32,262c0,101.5,64.2,187.5,153.2,217.9c1.4,0.3,2.6,0.4,3.8,0.4c8.3,0,11.5-6.1,11.5-11.4  c0-5.5-0.2-19.9-0.3-39.1c-8.4,1.9-15.9,2.7-22.6,2.7c-43.1,0-52.9-33.5-52.9-33.5c-10.2-26.5-24.9-33.8-24.9-33.8  c-19.5-13.7-0.1-14.2,1.4-14.2c0.1,0,0.1,0,0.1,0c22.5,2,34.3,23.9,34.3,23.9c11.2,19.6,26.2,25.2,39.6,25.2c10.5,0,20-3.4,25.6-6  c2-14.8,7.8-24.9,14.2-30.7c-49.7-5.8-102-25.5-102-113.5c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,1.6-0.5,5-0.5  c8.1,0,26.4,3.1,56.6,24.1c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7c30.2-21,48.5-24.1,56.6-24.1c3.4,0,5,0.5,5,0.5  c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3c8,7.1,15.2,21.1,15.2,42.5  c0,30.7-0.3,55.5-0.3,63c0,5.4,3.1,11.5,11.4,11.5c1.2,0,2.6-0.1,4-0.4C415.9,449.5,480,363.4,480,262  C480,135.2,379.7,32.3,256,32.3L256,32.3z"/>
+</svg></a>
+  <a href="/blog/index.xml" aria-label="RSS"><svg height="32px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g fill="#fff">
+    <path d="M119.9,336.1c-30.8,0-55.9,25.1-55.9,55.8c0,30.8,25.1,55.6,55.9,55.6c30.9,0,55.9-24.9,55.9-55.6   C175.8,361.2,150.8,336.1,119.9,336.1z M119.9,431.5c-22,0-39.9-17.8-39.9-39.6c0-21.9,17.9-39.8,39.9-39.8   c22,0,39.9,17.9,39.9,39.8C159.8,413.7,141.9,431.5,119.9,431.5z"/>
+    <path d="M64,192v79.9c48,0,94.1,14.2,128,48.1c33.9,33.9,48,79.9,48,128h80C320,308.1,204,192,64,192z M303.5,432h-48   c-3.1-49.7-21-92.1-52.2-123.3C172.1,277.4,130,259.5,80,256.4v-47.8c26,1.8,52.1,8,76.7,18.5c28.5,12.2,54.2,29.6,76.4,51.8   c22.2,22.2,39.6,47.9,51.8,76.4C295.5,379.9,301.7,405.6,303.5,432z"/>
+    <path d="M64,64v79.9c171,0,303.9,133,303.9,304.1H448C448,236.3,276,64,64,64z M291.4,220.5C235.4,164.4,161,132,80,128.2V80.3   C270,88.5,423.5,241.8,431.7,432h-48.2C379.7,351.1,347.3,276.5,291.4,220.5z"/>
+  </g>
+</svg></a>
+</div></div>
+        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+          <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

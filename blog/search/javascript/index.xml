@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaScript on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/javascript/</link>
+    <description>Recent content in JavaScript on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 26 Feb 2018 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Let&#39;s write a Promise polyfill</title>
+      <link>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</link>
+      <pubDate>Mon, 26 Feb 2018 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</guid>
+      <description>TL:DR; You can watch me live coding a promise&amp;rsquo;s polyfill on YouTube. Watch Let&amp;rsquo;s build a promise polyfill playlist.
+ We&amp;rsquo;re going to build a Promise polyfill; it&amp;rsquo;s the best way to understand how things work under the hood, after all.
+My goal is not to have the most performant, or feature rich, implementation, but I&amp;rsquo;ll try to optimize for ease of readability.
+A brief disclaimer before we even start: you might have heard that Promise are going to disappear soon, cause async function permit to further improve how we handle asynchronous code.</description>
+    </item>
+    
+    <item>
+      <title>Exception handling in async functions</title>
+      <link>https://brunoscopelliti.com/blog/exception-handling-in-async-functions/</link>
+      <pubDate>Wed, 08 Nov 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/exception-handling-in-async-functions/</guid>
+      <description>Async functions is one of the most welcomed new feature of JavaScript in recent years.
+One aspect in which async functions really shine when compared to traditional approach is error handling. Error handling is based on another beloved, and more ancient construct, try... catch.
+However try... catch is able to catch only exeptions thrown in functions which are explicitly awaited. In retrospective, it makes perfectly sense&amp;hellip; but I never fully realized it, until I met my first uncaught exception:</description>
+    </item>
+    
+    <item>
+      <title>Custom assertions are my favourite QUnit feature</title>
+      <link>https://brunoscopelliti.com/blog/qunit-custom-assertions/</link>
+      <pubDate>Tue, 17 Jan 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/qunit-custom-assertions/</guid>
+      <description>This post is meant to share my favourite QUnit feature, custom assertions.
+Compared to other library, QUnit has not a particularly rich assertions&#39; library; however that&amp;rsquo;s not a big deal, cause QUnit makes extremely simple to extend its core assertions collection.
+QUnit.assert.typeof = function (subject, expected) { // The current value of the expression  const actual = typeof subject; // It&amp;#39;s a boolean;  // It expresses wheter the test has passed, or not.</description>
+    </item>
+    
+    <item>
+      <title>The Chiara&#39;s first thousand days task</title>
+      <link>https://brunoscopelliti.com/blog/first-1000-days-of-chiara/</link>
+      <pubDate>Wed, 28 Sep 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/first-1000-days-of-chiara/</guid>
+      <description>I usually wake up early in the morning, before anyone else at my house.
+I use this time to maintain this blog, run some side projects, stay updated about latest hot trends in our industry. In general I like to have some time to spend just with myself; then in the evening, when I come from work, I&amp;rsquo;m even more happy to stay with my family, and every device is off by default.</description>
+    </item>
+    
+    <item>
+      <title>ES2015 modules today</title>
+      <link>https://brunoscopelliti.com/blog/es6-modules-with-jspm/</link>
+      <pubDate>Wed, 19 Aug 2015 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/es6-modules-with-jspm/</guid>
+      <description>Recently I&amp;rsquo;ve been playing with the new ES2015 stuff. One of the things I am more excited about it, is the new module format.
+What probably not everyone knows is that it is possible to start using the new module syntax today, with tools like jspm to polyfill the missing loader functionality of the browser.
+I published a repo on Github with basic usage examples; it&amp;rsquo;s here: ES2015 module playground.</description>
+    </item>
+    
+    <item>
+      <title>Fake today in unit tests</title>
+      <link>https://brunoscopelliti.com/blog/fake-today-in-unit-tests/</link>
+      <pubDate>Wed, 25 Mar 2015 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/fake-today-in-unit-tests/</guid>
+      <description>If the app which you are working on is strongly influenced by the date, you definitely need a simple and consistent way to create a fake today, to have significant unit tests.
+I do not want to make you wait&amp;hellip; this is the way I mock the Date constructor.
+function fakeDate (fakeToday) { var BuiltinDate = Date; spyOn(window, &amp;#34;Date&amp;#34;).and.callFake(function () { var args = Array.prototype.slice.call(arguments); if (args.length === 0) { return new BuiltinDate(fakeToday); } var _factoryFn = Function.</description>
+    </item>
+    
+  </channel>
+</rss>

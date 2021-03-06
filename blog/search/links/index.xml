@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Links on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/links/</link>
+    <description>Recent content in Links on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Sep 2016 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/links/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The art of controlling complexity</title>
+      <link>https://brunoscopelliti.com/blog/the-art-of-controlling-complexity/</link>
+      <pubDate>Thu, 01 Sep 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/the-art-of-controlling-complexity/</guid>
+      <description>From Eloquent Javascript, by Marijn Haverbeke.
+ Keeping programs under control is the main problem of programming. When a program works, it is beautiful. The art of programming is the skill of controlling complexity.
+ Just a reminder, primarily for myself.
+As developers we not only have to solve problems, but do it in a way we do not harm our future-self.</description>
+    </item>
+    
+  </channel>
+</rss>

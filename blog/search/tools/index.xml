@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tools on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/tools/</link>
+    <description>Recent content in Tools on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 May 2018 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A simple Babel optimization I recently learned</title>
+      <link>https://brunoscopelliti.com/blog/a-simple-babel-optimization-i-recently-learned/</link>
+      <pubDate>Tue, 08 May 2018 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/a-simple-babel-optimization-i-recently-learned/</guid>
+      <description>Babel relies on a few internal functions to generate the transpiled code.
+These functions, when needed, are placed at the top of the generated code, so they are not inlined multiple times across a single file.
+For example, a class declaration class Foo {} gets transpiled as:
+&amp;#34;use strict&amp;#34;; function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&amp;#34;Cannot call a class as a function&amp;#34;); } } var Foo = function Foo () { _classCallCheck(this, Foo); }; Since Babel performs transpilation on single file basis, there&amp;rsquo;s still the risk that these functions get duplicated across different files.</description>
+    </item>
+    
+    <item>
+      <title>Git alias: git unstage</title>
+      <link>https://brunoscopelliti.com/blog/git-alias-git-unstage/</link>
+      <pubDate>Fri, 05 May 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/git-alias-git-unstage/</guid>
+      <description>Git, between the others, has a powerful feature called alias.
+It&amp;rsquo;s pretty straightforward&amp;hellip; Is there a command you always fail to remember? Add a more friendly shortcut! Is there a command you use frequently, that requires too much keystrokes? Create a shorter alias for it&amp;hellip; or perhaps, you think that a fundamental command is missing from git? Then you can create it yourself using existing commands.
+My favourite alias is git unstage.</description>
+    </item>
+    
+    <item>
+      <title>Squash commits with git rebase</title>
+      <link>https://brunoscopelliti.com/blog/squash-commits-with-git-rebase/</link>
+      <pubDate>Mon, 23 Jan 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/squash-commits-with-git-rebase/</guid>
+      <description>That&amp;rsquo;s one thing I&amp;rsquo;ve just recently learned, and I&amp;rsquo;m writing down here for future reference.
+Git&amp;rsquo;s rebase command permits to change the history of a git repository.
+Note that this is safe to do only for commits that haven&amp;rsquo;t already been shared to the team you are working with.
+Why is it useful? Consider the following scenario:
+bruno ~/git/hello-git $ git hist # git hist is a custom alias for &amp;#34;git log --pretty=format:&amp;#39;%h %ad | %s%d [%an]&amp;#39; --graph --date=short&amp;#34; * 8a3a015 2016-10-26 | The most perfect commit in the history of the Universe (HEAD -&amp;gt; master) [brunoscopelliti] * a48ca6d 2016-10-26 | Init repo [brunoscopelliti] I&amp;rsquo;m so proud of myself&amp;hellip; I&amp;rsquo;ve just pushed the best commit in the whole history of the Universe!</description>
+    </item>
+    
+    <item>
+      <title>Webpack 101</title>
+      <link>https://brunoscopelliti.com/blog/webpack-101/</link>
+      <pubDate>Mon, 12 Dec 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/webpack-101/</guid>
+      <description>I&amp;rsquo;ve published on GitHub a series to help make sense of WebPack.
+I&amp;rsquo;m not going to approach this like That&amp;rsquo;s the configuration file, copy and paste it into your root folder, and everything will just be fine!
+Instead we&amp;rsquo;re going to build a WebPack configuration step by step together. We need to understand what we want to achieve with every single setting. I won&amp;rsquo;t talk about WebPack in the abstract, or about a WebPack feature as a stand alone piece; instead we&amp;rsquo;re actually going to build a simple single page application, and everytime we&amp;rsquo;ll change something into WebPack configuration, immediately we&amp;rsquo;ll see how this change affects our bundle, and our application.</description>
+    </item>
+    
+    <item>
+      <title>Git workflow PRO tip</title>
+      <link>https://brunoscopelliti.com/blog/git-productivity-trick/</link>
+      <pubDate>Sat, 03 Dec 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/git-productivity-trick/</guid>
+      <description>&amp;hellip; Yes, I know switching context is not so much productive, but sometimes we have to; so let&amp;rsquo;s better limit the issues! Here&amp;rsquo;s the tip 🥁
+ Clone, and maintain in sync, your main working repository in at least two different folders on the same machine.
+ Key benefit: easy to switch context when you&amp;rsquo;re on a long running feature branch. Simple, and yet effective!</description>
+    </item>
+    
+    <item>
+      <title>How to disable ESLint rule via JavaScript comment</title>
+      <link>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</link>
+      <pubDate>Fri, 16 Sep 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</guid>
+      <description>Having recently switched to ESLint, I often find myself googling for how to disable a rule on a particular occurrence via JavaScript comment.
+Hope writing this will help me to memorize the syntax, I&amp;rsquo;ll bookmark this page otherwise 😅.
+// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;); alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for that specific line.</description>
+    </item>
+    
+    <item>
+      <title>ES2015 modules today</title>
+      <link>https://brunoscopelliti.com/blog/es6-modules-with-jspm/</link>
+      <pubDate>Wed, 19 Aug 2015 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/es6-modules-with-jspm/</guid>
+      <description>Recently I&amp;rsquo;ve been playing with the new ES2015 stuff. One of the things I am more excited about it, is the new module format.
+What probably not everyone knows is that it is possible to start using the new module syntax today, with tools like jspm to polyfill the missing loader functionality of the browser.
+I published a repo on Github with basic usage examples; it&amp;rsquo;s here: ES2015 module playground.</description>
+    </item>
+    
+    <item>
+      <title>Getting started with Grunt</title>
+      <link>https://brunoscopelliti.com/blog/start-using-gruntjs/</link>
+      <pubDate>Tue, 28 May 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/start-using-gruntjs/</guid>
+      <description>Last weekend I finally found few time to give a try to Grunt.
+I am surprised by how easy is to get started, and I am curious to experiment the benefits which its usage can bring in a real world app.
+After some really trivial tests, my first serious attempt to create something useful with Grunt has been to create an automatic process to minify and then concatenate different javascript files; this post will collect a few notes about what I learned while I was trying to set up this process.</description>
+    </item>
+    
+    <item>
+      <title>jQuery custom build</title>
+      <link>https://brunoscopelliti.com/blog/jquery-custom-build/</link>
+      <pubDate>Tue, 09 Apr 2013 12:27:05 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/jquery-custom-build/</guid>
+      <description>Ok, jQuery doesn&amp;rsquo;t need any presentation.
+I really like it; it has simplified a lot my work&amp;hellip; BUT sometimes its almost 100Kb of sweetness are a price we can not pay.
+If this is the case a good trade-off between light weight pages and all the goodness of jQuery, is to use a custom build of jQuery.
+Custom builds allow to choose what features of jQuery are to be included in the minified file, and which not; perhaps you are working on a project and you are sure you&amp;rsquo;ll never have to do an asynchronous request?</description>
+    </item>
+    
+  </channel>
+</rss>

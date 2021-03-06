@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WordPress on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/wordpress/</link>
+    <description>Recent content in WordPress on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 May 2013 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/wordpress/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog re-style (&#43; bonus: three WordPress tricks)</title>
+      <link>https://brunoscopelliti.com/blog/blog-re-style-bonus-three-wordpress-tricks/</link>
+      <pubDate>Thu, 30 May 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/blog-re-style-bonus-three-wordpress-tricks/</guid>
+      <description>Some weekends ago, I saved few of my free time to work on my blog.
+The most evident change is that now for my blog, I&amp;rsquo;m using the Ryu theme, by the guys of Automattic.
+It had been a long time since the last time I had worked with WordPress, and I really appreciated it. So today I want to share three useful tricks to customize your WordPress implementation.
+One of the characteristics of this blog even before the restyle, was that, even if you are logged in WordPress, the top toolbar is not displayed.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web Perf on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/web-perf/</link>
+    <description>Recent content in Web Perf on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 25 Mar 2017 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/web-perf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Asynchronous font loading</title>
+      <link>https://brunoscopelliti.com/blog/asynchronous-font-loading/</link>
+      <pubDate>Sat, 25 Mar 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/asynchronous-font-loading/</guid>
+      <description>The characters you&amp;rsquo;re reading right now are rendered in a font called Ubuntu. It&amp;rsquo;s a pretty populare one. I&amp;rsquo;m also using the Merriweather font, in the homepage, right under my face, and in a few other places. Aren&amp;rsquo;t they nice? Hardly not!
+However fonts are generally heavy resources to load&amp;hellip; and having to load more of them may negatively affect loading performance of a website. In particular, there are two different problems:</description>
+    </item>
+    
+  </channel>
+</rss>

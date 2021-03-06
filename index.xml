@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/</link>
+    <description>Recent content in Home on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 May 2018 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://brunoscopelliti.com/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://brunoscopelliti.com/about/</guid>
+      <description>Hi there 👋
+Apparently you and I have something in common - I am also one of those weird, curious people at whom usually happen to visit /about page over the web.
+ I am Bruno Scopelliti.
+I currently live in Bologna, Italy. These pages are my very own home on the Internet&amp;hellip; Welcome!
+ I am blessed to have a wonderful wife, a wonderful daughter, Chiara. I still don&amp;rsquo;t feel particularly comfortable in writing about my family over the Internet; however they&amp;rsquo;re everything for me.</description>
+    </item>
+    
+    <item>
+      <title>A simple Babel optimization I recently learned</title>
+      <link>https://brunoscopelliti.com/blog/a-simple-babel-optimization-i-recently-learned/</link>
+      <pubDate>Tue, 08 May 2018 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/a-simple-babel-optimization-i-recently-learned/</guid>
+      <description>Babel relies on a few internal functions to generate the transpiled code.
+These functions, when needed, are placed at the top of the generated code, so they are not inlined multiple times across a single file.
+For example, a class declaration class Foo {} gets transpiled as:
+&amp;#34;use strict&amp;#34;; function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&amp;#34;Cannot call a class as a function&amp;#34;); } } var Foo = function Foo () { _classCallCheck(this, Foo); }; Since Babel performs transpilation on single file basis, there&amp;rsquo;s still the risk that these functions get duplicated across different files.</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s write a Promise polyfill</title>
+      <link>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</link>
+      <pubDate>Mon, 26 Feb 2018 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</guid>
+      <description>TL:DR; You can watch me live coding a promise&amp;rsquo;s polyfill on YouTube. Watch Let&amp;rsquo;s build a promise polyfill playlist.
+ We&amp;rsquo;re going to build a Promise polyfill; it&amp;rsquo;s the best way to understand how things work under the hood, after all.
+My goal is not to have the most performant, or feature rich, implementation, but I&amp;rsquo;ll try to optimize for ease of readability.
+A brief disclaimer before we even start: you might have heard that Promise are going to disappear soon, cause async function permit to further improve how we handle asynchronous code.</description>
+    </item>
+    
+    <item>
+      <title>Exception handling in async functions</title>
+      <link>https://brunoscopelliti.com/blog/exception-handling-in-async-functions/</link>
+      <pubDate>Wed, 08 Nov 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/exception-handling-in-async-functions/</guid>
+      <description>Async functions is one of the most welcomed new feature of JavaScript in recent years.
+One aspect in which async functions really shine when compared to traditional approach is error handling. Error handling is based on another beloved, and more ancient construct, try... catch.
+However try... catch is able to catch only exeptions thrown in functions which are explicitly awaited. In retrospective, it makes perfectly sense&amp;hellip; but I never fully realized it, until I met my first uncaught exception:</description>
+    </item>
+    
+    <item>
+      <title>A C# Automapper trick</title>
+      <link>https://brunoscopelliti.com/blog/a-csharp-automapper-trick/</link>
+      <pubDate>Mon, 05 Jun 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/a-csharp-automapper-trick/</guid>
+      <description>Writing blog posts is infinitely valuable in helping me memorize new tricks; even when it does not work, I can still more easily google for myself. Today&amp;rsquo;s blog post is meant to continue this glorious tradition.
+In C# development it&amp;rsquo;s pretty common to have to map fields between objects of different class. Automapper simplifies a lot the work.
+For instance, in the simplest scenario given the two classes
+public class ProductDto { public string name { get; set; } public string code { get; set; } public decimal price { get; set; } public string currency { get; set; } } public class Product { public string Name { get; set; } public string Code { get; set; } public decimal Price { get; set; } public string Currency { get; set; } } in order to copy values from ProductDto fields into a new Product instance, we&amp;rsquo;ve to execute Automapper&amp;rsquo;s map method</description>
+    </item>
+    
+    <item>
+      <title>New util.promisify in Node.js</title>
+      <link>https://brunoscopelliti.com/blog/new-util-promisify-in-nodejs/</link>
+      <pubDate>Tue, 16 May 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/new-util-promisify-in-nodejs/</guid>
+      <description>A quick search on npmjs reveals how this topic is at the center of JavaScript developer&amp;rsquo;s hearts. I used to have too my personal utility to convert Node.js callback-based internals methods into returning-promise ones.
+So I guess this is a big, great news for everyone who&amp;rsquo;s working with node: Node.js is adding a new utility that does just this at its core, util.promisify.
+If you have ever used one of those promisify modules, you won&amp;rsquo;t be too much surprised by util.</description>
+    </item>
+    
+    <item>
+      <title>DRY and strawberries</title>
+      <link>https://brunoscopelliti.com/blog/dry-and-strawberries/</link>
+      <pubDate>Fri, 12 May 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/dry-and-strawberries/</guid>
+      <description>DRY stands for Don&amp;rsquo;t Repeat Yourself, and it is an ancient motto in programming circles. It favors code reuse, that is a good thing on its own for several reasons; however it can be done in the wrong way, or, better to say in this case, in the wrong direction.
+Recently, while explaining this concept to a collegue of mine, I came out with this funny metaphor, that helped mark my point.</description>
+    </item>
+    
+    <item>
+      <title>Git alias: git unstage</title>
+      <link>https://brunoscopelliti.com/blog/git-alias-git-unstage/</link>
+      <pubDate>Fri, 05 May 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/git-alias-git-unstage/</guid>
+      <description>Git, between the others, has a powerful feature called alias.
+It&amp;rsquo;s pretty straightforward&amp;hellip; Is there a command you always fail to remember? Add a more friendly shortcut! Is there a command you use frequently, that requires too much keystrokes? Create a shorter alias for it&amp;hellip; or perhaps, you think that a fundamental command is missing from git? Then you can create it yourself using existing commands.
+My favourite alias is git unstage.</description>
+    </item>
+    
+    <item>
+      <title>C# LINQ equivalents of JavaScript array methods</title>
+      <link>https://brunoscopelliti.com/blog/csharp-linq-equivalents-of-javascript-array-methods/</link>
+      <pubDate>Tue, 25 Apr 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/csharp-linq-equivalents-of-javascript-array-methods/</guid>
+      <description>At work, in the last couple of years I&amp;rsquo;ve always more, and more written C# code. It&amp;rsquo;s nice, and it has lots of similarities with JavaScript.
+Despite this, I am not such productive with C#, as I am with JavaScript, and I often find myself asking colleagues, or searching the Internet for equivalent of JavaScript [feature] in C#&amp;hellip; I rarely get disappointed.
+In this post we explore the equivalent in C# of some of the most useful JavaScript array methods.</description>
+    </item>
+    
+    <item>
+      <title>Asynchronous font loading</title>
+      <link>https://brunoscopelliti.com/blog/asynchronous-font-loading/</link>
+      <pubDate>Sat, 25 Mar 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/asynchronous-font-loading/</guid>
+      <description>The characters you&amp;rsquo;re reading right now are rendered in a font called Ubuntu. It&amp;rsquo;s a pretty populare one. I&amp;rsquo;m also using the Merriweather font, in the homepage, right under my face, and in a few other places. Aren&amp;rsquo;t they nice? Hardly not!
+However fonts are generally heavy resources to load&amp;hellip; and having to load more of them may negatively affect loading performance of a website. In particular, there are two different problems:</description>
+    </item>
+    
+    <item>
+      <title>Squash commits with git rebase</title>
+      <link>https://brunoscopelliti.com/blog/squash-commits-with-git-rebase/</link>
+      <pubDate>Mon, 23 Jan 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/squash-commits-with-git-rebase/</guid>
+      <description>That&amp;rsquo;s one thing I&amp;rsquo;ve just recently learned, and I&amp;rsquo;m writing down here for future reference.
+Git&amp;rsquo;s rebase command permits to change the history of a git repository.
+Note that this is safe to do only for commits that haven&amp;rsquo;t already been shared to the team you are working with.
+Why is it useful? Consider the following scenario:
+bruno ~/git/hello-git $ git hist # git hist is a custom alias for &amp;#34;git log --pretty=format:&amp;#39;%h %ad | %s%d [%an]&amp;#39; --graph --date=short&amp;#34; * 8a3a015 2016-10-26 | The most perfect commit in the history of the Universe (HEAD -&amp;gt; master) [brunoscopelliti] * a48ca6d 2016-10-26 | Init repo [brunoscopelliti] I&amp;rsquo;m so proud of myself&amp;hellip; I&amp;rsquo;ve just pushed the best commit in the whole history of the Universe!</description>
+    </item>
+    
+    <item>
+      <title>Custom assertions are my favourite QUnit feature</title>
+      <link>https://brunoscopelliti.com/blog/qunit-custom-assertions/</link>
+      <pubDate>Tue, 17 Jan 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/qunit-custom-assertions/</guid>
+      <description>This post is meant to share my favourite QUnit feature, custom assertions.
+Compared to other library, QUnit has not a particularly rich assertions&#39; library; however that&amp;rsquo;s not a big deal, cause QUnit makes extremely simple to extend its core assertions collection.
+QUnit.assert.typeof = function (subject, expected) { // The current value of the expression  const actual = typeof subject; // It&amp;#39;s a boolean;  // It expresses wheter the test has passed, or not.</description>
+    </item>
+    
+    <item>
+      <title>Webpack 101</title>
+      <link>https://brunoscopelliti.com/blog/webpack-101/</link>
+      <pubDate>Mon, 12 Dec 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/webpack-101/</guid>
+      <description>I&amp;rsquo;ve published on GitHub a series to help make sense of WebPack.
+I&amp;rsquo;m not going to approach this like That&amp;rsquo;s the configuration file, copy and paste it into your root folder, and everything will just be fine!
+Instead we&amp;rsquo;re going to build a WebPack configuration step by step together. We need to understand what we want to achieve with every single setting. I won&amp;rsquo;t talk about WebPack in the abstract, or about a WebPack feature as a stand alone piece; instead we&amp;rsquo;re actually going to build a simple single page application, and everytime we&amp;rsquo;ll change something into WebPack configuration, immediately we&amp;rsquo;ll see how this change affects our bundle, and our application.</description>
+    </item>
+    
+    <item>
+      <title>Git workflow PRO tip</title>
+      <link>https://brunoscopelliti.com/blog/git-productivity-trick/</link>
+      <pubDate>Sat, 03 Dec 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/git-productivity-trick/</guid>
+      <description>&amp;hellip; Yes, I know switching context is not so much productive, but sometimes we have to; so let&amp;rsquo;s better limit the issues! Here&amp;rsquo;s the tip 🥁
+ Clone, and maintain in sync, your main working repository in at least two different folders on the same machine.
+ Key benefit: easy to switch context when you&amp;rsquo;re on a long running feature branch. Simple, and yet effective!</description>
+    </item>
+    
+    <item>
+      <title>History of a support ticket for Apple</title>
+      <link>https://brunoscopelliti.com/blog/history-of-a-support-ticket-for-apple/</link>
+      <pubDate>Sun, 23 Oct 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/history-of-a-support-ticket-for-apple/</guid>
+      <description>Some months ago, I changed my home working setup.
+I changed my middle 2011 iMac with a macbook pro + Apple monitor combo. My old iMac was in great shape, however the new setup is an enhancement because now I&amp;rsquo;ve a bigger monitor, and the freedom to use my mac from everywhere.
+I&amp;rsquo;ve also bought the BookArc stand. When at home, I wanted to use the monitor, and keep the macbook with the lid closed.</description>
+    </item>
+    
+    <item>
+      <title>The Chiara&#39;s first thousand days task</title>
+      <link>https://brunoscopelliti.com/blog/first-1000-days-of-chiara/</link>
+      <pubDate>Wed, 28 Sep 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/first-1000-days-of-chiara/</guid>
+      <description>I usually wake up early in the morning, before anyone else at my house.
+I use this time to maintain this blog, run some side projects, stay updated about latest hot trends in our industry. In general I like to have some time to spend just with myself; then in the evening, when I come from work, I&amp;rsquo;m even more happy to stay with my family, and every device is off by default.</description>
+    </item>
+    
+    <item>
+      <title>How to disable ESLint rule via JavaScript comment</title>
+      <link>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</link>
+      <pubDate>Fri, 16 Sep 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</guid>
+      <description>Having recently switched to ESLint, I often find myself googling for how to disable a rule on a particular occurrence via JavaScript comment.
+Hope writing this will help me to memorize the syntax, I&amp;rsquo;ll bookmark this page otherwise 😅.
+// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;); alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for that specific line.</description>
+    </item>
+    
+    <item>
+      <title>How I ported my blog to HTTPS</title>
+      <link>https://brunoscopelliti.com/blog/how-i-ported-my-blog-to-https/</link>
+      <pubDate>Wed, 07 Sep 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-i-ported-my-blog-to-https/</guid>
+      <description>In the last couple of years several elements are pushing for a widespread adoption of the HTTPS protocol.
+  Security. Of course security, what else would you expect from HTTPS. HTTPS is all about security! It guarantees that the server you&amp;rsquo;re connecting is really the one you believe it is, and that the contents of the communications is private, so that it can&amp;rsquo;t be read, or modified by a anyone else.</description>
+    </item>
+    
+    <item>
+      <title>The art of controlling complexity</title>
+      <link>https://brunoscopelliti.com/blog/the-art-of-controlling-complexity/</link>
+      <pubDate>Thu, 01 Sep 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/the-art-of-controlling-complexity/</guid>
+      <description>From Eloquent Javascript, by Marijn Haverbeke.
+ Keeping programs under control is the main problem of programming. When a program works, it is beautiful. The art of programming is the skill of controlling complexity.
+ Just a reminder, primarily for myself.
+As developers we not only have to solve problems, but do it in a way we do not harm our future-self.</description>
+    </item>
+    
+    <item>
+      <title>Status update</title>
+      <link>https://brunoscopelliti.com/blog/status-update/</link>
+      <pubDate>Wed, 31 Aug 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/status-update/</guid>
+      <description>As someone of you might have noted, recently my blog has changed skin - second time in 2016. I&amp;rsquo;ve also started serving its content over SSL, and migrated the hosting on Digital Ocean&amp;hellip; I think that&amp;rsquo;s a lot that has changed.
+I&amp;rsquo;m going to restart writing here on regular basis, and I&amp;rsquo;ve already a list of things I would like to talk about.
+Thanks for reading! See you around 🙂</description>
+    </item>
+    
+    <item>
+      <title>My personal bug fixing workflow</title>
+      <link>https://brunoscopelliti.com/blog/my-personal-bugfixing-workflow/</link>
+      <pubDate>Wed, 01 Jun 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/my-personal-bugfixing-workflow/</guid>
+      <description>I am a conservative person.
+Recently, I&amp;rsquo;ve started thinking this is a great quality, especially for a developer.
+Of course, I like improvements; the kind of changes I am more prone to make, are those which affect code readability, or bring coherence to the codebase; who have worked with me can confirm how pedantic I am on these kind of things.
+I change my own code (and blog posts) several times before I push on the repository.</description>
+    </item>
+    
+    <item>
+      <title>ES2015 modules today</title>
+      <link>https://brunoscopelliti.com/blog/es6-modules-with-jspm/</link>
+      <pubDate>Wed, 19 Aug 2015 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/es6-modules-with-jspm/</guid>
+      <description>Recently I&amp;rsquo;ve been playing with the new ES2015 stuff. One of the things I am more excited about it, is the new module format.
+What probably not everyone knows is that it is possible to start using the new module syntax today, with tools like jspm to polyfill the missing loader functionality of the browser.
+I published a repo on Github with basic usage examples; it&amp;rsquo;s here: ES2015 module playground.</description>
+    </item>
+    
+    <item>
+      <title>Fake today in unit tests</title>
+      <link>https://brunoscopelliti.com/blog/fake-today-in-unit-tests/</link>
+      <pubDate>Wed, 25 Mar 2015 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/fake-today-in-unit-tests/</guid>
+      <description>If the app which you are working on is strongly influenced by the date, you definitely need a simple and consistent way to create a fake today, to have significant unit tests.
+I do not want to make you wait&amp;hellip; this is the way I mock the Date constructor.
+function fakeDate (fakeToday) { var BuiltinDate = Date; spyOn(window, &amp;#34;Date&amp;#34;).and.callFake(function () { var args = Array.prototype.slice.call(arguments); if (args.length === 0) { return new BuiltinDate(fakeToday); } var _factoryFn = Function.</description>
+    </item>
+    
+    <item>
+      <title>First look at app development in AngularJS 2</title>
+      <link>https://brunoscopelliti.com/blog/first-look-at-app-development-in-angularjs-2/</link>
+      <pubDate>Thu, 26 Feb 2015 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/first-look-at-app-development-in-angularjs-2/</guid>
+      <description>A couple of weeks ago David East (@_davideast) gave a talk about app development with AngularJS 2.
+The presentation was followed by a really interesting QAs session, with the participation of Miško Hevery, and Igor Minar.
+This is what seemed most interesting to me:
+  AngularJS 2 is built on top of web standards; so no more AngularJS module, but ECMAScript 2015 module, web components and so on&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Goodbye WordPress 👋</title>
+      <link>https://brunoscopelliti.com/blog/goodbye-wordpress/</link>
+      <pubDate>Sat, 21 Feb 2015 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/goodbye-wordpress/</guid>
+      <description>During last year blogging has fallen down in my list of priorities.
+One of my resolutions for this new year is to try to start blogging again on a regular schedule.
+Even if I am a huge fan of WordPress, I have to admit that it carries with it a lot of overhead, probably not justified for a blog like my own. So I decided to give a try to jekyll, and damn, it was love at first sight 🤩</description>
+    </item>
+    
+    <item>
+      <title>Test AngularJS app with Karma, Jasmine, and Protractor</title>
+      <link>https://brunoscopelliti.com/blog/test-angularjs-app-with-karma-jasmine-and-protractor/</link>
+      <pubDate>Sat, 12 Apr 2014 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/test-angularjs-app-with-karma-jasmine-and-protractor/</guid>
+      <description>It&amp;rsquo;s passed more time than I expected since my last post.
+These months have been really busy - and even more happy - for me and my family&amp;hellip; we moved to a new house, and most important our daughter Chiara came to light.
+A couple of months ago, I started writing a simple AngularJS todo app with the goal of learning how to write better unit tests (Karma + JasmineJS) and E2E tests (Selenium + protractor).</description>
+    </item>
+    
+    <item>
+      <title>Bye 2013, Welcome 2014</title>
+      <link>https://brunoscopelliti.com/blog/bye-2013-welcome-2014/</link>
+      <pubDate>Mon, 30 Dec 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/bye-2013-welcome-2014/</guid>
+      <description>Fireworks in Bologna  The year is near its end.
+After I postponed it for a long time, in 2013 I finally started blogging, and would like to continue in the future. There are lots of technologies I would like to try, eg. nodejs.
+My free time in the next months will suffer a significant cut, and I could not be happier. In February, I will become father. Me and my wife decided to call our first daughter Chiara.</description>
+    </item>
+    
+    <item>
+      <title>XHR interceptor in an AngularJS web app</title>
+      <link>https://brunoscopelliti.com/blog/xhr-interceptor-in-an-angularjs-web-app/</link>
+      <pubDate>Tue, 19 Nov 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/xhr-interceptor-in-an-angularjs-web-app/</guid>
+      <description>I already wrote about intercepting XHR responses in an AngularJS web app.
+In the meanwhile, the method I described has been deprecated, and AngularJS 1.2 timely-delivery was delivered - I really admire the guy who choose names for AngularJS releases - and we now have a stable and better way to intercept XHR requests and responses in our web app. We&amp;rsquo;ll start by looking at how to define a new interceptor, using this new best practice.</description>
+    </item>
+    
+    <item>
+      <title>Show route only after all promises are resolved</title>
+      <link>https://brunoscopelliti.com/blog/show-route-only-after-all-promises-are-resolved/</link>
+      <pubDate>Tue, 17 Sep 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/show-route-only-after-all-promises-are-resolved/</guid>
+      <description>When a new route is requested in an AngularJS application, it is often necessary to retrieve data from the server to fill the template. If the server request takes too long to complete, it is possible that an incomplete view is presented to the user.
+Digging into the code Let&amp;rsquo;s start taking a look at the most important pieces of code (however you can find the complete source of the demo on Github).</description>
+    </item>
+    
+    <item>
+      <title>Authentication to a RESTful web service in an AngularJS web app</title>
+      <link>https://brunoscopelliti.com/blog/authentication-to-a-restful-web-service-in-an-angularjs-web-app/</link>
+      <pubDate>Mon, 09 Sep 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/authentication-to-a-restful-web-service-in-an-angularjs-web-app/</guid>
+      <description>Last week I wrote about how to contact a RESTful web service in an AngularJS web application using the $resource service.
+This post is about how to deal with web services which require authentication.
+Why to use http headers Since RESTful paradigm is stateless we cannot manage authentication through sessions, and in general we won&amp;rsquo;t save on the web server any data about the state of the client. So, each requests have to carry with them the state of the client.</description>
+    </item>
+    
+    <item>
+      <title>Building a RESTful web service with AngularJS $resource</title>
+      <link>https://brunoscopelliti.com/blog/building-a-restful-web-service-with-angularjs-and-php-more-power-with-resource/</link>
+      <pubDate>Thu, 05 Sep 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/building-a-restful-web-service-with-angularjs-and-php-more-power-with-resource/</guid>
+      <description>This is a two parts post about how to make RESTful requests through an AngularJS web application.
+The index of this brief series of posts is quite simple.
+  Backend setup is the first post in the series. As the subtitle, its main focus is (at least this time) on the backend domain. It will tackle how to setup a RESTful web service. I used PHP for all the examples; however at least the basic concepts beyond a RESTful service are language agnostic.</description>
+    </item>
+    
+    <item>
+      <title>Building a RESTful service with AngularJS (and PHP)</title>
+      <link>https://brunoscopelliti.com/blog/building-a-restful-service-with-angularjs-and-php-backend-setup/</link>
+      <pubDate>Tue, 03 Sep 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/building-a-restful-service-with-angularjs-and-php-backend-setup/</guid>
+      <description>This is a two parts post about how to make RESTful requests through an AngularJS web application.
+The index of this brief series of posts is quite simple.
+  Backend setup is the first post in the series. As the subtitle, its main focus is (at least this time) on the backend domain. It will tackle how to setup a RESTful web service. I used PHP for all the examples; however at least the basic concepts beyond a RESTful service are language agnostic.</description>
+    </item>
+    
+    <item>
+      <title>HTTP response interceptors</title>
+      <link>https://brunoscopelliti.com/blog/http-response-interceptors/</link>
+      <pubDate>Wed, 10 Jul 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/http-response-interceptors/</guid>
+      <description>I&amp;rsquo;ve already wrote in the past about asynchronous requests in AngularJS, showing how to assign a variable a value, synchronously, even when the value is retrieved asynchronously from the server.
+One thing that I didn&amp;rsquo;t wrote in that post, is that AngularJS allows to intercept the response coming from the server, before that the control of the execution is returned to the code that initiated the request. Have this possibility is useful for different reasons, but in general a response interceptor is needed every time the application needs to preprocess the response that it gets from the server.</description>
+    </item>
+    
+    <item>
+      <title>A directive to manage file upload in an AngularJS application</title>
+      <link>https://brunoscopelliti.com/blog/a-directive-to-manage-file-upload-in-an-angularjs-application/</link>
+      <pubDate>Tue, 25 Jun 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/a-directive-to-manage-file-upload-in-an-angularjs-application/</guid>
+      <description>This week I needed to add the functionality of file upload to an AngularJS web application. Since the project already uses jQuery, I found that the best solution to build an asynchronous file uploader was to rely on the well known (and wonderful) jQuery plugin jquery.form, created by M. Alsup.
+At the end I wrote an AngularJS directive to have a component, that I can reuse in my next projects. I will share it in this post.</description>
+    </item>
+    
+    <item>
+      <title>Facebook authentication in your AngularJS web app</title>
+      <link>https://brunoscopelliti.com/blog/facebook-authentication-in-your-angularjs-web-app/</link>
+      <pubDate>Thu, 13 Jun 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/facebook-authentication-in-your-angularjs-web-app/</guid>
+      <description>A couple of weeks ago, I wrote an article about user authentication in a web application built with AngularJS. Now, let&amp;rsquo;s move a step further, and use Facebook&amp;rsquo;s authentication api.
+Authentication with Facebook When I started to work on this little experiment I was not a big expert in the matter of Facebook&amp;rsquo;s api (and even now I&amp;rsquo;m really far from that); in this case I think that the smarter thing you can do is start reading the Facebook&amp;rsquo;s document about Facebook&amp;rsquo;s authentication system.</description>
+    </item>
+    
+    <item>
+      <title>Defer routes definition in an AngularJS web app</title>
+      <link>https://brunoscopelliti.com/blog/how-to-defer-route-definition-in-an-angularjs-web-app/</link>
+      <pubDate>Tue, 04 Jun 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-to-defer-route-definition-in-an-angularjs-web-app/</guid>
+      <description>Recently, for a project built on AngularJS, I found myself in front of an unusual requirement: I needed to define dynamically the routes of the web application, on the basis of a response from the server.
+Server response For the sake of simplicity, I assume to have the following backend service, that when called, sends a JSON containing the data about the routes.
+$result = array( &amp;#34;routes&amp;#34; =&amp;gt; array( array(&amp;#34;name&amp;#34; =&amp;gt; &amp;#34;/home&amp;#34;, &amp;#34;templateUrl&amp;#34; =&amp;gt; &amp;#34;partials/home.</description>
+    </item>
+    
+    <item>
+      <title>Blog re-style (&#43; bonus: three WordPress tricks)</title>
+      <link>https://brunoscopelliti.com/blog/blog-re-style-bonus-three-wordpress-tricks/</link>
+      <pubDate>Thu, 30 May 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/blog-re-style-bonus-three-wordpress-tricks/</guid>
+      <description>Some weekends ago, I saved few of my free time to work on my blog.
+The most evident change is that now for my blog, I&amp;rsquo;m using the Ryu theme, by the guys of Automattic.
+It had been a long time since the last time I had worked with WordPress, and I really appreciated it. So today I want to share three useful tricks to customize your WordPress implementation.
+One of the characteristics of this blog even before the restyle, was that, even if you are logged in WordPress, the top toolbar is not displayed.</description>
+    </item>
+    
+    <item>
+      <title>Getting started with Grunt</title>
+      <link>https://brunoscopelliti.com/blog/start-using-gruntjs/</link>
+      <pubDate>Tue, 28 May 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/start-using-gruntjs/</guid>
+      <description>Last weekend I finally found few time to give a try to Grunt.
+I am surprised by how easy is to get started, and I am curious to experiment the benefits which its usage can bring in a real world app.
+After some really trivial tests, my first serious attempt to create something useful with Grunt has been to create an automatic process to minify and then concatenate different javascript files; this post will collect a few notes about what I learned while I was trying to set up this process.</description>
+    </item>
+    
+    <item>
+      <title>Deal with users authentication in an AngularJS web app</title>
+      <link>https://brunoscopelliti.com/blog/deal-with-users-authentication-in-an-angularjs-web-app/</link>
+      <pubDate>Tue, 21 May 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/deal-with-users-authentication-in-an-angularjs-web-app/</guid>
+      <description>In this post I&amp;rsquo;m going to share few thoughts on the main issues related to users authentication in an AngularJS application.
+I will talk about how to recognize, and maintain, the status of authentication of an user (that is, if they&amp;rsquo;re logged in, or not) between the different routes of an AngularJS web application. Moreover I will also explain how to handle the case of a not authenticated user, who is trying to access a page, that requires the user to be logged in.</description>
+    </item>
+    
+    <item>
+      <title>The ngForm directive of AngularJS</title>
+      <link>https://brunoscopelliti.com/blog/the-ngform-directive-of-angularjs/</link>
+      <pubDate>Thu, 09 May 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/the-ngform-directive-of-angularjs/</guid>
+      <description>I&amp;rsquo;m back writing about client side validation in an AngularJS application.
+Lately, I had to work with a form created dynamically on the basis of a JSON response, that I received from the server. In this case the approach is a bit different from the one I discussed in my first post about form validation with AngularJS.
+Consider this markup:
+&amp;lt;form name=&amp;#34;sf&amp;#34; ng-controller=&amp;#34;FormController&amp;#34; novalidate&amp;gt; &amp;lt;div ng-repeat=&amp;#34;f in fields&amp;#34;&amp;gt; &amp;lt;input name=&amp;#34;{{ &amp;#34;{{ f.</description>
+    </item>
+    
+    <item>
+      <title>Internazionalization (i18n) with AngularJS</title>
+      <link>https://brunoscopelliti.com/blog/internazionalization-i18n-with-angularjs/</link>
+      <pubDate>Tue, 07 May 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/internazionalization-i18n-with-angularjs/</guid>
+      <description>These days I am trying the internationalization (and pluralization) capabilities of AngularJS.
+I just defined my personal approach to the internationalization of a web app based on AngularJS, and I would like to share it, to have some feedback about it. My approach is based on two main points:
+  The use of technologies of backend (such as PHP) to detect the most probably preferred language of the user.</description>
+    </item>
+    
+    <item>
+      <title>CSS3 box-sizing property</title>
+      <link>https://brunoscopelliti.com/blog/css3-box-sizing-property/</link>
+      <pubDate>Tue, 30 Apr 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/css3-box-sizing-property/</guid>
+      <description>Recently I had to use the box-sizing property&amp;hellip; and every time I needed to search on Internet for the correct usages. So, last time this happened I&amp;rsquo;ve decided to write a post about it, with the hope this help me memorize it - or at least next time I can google for myself 🙂
+box-sizing, why? Until a few years ago, when you assigned an element a ruleset like the following, you got a square with size 120 pixel.</description>
+    </item>
+    
+    <item>
+      <title>AngularJS directive to test the strength of a password</title>
+      <link>https://brunoscopelliti.com/blog/angularjs-directive-to-test-the-strength-of-a-password/</link>
+      <pubDate>Wed, 24 Apr 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/angularjs-directive-to-test-the-strength-of-a-password/</guid>
+      <description>Recently I&amp;rsquo;m working a lot with AngularJS and validation of forms, and maybe you have noticed this (see: form validation in AngularJS, and validate password in AngularJS).
+The topic of today is not strictly related to form validation, but, like also the form validation, it could be useful to improve the form usability, and even the user&amp;rsquo;s data security.
+Always more frequently during the registration on a new website, I happen to see that the password that I chose is judged, and I&amp;rsquo;m informed about its strength value.</description>
+    </item>
+    
+    <item>
+      <title>AngularJS directive to check that passwords match</title>
+      <link>https://brunoscopelliti.com/blog/angularjs-directive-to-check-that-passwords-match/</link>
+      <pubDate>Tue, 16 Apr 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/angularjs-directive-to-check-that-passwords-match/</guid>
+      <description>I already wrote about form validation some time ago.
+In that occasion I had the opportunity to show you how much powerful is the native form validation system of AngularJS. But no matter how powerful, of course, it can not cover all possible scenarios. For example we all are used to fill two times the password fields during the registration on a new website.
+Currently AngularJS has not a native method to check, during the form validation, if the user entered two different passwords.</description>
+    </item>
+    
+    <item>
+      <title>jQuery custom build</title>
+      <link>https://brunoscopelliti.com/blog/jquery-custom-build/</link>
+      <pubDate>Tue, 09 Apr 2013 12:27:05 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/jquery-custom-build/</guid>
+      <description>Ok, jQuery doesn&amp;rsquo;t need any presentation.
+I really like it; it has simplified a lot my work&amp;hellip; BUT sometimes its almost 100Kb of sweetness are a price we can not pay.
+If this is the case a good trade-off between light weight pages and all the goodness of jQuery, is to use a custom build of jQuery.
+Custom builds allow to choose what features of jQuery are to be included in the minified file, and which not; perhaps you are working on a project and you are sure you&amp;rsquo;ll never have to do an asynchronous request?</description>
+    </item>
+    
+    <item>
+      <title>AngularJS promise, or dealing with asynchronous requests in AngularJS</title>
+      <link>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</link>
+      <pubDate>Tue, 02 Apr 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</guid>
+      <description>Promise&amp;rsquo;s support is one of my favorite features of AngularJS.
+Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.
+This post will show you a typical use case for the promise in an AngularJS app.
+It could be simplified as follows:
+function stageController(scope, p) { scope.revenues = []; scope.$watch(&amp;#34;revenues&amp;#34;, function () { p.drawPlot(scope.revenues); }, true); p.getData(); } stageController.</description>
+    </item>
+    
+    <item>
+      <title>SASS Cheatsheet</title>
+      <link>https://brunoscopelliti.com/blog/sass-cheatsheet/</link>
+      <pubDate>Wed, 20 Mar 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/sass-cheatsheet/</guid>
+      <description>Few months ago, I started working with SASS - I use SCSS syntax cause I care about my mental health.
+It&amp;rsquo;s not particularly difficult, and if you learnt CSS, well, you could learn SASS.
+One of the first thing I wanted was some kind of SASS cheatsheet - so I summarized the main features of SASS in a SASS file.
+Variables Sass allows you to declare variables that can be used through the stylesheet.</description>
+    </item>
+    
+    <item>
+      <title>Form validation, The AngularJS Way</title>
+      <link>https://brunoscopelliti.com/blog/form-validation-the-angularjs-way/</link>
+      <pubDate>Tue, 12 Mar 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/form-validation-the-angularjs-way/</guid>
+      <description>Recently I started to develop my first real AngularJS web app; it shouldn&amp;rsquo;t be anything complicated&amp;hellip; I&amp;rsquo;m planning to replace my old excel for family budget with a brand new AngularJS app. This gave me the opportunity to learn a lot of things about AngularJS, and in particular how AngularJS handles client side form validation (one of the topic generally less appreciated).
+In this post I will show how to perform client side data validation with AngularJS.</description>
+    </item>
+    
+    <item>
+      <title>How to execute an AngularJS directive after the DOM has completed rendering</title>
+      <link>https://brunoscopelliti.com/blog/run-a-directive-after-the-dom-has-finished-rendering/</link>
+      <pubDate>Mon, 04 Mar 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/run-a-directive-after-the-dom-has-finished-rendering/</guid>
+      <description>You have a custom directive, repeatHelloWorld; it has the important task to log the message &amp;ldquo;Hello, world!&amp;rdquo; in the console, the number of times specified by the parameter accepted by the directive, and defined in the controller.
+&amp;lt;body ng-controller=&amp;#34;stageController&amp;#34;&amp;gt; &amp;lt;div repeat-hello-world=&amp;#34;{{ &amp;#34;{{ repeat &amp;#34; }}}}&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; Controller and directive are defined as:
+// Controller function stageController($scope) { $scope.repeat = 5; } angular.module(&amp;#34;myApp&amp;#34;, [&amp;#34;myApp.directives&amp;#34;]); // Directive angular.module(&amp;#34;myApp.directives&amp;#34;, []) .directive(&amp;#34;repeatHelloWorld&amp;#34;, function () { return { link: function (scope, elem, attrs, ctrl) { var hello = function () { for (var i = 0; i &amp;lt; attrs.</description>
+    </item>
+    
+    <item>
+      <title>Use cases of AngularJS directives</title>
+      <link>https://brunoscopelliti.com/blog/use-cases-of-angularjs-directives/</link>
+      <pubDate>Tue, 26 Feb 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/use-cases-of-angularjs-directives/</guid>
+      <description>A directive is essentially a function executed when the AngularJS compiler finds its declaration into the DOM. The function can do almost anything, but as common task we can consider defining a behavior or executing a DOM transformation. A directive can be presented as an attribute, an element name, a class name, or a name in a comment.
+AngularJS comes with a rich built-in set of directives, that can be even extended.</description>
+    </item>
+    
+    <item>
+      <title>Hello, World!</title>
+      <link>https://brunoscopelliti.com/blog/hello-world/</link>
+      <pubDate>Fri, 15 Feb 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/hello-world/</guid>
+      <description>I am enthusiast to start this blog.
+The first post is always the most difficult&amp;hellip; so this is going to be a short one; just to say that here I&amp;rsquo;m going to write about software development.
+Recently I started learning AngularJS, and I am really impressed. I finished reading the docs - which are great - and I am going to start my own experiments soon.
+A final note Currently this blog is using the Twenty Eleven WordPress theme.</description>
+    </item>
+    
+    <item>
+      <title>404 Error ~ Not Found</title>
+      <link>https://brunoscopelliti.com/404/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://brunoscopelliti.com/404/</guid>
+      <description>The document you&amp;rsquo;re looking for no longer exists - maybe it never did, we&amp;rsquo;ll never know.
+ Go back to the homepage.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevOps on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/devops/</link>
+    <description>Recent content in DevOps on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 07 Sep 2016 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I ported my blog to HTTPS</title>
+      <link>https://brunoscopelliti.com/blog/how-i-ported-my-blog-to-https/</link>
+      <pubDate>Wed, 07 Sep 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-i-ported-my-blog-to-https/</guid>
+      <description>In the last couple of years several elements are pushing for a widespread adoption of the HTTPS protocol.
+  Security. Of course security, what else would you expect from HTTPS. HTTPS is all about security! It guarantees that the server you&amp;rsquo;re connecting is really the one you believe it is, and that the contents of the communications is private, so that it can&amp;rsquo;t be read, or modified by a anyone else.</description>
+    </item>
+    
+  </channel>
+</rss>

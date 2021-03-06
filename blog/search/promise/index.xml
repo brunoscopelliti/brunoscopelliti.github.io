@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Promise on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/promise/</link>
+    <description>Recent content in Promise on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 26 Feb 2018 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/promise/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Let&#39;s write a Promise polyfill</title>
+      <link>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</link>
+      <pubDate>Mon, 26 Feb 2018 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</guid>
+      <description>TL:DR; You can watch me live coding a promise&amp;rsquo;s polyfill on YouTube. Watch Let&amp;rsquo;s build a promise polyfill playlist.
+ We&amp;rsquo;re going to build a Promise polyfill; it&amp;rsquo;s the best way to understand how things work under the hood, after all.
+My goal is not to have the most performant, or feature rich, implementation, but I&amp;rsquo;ll try to optimize for ease of readability.
+A brief disclaimer before we even start: you might have heard that Promise are going to disappear soon, cause async function permit to further improve how we handle asynchronous code.</description>
+    </item>
+    
+    <item>
+      <title>Exception handling in async functions</title>
+      <link>https://brunoscopelliti.com/blog/exception-handling-in-async-functions/</link>
+      <pubDate>Wed, 08 Nov 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/exception-handling-in-async-functions/</guid>
+      <description>Async functions is one of the most welcomed new feature of JavaScript in recent years.
+One aspect in which async functions really shine when compared to traditional approach is error handling. Error handling is based on another beloved, and more ancient construct, try... catch.
+However try... catch is able to catch only exeptions thrown in functions which are explicitly awaited. In retrospective, it makes perfectly sense&amp;hellip; but I never fully realized it, until I met my first uncaught exception:</description>
+    </item>
+    
+    <item>
+      <title>New util.promisify in Node.js</title>
+      <link>https://brunoscopelliti.com/blog/new-util-promisify-in-nodejs/</link>
+      <pubDate>Tue, 16 May 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/new-util-promisify-in-nodejs/</guid>
+      <description>A quick search on npmjs reveals how this topic is at the center of JavaScript developer&amp;rsquo;s hearts. I used to have too my personal utility to convert Node.js callback-based internals methods into returning-promise ones.
+So I guess this is a big, great news for everyone who&amp;rsquo;s working with node: Node.js is adding a new utility that does just this at its core, util.promisify.
+If you have ever used one of those promisify modules, you won&amp;rsquo;t be too much surprised by util.</description>
+    </item>
+    
+    <item>
+      <title>AngularJS promise, or dealing with asynchronous requests in AngularJS</title>
+      <link>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</link>
+      <pubDate>Tue, 02 Apr 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</guid>
+      <description>Promise&amp;rsquo;s support is one of my favorite features of AngularJS.
+Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.
+This post will show you a typical use case for the promise in an AngularJS app.
+It could be simplified as follows:
+function stageController(scope, p) { scope.revenues = []; scope.$watch(&amp;#34;revenues&amp;#34;, function () { p.drawPlot(scope.revenues); }, true); p.getData(); } stageController.</description>
+    </item>
+    
+  </channel>
+</rss>

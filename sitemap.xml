@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://brunoscopelliti.com/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/about/</loc>
+    
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/a-simple-babel-optimization-i-recently-learned/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/babel/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/tools/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/javascript/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/promise/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/exception-handling-in-async-functions/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/a-csharp-automapper-trick/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/c-sharp/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/new-util-promisify-in-nodejs/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/nodejs/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/dry-and-strawberries/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/programming/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/git/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/git-alias-git-unstage/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/memo/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/csharp-linq-equivalents-of-javascript-array-methods/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/asynchronous-font-loading/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/meta/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/web-perf/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/squash-commits-with-git-rebase/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/qunit-custom-assertions/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/tests/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/webpack/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/webpack-101/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/git-productivity-trick/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/history-of-a-support-ticket-for-apple/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/personal/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/thoughts/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/first-1000-days-of-chiara/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/eslint/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/devops/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/how-i-ported-my-blog-to-https/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/links/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/the-art-of-controlling-complexity/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/status-update/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/bugs/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/my-personal-bugfixing-workflow/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/es6-modules-with-jspm/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/fake-today-in-unit-tests/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/angularjs/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/first-look-at-app-development-in-angularjs-2/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/goodbye-wordpress/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/test-angularjs-app-with-karma-jasmine-and-protractor/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/bye-2013-welcome-2014/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/xhr-interceptor-in-an-angularjs-web-app/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/show-route-only-after-all-promises-are-resolved/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/authentication-to-a-restful-web-service-in-an-angularjs-web-app/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/building-a-restful-web-service-with-angularjs-and-php-more-power-with-resource/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/building-a-restful-service-with-angularjs-and-php-backend-setup/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/http-response-interceptors/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/a-directive-to-manage-file-upload-in-an-angularjs-application/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/facebook-authentication-in-your-angularjs-web-app/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/how-to-defer-route-definition-in-an-angularjs-web-app/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/blog-re-style-bonus-three-wordpress-tricks/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/wordpress/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/start-using-gruntjs/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/grunt/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/deal-with-users-authentication-in-an-angularjs-web-app/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/the-ngform-directive-of-angularjs/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/internazionalization-i18n-with-angularjs/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/css/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/css3-box-sizing-property/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/angularjs-directive-to-test-the-strength-of-a-password/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/angularjs-directive-to-check-that-passwords-match/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/jquery/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/jquery-custom-build/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/sass/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/sass-cheatsheet/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/form-validation-the-angularjs-way/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/run-a-directive-after-the-dom-has-finished-rendering/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/use-cases-of-angularjs-directives/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/hello-world/</loc>
+    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/404/</loc>
+    
+    
+    
+  </url>
+  
+</urlset>

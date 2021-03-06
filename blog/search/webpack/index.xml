@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WebPack on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/webpack/</link>
+    <description>Recent content in WebPack on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Dec 2016 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/webpack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Webpack 101</title>
+      <link>https://brunoscopelliti.com/blog/webpack-101/</link>
+      <pubDate>Mon, 12 Dec 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/webpack-101/</guid>
+      <description>I&amp;rsquo;ve published on GitHub a series to help make sense of WebPack.
+I&amp;rsquo;m not going to approach this like That&amp;rsquo;s the configuration file, copy and paste it into your root folder, and everything will just be fine!
+Instead we&amp;rsquo;re going to build a WebPack configuration step by step together. We need to understand what we want to achieve with every single setting. I won&amp;rsquo;t talk about WebPack in the abstract, or about a WebPack feature as a stand alone piece; instead we&amp;rsquo;re actually going to build a simple single page application, and everytime we&amp;rsquo;ll change something into WebPack configuration, immediately we&amp;rsquo;ll see how this change affects our bundle, and our application.</description>
+    </item>
+    
+  </channel>
+</rss>

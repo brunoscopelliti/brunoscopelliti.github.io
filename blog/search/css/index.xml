@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CSS on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/css/</link>
+    <description>Recent content in CSS on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 Apr 2013 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/css/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSS3 box-sizing property</title>
+      <link>https://brunoscopelliti.com/blog/css3-box-sizing-property/</link>
+      <pubDate>Tue, 30 Apr 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/css3-box-sizing-property/</guid>
+      <description>Recently I had to use the box-sizing property&amp;hellip; and every time I needed to search on Internet for the correct usages. So, last time this happened I&amp;rsquo;ve decided to write a post about it, with the hope this help me memorize it - or at least next time I can google for myself 🙂
+box-sizing, why? Until a few years ago, when you assigned an element a ruleset like the following, you got a square with size 120 pixel.</description>
+    </item>
+    
+    <item>
+      <title>SASS Cheatsheet</title>
+      <link>https://brunoscopelliti.com/blog/sass-cheatsheet/</link>
+      <pubDate>Wed, 20 Mar 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/sass-cheatsheet/</guid>
+      <description>Few months ago, I started working with SASS - I use SCSS syntax cause I care about my mental health.
+It&amp;rsquo;s not particularly difficult, and if you learnt CSS, well, you could learn SASS.
+One of the first thing I wanted was some kind of SASS cheatsheet - so I summarized the main features of SASS in a SASS file.
+Variables Sass allows you to declare variables that can be used through the stylesheet.</description>
+    </item>
+    
+  </channel>
+</rss>

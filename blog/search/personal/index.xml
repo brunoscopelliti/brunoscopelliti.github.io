@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Personal on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/personal/</link>
+    <description>Recent content in Personal on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 23 Oct 2016 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/personal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>History of a support ticket for Apple</title>
+      <link>https://brunoscopelliti.com/blog/history-of-a-support-ticket-for-apple/</link>
+      <pubDate>Sun, 23 Oct 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/history-of-a-support-ticket-for-apple/</guid>
+      <description>Some months ago, I changed my home working setup.
+I changed my middle 2011 iMac with a macbook pro + Apple monitor combo. My old iMac was in great shape, however the new setup is an enhancement because now I&amp;rsquo;ve a bigger monitor, and the freedom to use my mac from everywhere.
+I&amp;rsquo;ve also bought the BookArc stand. When at home, I wanted to use the monitor, and keep the macbook with the lid closed.</description>
+    </item>
+    
+    <item>
+      <title>The Chiara&#39;s first thousand days task</title>
+      <link>https://brunoscopelliti.com/blog/first-1000-days-of-chiara/</link>
+      <pubDate>Wed, 28 Sep 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/first-1000-days-of-chiara/</guid>
+      <description>I usually wake up early in the morning, before anyone else at my house.
+I use this time to maintain this blog, run some side projects, stay updated about latest hot trends in our industry. In general I like to have some time to spend just with myself; then in the evening, when I come from work, I&amp;rsquo;m even more happy to stay with my family, and every device is off by default.</description>
+    </item>
+    
+    <item>
+      <title>Status update</title>
+      <link>https://brunoscopelliti.com/blog/status-update/</link>
+      <pubDate>Wed, 31 Aug 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/status-update/</guid>
+      <description>As someone of you might have noted, recently my blog has changed skin - second time in 2016. I&amp;rsquo;ve also started serving its content over SSL, and migrated the hosting on Digital Ocean&amp;hellip; I think that&amp;rsquo;s a lot that has changed.
+I&amp;rsquo;m going to restart writing here on regular basis, and I&amp;rsquo;ve already a list of things I would like to talk about.
+Thanks for reading! See you around 🙂</description>
+    </item>
+    
+    <item>
+      <title>Bye 2013, Welcome 2014</title>
+      <link>https://brunoscopelliti.com/blog/bye-2013-welcome-2014/</link>
+      <pubDate>Mon, 30 Dec 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/bye-2013-welcome-2014/</guid>
+      <description>Fireworks in Bologna  The year is near its end.
+After I postponed it for a long time, in 2013 I finally started blogging, and would like to continue in the future. There are lots of technologies I would like to try, eg. nodejs.
+My free time in the next months will suffer a significant cut, and I could not be happier. In February, I will become father. Me and my wife decided to call our first daughter Chiara.</description>
+    </item>
+    
+    <item>
+      <title>Hello, World!</title>
+      <link>https://brunoscopelliti.com/blog/hello-world/</link>
+      <pubDate>Fri, 15 Feb 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/hello-world/</guid>
+      <description>I am enthusiast to start this blog.
+The first post is always the most difficult&amp;hellip; so this is going to be a short one; just to say that here I&amp;rsquo;m going to write about software development.
+Recently I started learning AngularJS, and I am really impressed. I finished reading the docs - which are great - and I am going to start my own experiments soon.
+A final note Currently this blog is using the Twenty Eleven WordPress theme.</description>
+    </item>
+    
+  </channel>
+</rss>

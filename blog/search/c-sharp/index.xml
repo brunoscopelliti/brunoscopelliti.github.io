@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C# on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/c-sharp/</link>
+    <description>Recent content in C# on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Jun 2017 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/c-sharp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A C# Automapper trick</title>
+      <link>https://brunoscopelliti.com/blog/a-csharp-automapper-trick/</link>
+      <pubDate>Mon, 05 Jun 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/a-csharp-automapper-trick/</guid>
+      <description>Writing blog posts is infinitely valuable in helping me memorize new tricks; even when it does not work, I can still more easily google for myself. Today&amp;rsquo;s blog post is meant to continue this glorious tradition.
+In C# development it&amp;rsquo;s pretty common to have to map fields between objects of different class. Automapper simplifies a lot the work.
+For instance, in the simplest scenario given the two classes
+public class ProductDto { public string name { get; set; } public string code { get; set; } public decimal price { get; set; } public string currency { get; set; } } public class Product { public string Name { get; set; } public string Code { get; set; } public decimal Price { get; set; } public string Currency { get; set; } } in order to copy values from ProductDto fields into a new Product instance, we&amp;rsquo;ve to execute Automapper&amp;rsquo;s map method</description>
+    </item>
+    
+    <item>
+      <title>C# LINQ equivalents of JavaScript array methods</title>
+      <link>https://brunoscopelliti.com/blog/csharp-linq-equivalents-of-javascript-array-methods/</link>
+      <pubDate>Tue, 25 Apr 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/csharp-linq-equivalents-of-javascript-array-methods/</guid>
+      <description>At work, in the last couple of years I&amp;rsquo;ve always more, and more written C# code. It&amp;rsquo;s nice, and it has lots of similarities with JavaScript.
+Despite this, I am not such productive with C#, as I am with JavaScript, and I often find myself asking colleagues, or searching the Internet for equivalent of JavaScript [feature] in C#&amp;hellip; I rarely get disappointed.
+In this post we explore the equivalent in C# of some of the most useful JavaScript array methods.</description>
+    </item>
+    
+  </channel>
+</rss>

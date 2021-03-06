@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AngularJS on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/angularjs/</link>
+    <description>Recent content in AngularJS on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Feb 2015 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/angularjs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>First look at app development in AngularJS 2</title>
+      <link>https://brunoscopelliti.com/blog/first-look-at-app-development-in-angularjs-2/</link>
+      <pubDate>Thu, 26 Feb 2015 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/first-look-at-app-development-in-angularjs-2/</guid>
+      <description>A couple of weeks ago David East (@_davideast) gave a talk about app development with AngularJS 2.
+The presentation was followed by a really interesting QAs session, with the participation of Miško Hevery, and Igor Minar.
+This is what seemed most interesting to me:
+  AngularJS 2 is built on top of web standards; so no more AngularJS module, but ECMAScript 2015 module, web components and so on&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Test AngularJS app with Karma, Jasmine, and Protractor</title>
+      <link>https://brunoscopelliti.com/blog/test-angularjs-app-with-karma-jasmine-and-protractor/</link>
+      <pubDate>Sat, 12 Apr 2014 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/test-angularjs-app-with-karma-jasmine-and-protractor/</guid>
+      <description>It&amp;rsquo;s passed more time than I expected since my last post.
+These months have been really busy - and even more happy - for me and my family&amp;hellip; we moved to a new house, and most important our daughter Chiara came to light.
+A couple of months ago, I started writing a simple AngularJS todo app with the goal of learning how to write better unit tests (Karma + JasmineJS) and E2E tests (Selenium + protractor).</description>
+    </item>
+    
+    <item>
+      <title>XHR interceptor in an AngularJS web app</title>
+      <link>https://brunoscopelliti.com/blog/xhr-interceptor-in-an-angularjs-web-app/</link>
+      <pubDate>Tue, 19 Nov 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/xhr-interceptor-in-an-angularjs-web-app/</guid>
+      <description>I already wrote about intercepting XHR responses in an AngularJS web app.
+In the meanwhile, the method I described has been deprecated, and AngularJS 1.2 timely-delivery was delivered - I really admire the guy who choose names for AngularJS releases - and we now have a stable and better way to intercept XHR requests and responses in our web app. We&amp;rsquo;ll start by looking at how to define a new interceptor, using this new best practice.</description>
+    </item>
+    
+    <item>
+      <title>Show route only after all promises are resolved</title>
+      <link>https://brunoscopelliti.com/blog/show-route-only-after-all-promises-are-resolved/</link>
+      <pubDate>Tue, 17 Sep 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/show-route-only-after-all-promises-are-resolved/</guid>
+      <description>When a new route is requested in an AngularJS application, it is often necessary to retrieve data from the server to fill the template. If the server request takes too long to complete, it is possible that an incomplete view is presented to the user.
+Digging into the code Let&amp;rsquo;s start taking a look at the most important pieces of code (however you can find the complete source of the demo on Github).</description>
+    </item>
+    
+    <item>
+      <title>Authentication to a RESTful web service in an AngularJS web app</title>
+      <link>https://brunoscopelliti.com/blog/authentication-to-a-restful-web-service-in-an-angularjs-web-app/</link>
+      <pubDate>Mon, 09 Sep 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/authentication-to-a-restful-web-service-in-an-angularjs-web-app/</guid>
+      <description>Last week I wrote about how to contact a RESTful web service in an AngularJS web application using the $resource service.
+This post is about how to deal with web services which require authentication.
+Why to use http headers Since RESTful paradigm is stateless we cannot manage authentication through sessions, and in general we won&amp;rsquo;t save on the web server any data about the state of the client. So, each requests have to carry with them the state of the client.</description>
+    </item>
+    
+    <item>
+      <title>Building a RESTful web service with AngularJS $resource</title>
+      <link>https://brunoscopelliti.com/blog/building-a-restful-web-service-with-angularjs-and-php-more-power-with-resource/</link>
+      <pubDate>Thu, 05 Sep 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/building-a-restful-web-service-with-angularjs-and-php-more-power-with-resource/</guid>
+      <description>This is a two parts post about how to make RESTful requests through an AngularJS web application.
+The index of this brief series of posts is quite simple.
+  Backend setup is the first post in the series. As the subtitle, its main focus is (at least this time) on the backend domain. It will tackle how to setup a RESTful web service. I used PHP for all the examples; however at least the basic concepts beyond a RESTful service are language agnostic.</description>
+    </item>
+    
+    <item>
+      <title>Building a RESTful service with AngularJS (and PHP)</title>
+      <link>https://brunoscopelliti.com/blog/building-a-restful-service-with-angularjs-and-php-backend-setup/</link>
+      <pubDate>Tue, 03 Sep 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/building-a-restful-service-with-angularjs-and-php-backend-setup/</guid>
+      <description>This is a two parts post about how to make RESTful requests through an AngularJS web application.
+The index of this brief series of posts is quite simple.
+  Backend setup is the first post in the series. As the subtitle, its main focus is (at least this time) on the backend domain. It will tackle how to setup a RESTful web service. I used PHP for all the examples; however at least the basic concepts beyond a RESTful service are language agnostic.</description>
+    </item>
+    
+    <item>
+      <title>HTTP response interceptors</title>
+      <link>https://brunoscopelliti.com/blog/http-response-interceptors/</link>
+      <pubDate>Wed, 10 Jul 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/http-response-interceptors/</guid>
+      <description>I&amp;rsquo;ve already wrote in the past about asynchronous requests in AngularJS, showing how to assign a variable a value, synchronously, even when the value is retrieved asynchronously from the server.
+One thing that I didn&amp;rsquo;t wrote in that post, is that AngularJS allows to intercept the response coming from the server, before that the control of the execution is returned to the code that initiated the request. Have this possibility is useful for different reasons, but in general a response interceptor is needed every time the application needs to preprocess the response that it gets from the server.</description>
+    </item>
+    
+    <item>
+      <title>A directive to manage file upload in an AngularJS application</title>
+      <link>https://brunoscopelliti.com/blog/a-directive-to-manage-file-upload-in-an-angularjs-application/</link>
+      <pubDate>Tue, 25 Jun 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/a-directive-to-manage-file-upload-in-an-angularjs-application/</guid>
+      <description>This week I needed to add the functionality of file upload to an AngularJS web application. Since the project already uses jQuery, I found that the best solution to build an asynchronous file uploader was to rely on the well known (and wonderful) jQuery plugin jquery.form, created by M. Alsup.
+At the end I wrote an AngularJS directive to have a component, that I can reuse in my next projects. I will share it in this post.</description>
+    </item>
+    
+    <item>
+      <title>Facebook authentication in your AngularJS web app</title>
+      <link>https://brunoscopelliti.com/blog/facebook-authentication-in-your-angularjs-web-app/</link>
+      <pubDate>Thu, 13 Jun 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/facebook-authentication-in-your-angularjs-web-app/</guid>
+      <description>A couple of weeks ago, I wrote an article about user authentication in a web application built with AngularJS. Now, let&amp;rsquo;s move a step further, and use Facebook&amp;rsquo;s authentication api.
+Authentication with Facebook When I started to work on this little experiment I was not a big expert in the matter of Facebook&amp;rsquo;s api (and even now I&amp;rsquo;m really far from that); in this case I think that the smarter thing you can do is start reading the Facebook&amp;rsquo;s document about Facebook&amp;rsquo;s authentication system.</description>
+    </item>
+    
+    <item>
+      <title>Defer routes definition in an AngularJS web app</title>
+      <link>https://brunoscopelliti.com/blog/how-to-defer-route-definition-in-an-angularjs-web-app/</link>
+      <pubDate>Tue, 04 Jun 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-to-defer-route-definition-in-an-angularjs-web-app/</guid>
+      <description>Recently, for a project built on AngularJS, I found myself in front of an unusual requirement: I needed to define dynamically the routes of the web application, on the basis of a response from the server.
+Server response For the sake of simplicity, I assume to have the following backend service, that when called, sends a JSON containing the data about the routes.
+$result = array( &amp;#34;routes&amp;#34; =&amp;gt; array( array(&amp;#34;name&amp;#34; =&amp;gt; &amp;#34;/home&amp;#34;, &amp;#34;templateUrl&amp;#34; =&amp;gt; &amp;#34;partials/home.</description>
+    </item>
+    
+    <item>
+      <title>Deal with users authentication in an AngularJS web app</title>
+      <link>https://brunoscopelliti.com/blog/deal-with-users-authentication-in-an-angularjs-web-app/</link>
+      <pubDate>Tue, 21 May 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/deal-with-users-authentication-in-an-angularjs-web-app/</guid>
+      <description>In this post I&amp;rsquo;m going to share few thoughts on the main issues related to users authentication in an AngularJS application.
+I will talk about how to recognize, and maintain, the status of authentication of an user (that is, if they&amp;rsquo;re logged in, or not) between the different routes of an AngularJS web application. Moreover I will also explain how to handle the case of a not authenticated user, who is trying to access a page, that requires the user to be logged in.</description>
+    </item>
+    
+    <item>
+      <title>The ngForm directive of AngularJS</title>
+      <link>https://brunoscopelliti.com/blog/the-ngform-directive-of-angularjs/</link>
+      <pubDate>Thu, 09 May 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/the-ngform-directive-of-angularjs/</guid>
+      <description>I&amp;rsquo;m back writing about client side validation in an AngularJS application.
+Lately, I had to work with a form created dynamically on the basis of a JSON response, that I received from the server. In this case the approach is a bit different from the one I discussed in my first post about form validation with AngularJS.
+Consider this markup:
+&amp;lt;form name=&amp;#34;sf&amp;#34; ng-controller=&amp;#34;FormController&amp;#34; novalidate&amp;gt; &amp;lt;div ng-repeat=&amp;#34;f in fields&amp;#34;&amp;gt; &amp;lt;input name=&amp;#34;{{ &amp;#34;{{ f.</description>
+    </item>
+    
+    <item>
+      <title>Internazionalization (i18n) with AngularJS</title>
+      <link>https://brunoscopelliti.com/blog/internazionalization-i18n-with-angularjs/</link>
+      <pubDate>Tue, 07 May 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/internazionalization-i18n-with-angularjs/</guid>
+      <description>These days I am trying the internationalization (and pluralization) capabilities of AngularJS.
+I just defined my personal approach to the internationalization of a web app based on AngularJS, and I would like to share it, to have some feedback about it. My approach is based on two main points:
+  The use of technologies of backend (such as PHP) to detect the most probably preferred language of the user.</description>
+    </item>
+    
+    <item>
+      <title>AngularJS directive to test the strength of a password</title>
+      <link>https://brunoscopelliti.com/blog/angularjs-directive-to-test-the-strength-of-a-password/</link>
+      <pubDate>Wed, 24 Apr 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/angularjs-directive-to-test-the-strength-of-a-password/</guid>
+      <description>Recently I&amp;rsquo;m working a lot with AngularJS and validation of forms, and maybe you have noticed this (see: form validation in AngularJS, and validate password in AngularJS).
+The topic of today is not strictly related to form validation, but, like also the form validation, it could be useful to improve the form usability, and even the user&amp;rsquo;s data security.
+Always more frequently during the registration on a new website, I happen to see that the password that I chose is judged, and I&amp;rsquo;m informed about its strength value.</description>
+    </item>
+    
+    <item>
+      <title>AngularJS directive to check that passwords match</title>
+      <link>https://brunoscopelliti.com/blog/angularjs-directive-to-check-that-passwords-match/</link>
+      <pubDate>Tue, 16 Apr 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/angularjs-directive-to-check-that-passwords-match/</guid>
+      <description>I already wrote about form validation some time ago.
+In that occasion I had the opportunity to show you how much powerful is the native form validation system of AngularJS. But no matter how powerful, of course, it can not cover all possible scenarios. For example we all are used to fill two times the password fields during the registration on a new website.
+Currently AngularJS has not a native method to check, during the form validation, if the user entered two different passwords.</description>
+    </item>
+    
+    <item>
+      <title>AngularJS promise, or dealing with asynchronous requests in AngularJS</title>
+      <link>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</link>
+      <pubDate>Tue, 02 Apr 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</guid>
+      <description>Promise&amp;rsquo;s support is one of my favorite features of AngularJS.
+Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.
+This post will show you a typical use case for the promise in an AngularJS app.
+It could be simplified as follows:
+function stageController(scope, p) { scope.revenues = []; scope.$watch(&amp;#34;revenues&amp;#34;, function () { p.drawPlot(scope.revenues); }, true); p.getData(); } stageController.</description>
+    </item>
+    
+    <item>
+      <title>Form validation, The AngularJS Way</title>
+      <link>https://brunoscopelliti.com/blog/form-validation-the-angularjs-way/</link>
+      <pubDate>Tue, 12 Mar 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/form-validation-the-angularjs-way/</guid>
+      <description>Recently I started to develop my first real AngularJS web app; it shouldn&amp;rsquo;t be anything complicated&amp;hellip; I&amp;rsquo;m planning to replace my old excel for family budget with a brand new AngularJS app. This gave me the opportunity to learn a lot of things about AngularJS, and in particular how AngularJS handles client side form validation (one of the topic generally less appreciated).
+In this post I will show how to perform client side data validation with AngularJS.</description>
+    </item>
+    
+    <item>
+      <title>How to execute an AngularJS directive after the DOM has completed rendering</title>
+      <link>https://brunoscopelliti.com/blog/run-a-directive-after-the-dom-has-finished-rendering/</link>
+      <pubDate>Mon, 04 Mar 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/run-a-directive-after-the-dom-has-finished-rendering/</guid>
+      <description>You have a custom directive, repeatHelloWorld; it has the important task to log the message &amp;ldquo;Hello, world!&amp;rdquo; in the console, the number of times specified by the parameter accepted by the directive, and defined in the controller.
+&amp;lt;body ng-controller=&amp;#34;stageController&amp;#34;&amp;gt; &amp;lt;div repeat-hello-world=&amp;#34;{{ &amp;#34;{{ repeat &amp;#34; }}}}&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; Controller and directive are defined as:
+// Controller function stageController($scope) { $scope.repeat = 5; } angular.module(&amp;#34;myApp&amp;#34;, [&amp;#34;myApp.directives&amp;#34;]); // Directive angular.module(&amp;#34;myApp.directives&amp;#34;, []) .directive(&amp;#34;repeatHelloWorld&amp;#34;, function () { return { link: function (scope, elem, attrs, ctrl) { var hello = function () { for (var i = 0; i &amp;lt; attrs.</description>
+    </item>
+    
+    <item>
+      <title>Use cases of AngularJS directives</title>
+      <link>https://brunoscopelliti.com/blog/use-cases-of-angularjs-directives/</link>
+      <pubDate>Tue, 26 Feb 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/use-cases-of-angularjs-directives/</guid>
+      <description>A directive is essentially a function executed when the AngularJS compiler finds its declaration into the DOM. The function can do almost anything, but as common task we can consider defining a behavior or executing a DOM transformation. A directive can be presented as an attribute, an element name, a class name, or a name in a comment.
+AngularJS comes with a rich built-in set of directives, that can be even extended.</description>
+    </item>
+    
+  </channel>
+</rss>

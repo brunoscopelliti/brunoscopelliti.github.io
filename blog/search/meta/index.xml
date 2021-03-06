@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Meta on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/meta/</link>
+    <description>Recent content in Meta on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 25 Mar 2017 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/meta/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Asynchronous font loading</title>
+      <link>https://brunoscopelliti.com/blog/asynchronous-font-loading/</link>
+      <pubDate>Sat, 25 Mar 2017 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/asynchronous-font-loading/</guid>
+      <description>The characters you&amp;rsquo;re reading right now are rendered in a font called Ubuntu. It&amp;rsquo;s a pretty populare one. I&amp;rsquo;m also using the Merriweather font, in the homepage, right under my face, and in a few other places. Aren&amp;rsquo;t they nice? Hardly not!
+However fonts are generally heavy resources to load&amp;hellip; and having to load more of them may negatively affect loading performance of a website. In particular, there are two different problems:</description>
+    </item>
+    
+    <item>
+      <title>How I ported my blog to HTTPS</title>
+      <link>https://brunoscopelliti.com/blog/how-i-ported-my-blog-to-https/</link>
+      <pubDate>Wed, 07 Sep 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-i-ported-my-blog-to-https/</guid>
+      <description>In the last couple of years several elements are pushing for a widespread adoption of the HTTPS protocol.
+  Security. Of course security, what else would you expect from HTTPS. HTTPS is all about security! It guarantees that the server you&amp;rsquo;re connecting is really the one you believe it is, and that the contents of the communications is private, so that it can&amp;rsquo;t be read, or modified by a anyone else.</description>
+    </item>
+    
+    <item>
+      <title>Goodbye WordPress 👋</title>
+      <link>https://brunoscopelliti.com/blog/goodbye-wordpress/</link>
+      <pubDate>Sat, 21 Feb 2015 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/goodbye-wordpress/</guid>
+      <description>During last year blogging has fallen down in my list of priorities.
+One of my resolutions for this new year is to try to start blogging again on a regular schedule.
+Even if I am a huge fan of WordPress, I have to admit that it carries with it a lot of overhead, probably not justified for a blog like my own. So I decided to give a try to jekyll, and damn, it was love at first sight 🤩</description>
+    </item>
+    
+    <item>
+      <title>Blog re-style (&#43; bonus: three WordPress tricks)</title>
+      <link>https://brunoscopelliti.com/blog/blog-re-style-bonus-three-wordpress-tricks/</link>
+      <pubDate>Thu, 30 May 2013 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/blog-re-style-bonus-three-wordpress-tricks/</guid>
+      <description>Some weekends ago, I saved few of my free time to work on my blog.
+The most evident change is that now for my blog, I&amp;rsquo;m using the Ryu theme, by the guys of Automattic.
+It had been a long time since the last time I had worked with WordPress, and I really appreciated it. So today I want to share three useful tricks to customize your WordPress implementation.
+One of the characteristics of this blog even before the restyle, was that, even if you are logged in WordPress, the top toolbar is not displayed.</description>
+    </item>
+    
+  </channel>
+</rss>

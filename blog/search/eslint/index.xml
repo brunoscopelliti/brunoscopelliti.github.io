@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ESlint on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/eslint/</link>
+    <description>Recent content in ESlint on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Sep 2016 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/eslint/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to disable ESLint rule via JavaScript comment</title>
+      <link>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</link>
+      <pubDate>Fri, 16 Sep 2016 09:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</guid>
+      <description>Having recently switched to ESLint, I often find myself googling for how to disable a rule on a particular occurrence via JavaScript comment.
+Hope writing this will help me to memorize the syntax, I&amp;rsquo;ll bookmark this page otherwise 😅.
+// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;); alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for that specific line.</description>
+    </item>
+    
+  </channel>
+</rss>
