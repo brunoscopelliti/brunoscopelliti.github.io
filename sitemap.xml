@@ -3,14 +3,14 @@
   
   <url>
     <loc>https://brunoscopelliti.com/</loc>
-    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <lastmod>2021-03-21T21:30:00+01:00</lastmod>
     
     
   </url>
   
   <url>
     <loc>https://brunoscopelliti.com/blog/</loc>
-    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <lastmod>2021-03-21T21:30:00+01:00</lastmod>
     
     
   </url>
@@ -24,7 +24,28 @@
   
   <url>
     <loc>https://brunoscopelliti.com/blog/search/</loc>
-    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
+    <lastmod>2021-03-21T21:30:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/memo/</loc>
+    <lastmod>2021-03-21T21:30:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/my-macos-setup-checklist/</loc>
+    <lastmod>2021-03-21T21:30:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/tools/</loc>
+    <lastmod>2021-03-21T21:30:00+01:00</lastmod>
     
     
   </url>
@@ -38,13 +59,6 @@
   
   <url>
     <loc>https://brunoscopelliti.com/blog/search/babel/</loc>
-    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
-    
-    
-  </url>
-  
-  <url>
-    <loc>https://brunoscopelliti.com/blog/search/tools/</loc>
     <lastmod>2021-01-01T09:00:00+01:00</lastmod>
     
     
@@ -132,13 +146,6 @@
     <lastmod>2021-01-01T09:00:00+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://brunoscopelliti.com/blog/search/memo/</loc>
-    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
-    
-    
   </url>
   
   <url>

@@ -6,7 +6,25 @@
     <description>Recent content on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 May 2018 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Mar 2021 21:30:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Memo</title>
+      <link>https://brunoscopelliti.com/blog/search/memo/</link>
+      <pubDate>Sun, 21 Mar 2021 21:30:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/search/memo/</guid>
+      <description>Things I searched on Google more times than I can remember.</description>
+    </item>
+    
+    <item>
+      <title>Tools</title>
+      <link>https://brunoscopelliti.com/blog/search/tools/</link>
+      <pubDate>Sun, 21 Mar 2021 21:30:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/search/tools/</guid>
+      <description>Where I share tips and tricks about our tools of trade - often learned the hard way.</description>
+    </item>
+    
     <item>
       <title>Babel</title>
       <link>https://brunoscopelliti.com/blog/search/babel/</link>
@@ -14,15 +32,6 @@
       
       <guid>https://brunoscopelliti.com/blog/search/babel/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Tools</title>
-      <link>https://brunoscopelliti.com/blog/search/tools/</link>
-      <pubDate>Tue, 08 May 2018 09:00:00 +0100</pubDate>
-      
-      <guid>https://brunoscopelliti.com/blog/search/tools/</guid>
-      <description>Where I share tips and tricks about our tools of trade - often learned the hard way.</description>
     </item>
     
     <item>
@@ -77,15 +86,6 @@
       
       <guid>https://brunoscopelliti.com/blog/search/git/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Memo</title>
-      <link>https://brunoscopelliti.com/blog/search/memo/</link>
-      <pubDate>Fri, 05 May 2017 09:00:00 +0100</pubDate>
-      
-      <guid>https://brunoscopelliti.com/blog/search/memo/</guid>
-      <description>Things I searched on Google more times than I can remember.</description>
     </item>
     
     <item>

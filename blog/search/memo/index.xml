@@ -6,7 +6,20 @@
     <description>Recent content in Memo on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 May 2017 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/memo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Mar 2021 21:30:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/memo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My MacOS setup checklist</title>
+      <link>https://brunoscopelliti.com/blog/my-macos-setup-checklist/</link>
+      <pubDate>Sun, 21 Mar 2021 21:30:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/my-macos-setup-checklist/</guid>
+      <description>This week I formatted my macbook, and after many years of keeping sparse notes in too many different place I decided it is time to put everything together in one place for future reference&amp;hellip; and what best place than my freshly restyled blog.
+General preference   Dock: don&amp;rsquo;t show recent applications.
+  Mission control: set hot corners.
+  Trackpad/Mouse: Secondary click, click in bottom right corner.
+  Keyboard: Use F1, F2, etc.</description>
+    </item>
+    
     <item>
       <title>Git alias: git unstage</title>
       <link>https://brunoscopelliti.com/blog/git-alias-git-unstage/</link>

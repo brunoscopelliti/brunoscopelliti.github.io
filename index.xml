@@ -6,7 +6,7 @@
     <description>Recent content in Home on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 May 2018 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Mar 2021 21:30:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://brunoscopelliti.com/about/</link>
@@ -18,6 +18,19 @@ Apparently you and I have something in common - I am also one of those weird, cu
  I am Bruno Scopelliti.
 I currently live in Bologna, Italy. These pages are my very own home on the Internet&amp;hellip; Welcome!
  I am blessed to have a wonderful wife, and two kids, Chiara and Matteo.  I still don&amp;rsquo;t feel particularly comfortable in writing about my family over the Internet; however they&amp;rsquo;re everything for me.</description>
+    </item>
+    
+    <item>
+      <title>My MacOS setup checklist</title>
+      <link>https://brunoscopelliti.com/blog/my-macos-setup-checklist/</link>
+      <pubDate>Sun, 21 Mar 2021 21:30:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/my-macos-setup-checklist/</guid>
+      <description>This week I formatted my macbook, and after many years of keeping sparse notes in too many different place I decided it is time to put everything together in one place for future reference&amp;hellip; and what best place than my freshly restyled blog.
+General preference   Dock: don&amp;rsquo;t show recent applications.
+  Mission control: set hot corners.
+  Trackpad/Mouse: Secondary click, click in bottom right corner.
+  Keyboard: Use F1, F2, etc.</description>
     </item>
     
     <item>
