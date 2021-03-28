@@ -28,7 +28,7 @@
 
     
     <script>
-      (function(){function s(e,n,r){return e===r?null:e.matches(n)?e:e.parentNode?s(e.parentNode,n,r):null}function c(e,n){return function(u){var a=s(u.target,n,this);a!=null&&e.call(a,u)}}function i(e,n){return function(){n(),e.apply(this,[].slice.call(arguments))}}function o(e,n,r,u){u=u||{};var a=u.useCapture||!1;function t(){n.removeEventListener(e,l,a)}var l=u.once?i(r,t):r;return n.addEventListener(e,l,a),t}function d(e,n){return(n||document.body).querySelector(e)}var f=[].slice;function p(e,n){return f.call((n||document.body).querySelectorAll(e))}function h(e,n,r,u,a){var t=new XMLHttpRequest;t.open(e,n),t.setRequestHeader("Accept","application/json"),t.onreadystatechange=function(){if(t.readyState!==XMLHttpRequest.DONE)return;t.status===200?u(t.response,t.responseType):a(t.status,t.response,t.responseType)},t.send(r)}window.BS_blog={ajax:h,delegate:c,$1:d,$:p,listen:o};})();
+      (function(){function s(e,n,r){return e===r?null:e.matches(n)?e:e.parentNode?s(e.parentNode,n,r):null}function c(e,n){return function(u){var a=s(u.target,n,this);a!=null&&e.call(a,u)}}function i(e,n){return function(){n(),e.apply(this,[].slice.call(arguments))}}function o(e,n,r,u){u=u||{};var a=u.useCapture||!1;function t(){n.removeEventListener(e,l,a)}var l=u.once?i(r,t):r;return n.addEventListener(e,l,a),t}function d(e,n){return(n||document.body).querySelector(e)}var f=[].slice;function p(e,n){return f.call((n||document.body).querySelectorAll(e))}function h(e,n,r,u,a){var t=new XMLHttpRequest;t.open(e,n),t.setRequestHeader("Accept","application/json"),t.onreadystatechange=function(){t.readyState===XMLHttpRequest.DONE&&(t.status===200?u(t.response,t.responseType):a(t.status,t.response,t.responseType))},t.send(r)}window.BS_blog={ajax:h,delegate:c,$1:d,$:p,listen:o};})();
 
     </script>
 
@@ -109,6 +109,15 @@
 <div class="post-list">
   <article class="post-entry">
   <h2>
+    <a href="/blog/asynchronous-font-loading/" title="Asynchronous font loading">Asynchronous font loading</a>
+  </h2>
+  <div class="post-preview">Recently I've changed how fonts are loaded on my personal blog.</div>
+  <div class="post-link">
+    <a href="/blog/asynchronous-font-loading/" title="Asynchronous font loading">Read article</a>
+  </div>
+</article>
+<article class="post-entry">
+  <h2>
     <a href="/blog/squash-commits-with-git-rebase/" title="Squash commits with git rebase">Squash commits with git rebase</a>
   </h2>
   <div class="post-preview">Until recently I watched at those people able to squash git commits as magicians. I've probably overestimated them a bit, and now that I've finally learned the trick, I want to celebrate, and share the process with this post.</div>
@@ -141,15 +150,6 @@
   <div class="post-preview">That's something really simple, and yet extremely effective, especially if you're the kind of developer, who is often switching context ...</div>
   <div class="post-link">
     <a href="/blog/git-productivity-trick/" title="Git workflow PRO tip">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/history-of-a-support-ticket-for-apple/" title="History of a support ticket for Apple">History of a support ticket for Apple</a>
-  </h2>
-  <div class="post-preview">A recent support I've had to open to Apple has given me the opportunity to reflect on my work; I'm doing some terrible mistakes.</div>
-  <div class="post-link">
-    <a href="/blog/history-of-a-support-ticket-for-apple/" title="History of a support ticket for Apple">Read article</a>
   </div>
 </article>
 

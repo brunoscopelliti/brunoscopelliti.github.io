@@ -6,7 +6,7 @@
     <description>Recent content in Home on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Mar 2021 21:30:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Mar 2021 08:39:10 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://brunoscopelliti.com/about/</link>
@@ -18,6 +18,18 @@ Apparently you and I have something in common - I am also one of those weird, cu
  I am Bruno Scopelliti.
 I currently live in Bologna, Italy. These pages are my very own home on the Internet&amp;hellip; Welcome!
  I am blessed to have a wonderful wife, and two kids, Chiara and Matteo.  I still don&amp;rsquo;t feel particularly comfortable in writing about my family over the Internet; however they&amp;rsquo;re everything for me.</description>
+    </item>
+    
+    <item>
+      <title>Investigating a Promise bug</title>
+      <link>https://brunoscopelliti.com/blog/investigating-a-promise-bug/</link>
+      <pubDate>Sat, 27 Mar 2021 08:39:10 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/investigating-a-promise-bug/</guid>
+      <description>As most people do nowadays, I write code using modern JavaScript&amp;hellip; then serve the transpiled version, also adding the polyfills where needed. It mostly works fine, except when it doesn&amp;rsquo;t 🙃.  In fact, recently we got this bug report:
+ When the user clicks the menu button, the menu doesn&amp;rsquo;t appear.
+ The problem was easily reproducible on IE11 - and only on IE11.
+First guesses One interesting thing about this menu is that its content is fetched asyncronously only after the user clicks on a particular button.</description>
     </item>
     
     <item>

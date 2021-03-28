@@ -4,10 +4,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <meta charset="utf-8">
 
-    <title>My MacOS setup checklist | Bruno Scopelliti</title>
+    <title>Investigating a Promise bug | Bruno Scopelliti</title>
 
     
-    <meta name="description" content="List of programs, and configuration for new MacOS installations">
+    <meta name="description" content="Investigating a Promise bug">
     
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
-<meta name="twitter:title" content="My MacOS setup checklist">
+<meta name="twitter:title" content="Investigating a Promise bug">
 
 
 
-<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/my-macos-setup-checklist.png">
-<meta name="twitter:description" content="This is my checklist for new MacOS installations.">
+<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/investigating-a-promise-bug.png">
+<meta name="twitter:description" content="... more than with Promise, it has to do with core-js Promise polyfill, MutationObserver and IE11. No more spoilers.">
 
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -115,172 +115,245 @@
     <a href="/blog" aria-label="View all articles">Blog</a>
     <span>/</span>
     
-    <a href="/blog/search/tools/">Tools</a>
+    <a href="/blog/search/javascript/">JavaScript</a>
     <span>/</span>
     
   </div>
-  <h1>My MacOS setup checklist</h1>
-  <div class="post-body"><p>This week I formatted my macbook, and after many years of keeping sparse notes in too many different place I decided it is time to put everything together in one place for future reference&hellip; and what best place than my freshly restyled blog.</p>
-<h2 id="general-preference">General preference</h2>
-<ul>
-<li>
-<p>Dock: don&rsquo;t show recent applications.</p>
-</li>
-<li>
-<p>Mission control: set hot corners.</p>
-</li>
-<li>
-<p>Trackpad/Mouse: Secondary click, click in bottom right corner.</p>
-</li>
-<li>
-<p>Keyboard: Use F1, F2, etc. keys as standard function keys.</p>
-</li>
-</ul>
-<h2 id="os-settings">OS settings</h2>
-<ul>
-<li>Show hidden files/folders</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt">defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder
-</code></pre></div><p>Recently learned a shortcut - <code>CMD + Shift + .</code> - to toggle quickly between two modes.</p>
-<h2 id="fundamentals">Fundamentals</h2>
-<ul>
-<li>
-<p>Firefox (make default browsers)</p>
-</li>
-<li>
-<p>1Password</p>
-</li>
-<li>
-<p>XCode</p>
-</li>
-<li>
-<p><a href="https://code.visualstudio.com/">VSCode</a></p>
-<p>I usually install <code>code</code> command into the PATH directly from vscode.</p>
-<p>Recently had a problem that after exit vscode the command is removed from the PATH.</p>
-<p>To fix this issue:</p>
-<p><code>xattr Code.app</code> check wether vscode is quarantined (app installed from Internet usually are).</p>
-<p><code>sudo xattr -r -d com.apple.quarantine Code.app</code> remove the <em>quarantine</em> attribute.</p>
-</li>
-<li>
-<p><a href="https://brew.sh/">Homebrew</a></p>
-</li>
-</ul>
-<h2 id="terminal">Terminal</h2>
-<p>ZSH is now default shell on MacOS.</p>
-<ul>
-<li><a href="https://ohmyz.sh/">Oh My ZSH!</a></li>
-</ul>
-<h2 id="git">Git</h2>
-<p><a href="https://git-scm.com/">Git</a> is usually already installed on MacOS.</p>
-<p>There&rsquo;re a couple of things to have it properly configured.</p>
-<h3 id="config">Config</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt"># Committer
-git config --global user.name &#34;Bruno Scopelliti&#34;
-git config --global user.email &#34;*****&#34;
+  <h1>Investigating a Promise bug</h1>
+  <div class="post-body"><p>As most people do nowadays, I write code using modern JavaScript&hellip; then serve the
+transpiled version, also adding the polyfills where needed. It mostly works fine,
+except when it doesn&rsquo;t 🙃.
+<br/>
+In fact, recently we got this bug report:</p>
+<blockquote>
+<p><em>When the user clicks the menu button, the menu doesn&rsquo;t appear.</em></p>
+</blockquote>
+<p>The problem was easily reproducible on IE11 - and only on IE11.</p>
+<h2 id="first-guesses">First guesses</h2>
+<p>One interesting thing about this menu is that its content is fetched asyncronously
+only after the user clicks on a particular button.</p>
+<p>So, my first guess was there had to be something wrong with this request;
+except the Network panel showed the request was completed perfectly fine, and still
+the menu was not rendered.</p>
+<p>Then I looked at the Console panel, cause I imagined there had to be an error happening
+somewhere before the menu could be rendered. But again, no luck: the console was
+almost perfectly clean, except for one exception happening in a completely unrelated
+third party script.
+<br/>
+This particular error was happening also on different browsers, and didn&rsquo;t seem to affect
+the functionality of the third party script. I thought I could safely ignore it for now.</p>
+<p>It didn&rsquo;t require much time to understand that the menu was not the only component
+that had problems; in fact, at this point almost nothing was working properly - and
+in the end all the problems could be reconducted to the fact that also a simple snippet
+like the one below failed the general expectations.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">Promise</span>.resolve()
+  .then(
+    <span style="color:#8be9fd;font-style:italic">function</span> () {
+      <span style="color:#6272a4">// Never runs; weird, isn&#39;t it?!
+</span><span style="color:#6272a4"></span>      console.log(<span style="color:#f1fa8c">&#34;Promise fulfilled&#34;</span>);
+    }
+  )
+</code></pre></div><p>Well, that&rsquo;s quite surprising, isn&rsquo;t it?!</p>
+<p>At this point I was hooked - I really enjoy investigating this kind of issues.
+<br/>
+Also - since IE11 doesn&rsquo;t support <code>Promise</code> natively, &hellip; and I learned two, or three things
+about <code>Promise</code>&rsquo;s polyfills when I wrote <a href="/blog/lets-write-a-promise-polyfill/" title="Let's write a Promise polyfill">my own Promise polyfill</a>
+a couple of years ago - I felt confident I could understand the problem, and eventually fix the bug.</p>
+<h2 id="debugging-core-js-promise-polyfill">Debugging core-js Promise polyfill</h2>
+<p>At this point I thought the only way to figure out why the <code>Promise</code>&rsquo;s handlers
+had not been executed was to dive deep into the polyfill implementation.
+<br/>
+Using IE11 devtools is frustrating to say the least - and doing it through the great
+BrowserStack doesn&rsquo;t really help&hellip; so I forced Chrome to use the Promise
+polyfill implementation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">// Add this just before you load the polyfill.
+</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">window</span>.<span style="color:#8be9fd;font-style:italic">Promise</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">void</span> <span style="color:#bd93f9">0</span>;
+</code></pre></div><p>I&rsquo;ve used this approach a couple of time in the past, with great satisfaction.
+<br/>
+My hope was this trick could permit to reproduce the issue also in Chrome. Sadly,
+this was not the case.</p>
+<p>Even if this attempt didn&rsquo;t work they way I hoped, it permitted to learn another thing
+about the problem I was investigating: counterintuitively, even if the problem manifests itself
+as a <code>Promise</code> issue, it doesn&rsquo;t depends by the <code>Promise</code> implementation.
+<br/>
+I got further confirmation of this thesis by replacing the polyfill with a different one &hellip;
+The problem was still there.</p>
+<p>This sure is interesting, but doesn&rsquo;t help much moving the investigation forward;
+rather makes pointless the effort of debugging a specific implementation.</p>
+<p>So, at this point I was a bit lost.
+<br/>
+I had already spent a couple of hours into investigating the issue, but didn&rsquo;t advance much
+into the understanding of the problem.
+<br/>
+That was when I thought back at the error caused by the third party script, I noticed
+at the very beginning. It was a pretty weak lead to follow, but I didn&rsquo;t have many other ideas
+back then; so it was worth at least taking a closer look.</p>
+<h2 id="reproducing-the-ie11-bug">Reproducing the IE11 bug</h2>
+<p>This is how I discovered the error was happening in the handler passed to a <code>MutationObserver</code>
+registered by this third party script.</p>
+<p>This isn&rsquo;t <em>something bad</em> per se; but this little detail immediately ringed a bell.
+<br/>
+Most <code>Promise</code> polyfills use <code>MutationObserver</code> under the hood to emulate
+the scheduling of a microtask.</p>
+<p>Could this be a simple coincidence?</p>
+<p>Well, there was a quick way to find out.
+<br/>
+This third party script is not fundamental for the page - I removed it, and at this point
+everything was working perfectly fine.</p>
+<p>At this point my job was pretty much done &hellip; contact the third party, file a bug,
+provide a <em>repro</em> &hellip; the usual stuff at the end; except I still wanted to understand
+how it was possible for this third party script to break so badly our website.</p>
+<p>At this point I already knew few things. The problem - for mysterious reasons - is related to
+<code>Promise</code> polyfill and <code>MutationObserver</code>.
+<br/>
+So, I came out with a new strategy: in the <code>Promise</code> polyfill, replace the microtask
+implementation based on <code>MutationObserver</code>, with another one that doesn&rsquo;t rely on <code>MutationObserver</code>.
+It looks like a lot of work, but in the end is very simple:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">// node_modules/core-js/internals/microtask.js
+</span><span style="color:#6272a4"></span>
+module.exports <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> (fn) {
+  setTimeout(fn, <span style="color:#bd93f9">0</span>);
+}
+</code></pre></div><p>Now the implementation above is not the best one, but it&rsquo;s <em>Good Enough</em> ™, in fact
+is usually the last fallback in environments which do not provide any other means to
+schedule microtasks.</p>
+<p>With this change in place, the menu - and everything else - was working again, despite the error
+in the third party script.</p>
+<p>Well, I couldn&rsquo;t ship this <em>fix</em> of course; but this time I learned something very important,
+that in the end permitted me to understand the root of the issue: the problem is to be
+searched in the <code>MutationObserver</code>.
+<br/>
+That&rsquo;s how I came out to understand that Internet Explorer 11 has a bug, that when an
+unhandled exception occurs in a <code>MutationObserver</code> handler, it ignores all the other handlers
+that should have been eventually executed during that same microtask.
+<br/>
+Lovely. Here&rsquo;s the simple repro:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> obs1 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> MutationObserver(
+  <span style="color:#8be9fd;font-style:italic">function</span> handler1 () {
+    console.log(<span style="color:#f1fa8c">&#34;handler1 running&#34;</span>);
+  }
+);
 
-# Default editor
-git config --global core.editor &#34;code --wait&#34;
-</code></pre></div><h3 id="alias">Alias</h3>
-<p>In <code>~/.zshrc</code> define alias for common commands.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt">alias ga=&#34;git add&#34;
-alias gaa=&#34;git add .&#34;
-alias gst=&#34;git status&#34;
-alias gb=&#34;git branch&#34;
-alias gbd=&#34;git branch --delete &#34;
-alias gc=&#34;git commit&#34;
-alias gcm=&#34;git commit --message&#34;
-alias gco=&#34;git checkout&#34;
-alias gcob=&#34;git checkout -b&#34;
-alias gcom=&#34;git checkout master&#34;
-alias gpl=&#34;git pull&#34;
-alias gps=&#34;git push&#34;
-</code></pre></div><h3 id="configure-ssh-auth">Configure SSH auth</h3>
-<p>GitHub is moving away from basic authentication.</p>
-<ol>
-<li>
-<p><a href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Generate SSH Key</a></p>
-</li>
-<li>
-<p><a href="https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account">Add the SSH key in GitHub</a></p>
-</li>
-</ol>
-<h3 id="configure-gpg-commit-signin">Configure GPG commit signin</h3>
-<p>Assure <code>gnupg</code> is installed - <code>brew install gnupg</code> otherwise.</p>
-<ol>
-<li>
-<p><a href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key">Generate GPG key</a></p>
-</li>
-<li>
-<p><a href="https://docs.github.com/en/github/authenticating-to-github/telling-git-about-your-signing-key">Add GPG key in GitHub</a></p>
-</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt">git config --global commit.gpgsign true
-git config --global gpg.program gpg
-git config --global user.signingkey *****
-</code></pre></div><p>Recently I got the <code>gpg failed to write commit object</code> error on the first commit; to fix this issue I found I had to export the <code>GPG_TTY</code> environment variable from my .zshrc file:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt">export GPG_TTY=$(tty)
-</code></pre></div><h2 id="nodejs">Node.js</h2>
-<ul>
-<li><a href="https://github.com/nvm-sh/nvm">NVM</a>, to manage multiple Node.js version.</li>
-</ul>
-<h2 id="ruby">Ruby</h2>
-<ul>
-<li><a href="rvm.io">RVM</a>, to manage multuple Ruby version.</li>
-</ul>
-<h2 id="mongodb">MongoDB</h2>
-<p>I followed <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/">these instructions</a>.</p>
-<h2 id="other-apps-for-software-development">Other apps for software development</h2>
-<ul>
-<li>
-<p>Chrome</p>
-</li>
-<li>
-<p><a href="https://www.postman.com/">Postman</a></p>
-</li>
-<li>
-<p><a href="https://ngrok.com/">ngrok</a></p>
-</li>
-<li>
-<p><a href="https://robomongo.org">Robo 3T</a></p>
-</li>
-<li>
-<p>GIMP</p>
-</li>
-<li>
-<p><a href="https://imageoptim.com/">ImageOptim</a></p>
-</li>
-</ul>
-<h2 id="other-apps">Other apps</h2>
-<ul>
-<li>
-<p>Google Drive</p>
-</li>
-<li>
-<p>Spotify</p>
-</li>
-<li>
-<p>VLC</p>
-</li>
-<li>
-<p><a href="http://stud.io/">Stud.io</a>, I am out of dark age</p>
-</li>
-<li>
-<p>Signal, Telegram, Slack, Whatsapp 😓</p>
-</li>
-</ul>
+<span style="color:#8be9fd;font-style:italic">var</span> obs2 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> MutationObserver(
+  <span style="color:#8be9fd;font-style:italic">function</span> handler2 () {
+    console.log(<span style="color:#f1fa8c">&#34;handler2 running&#34;</span>);
+  }
+);
+
+obs1.observe(<span style="color:#8be9fd;font-style:italic">document</span>.body, { childList<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span> });
+
+obs2.observe(<span style="color:#8be9fd;font-style:italic">document</span>.body, { childList<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span> });
+
+<span style="color:#8be9fd;font-style:italic">function</span> notify () {
+  <span style="color:#8be9fd;font-style:italic">document</span>.body.appendChild(<span style="color:#8be9fd;font-style:italic">document</span>.createElement(<span style="color:#f1fa8c">&#34;div&#34;</span>));
+}
+</code></pre></div><p>When <code>notify</code> is executed, we expect to read two messages in console.</p>
+<p>Let&rsquo;s say now, <code>handler1</code> for some reasons throw an exception:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> obs1 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> MutationObserver(
+  <span style="color:#8be9fd;font-style:italic">function</span> handler1 () {
+    <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Error</span>(<span style="color:#f1fa8c">&#34;Ops.&#34;</span>);
+  }
+);
+</code></pre></div><p>I still expect to see the message from the second observer.
+<br/>
+At least this is what I experience when I run this code in Chrome, Firefox, Safari, etc.</p>
+<p>Ok, so IE11 has a bug &hellip; <em>who could have ever imagined!?</em>
+<br/>
+Jokes aside, I still didn&rsquo;t understand how this IE11 bug was affecting the <code>Promise</code> polyfill.</p>
+<h2 id="finally-the-light">Finally, the light</h2>
+<p>At this point, it looked clear to me that, to understand the cause of the problem,
+I should have looked at the microtask implementation in the core-js polyfill.</p>
+<p>To make things easier to follow, I&rsquo;m writing here the important bits.
+The full version could be seen on <a href="https://github.com/zloirock/core-js/blob/master/packages/core-js/internals/microtask.js">GitHub</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> flush, head, last, notify, toggle, node;
+
+<span style="color:#6272a4">// Bruno: I&#39;ve removed the large `if` here, 
+</span><span style="color:#6272a4">// and kept only the relevant block.
+</span><span style="color:#6272a4"></span>
+flush <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
+  <span style="color:#8be9fd;font-style:italic">var</span> parent, fn;
+  <span style="color:#ff79c6">if</span> (IS_NODE <span style="color:#ff79c6">&amp;&amp;</span> (parent <span style="color:#ff79c6">=</span> process.domain)) parent.exit();
+  <span style="color:#ff79c6">while</span> (head) {
+    fn <span style="color:#ff79c6">=</span> head.fn;
+    head <span style="color:#ff79c6">=</span> head.next;
+    <span style="color:#ff79c6">try</span> {
+      fn();
+    } <span style="color:#ff79c6">catch</span> (error) {
+      <span style="color:#ff79c6">if</span> (head) notify();
+      <span style="color:#ff79c6">else</span> last <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">undefined</span>;
+      <span style="color:#ff79c6">throw</span> error;
+    }
+  } last <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">undefined</span>;
+  <span style="color:#ff79c6">if</span> (parent) parent.enter();
+};
+
+toggle <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
+node <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createTextNode(<span style="color:#f1fa8c">&#39;&#39;</span>);
+<span style="color:#ff79c6">new</span> MutationObserver(flush).observe(node, { characterData<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span> });
+notify <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
+  node.data <span style="color:#ff79c6">=</span> toggle <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">!</span>toggle;
+};
+
+module.exports <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> (fn) {
+  <span style="color:#8be9fd;font-style:italic">var</span> task <span style="color:#ff79c6">=</span> { fn<span style="color:#ff79c6">:</span> fn, next<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">undefined</span> };
+  <span style="color:#ff79c6">if</span> (last) last.next <span style="color:#ff79c6">=</span> task;
+  <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>head) {
+    head <span style="color:#ff79c6">=</span> task;
+    notify();
+  } last <span style="color:#ff79c6">=</span> task;
+};
+</code></pre></div><p>The <code>head</code> variable is a <em>single linked list</em>; it references the unit of work to be processed.</p>
+<p>The <code>flush</code> function serves as the <code>MutationObserver</code> handler &hellip; it walks the linked list,
+processing the work, until it becomes empty.</p>
+<p>The <code>notify</code> function encapsulates the ability to trigger the <code>MutationObserver</code> - it is
+not too much different from my example above.</p>
+<p>Finally the module exports a function, that wraps <code>notify</code>, and takes care of updating
+the job list. Here, there&rsquo;s a very important thing to notice:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">module.exports <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> (fn) {
+  <span style="color:#8be9fd;font-style:italic">var</span> task <span style="color:#ff79c6">=</span> { fn<span style="color:#ff79c6">:</span> fn, next<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">undefined</span> };
+  <span style="color:#ff79c6">if</span> (last) last.next <span style="color:#ff79c6">=</span> task;
+  <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>head) {
+    head <span style="color:#ff79c6">=</span> task;
+    notify();
+  } last <span style="color:#ff79c6">=</span> task;
+};
+</code></pre></div><p>The <code>notify</code> function is executed only when there isn&rsquo;t any job currently processed - <code>head</code>
+points to nothing. This usually works fine, cause as we said the <code>flush</code> function takes care
+of traversing the job list, and executing the jobs one by one &hellip; so that when everything
+is done <code>head</code> points back to nothing, or <code>undefined</code>.</p>
+<p>Except we discovered <code>flush</code> gets not executed at all, if an error happens in a
+<code>MutationObserver</code> handler scheduled for execution in that same microtask.
+<br/>
+That&rsquo;s very unfortunate! Now <code>head</code> points to the last job planned - a job that won&rsquo;t ever
+be executed, leaving <code>head</code> pointing it for ever, so that further call to the microtask
+scheduler will never reach the line where <code>notify</code> is executed.</p>
+<p>This finally explains why even the most simple of <code>Promise</code> seems to never be fullfilled.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">Promise</span>.resolve()
+  .then(
+    <span style="color:#8be9fd;font-style:italic">function</span> () {
+      <span style="color:#6272a4">// Never runs; weird, isn&#39;t it?!
+</span><span style="color:#6272a4"></span>      console.log(<span style="color:#f1fa8c">&#34;Promise fulfilled&#34;</span>);
+    }
+  )
+</code></pre></div><h2 id="one-mistery-remains">One mistery remains</h2>
+<p>Going through all this was interesting, and being able to understand the cause
+of the problem extremely rewarding.
+But even after all of this, one mistery remains - one destined to remain covered
+in mist for ever - why the cookie law script (our third party script) needed to register
+a <code>MutationObserver</code> in the first place ?!</p>
 </div>
   <div class="post-footer">
-    <div class="post-date">March 21, 2021</div>
+    <div class="post-date">March 27, 2021</div>
     <div class="post-links">
-      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fmy-macos-setup-checklist%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
+      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2finvestigating-a-promise-bug%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
       <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
-      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/my-macos-setup-checklist.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
+      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/investigating-a-promise-bug.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
     </div>
     <div class="post-share">
       <span class="post-share-line"></span>
       <span class="post-share-text">Share article</span>
-      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fmy-macos-setup-checklist%2f&text=My%20MacOS%20setup%20checklist&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
-      <a class="post-share-link" href="https://www.reddit.com/submit?title=My%20MacOS%20setup%20checklist&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fmy-macos-setup-checklist%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
+      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2finvestigating-a-promise-bug%2f&text=Investigating%20a%20Promise%20bug&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
+      <a class="post-share-link" href="https://www.reddit.com/submit?title=Investigating%20a%20Promise%20bug&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2finvestigating-a-promise-bug%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
     </div>
     <div class="post-author">
       <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>

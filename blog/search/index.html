@@ -26,7 +26,7 @@
 
     
     <script>
-      (function(){function s(e,n,r){return e===r?null:e.matches(n)?e:e.parentNode?s(e.parentNode,n,r):null}function c(e,n){return function(u){var a=s(u.target,n,this);a!=null&&e.call(a,u)}}function i(e,n){return function(){n(),e.apply(this,[].slice.call(arguments))}}function o(e,n,r,u){u=u||{};var a=u.useCapture||!1;function t(){n.removeEventListener(e,l,a)}var l=u.once?i(r,t):r;return n.addEventListener(e,l,a),t}function d(e,n){return(n||document.body).querySelector(e)}var f=[].slice;function p(e,n){return f.call((n||document.body).querySelectorAll(e))}function h(e,n,r,u,a){var t=new XMLHttpRequest;t.open(e,n),t.setRequestHeader("Accept","application/json"),t.onreadystatechange=function(){if(t.readyState!==XMLHttpRequest.DONE)return;t.status===200?u(t.response,t.responseType):a(t.status,t.response,t.responseType)},t.send(r)}window.BS_blog={ajax:h,delegate:c,$1:d,$:p,listen:o};})();
+      (function(){function s(e,n,r){return e===r?null:e.matches(n)?e:e.parentNode?s(e.parentNode,n,r):null}function c(e,n){return function(u){var a=s(u.target,n,this);a!=null&&e.call(a,u)}}function i(e,n){return function(){n(),e.apply(this,[].slice.call(arguments))}}function o(e,n,r,u){u=u||{};var a=u.useCapture||!1;function t(){n.removeEventListener(e,l,a)}var l=u.once?i(r,t):r;return n.addEventListener(e,l,a),t}function d(e,n){return(n||document.body).querySelector(e)}var f=[].slice;function p(e,n){return f.call((n||document.body).querySelectorAll(e))}function h(e,n,r,u,a){var t=new XMLHttpRequest;t.open(e,n),t.setRequestHeader("Accept","application/json"),t.onreadystatechange=function(){t.readyState===XMLHttpRequest.DONE&&(t.status===200?u(t.response,t.responseType):a(t.status,t.response,t.responseType))},t.send(r)}window.BS_blog={ajax:h,delegate:c,$1:d,$:p,listen:o};})();
 
     </script>
 
@@ -109,7 +109,7 @@
     <div class="search-box">
       <div class="blog-search">
         <input data-js="posts-search" type="search" name="query" placeholder="Enter one, or more comma-separated keywords" />
-        <span data-js="posts-count" class="blog-posts-count">51</span>
+        <span data-js="posts-count" class="blog-posts-count">52</span>
       </div>
       <ul class="keywords" data-js="keywords">
         
@@ -135,7 +135,7 @@
           
           
           <li>
-            <button type="button" class="keyword" data-keyword="bugs">Bugs<span class="keyword-count" aria-label="Number of results for Bugs.">1</span>
+            <button type="button" class="keyword" data-keyword="bugs">Bugs<span class="keyword-count" aria-label="Number of results for Bugs.">2</span>
             </button>
           </li>
           
@@ -198,7 +198,7 @@
           
           
           <li>
-            <button type="button" class="keyword" data-keyword="javascript">JavaScript<span class="keyword-count" aria-label="Number of results for JavaScript.">6</span>
+            <button type="button" class="keyword" data-keyword="javascript">JavaScript<span class="keyword-count" aria-label="Number of results for JavaScript.">7</span>
             </button>
           </li>
           
@@ -276,7 +276,7 @@
           
           
           <li>
-            <button type="button" class="keyword" data-keyword="promise">Promise<span class="keyword-count" aria-label="Number of results for Promise.">4</span>
+            <button type="button" class="keyword" data-keyword="promise">Promise<span class="keyword-count" aria-label="Number of results for Promise.">5</span>
             </button>
           </li>
           
@@ -359,6 +359,11 @@
   <div class="year-section" data-js="group">
     <h3>2021</h3>
     <div class="taxonomy-post-list">
+    
+      <div class="post-entry" data-js="post-entry" data-tags="javascript,bugs,promise,">
+        <span class="post-date">27 Mar</span>
+        <a href="/blog/investigating-a-promise-bug/">Investigating a Promise bug</a>
+      </div>
     
       <div class="post-entry" data-js="post-entry" data-tags="tools,memo,">
         <span class="post-date">21 Mar</span>

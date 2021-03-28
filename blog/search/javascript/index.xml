@@ -6,7 +6,19 @@
     <description>Recent content in JavaScript on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 26 Feb 2018 09:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Mar 2021 08:39:10 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Investigating a Promise bug</title>
+      <link>https://brunoscopelliti.com/blog/investigating-a-promise-bug/</link>
+      <pubDate>Sat, 27 Mar 2021 08:39:10 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/investigating-a-promise-bug/</guid>
+      <description>As most people do nowadays, I write code using modern JavaScript&amp;hellip; then serve the transpiled version, also adding the polyfills where needed. It mostly works fine, except when it doesn&amp;rsquo;t 🙃.  In fact, recently we got this bug report:
+ When the user clicks the menu button, the menu doesn&amp;rsquo;t appear.
+ The problem was easily reproducible on IE11 - and only on IE11.
+First guesses One interesting thing about this menu is that its content is fetched asyncronously only after the user clicks on a particular button.</description>
+    </item>
+    
     <item>
       <title>Let&#39;s write a Promise polyfill</title>
       <link>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</link>
