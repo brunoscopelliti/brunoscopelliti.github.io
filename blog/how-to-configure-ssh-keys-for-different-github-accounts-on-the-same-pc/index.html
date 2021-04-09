@@ -4,8 +4,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <meta charset="utf-8">
 
-    <title>Tools | Bruno Scopelliti</title>
+    <title>How to configure SSH keys for different GitHub accounts on the same pc | Bruno Scopelliti</title>
 
+    
+    <meta name="description" content="Configure SSH keys for different GitHub accounts on the same pc">
     
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -14,10 +16,15 @@
 
     
     <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@brunoscopelliti">
-    <meta name="twitter:title" content="Tools">
-    <meta name="twitter:image" content="/images/twitter-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@brunoscopelliti">
+<meta name="twitter:title" content="How to configure SSH keys for different GitHub accounts on the same pc">
+
+
+
+<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc.png">
+<meta name="twitter:description" content="Recently I fought - and at the end succeded - to configure two different set of SSH keys for different GitHub account on the same computer.">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -103,113 +110,89 @@
 
     <div class="page-main-content">
       <main id="main">
-<h1>Articles on "Tools"</h1>
-<section class="page-taxonomy-body">
-  
-  <div class="taxonomy-description">
-    <h2>Tools</h2>
-    <p>Where I share <em>tips and tricks</em> about our tools of trade - often learned the hard way.</p>
-
+<article class="post" data-js="post">
+  <div class="post-breadcrumbs">
+    <a href="/blog" aria-label="View all articles">Blog</a>
+    <span>/</span>
+    
+    <a href="/blog/search/tools/">Tools</a>
+    <span>/</span>
+    
   </div>
-  
-  <h2>Chronological archive</h2>
-  <div class="year-section" data-js="group">
-    <h3>2021</h3>
-    <div class="taxonomy-post-list">
-    
-      <div class="post-entry" data-js="post-entry" data-tags="tools,git,memo,">
-        <span class="post-date">09 Apr</span>
-        <a href="/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/">How to configure SSH keys for different GitHub accounts on the same pc</a>
+  <h1>How to configure SSH keys for different GitHub accounts on the same pc</h1>
+  <div class="post-body"><p>Recently I fought - and at the end succeded - to configure two different set of SSH keys
+for different GitHub accounts on the same computer.
+<br/>
+I&rsquo;m writing it down the procedure, so that I won&rsquo;t have to repeat this fight again.</p>
+<ol>
+<li>
+<p>Create two different SSH keys, and add both on GitHub.
+<br/>The <a href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">documentation on GitHub</a> explains the details.</p>
+</li>
+<li>
+<p>SSH config
+<br/>The SSH key config file is usually located at <code>~/.ssh/config</code>. Open it with your editor
+of choice and paste the text below.
+<br/>Note how <code>HostName</code> is in both case <em>github.com</em>,  but <code>Host</code>, and <code>IdentityFile</code> are different.</p>
+</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt">Host github.com
+  HostName github.com
+  User git
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_ed25519
+
+Host github.com-b
+  HostName github.com
+  User git
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_ed25519_b
+</code></pre></div><ol start="3">
+<li>Finally, for each repository for which you want to use the key <code>id_ed25519_b</code>,
+open its <code>.git/config</code> file and configure the remote, so that it matches the host
+precedently set in the SSH config file.
+<br/>
+This last step is not needed when you clone directly from <code>git@github.com-b:&lt;username&gt;/&lt;repo&gt;.git</code>.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt">[remote &#34;origin&#34;]
+  url = git@github.com-b:&lt;username&gt;/&lt;repo&gt;.git
+</code></pre></div></div>
+  <div class="post-footer">
+    <div class="post-date">April 9, 2021</div>
+    <div class="post-links">
+      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fhow-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
+      <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
+      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
+    </div>
+    <div class="post-share">
+      <span class="post-share-line"></span>
+      <span class="post-share-text">Share article</span>
+      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fhow-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc%2f&text=How%20to%20configure%20SSH%20keys%20for%20different%20GitHub%20accounts%20on%20the%20same%20pc&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
+      <a class="post-share-link" href="https://www.reddit.com/submit?title=How%20to%20configure%20SSH%20keys%20for%20different%20GitHub%20accounts%20on%20the%20same%20pc&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fhow-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
+    </div>
+    <div class="post-author">
+      <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>
+      <div class="post-author-bio">
+        <strong>Bruno Scopelliti</strong> is an independent software engineer, with focus on frontend development.
+        <br/>He lives in nice Bologna, Italy.
       </div>
-    
-      <div class="post-entry" data-js="post-entry" data-tags="tools,memo,">
-        <span class="post-date">21 Mar</span>
-        <a href="/blog/my-macos-setup-checklist/">My MacOS setup checklist</a>
-      </div>
-    
     </div>
   </div>
+</article>
 
-  <div class="year-section" data-js="group">
-    <h3>2018</h3>
-    <div class="taxonomy-post-list">
-    
-      <div class="post-entry" data-js="post-entry" data-tags="tools,babel,">
-        <span class="post-date">08 May</span>
-        <a href="/blog/a-simple-babel-optimization-i-recently-learned/">A simple Babel optimization I recently learned</a>
-      </div>
-    
-    </div>
-  </div>
+<script>
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
 
-  <div class="year-section" data-js="group">
-    <h3>2017</h3>
-    <div class="taxonomy-post-list">
-    
-      <div class="post-entry" data-js="post-entry" data-tags="tools,git,memo,">
-        <span class="post-date">05 May</span>
-        <a href="/blog/git-alias-git-unstage/">Git alias: git unstage</a>
-      </div>
-    
-      <div class="post-entry" data-js="post-entry" data-tags="tools,git,memo,">
-        <span class="post-date">23 Jan</span>
-        <a href="/blog/squash-commits-with-git-rebase/">Squash commits with git rebase</a>
-      </div>
-    
-    </div>
-  </div>
+</script>
 
-  <div class="year-section" data-js="group">
-    <h3>2016</h3>
-    <div class="taxonomy-post-list">
-    
-      <div class="post-entry" data-js="post-entry" data-tags="tools,webpack,">
-        <span class="post-date">12 Dec</span>
-        <a href="/blog/webpack-101/">Webpack 101</a>
-      </div>
-    
-      <div class="post-entry" data-js="post-entry" data-tags="tools,git,">
-        <span class="post-date">03 Dec</span>
-        <a href="/blog/git-productivity-trick/">Git workflow PRO tip</a>
-      </div>
-    
-      <div class="post-entry" data-js="post-entry" data-tags="tools,eslint,memo,">
-        <span class="post-date">16 Sep</span>
-        <a href="/blog/how-to-disable-eslint-rule-via-javascript-comment/">How to disable ESLint rule via JavaScript comment</a>
-      </div>
-    
-    </div>
-  </div>
+<script>
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
-  <div class="year-section" data-js="group">
-    <h3>2015</h3>
-    <div class="taxonomy-post-list">
-    
-      <div class="post-entry" data-js="post-entry" data-tags="tools,javascript,">
-        <span class="post-date">19 Aug</span>
-        <a href="/blog/es6-modules-with-jspm/">ES2015 modules today</a>
-      </div>
-    
-    </div>
-  </div>
-
-  <div class="year-section" data-js="group">
-    <h3>2013</h3>
-    <div class="taxonomy-post-list">
-    
-      <div class="post-entry" data-js="post-entry" data-tags="tools,grunt,">
-        <span class="post-date">28 May</span>
-        <a href="/blog/start-using-gruntjs/">Getting started with Grunt</a>
-      </div>
-    
-      <div class="post-entry" data-js="post-entry" data-tags="tools,jquery,">
-        <span class="post-date">09 Apr</span>
-        <a href="/blog/jquery-custom-build/">jQuery custom build</a>
-      </div>
-    
-    </div>
-  </div>
-</section>
+</script>
 
       </main>
     </div>

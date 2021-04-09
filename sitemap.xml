@@ -3,14 +3,14 @@
   
   <url>
     <loc>https://brunoscopelliti.com/</loc>
-    <lastmod>2021-03-27T08:39:10+01:00</lastmod>
+    <lastmod>2021-04-09T22:00:00+01:00</lastmod>
     
     
   </url>
   
   <url>
     <loc>https://brunoscopelliti.com/blog/</loc>
-    <lastmod>2021-03-27T08:39:10+01:00</lastmod>
+    <lastmod>2021-04-09T22:00:00+01:00</lastmod>
     
     
   </url>
@@ -24,7 +24,35 @@
   
   <url>
     <loc>https://brunoscopelliti.com/blog/search/</loc>
-    <lastmod>2021-03-27T08:39:10+01:00</lastmod>
+    <lastmod>2021-04-09T22:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/git/</loc>
+    <lastmod>2021-04-09T22:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/</loc>
+    <lastmod>2021-04-09T22:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/memo/</loc>
+    <lastmod>2021-04-09T22:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/tools/</loc>
+    <lastmod>2021-04-09T22:00:00+01:00</lastmod>
     
     
   </url>
@@ -58,24 +86,10 @@
   </url>
   
   <url>
-    <loc>https://brunoscopelliti.com/blog/search/memo/</loc>
-    <lastmod>2021-03-21T21:30:00+01:00</lastmod>
-    
-    
-  </url>
-  
-  <url>
     <loc>https://brunoscopelliti.com/blog/my-macos-setup-checklist/</loc>
     <lastmod>2021-03-21T21:30:00+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://brunoscopelliti.com/blog/search/tools/</loc>
-    <lastmod>2021-03-21T21:30:00+01:00</lastmod>
-    
-    
   </url>
   
   <url>
@@ -143,13 +157,6 @@
   
   <url>
     <loc>https://brunoscopelliti.com/blog/search/programming/</loc>
-    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
-    
-    
-  </url>
-  
-  <url>
-    <loc>https://brunoscopelliti.com/blog/search/git/</loc>
     <lastmod>2021-01-01T09:00:00+01:00</lastmod>
     
     

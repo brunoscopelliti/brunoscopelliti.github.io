@@ -6,7 +6,7 @@
     <description>Recent content in Home on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Mar 2021 08:39:10 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Apr 2021 22:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://brunoscopelliti.com/about/</link>
@@ -18,6 +18,17 @@ Apparently you and I have something in common - I am also one of those weird, cu
  I am Bruno Scopelliti.
 I currently live in Bologna, Italy. These pages are my very own home on the Internet&amp;hellip; Welcome!
  I am blessed to have a wonderful wife, and two kids, Chiara and Matteo.  I still don&amp;rsquo;t feel particularly comfortable in writing about my family over the Internet; however they&amp;rsquo;re everything for me.</description>
+    </item>
+    
+    <item>
+      <title>How to configure SSH keys for different GitHub accounts on the same pc</title>
+      <link>https://brunoscopelliti.com/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/</link>
+      <pubDate>Fri, 09 Apr 2021 22:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/</guid>
+      <description>Recently I fought - and at the end succeded - to configure two different set of SSH keys for different GitHub accounts on the same computer.  I&amp;rsquo;m writing it down the procedure, so that I won&amp;rsquo;t have to repeat this fight again.
+  Create two different SSH keys, and add both on GitHub. The documentation on GitHub explains the details.
+  SSH config The SSH key config file is usually located at ~/.</description>
     </item>
     
     <item>
