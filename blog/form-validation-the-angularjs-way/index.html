@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="Form validation, The AngularJS Way">
@@ -120,13 +120,23 @@
     
   </div>
   <h1>Form validation, The AngularJS Way</h1>
-  <div class="post-body"><p>Recently I started to develop my first real AngularJS web app; it shouldn&rsquo;t be anything complicated&hellip; I&rsquo;m planning to replace my old excel for family budget with a brand new AngularJS app. This gave me the opportunity to learn a lot of things about AngularJS, and in particular how AngularJS handles client side form validation (one of the topic generally less appreciated).</p>
-<p>In this post I will show how to perform client side data validation with AngularJS. I will use both built-in directives, both custom directives.</p>
+  <div class="post-body"><p>Recently I started to develop my first real AngularJS web app; it shouldn&rsquo;t be anything
+complicated&hellip; I&rsquo;m planning to replace my old excel for family budget with a brand
+new AngularJS app. This gave me the opportunity to learn a lot of things about AngularJS,
+and in particular how AngularJS handles client side form validation (one of the topic
+generally less appreciated).</p>
+<p>In this post I will show how to perform client side data validation with AngularJS.
+I will use both built-in directives, both custom directives.</p>
 <h2 id="client-and-server-side-validation">Client and Server side validation</h2>
-<p>Before we start, just a question for you: how many times have you heard that client side validation is useless without server side validation? A lot, I guess&hellip; and that&rsquo;s cause client side validation could be easily bypassed.</p>
-<p>However it is still very important when used as an help for the user to complete with success the submission of a form. For data validation and sanitization, we should rely on server side validation.</p>
+<p>Before we start, just a question for you: how many times have you heard that client side
+validation is useless without server side validation? A lot, I guess&hellip; and that&rsquo;s cause
+client side validation could be easily bypassed.</p>
+<p>However it is still very important when used as an help for the user to complete with success
+the submission of a form. For data validation and sanitization, we should rely
+on server side validation.</p>
 <h2 id="angularjs-directives-for-form-validation">AngularJS directives for form validation</h2>
-<p>AngularJS has many directives to run form validation. The following are only those usable on a classic input field:</p>
+<p>AngularJS has many directives to run form validation. The following are only those usable
+on a classic input field:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text&#34;</span>
   <span style="color:#50fa7b">ng-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>
   [<span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>]
@@ -136,19 +146,34 @@
   [<span style="color:#50fa7b">ng-maxlength</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{number}&#34;</span>]
   [<span style="color:#50fa7b">ng-pattern</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>]
   [<span style="color:#50fa7b">ng-change</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>]&gt;
-</code></pre></div><p>Some of these (like <code>required</code>, <code>pattern</code>, etc.) repeat the behavior of the new HTML5 attributes. The advantage of using AngularJS directives instead of classic HTML5 attributes, is that the AngularJS way allows to mantain the two way data binding between model and view.</p>
+</code></pre></div><p>Some of these (like <code>required</code>, <code>pattern</code>, etc.) repeat the behavior of the new HTML5 attributes.
+The advantage of using AngularJS directives instead of classic HTML5 attributes,
+is that the AngularJS way allows to mantain the two way data binding between model and view.</p>
 <h2 id="the-simplest-example">The simplest example</h2>
 <p data-height="280" data-theme-id="dark" data-slug-hash="Efzqm" data-preview="true" data-default-tab="result" data-user="brunoscopelliti" class="codepen">
   See the <a href="http://codepen.io/brunoscopelliti/pen/Efzqm/">demo</a> by Bruno Scopelliti (<a href="http://codepen.io/brunoscopelliti">@brunoscopelliti</a>) on <a href="http://codepen.io">CodePen</a>.
 </p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-<p>In the above pen I wrote the code of the most simple case of form validation I could imagine. This simple scenario allows us to note some very important things about form validation with AngularJS.</p>
+<p>In the above pen I wrote the code of the most simple case of form validation I could imagine.
+This simple scenario allows us to note some very important things about form validation
+with AngularJS.</p>
 <p>One of the most important things is the way I declared the form in the HTML code:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">form</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myForm&#34;</span> <span style="color:#50fa7b">novalidate</span> <span style="color:#50fa7b">ng-submit</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;submitForm();&#34;</span>&gt;
   <span style="color:#6272a4">&lt;!-- ... --&gt;</span>
 &lt;/<span style="color:#ff79c6">form</span>&gt;
-</code></pre></div><p>As you can see, I didn&rsquo;t specify an action property for the form. That&rsquo;s because AngularJS prevents the default action (form submission to the server) unless the form element has an action attribute specified. I used the <a href="https://docs.angularjs.org/api/ng/directive/ngSubmit" title="AngularJS api: ngSubmit">ngSubmit</a> directive to specify a behavior to apply when the form is submitted. Moreover, on the form is used the <code>novalidate</code> attribute, in order to disable browser&rsquo;s native form validation.</p>
-<p>I used the <a href="https://docs.angularjs.org/api/ng/directive/ngShow" title="AngularJS api: ngShow">ngShow</a> directive that allow to show a portion of the DOM tree conditionally. I also used the <a href="https://docs.angularjs.org/api/ng/directive/ngDisabled" title="AngularJS api: ngDisabled">ngDisabled</a> directive to conditionally disable the submit button. To write the condition I used several property of the form object that AngularJS makes available. These properties are the following:</p>
+</code></pre></div><p>As you can see, I didn&rsquo;t specify an action property for the form. That&rsquo;s because
+AngularJS prevents the default action (form submission to the server) unless
+the form element has an action attribute specified.
+I used the <a href="https://docs.angularjs.org/api/ng/directive/ngSubmit" title="AngularJS api: ngSubmit">ngSubmit</a>
+directive to specify a behavior to apply when the form is submitted.
+Moreover, on the form is used the <code>novalidate</code> attribute, in order to disable
+browser&rsquo;s native form validation.</p>
+<p>I used the <a href="https://docs.angularjs.org/api/ng/directive/ngShow" title="AngularJS api: ngShow">ngShow</a>
+directive that allow to show a portion of the DOM tree conditionally. I also used the
+<a href="https://docs.angularjs.org/api/ng/directive/ngDisabled" title="AngularJS api: ngDisabled">ngDisabled</a>
+directive to conditionally disable the submit button. To write the condition I used
+several property of the form object that AngularJS makes available.
+These properties are the following:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">//[formName].[inputFieldName].property
 </span><span style="color:#6272a4"></span>
 myForm.email1.$pristine;
@@ -167,14 +192,19 @@ myForm.email1.$error
 <span style="color:#6272a4">// Object. Could be something like this:
 </span><span style="color:#6272a4">// { required: false, pattern:true }
 </span><span style="color:#6272a4">// or { required: false, email:true }
-</span></code></pre></div><p>The properties are true or false, on the basis of the fact that, the particular validation expressed by that property has failed or not. Setting of these properties is a task of the correspondent directive. So at this point you have already understood that the <code>required</code> directive used on the username1 input field will set:</p>
+</span></code></pre></div><p>The properties are true or false, on the basis of the fact that, the particular validation
+expressed by that property has failed or not. Setting of these properties is a task of the
+correspondent directive. So at this point you have already understood that the <code>required</code>
+directive used on the username1 input field will set:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">myForm.username1.$error.required <span style="color:#ff79c6">===</span> <span style="color:#ff79c6">true</span>;
 <span style="color:#6272a4">// Only if the username1 field is left blank.
 </span></code></pre></div><p>&hellip; and in the same way the email directive will set:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">myForm.email1.$error.email <span style="color:#ff79c6">===</span> <span style="color:#ff79c6">true</span>
 <span style="color:#6272a4">// When email1 field does not contain a real email.
 </span></code></pre></div><h2 id="customize-form-look-with-the-css-classes-of-angularjs">Customize form look with the CSS classes of AngularJS</h2>
-<p>AngularJS makes available also numerous CSS classes to allow to customize the style of the form. This is good because different styles could be used to better communicate with the users. To better understand what I mean, take a look at the following example.</p>
+<p>AngularJS makes available also numerous CSS classes to allow to customize the style of the form.
+This is good because different styles could be used to better communicate with the users.
+To better understand what I mean, take a look at the following example.</p>
 <p data-height="280" data-theme-id="dark" data-slug-hash="zHwat" data-preview="true" data-default-tab="result" data-user="brunoscopelliti" class="codepen">
   See the <a href="http://codepen.io/brunoscopelliti/pen/zHwat/">demo</a> by Bruno Scopelliti (<a href="http://codepen.io/brunoscopelliti">@brunoscopelliti</a>) on <a href="http://codepen.io">CodePen</a>.
 </p>
@@ -184,22 +214,38 @@ myForm.email1.$error
 .<span style="color:#50fa7b">ng-dirty</span> {}
 .<span style="color:#50fa7b">ng-invalid</span> {}
 .<span style="color:#50fa7b">ng-valid</span> {}
-</code></pre></div><p>The meaning of these classes is the same of that of the properties seen in the previous section. For example you could find the <code>ng-pristine</code> class only if you don&rsquo;t have already used the input field, vice versa the <code>ng-dirty</code> class is present only if you have modified the default value, etc.</p>
-<p>Styling a form using these classes is simple as use your custom class. Take a look at the CSS tab of the previous pen:</p>
+</code></pre></div><p>The meaning of these classes is the same of that of the properties seen in the previous section.
+For example you could find the <code>ng-pristine</code> class only if you don&rsquo;t have already used the input
+field, vice versa the <code>ng-dirty</code> class is present only if you have modified the default value, etc.</p>
+<p>Styling a form using these classes is simple as use your custom class. Take a look at the
+CSS tab of the previous pen:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-css" data-lang="css">.<span style="color:#50fa7b">ng-pristine</span> { <span style="color:#ff79c6">border</span>:<span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> <span style="color:#ff79c6">solid</span> Gold; }
 .<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-valid</span> { <span style="color:#ff79c6">border</span>:<span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> <span style="color:#ff79c6">solid</span> Green; }
 .<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-invalid</span> { <span style="color:#ff79c6">border</span>:<span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> <span style="color:#ff79c6">solid</span> Red; }
 .<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-valid</span> <span style="color:#ff79c6">~</span> <span style="color:#ff79c6">span</span>.<span style="color:#50fa7b">ok</span> { <span style="color:#ff79c6">color</span>:<span style="color:#ff79c6">green</span>; <span style="color:#ff79c6">display</span>:<span style="color:#ff79c6">inline</span>; }
 .<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-invalid</span> <span style="color:#ff79c6">~</span> <span style="color:#ff79c6">span</span>.<span style="color:#50fa7b">ko</span> { <span style="color:#ff79c6">color</span>:<span style="color:#ff79c6">red</span>; <span style="color:#ff79c6">display</span>:<span style="color:#ff79c6">inline</span>; }
 </code></pre></div><h2 id="the-power-of-the-ngpattern-directive">The power of the ngPattern directive</h2>
-<p>The <code>ngPattern</code> directive leads all the power of regular expression inside AngularJS. It allows to validate the content of a field on the basis of a custom [Regular Expression](<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions</a> &lsquo;Regular Expression MDN&rsquo;s reference&rsquo;).</p>
+<p>The <code>ngPattern</code> directive leads all the power of regular expression inside AngularJS.
+It allows to validate the content of a field on the basis of a custom [Regular Expression](<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions</a> &lsquo;Regular Expression MDN&rsquo;s reference&rsquo;).</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text&#34;</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;userId&#34;</span> <span style="color:#50fa7b">ng-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;userId&#34;</span>
   <span style="color:#50fa7b">required</span> <span style="color:#50fa7b">ng-pattern</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/^id_[0-9]+$/&#34;</span>/&gt;
-</code></pre></div><p>In the above example, a string in order to be valid has to be in the format &ldquo;id_numbers&rdquo;, otherwise the ngPattern directive will sets to true the pattern validation error key. See the <a href="http://codepen.io/brunoscopelliti/pen/plFLI" title="Form validation through ngPattern directive">ngPattern directive in action</a>.</p>
-<p>If you will play a lot with the previous demo, maybe you will note that also string like &quot; id_123 &ldquo;, &ldquo;id_123 &ldquo;, or &quot; id_123″ are valid. This is due to the fact that <code>ngModel</code> automatically trims the value. To avoid this, the release 1.1.1 (still unstable) adds the new <code>ngTrim</code> directive.</p>
+</code></pre></div><p>In the above example, a string in order to be valid has to be in the format &ldquo;id_numbers&rdquo;,
+otherwise the ngPattern directive will sets to true the pattern validation error key.
+See the <a href="http://codepen.io/brunoscopelliti/pen/plFLI" title="Form validation through ngPattern directive">ngPattern directive in action</a>.</p>
+<p>If you will play a lot with the previous demo, maybe you will note that also string like
+&quot; id_123 &ldquo;, &ldquo;id_123 &ldquo;, or &quot; id_123″ are valid. This is due to the fact that <code>ngModel</code>
+automatically trims the value. To avoid this, the release 1.1.1 (still unstable)
+adds the new <code>ngTrim</code> directive.</p>
 <h2 id="100-custom-validation-through-custom-directives">100% Custom validation through custom directives</h2>
-<p>If this is not enough, we could even extend this set of directives, writing our custom directives for form validation. I already wrote about <a href="/blog/use-cases-of-angularjs-directives/" title="Use Cases of AngularJS Directives">custom directives</a>; and write custom directives to validate a form is not much different.</p>
-<p>For example let&rsquo;s write a directive to validate the username chosen by the user during the registration; username has to be an alphanumerical string of at least 4 chars, and at most 10 chars&hellip; this could be already achieved through the ngPattern directive. Moreover the username has to be unique on the database (or in a generic list of data). So our custom <code>ngUnique</code> directive will call asynchronously the server to check if the username chosen is already used, or not.</p>
+<p>If this is not enough, we could even extend this set of directives, writing our
+custom directives for form validation. I already wrote about <a href="/blog/use-cases-of-angularjs-directives/" title="Use Cases of AngularJS Directives">custom directives</a>;
+and write custom directives to validate a form is not much different.</p>
+<p>For example let&rsquo;s write a directive to validate the username chosen by the user during
+the registration; username has to be an alphanumerical string of at least 4 chars, and
+at most 10 chars&hellip; this could be already achieved through the ngPattern directive.
+Moreover the username has to be unique on the database (or in a generic list of data).
+So our custom <code>ngUnique</code> directive will call asynchronously the server to check if the
+username chosen is already used, or not.</p>
 <p>Here you could play with the codepen demo:</p>
 <p data-height="280" data-theme-id="dark" data-slug-hash="plFLI" data-preview="true" data-default-tab="result" data-user="brunoscopelliti" class="codepen">
   See the <a href="http://codepen.io/brunoscopelliti/pen/plFLI/">demo</a> by Bruno Scopelliti (<a href="http://codepen.io/brunoscopelliti">@brunoscopelliti</a>) on <a href="http://codepen.io">CodePen</a>.
@@ -209,7 +255,8 @@ myForm.email1.$error
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text&#34;</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;username&#34;</span> <span style="color:#50fa7b">ng-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;username&#34;</span>
   <span style="color:#50fa7b">ng-pattern</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/^[a-zA-Z0-9]{4,10}$/&#34;</span>
   <span style="color:#50fa7b">ng-unique</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;tableDB.userDBField&#34;</span> /&gt;
-</code></pre></div><p>The ngUnique accepts as parameter the names of the field and of the table, where the username has to be unique.</p>
+</code></pre></div><p>The ngUnique accepts as parameter the names of the field and of the table, where the
+username has to be unique.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">.directive(<span style="color:#f1fa8c">&#34;ngUnique&#34;</span>, [<span style="color:#f1fa8c">&#34;$http&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($http) {
   <span style="color:#ff79c6">return</span> {
     require<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;ngModel&#34;</span>,
@@ -232,8 +279,14 @@ myForm.email1.$error
   }
 ]);
 </code></pre></div><p>The validation process begins when the username field fires the blur event.</p>
-<p>At this point, an AJAX request starts. The objective is to check against the database if the value in the username field already exists. The response is false if the value already exists, otherwise true. The response is available in the callback, where it&rsquo;s used as parameter of the AngularJS <code>$setValidity</code> api. <a href="https://docs.angularjs.org/api/ng/type/ngModel.NgModelController" title="AngularJS api: $setValidity">$setValidity</a> changes the validity state, and notifies the form when the control changes validity.</p>
-<p>This allow us to use our custom <code>unique</code> error key, to improve usability of the form, as seen in the previous examples:</p>
+<p>At this point, an AJAX request starts. The objective is to check against the database
+if the value in the username field already exists. The response is false if the value
+already exists, otherwise true. The response is available in the callback, where it&rsquo;s
+used as parameter of the AngularJS <code>$setValidity</code> api.
+<a href="https://docs.angularjs.org/api/ng/type/ngModel.NgModelController" title="AngularJS api: $setValidity">$setValidity</a>
+changes the validity state, and notifies the form when the control changes validity.</p>
+<p>This allow us to use our custom <code>unique</code> error key, to improve usability of the form,
+as seen in the previous examples:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;invalid&#34;</span>
   <span style="color:#50fa7b">ng-show</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myForm.username.$dirty &amp;&amp; myForm.username.$invalid&#34;</span>&gt;
   &lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">ng-show</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myForm.username.$error.pattern&#34;</span>&gt;

@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="Git alias: git unstage">
@@ -120,22 +120,29 @@
     
   </div>
   <h1>Git alias: git unstage</h1>
-  <div class="post-body"><p>Git, between the others, has a powerful feature called <em>alias</em>.</p>
-<p>It&rsquo;s pretty straightforward&hellip;
-Is there a command you always fail to remember? Add a more friendly shortcut! Is there a command you use frequently, that requires too much keystrokes? Create a shorter alias for it&hellip; or perhaps, you think that a fundamental command is missing from git? Then you can create it yourself using existing commands.</p>
+  <div class="post-body"><p>Git, between the others, has a powerful feature called <em>alias</em>.
+<br/>
+It&rsquo;s pretty straightforward&hellip;
+Is there a command you always fail to remember? Add a more friendly shortcut!
+Is there a command you use frequently, that requires too much keystrokes? Create
+a shorter alias for it&hellip; or perhaps, you think that a fundamental command is missing from git?
+Then you can create it yourself using existing commands.</p>
 <p>My favourite alias is <code>git unstage</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">git config --global alias.unstage <span style="color:#f1fa8c">&#34;reset HEAD --&#34;</span>
 </code></pre></div><p>It permits to remove one, or more files from the staging area.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">git unstage path/to/file.png
 </code></pre></div><p>It&rsquo;s equivalent to:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">git reset HEAD -- path/to/file.png
-</code></pre></div><p>As you can see there&rsquo;s not a great saving in terms of keystrokes, but, at least form me, it is so much more easy to remember.</p>
-<p><em>I think, the first place where I read of this trick is <a href="https://git-scm.com/book/en/v2">Pro Git</a> book, by by Scott Chacon and Ben Straub.</em></p>
+</code></pre></div><p>As you can see there&rsquo;s not a great saving in terms of keystrokes, but, at least form me,
+it is so much more easy to remember.</p>
+<p><em>I think, the first place where I read of this trick is <a href="https://git-scm.com/book/en/v2">Pro Git</a>
+book, by by Scott Chacon and Ben Straub.</em></p>
 <h2 id="a-last-tip">A last tip</h2>
 <p>If you start setting lots of aliases, chances are that you need to review them from time to time.</p>
 <p>The following command prints the aliases you&rsquo;ve set so far.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">git config --list | grep <span style="color:#8be9fd;font-style:italic">alias</span>
-</code></pre></div><p>As always, it can be combined with configuration access modifiers, <code>--system</code>, <code>--global</code>, and <code>--local</code>, to specify the configuration file from which read the aliases.</p>
+</code></pre></div><p>As always, it can be combined with configuration access modifiers, <code>--system</code>, <code>--global</code>,
+and <code>--local</code>, to specify the configuration file from which read the aliases.</p>
 </div>
   <div class="post-footer">
     <div class="post-date">May 5, 2017</div>

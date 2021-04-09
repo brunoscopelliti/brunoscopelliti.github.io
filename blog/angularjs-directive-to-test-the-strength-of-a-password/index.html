@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="AngularJS directive to test the strength of a password">
@@ -120,10 +120,14 @@
     
   </div>
   <h1>AngularJS directive to test the strength of a password</h1>
-  <div class="post-body"><p>Recently I&rsquo;m working a lot with AngularJS and validation of forms, and maybe you have noticed this (see: <a href="/blog/form-validation-the-angularjs-way/" title="Form Validation in AngularJS">form validation in AngularJS</a>, and <a href="/blog/angularjs-directive-to-check-that-passwords-match/" title="AngularJS directive to check that passwords match">validate password in AngularJS</a>).</p>
-<p>The topic of today is not strictly related to form validation, but, like also the form validation, it could be useful to improve the form usability, and even the user&rsquo;s data security.</p>
-<p>Always more frequently during the registration on a new website, I happen to see that the password that I chose is judged, and I&rsquo;m informed about its strength value.</p>
-<p>In this post I will show how to code an AngularJS directive to measure the strength of the password typed by the users.</p>
+  <div class="post-body"><p>Recently I&rsquo;m working a lot with AngularJS and validation of forms, and maybe
+you have noticed this (see: <a href="/blog/form-validation-the-angularjs-way/" title="Form Validation in AngularJS">form validation in AngularJS</a>, and <a href="/blog/angularjs-directive-to-check-that-passwords-match/" title="AngularJS directive to check that passwords match">validate password in AngularJS</a>).</p>
+<p>The topic of today is not strictly related to form validation, but, like also the form validation,
+it could be useful to improve the form usability, and even the user&rsquo;s data security.
+Always more frequently during the registration on a new website, I happen to see that
+the password that I chose is judged, and I&rsquo;m informed about its strength value.</p>
+<p>In this post I will show how to code an AngularJS directive to measure the strength
+of the password typed by the users.</p>
 <h2 id="live-demo">Live demo</h2>
 <p data-height="280" data-theme-id="dark" data-slug-hash="nFlvm" data-preview="true" data-default-tab="result" data-user="brunoscopelliti" class="codepen">
   See the <a href="http://codepen.io/brunoscopelliti/pen/nFlvm/">demo</a> by Bruno Scopelliti (<a href="http://codepen.io/brunoscopelliti">@brunoscopelliti</a>) on <a href="http://codepen.io">CodePen</a>.
@@ -131,17 +135,24 @@
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 <h2 id="the-code">The code</h2>
 <p>Before start digging into the code, I need a short premise.</p>
-<p><em>The goal of this post is to show how you could write an AngularJS directive to test the strength of a password, not to give the best algorithm to test the strength of a password; indeed in my opinion the algorithm I implemented is really bad. You could find a better solution <a href="http://www.passwordmeter.com/" title="Password Strenght meter">here</a>.</em></p>
+<p><em>The goal of this post is to show how you could write an AngularJS directive
+to test the strength of a password, not to give the best algorithm to test the
+strength of a password; indeed in my opinion the algorithm I implemented is really bad.
+You could find a better solution <a href="http://www.passwordmeter.com/" title="Password Strenght meter">here</a>.</em></p>
 <p>As always, let&rsquo;s start from the markup:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;password&#34;</span> <span style="color:#50fa7b">ng-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pw&#34;</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pw&#34;</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pw&#34;</span> /&gt;
 &lt;<span style="color:#ff79c6">ul</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;strength&#34;</span> <span style="color:#50fa7b">check-strength</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pw&#34;</span>&gt;&lt;/<span style="color:#ff79c6">ul</span>&gt;
-</code></pre></div><p>As you can see the directive <code>checkStrength</code> expects as parameter the id of the input field that will contain the password typed by the user.</p>
-<p>Inside the directive is positioned the most important part of the code. I created the <code>strength</code> object, to manage the tasks:</p>
+</code></pre></div><p>As you can see the directive <code>checkStrength</code> expects as parameter the id of the input field
+that will contain the password typed by the user.
+Inside the directive is positioned the most important part of the code.
+I created the <code>strength</code> object, to manage the tasks:</p>
 <ul>
 <li>compute of strength of the password</li>
 <li>bind the level of strength to a color</li>
 </ul>
-<p>How this code really looks like is not very important to understand the functioning of the directive; for this reason I will show here only the backbone of the object. However you could find the complete example on Codepen.</p>
+<p>How this code really looks like is not very important to understand the working
+of the directive; for this reason I will show here only the backbone of the object.
+However you could find the complete example on Codepen.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> strength <span style="color:#ff79c6">=</span> {
   colors<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#34;#F00&#34;</span>, <span style="color:#f1fa8c">&#34;#F90&#34;</span>, <span style="color:#f1fa8c">&#34;#FF0&#34;</span>, <span style="color:#f1fa8c">&#34;#9F0&#34;</span>, <span style="color:#f1fa8c">&#34;#0F0&#34;</span>],
   mesureStrength<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (p) {
@@ -187,10 +198,12 @@
 </code></pre></div><p>In this case there are two important things to notice:</p>
 <ul>
 <li>
-<p>In the directive definition object is defined the <code>template</code> property. This allow to add additional elements to the DOM. In this specific case, five more list items are added.</p>
+<p>In the directive definition object is defined the <code>template</code> property. This allows
+to add additional elements to the DOM. In this specific case, five more list items are added.</p>
 </li>
 <li>
-<p>In the <code>link</code> function is used the api method <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$watch" title="AngularJS api: $watch">$watch</a> to register callback to be executed whenever the password changes.</p>
+<p>In the <code>link</code> function is used the api method <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$watch" title="AngularJS api: $watch">$watch</a> to register callback to be executed whenever
+the password changes.</p>
 </li>
 </ul>
 </div>

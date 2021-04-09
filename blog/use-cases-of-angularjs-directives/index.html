@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="Use cases of AngularJS directives">
@@ -120,14 +120,18 @@
     
   </div>
   <h1>Use cases of AngularJS directives</h1>
-  <div class="post-body"><p>A <a href="https://docs.angularjs.org/guide/directive" title="AngularJS Directive">directive</a> is essentially a function executed when the AngularJS compiler finds its declaration into the DOM.
-The function can do almost anything, but as common task we can consider defining a behavior or executing a DOM transformation.
+  <div class="post-body"><p>A <a href="https://docs.angularjs.org/guide/directive" title="AngularJS Directive">directive</a> is essentially
+a function executed when the AngularJS compiler finds its declaration into the DOM.
+The function can do almost anything, but as common task we can consider defining a behavior
+or executing a DOM transformation.
 A directive can be presented as an attribute, an element name, a class name, or a name in a comment.</p>
-<p>AngularJS comes with a rich built-in set of directives, that can be even extended.</p>
-<p>In this post we&rsquo;re covering some typical use cases for custom directives.</p>
+<p>AngularJS comes with a rich built-in set of directives, that can be even extended.
+<br/>
+In this post we&rsquo;re covering some typical use cases for custom directives.</p>
 <h2 id="basic-syntax-for-custom-directives">Basic syntax for custom directives</h2>
 <p>Let&rsquo;s start from the basic syntax to create a custom directive.</p>
-<p>For all the code samples in this page I started from the <a href="https://github.com/angular/angular-seed" title="Application skeleton for a typical AngularJS web app">angular-seed template</a>; this makes quite easy to extract a model to begin to implement custom directives.</p>
+<p>For all the code samples in this page I started from the
+<a href="https://github.com/angular/angular-seed" title="Application skeleton for a typical AngularJS web app">angular-seed template</a>; this makes quite easy to extract a model to begin to implement custom directives.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html"><span style="color:#ff79c6">&lt;!doctype html&gt;</span>
 &lt;<span style="color:#ff79c6">html</span> <span style="color:#50fa7b">ngApp</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myApp&#34;</span>&gt;
   &lt;<span style="color:#ff79c6">head</span>&gt;
@@ -140,15 +144,18 @@ A directive can be presented as an attribute, an element name, a class name, or 
     &lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;js/directives.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
   &lt;/<span style="color:#ff79c6">body</span>&gt;
 &lt;/<span style="color:#ff79c6">html</span>&gt;
-</code></pre></div><p>After including the directive in the html code, we have to instruct AngularJS about what to do when encounters the directive.</p>
-<p>The angular-seed template suggests to accomplish this operation in a different javascript file; so in the js/directives.js file, I wrote something like:</p>
+</code></pre></div><p>After including the directive in the html code, we have to instruct AngularJS about
+what to do when encounters the directive.</p>
+<p>The angular-seed template suggests to accomplish this operation in a different JavaScript file;
+so in the js/directives.js file, I wrote something like:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">angular.module(<span style="color:#f1fa8c">&#34;myApp.directives&#34;</span>, []).
   directive(<span style="color:#f1fa8c">&#34;myFirstDirective&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (injectables) {
     <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">function</span> link (scope, element, attrs) {
       <span style="color:#6272a4">// Do stuff here
 </span><span style="color:#6272a4"></span>    }
   });
-</code></pre></div><p>Now, a final step is required; in the main module - the one from which depends the entire application - we specify the dependencies.
+</code></pre></div><p>Now, a final step is required; in the main module - the one from which depends the
+entire application - we specify the dependencies.
 So in the js/app.js file, I wrote:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">// No dependencies... this is not the case!
 </span><span style="color:#6272a4">// angular.module(&#34;myApp&#34;, []);
@@ -160,10 +167,15 @@ So in the js/app.js file, I wrote:</p>
 <p>At the moment I see two principal scenarios, in which the use of directives could be very useful.</p>
 <ul>
 <li>
-<p><strong>Directives allow code reusability.</strong> Directives indeed could be used to split the code of a complex app into smaller pieces, which could be reused also in others pages, or even in others projects. A typical example could be an e-commerce web app: in this kind of app, there are some components that can&rsquo;t miss, like the cart, the item page etc. All these parts could be realized through directives.</p>
+<p><strong>Directives allow code reusability.</strong> Directives indeed could be used to split the code
+of a complex app into smaller pieces, which could be reused also in others pages, or even in
+others projects. A typical example could be an e-commerce web app: in this kind of app,
+there are some components that can&rsquo;t miss, like the cart, the item page etc.
+All these parts could be realized through directives.</p>
 </li>
 <li>
-<p><strong>Directives allow to save the two way data binding</strong>, when AngularJS is used in conjunction with third party modules, eg. a jQuery plugin.</p>
+<p><strong>Directives allow to save the two way data binding</strong>, when AngularJS is used in conjunction
+with third party modules, eg. a jQuery plugin.</p>
 </li>
 </ul>
 <h2 id="templating-through-directives">Templating through directives</h2>
@@ -172,28 +184,41 @@ So in the js/app.js file, I wrote:</p>
   See the <a href="http://codepen.io/brunoscopelliti/pen/Bepum/">demo</a> by Bruno Scopelliti (<a href="http://codepen.io/brunoscopelliti">@brunoscopelliti</a>) on <a href="http://codepen.io">CodePen</a>.
 </p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-<p>The previous example is a super-simplified e-commerce site; it just consists of a search result page, and the shopping cart.</p>
-<p>For the sake of simplicity, it is just possible to add an item to the cart, clicking on the special link; and when this is done, the count of the items in the cart will increase.</p>
-<p>In every e-commerce web site there must be a shopping cart; it is usually present in every page of the site, so it&rsquo;s for sure a good idea to create a reusable template to model our shopping cart. We could do this thanks to AngularJS directives.</p>
+<p>The previous example is a super-simplified e-commerce site; it just consists of a search
+result page, and the shopping cart.</p>
+<p>For the sake of simplicity, it is just possible to add an item to the cart, clicking on
+the special link; and when this is done, the count of the items in the cart will increase.</p>
+<p>In every e-commerce web site there must be a shopping cart; it is usually present in every page
+of the site, so it&rsquo;s for sure a good idea to create a reusable template to model our shopping cart.
+We could do this thanks to AngularJS directives.</p>
 <p>I started including in the html page the new custom directive:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">shopping-cart</span>&gt;&lt;/<span style="color:#ff79c6">shopping-cart</span>&gt;
-</code></pre></div><p>Since I used the directive as a new html element, in the directive definition object I have to specify a value for the <code>restrict</code> property.
-Others properties allow to specify the template (made with real html elements) with which replace the <code>shopping-cart</code> element.</p>
-<p>The second directive I wrote is probably more interesting to watch. I used this directive to model each result in the search result page.</p>
+</code></pre></div><p>Since I used the directive as a new html element, in the directive definition object
+I have to specify a value for the <code>restrict</code> property.
+Others properties allow to specify the template (made with real html elements) with which
+replace the <code>shopping-cart</code> element.</p>
+<p>The second directive I wrote is probably more interesting to watch. I used this directive
+to model each result in the search result page.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;item&#34;</span> <span style="color:#50fa7b">ng-repeat</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;i in items&#34;</span>&gt;
   &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">item-card</span> <span style="color:#50fa7b">item-title</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{{i.title}}&#34;</span> <span style="color:#50fa7b">item-src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{{i.src}}&#34;</span> <span style="color:#50fa7b">item-price</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{{i.price}}&#34;</span>&gt;&lt;/<span style="color:#ff79c6">div</span>&gt;
 &lt;/<span style="color:#ff79c6">div</span>&gt;
 </code></pre></div><p>In the directive definition object of the <code>item-card</code> directive new properties appear.</p>
-<p>The more interesting thing to note is the <code>scope</code> property in the directive definition object. It allows to create a new isolate scope. The isolate scope takes an object hash which defines a set of local scope properties derived from the parent scope.</p>
+<p>The more interesting thing to note is the <code>scope</code> property in the directive definition object.
+It allows to create a new isolate scope. The isolate scope takes an object hash which defines
+a set of local scope properties derived from the parent scope.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">scope<span style="color:#ff79c6">:</span> {
   title<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;@itemTitle&#34;</span>,
   price<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;@itemPrice&#34;</span>,
   src<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;@itemSrc&#34;</span>
 }
-</code></pre></div><p>This scope override the scope defined in the controller; this means that now is not possible to access the variables and the functions defined in the scope of the main controller. This is actually a problem, cause now</p>
+</code></pre></div><p>This scope override the scope defined in the controller; this means that now is not possible
+to access the variables and the functions defined in the scope of the main controller.
+This is actually a problem, cause now</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">a</span> <span style="color:#50fa7b">ng-click</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;buyItem(title, price);&#34;</span>&gt;Add to cart&lt;/<span style="color:#ff79c6">a</span>&gt;
 </code></pre></div><p>won&rsquo;t works.</p>
-<p>To resolve this situation I set the controller property, to specify a new controller specific for the isolate scope created before. This controller could be used in the same way we use the main controller.</p>
+<p>To resolve this situation I set the controller property, to specify a new controller specific
+for the isolate scope created before. This controller could be used in the same way we use
+the main controller.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">controller<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> ($scope, $element, $attrs, $location) {
   $scope.addToCart <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> (t, p) {
     <span style="color:#6272a4">// get the scope associated with the main controller
@@ -204,20 +229,27 @@ Others properties allow to specify the template (made with real html elements) w
 }
 </code></pre></div><p>And changing the template this way:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">a</span> <span style="color:#50fa7b">ng-click</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;addToCart(title, price);&#34;</span>&gt;Add to cart&lt;/<span style="color:#ff79c6">a</span>&gt;
-</code></pre></div><p>This example could be used as starting point to show more sophisticated features of AngularJS, and maybe someday I will do this; but meanwhile let&rsquo;s pass to the second use case.</p>
+</code></pre></div><p>This example could be used as starting point to show more sophisticated features of AngularJS,
+and maybe someday I will do this; but meanwhile let&rsquo;s pass to the second use case.</p>
 <h2 id="saving-two-way-data-binding-through-directives">Saving two way data binding through directives</h2>
-<p>If the first use case could be seen as an optimization of the code, there is another case in which the use of custom directives is not an option.</p>
-<p>When your app grows up in complexity, sooner or later comes the time you would like to include a jQuery plugin, or another external library.</p>
-<p>This could break the two way data binding (strong point of AngularJS) established between model and view.</p>
+<p>If the first use case could be seen as an optimization of the code, there is another case
+in which the use of custom directives is not an option.</p>
+<p>When your app grows up in complexity, sooner or later comes the time you would like to include
+a jQuery plugin, or another external library.</p>
+<p>This could break the two way data binding (strong point of AngularJS) established between
+model and view.</p>
 <p data-height="280" data-theme-id="dark" data-slug-hash="zIstF" data-preview="true" data-default-tab="result" data-user="brunoscopelliti" class="codepen">
   See the <a href="http://codepen.io/brunoscopelliti/pen/zIstF/">demo</a> by Bruno Scopelliti (<a href="http://codepen.io/brunoscopelliti">@brunoscopelliti</a>) on <a href="http://codepen.io">CodePen</a>.
 </p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-<p>The solution to avoid this unpleasant inconvenience, as shown in the above example, is to wrap the plugin around an AngularJS directive, in conjunction with the using one of the following methods:</p>
+<p>The solution to avoid this unpleasant inconvenience, as shown in the above example,
+is to wrap the plugin around an AngularJS directive, in conjunction with the using one
+of the following methods:</p>
 <ul>
 <li>
 <p><code>$watch(watchExpression, listener, objectEquality)</code></p>
-<p>Registers a listener callback to be executed whenever the watchExpression changes (<a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$watch" title="AngularJS api: $watch">docs</a>).</p>
+<p>Registers a listener callback to be executed whenever the watchExpression changes
+(<a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$watch" title="AngularJS api: $watch">docs</a>).</p>
 </li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">// When the data changes, drawPlot() is executed
@@ -227,7 +259,9 @@ Others properties allow to specify the template (made with real html elements) w
 </code></pre></div><ul>
 <li>
 <p><code>$apply(exp)</code></p>
-<p>Execute an expression in angular from outside of the angular framework. For example from browser DOM events, timeouts, XHR or third party libraries (<a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply" title="AngularJS api: $apply">docs</a>).</p>
+<p>Execute an expression in angular from outside of the angular framework. For example
+from browser DOM events, timeouts, XHR or third party libraries
+(<a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply" title="AngularJS api: $apply">docs</a>).</p>
 </li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">scope.$apply(<span style="color:#8be9fd;font-style:italic">function</span> () {

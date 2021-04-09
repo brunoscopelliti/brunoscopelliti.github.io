@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="Building a RESTful service with AngularJS (and PHP)">
@@ -120,19 +120,27 @@
     
   </div>
   <h1>Building a RESTful service with AngularJS (and PHP)</h1>
-  <div class="post-body"><p>This is a two parts post about how to make <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer" title="Wiki: Representational state transfer (REST)">RESTful</a> requests through an AngularJS web application.</p>
+  <div class="post-body"><p>This is a two parts post about how to make <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer" title="Wiki: Representational state transfer (REST)">RESTful</a>
+requests through an AngularJS web application.</p>
 <p>The index of this brief series of posts is quite simple.</p>
 <ul>
 <li>
-<p><strong>Backend setup</strong> is the first post in the series. As the subtitle, its main focus is (at least this time) on the backend domain. It will tackle how to setup a RESTful web service. I used PHP for all the examples; however at least the basic concepts beyond a RESTful service are language agnostic.</p>
+<p><strong>Backend setup</strong> is the first post in the series. As the subtitle, its main focus is
+(at least this time) on the backend domain. It will tackle how to setup a RESTful web service.
+I used PHP for all the examples; however at least the basic concepts beyond a RESTful service
+are language agnostic.</p>
 </li>
 <li>
-<p><a href="/blog/building-a-restful-web-service-with-angularjs-and-php-more-power-with-resource/" title="More power with $resource"><strong>More power with $resource</strong></a> is focused on AngularJS. This post will tackle how to handle RESTful requests through a web application specifically powered by AngularJS. The publication of this post is scheduled for 5 September.</p>
+<p><a href="/blog/building-a-restful-web-service-with-angularjs-and-php-more-power-with-resource/" title="More power with $resource"><strong>More power with $resource</strong></a> is focused on AngularJS. This post will tackle how to handle RESTful
+requests through a web application specifically powered by AngularJS. The publication
+of this post is scheduled for 5 September.</p>
 </li>
 </ul>
 <h2 id="a-simple-restful-web-service">A simple RESTful web service</h2>
 <p>A RESTful web service uses HTTP requests to create, read, update and delete data.</p>
-<p>This post will guide you through the creation of a web service that manages the data about a library. The web service makes possible to access the data about a specific book, or retrieve the list of all the books of the library.</p>
+<p>This post will guide you through the creation of a web service that manages the data
+about a library. The web service makes possible to access the data about a specific book,
+or retrieve the list of all the books of the library.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">GET book/42
 // Retrieve the book with ID = 42
 
@@ -145,14 +153,18 @@ GET book
 
 PUT book/42
 // Update the data of the book with ID = 42
-</code></pre></div><p><code>PUT</code>, and <code>POST</code> are basically interchangeable; the norm is to use PUT when in the request is specified the URL of the resource.</p>
+</code></pre></div><p><code>PUT</code>, and <code>POST</code> are basically interchangeable; the norm is to use PUT when in
+the request is specified the URL of the resource.</p>
 <p>Finally the web service should also allow to delete a book.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">DELETE book/42
 // Delete the book with ID = 42
-</code></pre></div><p>How can you see the URLs are really similar, or completely equals&hellip; but they are supposed to do different operations and send different responses. In the following of this post I will introduce the code to create a such type of web service.</p>
+</code></pre></div><p>How can you see the URLs are really similar, or completely equals&hellip; but they are
+supposed to do different operations and send different responses. In the following
+of this post I will introduce the code to create a such type of web service.</p>
 <h2 id="redirect-of-the-requests">Redirect of the requests</h2>
 <p>First thing to do is to make possible that each request is managed by the same file.
-In order to obtain that each request is managed with the same process, it is necessary to add the following rule to the .htaccess file of the web server.</p>
+In order to obtain that each request is managed with the same process, it is necessary
+to add the following rule to the .htaccess file of the web server.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">&lt;IfModule mod_rewrite.c&gt;
 RewriteEngine On
 RewriteBase /book/
@@ -160,15 +172,20 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /handlers/libraryManager.php [L]
 &lt;/IfModule&gt;
-</code></pre></div><p>In this way each request towards an url starting with <em>/book/</em> is redirected to the <em>/handlers/libraryManager.php</em> file.</p>
+</code></pre></div><p>In this way each request towards an url starting with <em>/book/</em> is redirected to
+the <em>/handlers/libraryManager.php</em> file.</p>
 <h2 id="handle-the-different-requests">Handle the different requests</h2>
 <p>We just saw how to centralize the management of the requests.</p>
-<p>To complete the web service it is necessary to add to our <em>libraryManager</em> the logic to handle different type of requests in different manners. To achieve this, it is important to understand that the different kind of requests are different essentially for three factors:</p>
+<p>To complete the web service it is necessary to add to our <em>libraryManager</em> the logic
+to handle different type of requests in different manners. To achieve this,
+it is important to understand that the different kind of requests are different
+essentially for three factors:</p>
 <ul>
 <li>
 <p><strong>Request method</strong>.</p>
 <p>The method can be anyone of the HTTP methods (<code>GET</code>, <code>POST</code>, <code>PUT</code> or <code>DELETE</code>).</p>
-<p>Assuming PHP as server side language, the method used for a particular request is available in the variable <code>$_SERVER['REQUEST_METHOD']</code>.</p>
+<p>Assuming PHP as server side language, the method used for a particular request
+is available in the variable <code>$_SERVER['REQUEST_METHOD']</code>.</p>
 </li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php"><span style="color:#6272a4">// The behaviour has to be different on the basis
@@ -206,7 +223,8 @@ RewriteRule . /handlers/libraryManager.php [L]
 </span><span style="color:#6272a4">// But in this case it is necessary the following code:
 </span><span style="color:#6272a4"></span>
 <span style="color:#8be9fd;font-style:italic">$data</span> <span style="color:#ff79c6">=</span> json_decode(file_get_contents(<span style="color:#f1fa8c">&#34;php://input&#34;</span>), <span style="color:#ff79c6">false</span>);
-</code></pre></div><p>Basing on this, I wrote the web service as follows. Please note how the implementation of each action is hidden inside the Library object.</p>
+</code></pre></div><p>Basing on this, I wrote the web service as follows. Please note how the implementation
+of each action is hidden inside the Library object.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php"><span style="color:#ff79c6">require_once</span> <span style="color:#f1fa8c">&#34;../classes/Library.php&#34;</span>;
 
 <span style="color:#8be9fd;font-style:italic">$obj</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Library();
@@ -272,15 +290,21 @@ RewriteRule . /handlers/libraryManager.php [L]
 <span style="color:#8be9fd;font-style:italic">$json</span> <span style="color:#ff79c6">=</span> json_encode(<span style="color:#8be9fd;font-style:italic">$result</span>);
 <span style="color:#ff79c6">echo</span> <span style="color:#8be9fd;font-style:italic">$json</span>;
 </code></pre></div><h2 id="http-status-code">HTTP Status Code</h2>
-<p>The web service written in the previous section is 100% working. However it can&rsquo;t be considered yet a RESTful service, because it still does not use appropriate <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" title="HTTP Status Code">HTTP status codes</a> for the responses.</p>
-<p>This is really bad, even worse because PHP offers a really easy way to set HTTP code through the <a href="http://php.net/manual/en/function.header.php" title="PHP api: header">header</a> function.</p>
-<p>For example, if the web service should be accessible only to logged users, it has to respond with a 401 error message to users who are not logged to the system.</p>
+<p>The web service written in the previous section is 100% working. However it can&rsquo;t be
+considered yet a RESTful service, because it still does not use appropriate
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" title="HTTP Status Code">HTTP status codes</a>
+for the responses.</p>
+<p>This is really bad, even worse because PHP offers a really easy way to set HTTP code through
+the <a href="http://php.net/manual/en/function.header.php" title="PHP api: header">header</a> function.</p>
+<p>For example, if the web service should be accessible only to logged users, it has to respond
+with a 401 error message to users who are not logged to the system.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php">session_start();
 <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>isset(<span style="color:#8be9fd;font-style:italic">$_SESSION</span>[<span style="color:#f1fa8c">&#34;user&#34;</span>])) {
   header(<span style="color:#f1fa8c">&#34;HTTP/1.1 401 Unauthorized&#34;</span>);
   <span style="color:#ff79c6">return</span>;
 }
-</code></pre></div><p>Or, just to make another example, if the web service is just for reading operations, it is possible to respond with the <strong>405</strong> error message to all the methods, but the GET.</p>
+</code></pre></div><p>Or, just to make another example, if the web service is just for reading operations,
+it is possible to respond with the <strong>405</strong> error message to all the methods, but the GET.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php"><span style="color:#ff79c6">if</span> (<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_METHOD&#34;</span>] <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>) {
   <span style="color:#6272a4">// read stuff
 </span><span style="color:#6272a4"></span>}
@@ -289,7 +313,9 @@ RewriteRule . /handlers/libraryManager.php [L]
 }
 </code></pre></div><h2 id="conclusion">Conclusion</h2>
 <p>Great! Now, our RESTful web service is ready, and it is just waiting of requests.</p>
-<p>In a few days will be published also the second (and last) part of this mini series, and I&rsquo;ll cover how to send requests to this web service through a web application built with AngularJS.</p>
+<p>In a few days will be published also the second (and last) part of this mini series,
+and I&rsquo;ll cover how to send requests to this web service through a web application built
+with AngularJS.</p>
 </div>
   <div class="post-footer">
     <div class="post-date">September 3, 2013</div>

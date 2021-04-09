@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="AngularJS promise, or dealing with asynchronous requests in AngularJS">
@@ -120,10 +120,13 @@
     
   </div>
   <h1>AngularJS promise, or dealing with asynchronous requests in AngularJS</h1>
-  <div class="post-body"><p><code>Promise</code>&rsquo;s support is one of my favorite features of AngularJS.</p>
-<p>Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.</p>
-<p>This post will show you a typical use case for the promise in an AngularJS app.</p>
-<p>It could be simplified as follows:</p>
+  <div class="post-body"><p><code>Promise</code>&rsquo;s support is one of my favorite features of AngularJS.
+<br/>
+Promises help a lot by handling asynchronous return of data, and allow to assign
+properties synchronously even when the return is asynchronous.</p>
+<p>This post will show you a typical use case for the promise in an AngularJS app.
+<br/>
+It could be simplified as follows:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> stageController(scope, p) {
   scope.revenues <span style="color:#ff79c6">=</span> [];
 
@@ -135,8 +138,12 @@
 }
 
 stageController.$inject <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;$scope&#34;</span>, <span style="color:#f1fa8c">&#34;plotterSrv&#34;</span>];
-</code></pre></div><p>The <code>revenues</code> array is used by a service I wrote. It stores the data about my revenues across the months of the last year. I also defined a watcher for this variable, so every time it changes, a specific function is executed.</p>
-<p>The service, <code>plotterSrv</code>, (in this simplified version) contains a method to make an asynchronous request to get the data, and another method to draw a plot using the data it gets back. So this is the backbone of the <code>plotterSrv</code> service:</p>
+</code></pre></div><p>The <code>revenues</code> array is used by a service I wrote. It stores the data about my revenues
+across the months of the last year. I also defined a watcher for this variable,
+so every time it changes, a specific function is executed.</p>
+<p>The service, <code>plotterSrv</code>, (in this simplified version) contains a method to make
+an asynchronous request to get the data, and another method to draw a plot using the data
+it gets back. So this is the backbone of the <code>plotterSrv</code> service:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">angular.module(<span style="color:#f1fa8c">&#34;myApp.services&#34;</span>, [])
   .factory(<span style="color:#f1fa8c">&#34;plotterSrv&#34;</span>, [<span style="color:#f1fa8c">&#34;$http&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($http) {
     <span style="color:#ff79c6">return</span> {
@@ -153,8 +160,10 @@ stageController.$inject <span style="color:#ff79c6">=</span> [<span style="color
 </span><span style="color:#6272a4"></span>      }
     }
   }]);
-</code></pre></div><p>To make all this work it is necessary to find a way to update the value of the <code>revenues</code> array defined in the controller.</p>
-<p>AngularJS promises could solve this problem. So this is the <code>getData</code> method, written using AngularJS promises.</p>
+</code></pre></div><p>To make all this work it is necessary to find a way to update the value of the <code>revenues</code>
+array defined in the controller.</p>
+<p>AngularJS promises could solve this problem. So this is the <code>getData</code> method,
+written using AngularJS promises.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">getData<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
   <span style="color:#8be9fd;font-style:italic">var</span> promise <span style="color:#ff79c6">=</span> $http({ method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>, url<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;getData.php&#34;</span> })
     .success(<span style="color:#8be9fd;font-style:italic">function</span> (data, status, headers, config) {
@@ -166,11 +175,16 @@ stageController.$inject <span style="color:#ff79c6">=</span> [<span style="color
 
   <span style="color:#ff79c6">return</span> promise;
 }
-</code></pre></div><p>Now <code>getData</code> returns a promise to the controller, and what remains to do is to handle the returned value in a callback function, using the <a href="https://docs.angularjs.org/api/ng/service/$q" title="AngularJS api: $q">then()</a> AngularJS method. So in the controller I&rsquo;ve to add the following code:</p>
+</code></pre></div><p>Now <code>getData</code> returns a promise to the controller, and what remains to do is to
+handle the returned value in a callback function, using the
+<a href="https://docs.angularjs.org/api/ng/service/$q" title="AngularJS api: $q">then()</a> AngularJS method.
+So in the controller I&rsquo;ve to add the following code:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">p.getData().then(<span style="color:#8be9fd;font-style:italic">function</span> (promise) {
   scope.revenues <span style="color:#ff79c6">=</span> promise;
 });
-</code></pre></div><p>Now when the service returns back the promise, its value is used to update the value of the revenues array. This will activate the watcher callback, that in this case is the <code>drawPlot</code> method, that has the task to create a plot. <em>Et voilà</em>.</p>
+</code></pre></div><p>Now when the service returns back the promise, its value is used to update the value
+of the revenues array. This will activate the watcher callback, that in this case is
+the <code>drawPlot</code> method, that has the task to create a plot. <em>Et voilà</em>.</p>
 </div>
   <div class="post-footer">
     <div class="post-date">April 2, 2013</div>

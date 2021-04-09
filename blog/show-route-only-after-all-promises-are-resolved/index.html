@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="Show route only after all promises are resolved">
@@ -120,10 +120,15 @@
     
   </div>
   <h1>Show route only after all promises are resolved</h1>
-  <div class="post-body"><p>When a new route is requested in an AngularJS application, it is often necessary to retrieve data from the server to fill the template. If the server request takes too long to complete, it is possible that an incomplete view is presented to the user.</p>
+  <div class="post-body"><p>When a new route is requested in an AngularJS application, it is often necessary to retrieve
+data from the server to fill the template. If the server request takes too long to complete,
+it is possible that an incomplete view is presented to the user.</p>
 <h2 id="digging-into-the-code">Digging into the code</h2>
-<p>Let&rsquo;s start taking a look at the most important pieces of code (however you can find the complete source of the demo on <a href="https://github.com/blog-brunoscopelliti/route-loading-delay-demo" title="Github Repository">Github</a>).</p>
-<p>In a regular AngularJS web app, the routes are configured via methods in the <code>$routeProvider</code> object, as below:</p>
+<p>Let&rsquo;s start taking a look at the most important pieces of code (however you can find
+the complete source of the demo on
+<a href="https://github.com/blog-brunoscopelliti/route-loading-delay-demo" title="Github Repository">Github</a>).</p>
+<p>In a regular AngularJS web app, the routes are configured via methods in the <code>$routeProvider</code>
+object, as below:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">$routeProvider.when(<span style="color:#f1fa8c">&#34;/library&#34;</span>, {
   templateUrl<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;partials/library.html&#34;</span>,
   controller<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;LibraryCtrl&#34;</span>,
@@ -136,9 +141,16 @@
     }
   }
 });
-</code></pre></div><p>From this code, we can see that a route information object is passed in as the second parameter to the <code>when</code> method. The above example also includes the <code>resolve</code> property, that indicates which routes we want to appear only after the promises have been resolved. Quoting from the official docs:</p>
-<p><em>[The resolve property is] an optional map of dependencies which should be injected into the controller. If any of these dependencies are promises, they will be resolved and converted to a value before the controller is instantiated and the $routeChangeSuccess event is fired.</em></p>
-<p>To use this with AngularJS promises, the following is a simple implementation of the methods exposed by the <code>srvLibrary</code> service:</p>
+</code></pre></div><p>From this code, we can see that a route information object is passed in as the second parameter
+to the <code>when</code> method. The above example also includes the <code>resolve</code> property,
+that indicates which routes we want to appear only after the promises have been resolved.
+Quoting from the official docs:</p>
+<p><em>[The resolve property is] an optional map of dependencies which should be injected into
+the controller. If any of these dependencies are promises, they will be resolved
+and converted to a value before the controller is instantiated and the $routeChangeSuccess
+event is fired.</em></p>
+<p>To use this with AngularJS promises, the following is a simple implementation of the methods
+exposed by the <code>srvLibrary</code> service:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">angular.module(<span style="color:#f1fa8c">&#34;myApp.services&#34;</span>, [])
 .factory(<span style="color:#f1fa8c">&#34;srvLibrary&#34;</span>, [<span style="color:#f1fa8c">&#34;$http&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($http) {
   <span style="color:#8be9fd;font-style:italic">var</span> sdo <span style="color:#ff79c6">=</span> {
@@ -165,14 +177,17 @@
   }
   <span style="color:#ff79c6">return</span> sdo;
 }]);
-</code></pre></div><p>Finally, to be able to use the resolved promises data in the controller it is necessary to inject these data into the controller, and attach them to the <code>$scope</code> variable.</p>
+</code></pre></div><p>Finally, to be able to use the resolved promises data in the controller it is necessary to inject
+these data into the controller, and attach them to the <code>$scope</code> variable.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">angular.module(<span style="color:#f1fa8c">&#34;myApp.controllers&#34;</span>, [])
   .controller(<span style="color:#f1fa8c">&#34;LibraryCtrl&#34;</span>, [<span style="color:#f1fa8c">&#34;$scope&#34;</span>, <span style="color:#f1fa8c">&#34;books&#34;</span>, <span style="color:#f1fa8c">&#34;movies&#34;</span>,
     <span style="color:#8be9fd;font-style:italic">function</span> ($scope, books, movies) {
       $scope.books <span style="color:#ff79c6">=</span> books.data;
       $scope.movies <span style="color:#ff79c6">=</span> movies.data;
   }]);
-</code></pre></div><p>This is all that is required to delay the loading of a new route until the promises are resolved. As a result, however, a user could be surprised by the fact that nothing happens after they click a link. It is therefore a good idea to implement an immediate visual feedback.</p>
+</code></pre></div><p>This is all that is required to delay the loading of a new route until the promises are resolved.
+As a result, however, a user could be surprised by the fact that nothing happens
+after they click a link. It is therefore a good idea to implement an immediate visual feedback.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> app <span style="color:#ff79c6">=</span> angular.module(<span style="color:#f1fa8c">&#34;myApp&#34;</span>,
   [<span style="color:#f1fa8c">&#34;myApp.services&#34;</span>, <span style="color:#f1fa8c">&#34;myApp.controllers&#34;</span>]);
 
@@ -188,7 +203,8 @@ app.run([<span style="color:#f1fa8c">&#34;$rootScope&#34;</span>, <span style="c
 </span><span style="color:#6272a4"></span>    $root.loadingView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
   });
 }]);
-</code></pre></div><p>The following is one possible way to implement a loading message while waiting for the new route to appear.</p>
+</code></pre></div><p>The following is one possible way to implement a loading message while waiting
+for the new route to appear.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;modal&#34;</span> <span style="color:#50fa7b">ng-show</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;loadingView&#34;</span>&gt;
   <span style="color:#6272a4">&lt;!-- loadingView is a variable defined in the $rootScope --&gt;</span>
 
@@ -198,7 +214,8 @@ app.run([<span style="color:#f1fa8c">&#34;$rootScope&#34;</span>, <span style="c
     &lt;<span style="color:#ff79c6">li</span> <span style="color:#50fa7b">ng-repeat</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;i in [0,1,2,3,4,5,6,7,8,9]&#34;</span>&gt;&lt;/<span style="color:#ff79c6">li</span>&gt;
   &lt;/<span style="color:#ff79c6">ul</span>&gt;
 &lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></div><p>Then when a new route is requested, it is enough to set <code>loadingView = true</code> if the route itself has pending promises.</p>
+</code></pre></div><p>Then when a new route is requested, it is enough to set <code>loadingView = true</code> if the route
+itself has pending promises.</p>
 </div>
   <div class="post-footer">
     <div class="post-date">September 17, 2013</div>

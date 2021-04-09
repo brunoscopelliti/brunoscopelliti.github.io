@@ -25,10 +25,8 @@ First guesses One interesting thing about this menu is that its content is fetch
       <pubDate>Wed, 01 Jun 2016 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/my-personal-bugfixing-workflow/</guid>
-      <description>I am a conservative person.
-Recently, I&amp;rsquo;ve started thinking this is a great quality, especially for a developer.
-Of course, I like improvements; the kind of changes I am more prone to make, are those which affect code readability, or bring coherence to the codebase; who have worked with me can confirm how pedantic I am on these kind of things.
-I change my own code (and blog posts) several times before I push on the repository.</description>
+      <description>I am a conservative person.  Recently, I&amp;rsquo;ve started thinking this is a great quality, especially for a developer.
+Of course, I like improvements; the kind of changes I am more prone to make, are those which affect code readability, or bring coherence to the codebase; who have worked with me can confirm how pedantic I am on these kind of things. I change my own code (and blog posts) several times before I push on the repository.</description>
     </item>
     
   </channel>

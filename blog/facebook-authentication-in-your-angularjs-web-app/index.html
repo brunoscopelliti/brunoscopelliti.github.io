@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="Facebook authentication in your AngularJS web app">
@@ -120,13 +120,21 @@
     
   </div>
   <h1>Facebook authentication in your AngularJS web app</h1>
-  <div class="post-body"><p>A couple of weeks ago, I wrote an article about <a href="/blog/deal-with-users-authentication-in-an-angularjs-web-app/" title="User Authentication in an AngularJS web application">user authentication</a> in a web application built with AngularJS. Now, let&rsquo;s move a step further, and use Facebook&rsquo;s authentication api.</p>
+  <div class="post-body"><p>A couple of weeks ago, I wrote an article about <a href="/blog/deal-with-users-authentication-in-an-angularjs-web-app/" title="User Authentication in an AngularJS web application">user authentication</a> in a web application built with AngularJS.
+Now, let&rsquo;s move a step further, and use Facebook&rsquo;s authentication api.</p>
 <h2 id="authentication-with-facebook">Authentication with Facebook</h2>
-<p>When I started to work on this little experiment I was not a big expert in the matter of Facebook&rsquo;s api (and even now I&rsquo;m really far from that); in this case I think that the smarter thing you can do is start reading the Facebook&rsquo;s document about <a href="https://developers.facebook.com/docs/facebook-login" title="Facebook Authentication System">Facebook&rsquo;s authentication system</a>.</p>
-<p>You&rsquo;ll discover that Facebook makes available different ways to authenticate the users of your website, or application, on the basis of the device they are using (iOS, or Android), and even for a web app is possible to choose between two different flows: with or without JavaScript SDK.</p>
+<p>When I started to work on this little experiment I was not a big expert in the matter
+of Facebook&rsquo;s api (and even now I&rsquo;m really far from that); in this case I think that
+the smarter thing you can do is start reading the Facebook&rsquo;s document about
+<a href="https://developers.facebook.com/docs/facebook-login" title="Facebook Authentication System">Facebook&rsquo;s authentication system</a>.</p>
+<p>You&rsquo;ll discover that Facebook makes available different ways to authenticate the users of
+your website, or application, on the basis of the device they are using (iOS, or Android),
+and even for a web app is possible to choose between two different flows: with or without
+JavaScript SDK.</p>
 <p>I chose to follow the <a href="https://developers.facebook.com/docs/facebook-login/login-flow-for-web" title="Facebook Login via javascript SDK">login flow with Javascript SDK</a>.</p>
 <h2 id="initialize-the-javascript-sdk">Initialize the javascript SDK</h2>
-<p>I think the ideal is to init the javascript SDK as soon as possible, for this reason I will put the initialization code inside the <a href="https://docs.angularjs.org/api/ng/type/angular.Module#run" title="AngularJS api: run">run</a> method. Moreover this will be the place from which load the SDK itself:</p>
+<p>I think the ideal is to init the javascript SDK as soon as possible, for this reason
+I will put the initialization code inside the <a href="https://docs.angularjs.org/api/ng/type/angular.Module#run" title="AngularJS api: run">run</a> method. Moreover this will be the place from which load the SDK itself:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">app.run([<span style="color:#f1fa8c">&#34;$rootScope&#34;</span>, <span style="color:#f1fa8c">&#34;$window&#34;</span>, <span style="color:#f1fa8c">&#34;srvAuth&#34;</span>,
   <span style="color:#8be9fd;font-style:italic">function</span> ($rootScope, $window, sAuth) {
 
@@ -199,15 +207,22 @@
 }]);
 </code></pre></div><p>Just a couple of notes before to move to the next paragraph:</p>
 <ul>
-<li>What is <code>srvAuth</code> ? Is a custom AngularJS service that I use to wrap all the authentication related stuff.</li>
-<li>What is the channel file? It helps dealing with cross-domain communication in certain browsers. The contents of the channel.html file should be just a single line:</li>
+<li>What is <code>srvAuth</code> ? Is a custom AngularJS service that I use to wrap all the
+authentication related stuff.</li>
+<li>What is the channel file? It helps dealing with cross-domain communication in certain browsers.
+The contents of the channel.html file should be just a single line:</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;http://connect.facebook.net/en_US/all.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
-</code></pre></div><p>To end with the initialization tasks, it&rsquo;s also a good practice to add the fb-root div, that is the place where the Javascript SDK attaches itself to; however if you skip this step the fb-root div will be created automatically. Accomplish this task is so simple that we can do it ourselves; just write the following snippet wherever you want in the body of your page.</p>
+</code></pre></div><p>To end with the initialization tasks, it&rsquo;s also a good practice to add the fb-root div,
+that is the place where the Javascript SDK attaches itself to; however if you skip this step
+the fb-root div will be created automatically. Accomplish this task is so simple that
+we can do it ourselves; just write the following snippet wherever you want in the body of your page.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;fb-root&#34;</span>&gt;&lt;/<span style="color:#ff79c6">div</span>&gt;
 </code></pre></div><h2 id="the-authentication-service">The authentication service</h2>
-<p>If you have read even my previous post about user&rsquo;s authentication, you won&rsquo;t be surprised by the fact that I put the logic inherent authentication in a specific purpose service.</p>
-<p>The service I created is pretty simple: just three methods, and a single property that stores the user&rsquo;s information retrieved from Facebook.</p>
+<p>If you have read even my previous post about user&rsquo;s authentication, you won&rsquo;t be surprised
+by the fact that I put the logic inherent authentication in a specific purpose service.</p>
+<p>The service I created is pretty simple: just three methods, and a single property
+that stores the user&rsquo;s information retrieved from Facebook.</p>
 <p>You already saw the first method because it&rsquo;s executed from the previous snippet:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">watchLoginChange <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
 
@@ -243,9 +258,16 @@
   });
 
 }
-</code></pre></div><p>This method uses the Facebook api to register a callback function that will be executed each time a change to the user authentication status occurs.</p>
-<p>When the user is logged to Facebook, and also to the web app we receive the connected response status; then it&rsquo;s possible to retrieve the user personal information from Facebook (using another method offered by the service). Otherwise when the user is not logged to Facebook, or did not granted the web app yet, we have not the permissions to call the Facebook api to retrieve personal information, so in this case we have also to destroy the user&rsquo;s session on the server, created at the moment of the login.</p>
-<p>How to retrieve user&rsquo;s personal information from Facebook? Continue the analysis of the service with the <code>getUserInfo</code> method:</p>
+</code></pre></div><p>This method uses the Facebook api to register a callback function that will be executed
+each time a change to the user authentication status occurs.</p>
+<p>When the user is logged to Facebook, and also to the web app we receive the connected
+response status; then it&rsquo;s possible to retrieve the user personal information from
+Facebook (using another method offered by the service). Otherwise when the user is not logged
+to Facebook, or did not granted the web app yet, we have not the permissions to call
+the Facebook api to retrieve personal information, so in this case we have also to destroy
+the user&rsquo;s session on the server, created at the moment of the login.</p>
+<p>How to retrieve user&rsquo;s personal information from Facebook? Continue the analysis of
+the service with the <code>getUserInfo</code> method:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">getUserInfo <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
 
   <span style="color:#8be9fd;font-style:italic">var</span> _self <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>;
@@ -257,8 +279,14 @@
   });
 
 }
-</code></pre></div><p>This method wraps a call to the Facebook&rsquo;s service that responds with the user&rsquo;s profile information. The most important thing to note here is the use of the <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply" title="AngularJS api: $apply">$apply</a> AngularJS method. Indeed, because the answer from Facebook is asynchronous, and so it comes from outside the framework world, we need to include it in AngularJS with the <code>$apply</code> method.</p>
-<p>Finally, the last method of the service provide a way to logout the user from the web application (and from Facebook). However this operation won&rsquo;t revokes the permission accorded to the app; so when the user will logged to Facebook in the future, he will logged to the app as well.</p>
+</code></pre></div><p>This method wraps a call to the Facebook&rsquo;s service that responds with the user&rsquo;s profile
+information. The most important thing to note here is the use of the
+<a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply" title="AngularJS api: $apply">$apply</a>
+AngularJS method. Indeed, because the answer from Facebook is asynchronous, and so it comes
+from outside the framework world, we need to include it in AngularJS with the <code>$apply</code> method.</p>
+<p>Finally, the last method of the service provide a way to logout the user from the web application
+(and from Facebook). However this operation won&rsquo;t revokes the permission accorded to the app;
+so when the user will logged to Facebook in the future, he will logged to the app as well.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">logout <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
 
   <span style="color:#8be9fd;font-style:italic">var</span> _self <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>;
@@ -271,15 +299,21 @@
 
 }
 </code></pre></div><h2 id="the-facebook-login-button">The Facebook login button</h2>
-<p>Finally, is the time to introduce the real star of this post: the Facebook login button&hellip; and the good news is that you&rsquo;ve not more to do that include the following snippet in your web app.</p>
+<p>Finally, is the time to introduce the real star of this post: the Facebook login button&hellip;
+and the good news is that you&rsquo;ve not more to do that include the following snippet in your web app.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">&lt;</span>fb<span style="color:#ff79c6">:</span>login<span style="color:#ff79c6">-</span>button show<span style="color:#ff79c6">-</span>faces<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;true&#34;</span> max<span style="color:#ff79c6">-</span>rows<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;1&#34;</span>
   size<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;large&#34;</span><span style="color:#ff79c6">&gt;&lt;</span>/fb:login-button&gt;
-</code></pre></div><p>You can put this snippet everywhere you want; you can even use the <a href="https://docs.angularjs.org/api/ng/directive/ngInclude" title="AngularJS api: ngInclude">ngInclude</a> directive to load it from an external template. That&rsquo;s all.</p>
-<p>However probably, sooner or later, you would like to <a href="https://developers.facebook.com/docs/plugins/login-button?locale=it_IT" title="Customize Facebook login button">customize the look of the login button</a>.</p>
+</code></pre></div><p>You can put this snippet everywhere you want; you can even use the
+<a href="https://docs.angularjs.org/api/ng/directive/ngInclude" title="AngularJS api: ngInclude">ngInclude</a>
+directive to load it from an external template. That&rsquo;s all.</p>
+<p>However probably, sooner or later, you would like to
+<a href="https://developers.facebook.com/docs/plugins/login-button?locale=it_IT" title="Customize Facebook login button">customize the look of the login button</a>.</p>
 <h2 id="a-word-on-security">A word on security</h2>
 <p>I admit, I simply ignored this topic for all the post.</p>
-<p>This is because I already wrote enough on this topic in my previous post about the <a href="/blog/deal-with-users-authentication-in-an-angularjs-web-app/" title="User Authentication in an AngularJS web application">authentication in an AngularJS web app</a>.</p>
-<p>Everything I wrote for a generic authentication system is still valid for the login system based on Facebook&rsquo;s authentication system that I described in this post.</p>
+<p>This is because I already wrote enough on this topic in my previous post about
+the <a href="/blog/deal-with-users-authentication-in-an-angularjs-web-app/" title="User Authentication in an AngularJS web application">authentication in an AngularJS web app</a>.</p>
+<p>Everything I wrote for a generic authentication system is still valid for the
+login system based on Facebook&rsquo;s authentication system that I described in this post.</p>
 <p>In extreme synthesis: <strong>don&rsquo;t trust the front-end, but repeat each check on the back-end</strong>.</p>
 </div>
   <div class="post-footer">

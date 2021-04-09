@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="jQuery custom build">
@@ -121,9 +121,14 @@
   </div>
   <h1>jQuery custom build</h1>
   <div class="post-body"><p>Ok, jQuery doesn&rsquo;t need any presentation.</p>
-<p>I really like it; it has simplified a lot my work&hellip; BUT sometimes its almost 100Kb of sweetness are a price we can not pay.</p>
-<p>If this is the case a good trade-off between light weight pages and all the goodness of jQuery, is to use a custom build of jQuery.</p>
-<p>Custom builds allow to choose what features of jQuery are to be included in the minified file, and which not; perhaps you are working on a project and you are sure you&rsquo;ll never have to do an asynchronous request? Well you could absolutely renounce at the AJAX module of jQuery. Renounce at the unused features allows an important saving in terms of jQuery&rsquo;s weight. So, now the question is: &ldquo;How could I made my custom build?&rdquo;.</p>
+<p>I really like it; it has simplified a lot my work&hellip; BUT sometimes its almost 100Kb
+of sweetness are a price we can not pay. If this is the case a good trade-off between
+light weight pages and all the goodness of jQuery, is to use a custom build of jQuery.</p>
+<p>Custom builds allow to choose what features of jQuery are to be included in the minified file,
+and which not; perhaps you are working on a project and you are sure you&rsquo;ll never have to do
+an asynchronous request? Well you could absolutely renounce at the AJAX module of jQuery.
+Renounce at the unused features allows an important saving in terms of jQuery&rsquo;s weight.
+So, now the question is: &ldquo;How could I made my custom build?&rdquo;.</p>
 <h2 id="setup-operations">Setup operations</h2>
 <p>Before you can start there are a few things you have to install in your system.</p>
 <ul>
@@ -134,19 +139,28 @@
 <p>You can install Grunt also via npm, typing in your system shell:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">npm install -g grunt-cli
 </code></pre></div><h2 id="get-jquery">Get jQuery</h2>
-<p>Now that you&rsquo;ve installed Git, you could use it to clone a copy of jQuery from its repository on GitHub. So in the Git shell, you have to type the following commands:</p>
+<p>Now that you&rsquo;ve installed Git, you could use it to clone a copy of jQuery from its
+repository on GitHub. So in the Git shell, you have to type the following commands:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#8be9fd;font-style:italic">cd</span> C:/path/to/your/repo
 git clone git://github.com/jquery/jquery.git
 </code></pre></div><h2 id="build-jquery">Build jQuery</h2>
-<p>Now that you&rsquo;ve the code from the jQuery repository on your hard disk, open the shell in the root folder of jQuery and run the following command to install the Node dependencies.</p>
+<p>Now that you&rsquo;ve the code from the jQuery repository on your hard disk, open the shell
+in the root folder of jQuery and run the following command to install the Node dependencies.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">npm install
-</code></pre></div><p>If everything works fine, now you should be able to build jQuery from your machine. Take the Git shell in the jquery source folder and run the simple command:</p>
+</code></pre></div><p>If everything works fine, now you should be able to build jQuery from your machine.
+Take the Git shell in the jquery source folder and run the simple command:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">grunt
-</code></pre></div><p>If everything is ok, a new folder <em>dist</em> will be created, and inside this folder you can find the jQuery source code. What you&rsquo;ve gotten is the official jQuery release. To customize your jQuery build you need a final step.</p>
+</code></pre></div><p>If everything is ok, a new folder <em>dist</em> will be created, and inside this folder
+you can find the jQuery source code. What you&rsquo;ve gotten is the official jQuery release.
+To customize your jQuery build you need a final step.</p>
 <h2 id="customize-jquery">Customize jQuery</h2>
-<p>Make a custom build of jQuery is not much different from build jQuery; we&rsquo;ve still to use the grunt command, but we&rsquo;ve also to specify some optional parameters. In particular we need to set the custom option:</p>
+<p>Make a custom build of jQuery is not much different from build jQuery; we&rsquo;ve still
+to use the grunt command, but we&rsquo;ve also to specify some optional parameters.
+In particular we need to set the custom option:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">grunt custom:-ajax
-</code></pre></div><p>In particular this command allows to build jQuery without its ajax module, that normally allows to make asynchronous requests. Moreover, the system is smart enough that it won&rsquo;t include others modules which depend from the ajax module.</p>
+</code></pre></div><p>In particular this command allows to build jQuery without its ajax module, that normally
+allows to make asynchronous requests. Moreover, the system is smart enough that
+it won&rsquo;t include others modules which depend from the ajax module.</p>
 <p>Currently jQuery consists of the following modules:</p>
 <ul>
 <li>ajax</li>

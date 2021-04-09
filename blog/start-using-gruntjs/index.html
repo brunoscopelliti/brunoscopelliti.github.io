@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="Getting started with Grunt">
@@ -120,21 +120,30 @@
     
   </div>
   <h1>Getting started with Grunt</h1>
-  <div class="post-body"><p>Last weekend I finally found few time to give a try to <code>Grunt</code>.</p>
-<p>I am surprised by how easy is to get started, and I am curious to experiment the benefits which its usage can bring in a real world app.</p>
-<p>After some really trivial tests, my first serious attempt to create something useful with Grunt has been to create an automatic process to minify and then concatenate different javascript files; this post will collect a few notes about what I learned while I was trying to set up this process.</p>
-<p>Note: the <a href="http://gruntjs.com/getting-started" title="Getting started with Grunt">docs on grunt</a> are really the best resource from where to start your journey with Grunt. I&rsquo;m writing this post to have a fast and more focused reference in the future.</p>
+  <div class="post-body"><p>Last weekend I finally found few time to give a try to <code>Grunt</code>.
+<br/>
+I am surprised by how easy is to get started, and I am curious to experiment
+the benefits which its usage can bring in a real world app.</p>
+<p>After some really trivial tests, my first serious attempt to create something useful with Grunt
+has been to create an automatic process to minify and then concatenate different JavaScript files;
+this post will collect a few notes about what I learned while I was trying to set up this process.</p>
+<p>Note: the <a href="http://gruntjs.com/getting-started" title="Getting started with Grunt">docs on grunt</a>
+are really the best resource from where to start your journey with Grunt. I&rsquo;m writing this
+post to have a fast and more focused reference in the future.</p>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>The only prerequisite is to have installed at least the version 0.8.0 of <a href="http://nodejs.org/" title="Nodejs">nodejs</a>. When nodejs is installed, it&rsquo;s possible to install the grunt command line interface via npm:</p>
+<p>The only prerequisite is to have installed at least the version 0.8.0 of <a href="http://nodejs.org/" title="Nodejs">Nodejs</a>.
+When nodejs is installed, it&rsquo;s possible to install the grunt command line interface via npm:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">$:&gt; npm uninstall -g grunt
 <span style="color:#6272a4"># Remove previous global installation of grunt</span>
 
 $:&gt; npm install -g grunt-cli
 <span style="color:#6272a4"># Install grunt-cli</span>
 </code></pre></div><h2 id="setup-the-environment">Setup the environment</h2>
-<p>Set up a project, to be ready to work with Grunt, just requires to add two files, <code>package.json</code> and <code>Gruntfile.js</code>, to the main root of the project itself.</p>
+<p>Set up a project, to be ready to work with Grunt, just requires to add two files,
+<code>package.json</code> and <code>Gruntfile.js</code>, to the main root of the project itself.</p>
 <h2 id="packagejson">package.json</h2>
-<p>The package.json file should contain some data about the project (for example the name, the version etc.), and more important, the list of the Grunt plugins that will be used.</p>
+<p>The package.json file should contain some data about the project (for example the name,
+the version etc.), and more important, the list of the Grunt plugins that will be used.</p>
 <p>The following is my first package.json file:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">{
   <span style="color:#f1fa8c">&#34;name&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;the-next-big-thing&#34;</span>,
@@ -150,7 +159,9 @@ $:&gt; npm install -g grunt-cli
 </span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// the next major revision above the range.
 </span><span style="color:#6272a4"></span>  }
 }
-</code></pre></div><p>Before the plugins can be used, it&rsquo;s necessary to install all the plugins which will be used by Grunt. This could be easily achieved by running the <code>npm install</code> command in the root folder of the project.</p>
+</code></pre></div><p>Before the plugins can be used, it&rsquo;s necessary to install all the plugins which will be used
+by Grunt. This could be easily achieved by running the <code>npm install</code> command in the root
+folder of the project.</p>
 <h2 id="gruntfilejs">Gruntfile.js</h2>
 <p>Gruntfile.js is used to configure or define tasks, and load Grunt plugins.
 I write my first Gruntfile starting from this basic structure:</p>
@@ -177,7 +188,8 @@ I write my first Gruntfile starting from this basic structure:</p>
 </span><span style="color:#6272a4"></span>  <span style="color:#6272a4">// grunt.registerTask(&#34;myTasks&#34;, [&#34;t1&#34;, &#34;t2:child&#34;, &#34;t3&#34;]);   
 </span><span style="color:#6272a4"></span>
 };
-</code></pre></div><p>At this point is already possible to execute Grunt, but this will just produce an error because there are not configuration options specified for the uglify task.</p>
+</code></pre></div><p>At this point is already possible to execute Grunt, but this will just produce an error
+because there are not configuration options specified for the uglify task.</p>
 <h2 id="task-configuration">Task configuration</h2>
 <p>The following is the basic structure used to configure a task:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">uglify<span style="color:#ff79c6">:</span> {
@@ -207,18 +219,22 @@ I write my first Gruntfile starting from this basic structure:</p>
 </code></pre></div><p>The structure is composed by an <code>options</code> property, and by one, or more, target properties.</p>
 <ul>
 <li>
-<p>options: contains the settings valid at task level.<br/>Task level settings can be overwritten by target level settings.<br/>The available options depends on the specific grunt plugin.</p>
+<p>options: contains the settings valid at task level.<br/>Task level settings can be overwritten
+by target level settings.<br/>The available options depends on the specific grunt plugin.</p>
 </li>
 <li>
-<p>target(s): allows to run a task with different configuration.<br/>Each task can have more than a target.</p>
+<p>target(s): allows to run a task with different configuration.<br/>Each task can have more
+than a target.</p>
 </li>
 </ul>
 <h2 id="run-grunt">Run Grunt</h2>
-<p>Execute Grunt is a really straightforward operation; from the root folder of the project type in the shell:</p>
+<p>Execute Grunt is a really straightforward operation; from the root folder of the project type
+in the shell:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">$:&gt; grunt
 <span style="color:#6272a4"># execute grunt</span>
 </code></pre></div><p>In this case all the tasks registered as default will be executed.</p>
-<p>It&rsquo;s possible even to execute only specific task or subgroup of tasks; even in this case the syntax is really simple:</p>
+<p>It&rsquo;s possible even to execute only specific task or subgroup of tasks; even in this case
+the syntax is really simple:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">$:&gt; grunt uglify
 <span style="color:#6272a4"># execute the uglify task.</span>
 <span style="color:#6272a4"># if there are more than a target,</span>
@@ -231,7 +247,9 @@ $:&gt; grunt uglify:target_1
 $:&gt; grunt myTasks
 <span style="color:#6272a4"># execute all the task associated to the myTasks alias.</span>
 </code></pre></div><h2 id="conclusive-notes">Conclusive notes</h2>
-<p>Learning all this was fun, pleasant (thanks to the documentation), and did not require more than a couples of hours: really a great investment, if you consider how time consuming are some repetitive tasks.</p>
+<p>Learning all this was fun, pleasant (thanks to the documentation), and did not require more
+than a couples of hours: really a great investment, if you consider how time consuming are
+some repetitive tasks.</p>
 <p>Grunt is definitely the way to go&hellip; and in the next weeks I will go deeper with its usage.</p>
 </div>
   <div class="post-footer">

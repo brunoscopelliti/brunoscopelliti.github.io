@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="The Chiara&#39;s first thousand days task">
@@ -120,22 +120,49 @@
     
   </div>
   <h1>The Chiara&#39;s first thousand days task</h1>
-  <div class="post-body"><p>I usually wake up early in the morning, before anyone else at my house.</p>
-<p>I use this time to maintain this blog, run some side projects, stay updated about latest hot trends in our industry. In general I like to have some time to spend just with myself; then in the evening, when I come from work, I&rsquo;m even more happy to stay with my family, and every device is off by default.</p>
-<p>One of these mornings, I found something of unusual on my desk: my wife had left a reminder for me, asking to calculate when our daughter Chiara would have crossed her first 1.000 days of life.</p>
-<p>I&rsquo;m not that good when it&rsquo;s necessary to repair something at home, but this was definitely something I could handle. Moreover, I like this kind of statistics. So I put my programs aside for a moment, and decided to pursued the task. I hadn&rsquo;t really choice anyway 😅.</p>
+  <div class="post-body"><p>I usually wake up early in the morning, before anyone else at my house.
+<br/>
+I use this time to maintain this blog, run some side projects, stay updated about latest hot trends
+in our industry. In general I like to have some time to spend just with myself;
+then in the evening, when I come from work, I&rsquo;m even more happy to stay with my family,
+and every device is off by default.</p>
+<p>One of these mornings, I found something of unusual on my desk: my wife had left a reminder for me,
+asking to calculate when our daughter Chiara would have crossed her first 1000 days of life.</p>
+<p>I&rsquo;m not that good when it&rsquo;s necessary to repair something at home, but this was
+definitely something I could handle. Moreover, I like this kind of statistics.
+So I put my programs aside for a moment, and decided to pursued the task.
+I hadn&rsquo;t really choice anyway 😅.</p>
 <h2 id="a-user-story">A user story</h2>
-<p>If you work following agile methodologies you sure are pretty familiar with what a user story is, or maybe you, and your team call them feature requests&hellip; it doesn&rsquo;t really matter too much the name. Generally a user story contains the description of small functionality, that with other small functionalities, compose a bigger feature. It should define acceptance criteria, and test cases, so that also the developer is able to pre-validate their work before the QAs deep dive.</p>
+<p>If you work following agile methodologies you sure are pretty familiar with what a user story is,
+or maybe you, and your team call them feature requests&hellip; it doesn&rsquo;t really matter
+too much the name.
+Generally a user story contains the description of small functionality, that
+with other small functionalities, compose a bigger feature.
+It should define acceptance criteria, and test cases, so that also the developer
+is able to pre-validate their work before the QAs deep dive.</p>
 <p>However in this case, no surprise, all I had was a post-it, with a pretty straightforward request.</p>
 <h2 id="technical-solution">Technical solution</h2>
-<p>In a real work situation, once a feature request is ready to be developed, we start thinking, to find the best way to implement it. Usually this is not responsibility of the single developer (that&rsquo;s why I used &ldquo;we&rdquo;), but most often more people contributes with their experience in tracing the path to follow.</p>
-<p>This is a critical moment; taking the right choice at this point helps to complete even the tougher stories without too much hassle (and vice versa).</p>
-<p>One of the major difficulties at this point is that of distinguish <em>the problem</em> we want to solve, from the myriads of imaginary problems we sometimes create for ourself. Taking words from Nicholas Zakas:</p>
+<p>In a real work situation, once a feature request is ready to be developed, we start thinking,
+to find the best way to implement it. Usually this is not responsibility of
+the single developer (that&rsquo;s why I used &ldquo;we&rdquo;), but most often more people contributes
+with their experience in tracing the path to follow.</p>
+<p>This is a critical moment; taking the right choice at this point helps to complete
+even the tougher stories without too much hassle (and vice versa).</p>
+<p>One of the major difficulties at this point is that of distinguish <em>the problem</em> we want to solve,
+from the myriads of imaginary problems we sometimes create for ourself.
+<br/>
+Taking words from Nicholas Zakas:</p>
 <blockquote>
-<p>Imaginary problems are often described using phrases like, &ldquo;what if one day someone wants to&hellip;&rdquo; and tend to trigger software engineers' creative brain to try to plan for all possibilities. [&hellip;] You should only ever build solutions for clearly-defined problems because that&rsquo;s the only way you&rsquo;ll know if your solution works.</p>
+<p>Imaginary problems are often described using phrases like, &ldquo;what if one day someone wants to&hellip;&rdquo;
+and tend to trigger software engineers' creative brain to try to plan for all possibilities.
+[&hellip;] You should only ever build solutions for clearly-defined problems because
+that&rsquo;s the only way you&rsquo;ll know if your solution works.</p>
 <p>Nicholas C. Zakas, (<a href="https://www.nczonline.net/newsletter/archive/f0e1d724dd/">source</a>)</p>
 </blockquote>
-<p>After not too much thinking, I found that in order to have an answer for my wife, I should only add a few days to an arbitrary date 😮, and that making those values parametric could be somewhat beneficial both in terms of code readability, both in terms of reusability (what if one day someone wants to do the same for his/her child?).</p>
+<p>After not too much thinking, I found that in order to have an answer for my wife,
+I should only add a few days to an arbitrary date 😮, and that making those values
+parametric could be somewhat beneficial both in terms of code readability, both in terms of
+reusability (what if one day we have another child?!).</p>
 <p>So this is the function we&rsquo;re going to write:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">/*
 </span><span style="color:#6272a4"> * @function
@@ -152,15 +179,31 @@
 </span><span style="color:#6272a4"> */</span>
 <span style="color:#8be9fd;font-style:italic">function</span> computeDate(startingDate, offsetDays) { }
 </code></pre></div><h2 id="start-development">Start development</h2>
-<p>Even if we&rsquo;ve not still implemented <code>computeDate</code>, we could well imagine that, it for the same set of input parameters returns always the same result (so it doesn&rsquo;t rely on any external state). Moreover it would be surprisingly if it does something else than computing a new date from the input parameter, so we could assume our implementation won&rsquo;t have any side effects.</p>
-<p>Usually these two properties of a function characterized the so called <em>pure function</em>. It turns out pure functions are great to deal with, essentially because they usually are pretty easy to understand, and to test.</p>
-<p>I am not a huge fan of Test Driven Development, however it applies very well on pure function testing; so in this case we&rsquo;re going to start the development of the feature by writing some tests.</p>
+<p>Even if we&rsquo;ve not still implemented <code>computeDate</code>, we could well imagine that,
+it for the same set of input parameters returns always the same result (so it doesn&rsquo;t rely
+on any external state). Moreover it would be surprisingly if it does something else
+than computing a new date from the input parameter, so we could assume our implementation won&rsquo;t have
+any side effects.</p>
+<p>Usually these two properties of a function characterized the so called <em>pure function</em>.
+It turns out pure functions are great to deal with, essentially because they usually are pretty easy
+to understand, and to test.</p>
+<p>I am not a huge fan of Test Driven Development, however it applies very well on testing of
+pure functions; so in this case we&rsquo;re going to start the development of the feature by writing
+some tests.</p>
 <h3 id="unit-tests">Unit tests</h3>
-<p>Ok, let&rsquo;s write some tests&hellip; I don&rsquo;t want to celebrate my daughter first 1.000 days on the wrong day after all.</p>
-<p>So first thing to decide is what library should I use for unit testing. JavaScript has the biggest module ecosystem in the world; so it&rsquo;s not a surprise that also when it comes to testing there are lots of great packages from which pick one.</p>
-<p>For this specific case two possibilities comes immediately to my mind: <a href="https://github.com/mjackson/expect">expect</a> and <a href="https://github.com/substack/tape">tape</a>.</p>
-<p><code>expect</code> is essential, but still it has everything you may need, and fits really natural into pure functions unit testing; it is ideal when all you want to do is verify the output of a given function; <code>tape</code> is as well lightweight, and has a bigger ecosystem, that permits to extends its core functionalities.</p>
-<p>Both would be a great fit, but this time, I&rsquo;ll go for <code>tape</code> in order to take advantage of its ecosystem.</p>
+<p>Ok, let&rsquo;s write some tests&hellip; I don&rsquo;t want to celebrate my daughter first 1000 days on the wrong
+day after all.</p>
+<p>So first thing to decide is what library should I use for unit testing. JavaScript
+has the biggest module ecosystem in the world; so it&rsquo;s not a surprise that also
+when it comes to testing there are lots of great packages from which pick one.</p>
+<p>For this specific case two possibilities comes immediately to my mind:
+expect](<a href="https://github.com/mjackson/expect">https://github.com/mjackson/expect</a>) and <a href="https://github.com/substack/tape">tape</a>.</p>
+<p><code>expect</code> is essential, but still it has everything you may need, and fits really natural
+into pure functions unit testing; it is ideal when all you want to do is verify the output
+of a given function; <code>tape</code> is as well lightweight, and has a bigger ecosystem,
+that permits to extends its core functionalities.</p>
+<p>Both would be a great fit, but this time, I&rsquo;ll go for <code>tape</code> in order to take advantage
+of its ecosystem.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> tape <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;tape&#34;</span>);
 <span style="color:#ff79c6">const</span> computeDate <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;./path/to/computeDate&#34;</span>);
 
@@ -172,7 +215,8 @@ tape(<span style="color:#f1fa8c">&#34;check a week after Christmas&#34;</span>, 
   t.deepEqual(result, expectedResult);
   t.end();
 });
-</code></pre></div><p>Once you&rsquo;ve written the first test, adding further tests is even easier&hellip; it&rsquo;s just particularly important to be as clear as possible when writing the description.</p>
+</code></pre></div><p>Once you&rsquo;ve written the first test, adding further tests is even easier&hellip;
+it&rsquo;s just particularly important to be as clear as possible when writing the description.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">tape(<span style="color:#f1fa8c">&#34;check one year, and a week after Christmas&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(t) {
   <span style="color:#ff79c6">const</span> expectedResult <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2018-01-01&#34;</span>);
   <span style="color:#ff79c6">const</span> result <span style="color:#ff79c6">=</span> computeDate(christmas, <span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>);
@@ -187,16 +231,27 @@ tape(<span style="color:#f1fa8c">&#34;check one year, and a week after Christmas
   t.deepEqual(result, expectedResult);
   t.end();
 });
-</code></pre></div><p>Having defined the <code>christmas</code> constant outside the test body gives me a way to implicitly test that <code>computeDate</code> does not change its input parameters. However this is far from be a best practice! Unit test should be as explicit as they could be&hellip; if it&rsquo;s so important for me that <code>computeDate</code> doesn&rsquo;t modify the date it gets as input, I&rsquo;d better write a specific test for this case.</p>
+</code></pre></div><p>Having defined the <code>christmas</code> constant outside the test body gives me a way
+to implicitly test that <code>computeDate</code> does not change its input parameters.
+However this is far from be a best practice! Unit test should be as explicit as they could be&hellip;
+if it&rsquo;s so important for me that <code>computeDate</code> doesn&rsquo;t modify the date it gets as input,
+I&rsquo;d better write a specific test for this case.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">tape(<span style="color:#f1fa8c">&#34;does not modify input date&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(t){
   <span style="color:#ff79c6">const</span> christmas <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-25&#34;</span>);
   computeDate(startingDate, <span style="color:#bd93f9">1</span>);
   t.equal(christmas.getDate(), <span style="color:#bd93f9">25</span>);
   t.end();
 });
-</code></pre></div><p>&hellip; and then refactoring the previous tests, so that they do not share access to the <code>christmas</code> constant.</p>
-<p>The good old motto DRY, <em>don&rsquo;t repeat yourself</em>, does not apply to unit test. Keeping the state of each unit test isolate from the others is definitely a good thing. Code duplication is bad, unit tests which may interfere each other are worse.</p>
-<p>Moreover code duplication could be addressed following a different strategy. For example, <a href="https://github.com/brunoscopelliti/tape-case">tape-case</a> permits to test the output of a pure function, against different input values, reducing the amount of boilerplate code.</p>
+</code></pre></div><p>&hellip; and then refactoring the previous tests, so that they do not share access
+to the <code>christmas</code> constant.</p>
+<p>The good old motto DRY, <em>don&rsquo;t repeat yourself</em>, does not apply to unit test.
+Keeping the state of each unit test isolate from the others is definitely a good thing.
+Code duplication is bad, unit tests which may interfere each other are worse.
+<br/>
+Moreover code duplication could be addressed following a different strategy.
+For example, <a href="https://github.com/brunoscopelliti/tape-case">tape-case</a> permits to test
+the output of a pure function, against different input values, reducing the amount
+of boilerplate code.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> tapecase <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;tape-case&#39;</span>);
 <span style="color:#ff79c6">const</span> computeDate <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;./path/to/computeDate&#39;</span>);
 
@@ -210,21 +265,36 @@ tape(<span style="color:#f1fa8c">&#34;check one year, and a week after Christmas
 tapecase(cases, computeDate);
 </code></pre></div><p>Now adding a new unit test costs just the adding of a new line on the <code>cases</code> array.</p>
 <h3 id="implementing-the-solution">Implementing the solution</h3>
-<p>Now that I&rsquo;ve a bunch of unit tests, I&rsquo;ve just to make all of them turn green. I won&rsquo;t you let wait more, in this case the following implementation of <code>computeDate</code> just works.</p>
+<p>Now that I&rsquo;ve a bunch of unit tests, I&rsquo;ve just to make all of them turn green.
+I won&rsquo;t you let wait more, in this case the following implementation of <code>computeDate</code> just works.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> computeDate (startingDate, offsetDays) {
   <span style="color:#ff79c6">const</span> date <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(startingDate);
   date.setDate(date.getDate() <span style="color:#ff79c6">+</span> offsetDays);
   <span style="color:#ff79c6">return</span> date;
 }
-</code></pre></div><p>However its usage is not really ergonomic; I mean, currently we have only one daughter, Chiara, but every time I want to know <em>&ldquo;what date will be after N days since her birthday?&quot;</em>, I still have to provide her birthday as parameter. It would be much more useful if we could have something like <code>computeDateSinceChiaraBirthDay</code>. <em>Partial Application</em> to the rescue!</p>
-<p>Partial Application is a technique of which functional folks are particularly proud (and for good reasons). You may have heard of <em>Currying</em> before; they&rsquo;re someway similar, but definitely different things. If you search over the Internet you&rsquo;ll find that lots of people have lots of different ideas about the difference between them; for me the following definition will apply:</p>
+</code></pre></div><p>However its usage is not really ergonomic; I mean, currently we have only one daughter, Chiara,
+but every time I want to know <em>&ldquo;what date will be after N days since her birthday?&quot;</em>,
+I still have to provide her birthday as parameter. It would be much more useful
+if we could have something like <code>computeDateSinceChiaraBirthDay</code>.
+<br/>
+<em>Partial Application</em> to the rescue!</p>
+<p>Partial Application is a technique of which functional folks are particularly proud
+(and for good reasons). You may have heard of <em>Currying</em> before; they&rsquo;re someway similar,
+but definitely different things. If you search over the Internet you&rsquo;ll find that
+lots of people have lots of different ideas about the difference between them;
+for me the following definition will apply:</p>
 <blockquote>
-<p>Currying is the decomposition of a polyadic function into a chain of nested unary functions. Thus decomposed, you can partially apply one or more arguments, although the curry operation itself does not apply any arguments to the function.</p>
-<p>Partial application is the conversion of a polyadic function into a function taking fewer arguments arguments by providing one or more arguments in advance.</p>
+<p>Currying is the decomposition of a polyadic function into a chain of nested unary functions.
+Thus decomposed, you can partially apply one or more arguments, although the curry operation
+itself does not apply any arguments to the function.</p>
+<p>Partial application is the conversion of a polyadic function into a function taking
+fewer arguments arguments by providing one or more arguments in advance.</p>
 <p>Reginald Braithwaite, <a href="http://raganwald.com/2013/03/07/currying-and-partial-application.html">source</a></p>
 </blockquote>
 <p>So how exactly Partial Application is supposed to make my day?</p>
-<p>All the functional programming libraries out there provide a way turn a normal function into one that could accept its input parameter lazily, however here to produce our <code>computeDateSinceChiaraBirthDay</code> function, I will be use the humble <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">Function#bind</a> method.</p>
+<p>All the functional programming libraries out there provide a way turn a normal function
+into one that could accept its input parameter lazily, however here to produce
+our <code>computeDateSinceChiaraBirthDay</code> function, I will be use the humble <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">Function#bind</a> method.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> chiaraBirthday <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2014-02-20&#34;</span>);
 <span style="color:#ff79c6">const</span> computeDateSinceChiaraBirthDay <span style="color:#ff79c6">=</span> computeDate.bind(<span style="color:#ff79c6">null</span>, chiaraBirthday);
 </code></pre></div><p>Just a final check to the tests in order to assure we&rsquo;ve not destroyed our beautiful work of before:</p>

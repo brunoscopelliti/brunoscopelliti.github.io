@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="My personal bug fixing workflow">
@@ -120,96 +120,239 @@
     
   </div>
   <h1>My personal bug fixing workflow</h1>
-  <div class="post-body"><p>I am a conservative person.</p>
-<p>Recently, I&rsquo;ve started thinking this is a great quality, especially for a developer.</p>
-<p>Of course, I like improvements; the kind of changes I am more prone to make, are those which affect code readability, or bring coherence to the codebase; who have worked with me can confirm how pedantic I am on these kind of things.</p>
-<p>I change my own code (and blog posts) several times before I push on the repository. But I like to have control on this stuff: I need to know I&rsquo;ve the time to evaluate the outcome of the changes I&rsquo;m making; I need to know I am protected by solid unit tests (and other tools), which will prevent me to modify the code in any harmful way. I don&rsquo;t like to have to change code under my responsibility, just to fix a bug <em>asap</em>&hellip; in my experience this is the safest way to introduce fresh new tech debt, or more often two new bugs for the next iteration.</p>
+  <div class="post-body"><p>I am a conservative person.
+<br/>
+Recently, I&rsquo;ve started thinking this is a great quality, especially for a developer.</p>
+<p>Of course, I like improvements; the kind of changes I am more prone to make,
+are those which affect code readability, or bring coherence to the codebase;
+who have worked with me can confirm how pedantic I am on these kind of things.
+I change my own code (and blog posts) several times before I push on the repository.
+But I like to have control on this stuff: I need to know I&rsquo;ve the time to evaluate the outcome
+of the changes I&rsquo;m making; I need to know I am protected by solid unit tests (and other tools),
+which will prevent me to modify the code in any harmful way. I don&rsquo;t like to have to change
+code under my responsibility, just to fix a bug <em>asap</em>&hellip; in my experience this is the safest way
+to introduce fresh new tech debt, or more often two new bugs for the next iteration.</p>
 <p>In this post I&rsquo;m going to share my personal approach to bug fixing.</p>
-<p>Reading the article, you probably recognize yourself in some, or even many, of these practices; there&rsquo;s nothing of extraordinarily complex in each of them; these are just little tips, which may even be insignificant individually, but which, I found, together have a huge impact on the outcome of my work.</p>
+<p>Reading the article, you probably recognize yourself in some, or even many, of these practices;
+there&rsquo;s nothing of extraordinarily complex in each of them; these are just little tips,
+which may even be insignificant individually, but which, I found, together have a huge impact on
+the outcome of my work.</p>
 <h2 id="background">Background</h2>
 <p>I am Bruno Scopelliti. I am a senior developer at <a href="http://www.ynap.com/">YNAP</a>.</p>
-<p>When I joined the group, three years ago, I started working in a team particularly focused on the improvement of existing features, and more often bug fixes. I have had other experience before, but no one of these was in a such big context. I worked in that team for almost one year, and now I&rsquo;m working on the platform that serves most of YNAP&rsquo;s online stores.</p>
-<p>I am kinda of a full stack developer (.NET, Node.js), but I spend more time programming with JavaScript, in a browser. Reading the article, you&rsquo;ll find that even if some of the concepts are strictly tied to front-end development, most of them aren&rsquo;t specific to a particular technology.</p>
-<p>So, what I&rsquo;m going to share here is fruit of lessons I&rsquo;ve learned the hard way in the last couple of years.</p>
+<p>When I joined the group, three years ago, I started working in a team particularly focused
+on the improvement of existing features, and more often bug fixes. I have had other
+experience before, but no one of these was in a such big context. I worked in that team
+for almost one year, and now I&rsquo;m working on the platform that serves most of YNAP&rsquo;s online stores.</p>
+<p>I am kinda of a full stack developer (.NET, Node.js), but I spend more time programming
+with JavaScript, in a browser. Reading the article, you&rsquo;ll find that even if some
+of the concepts are strictly tied to front-end development, most of them aren&rsquo;t specific
+to a particular technology.</p>
+<p>So, what I&rsquo;m going to share here is fruit of lessons I&rsquo;ve learned the hard way
+in the last couple of years.</p>
 <h2 id="attitude">Attitude</h2>
 <p>Let&rsquo;s start from the real beginning.</p>
-<p>Observing many people working around me, I&rsquo;ve got the impression that some of them when get a bug assigned, strive to fix the problem as soon as possible, more than to understand what has caused the problem.</p>
-<p>Sadly, the fastest way to smash a bug, is also rarely the better way; and almost always, it involves bringing changes to existing code.</p>
-<p>I&rsquo;ve a different attitude - <em>remember, I am a conservative person</em> - and when I&rsquo;ve to fix a bug, changing the code is the last thing I want to do.</p>
-<p>To make things easy, I try to convince myself that there&rsquo;s no bug at all; even when the bug report comes with a stack trace, this still does not prove that the issue is caused by code under my responsability (observation of the outcome of past bugs helps a lot here).</p>
-<p>I understand this may seems pretty arrogant quite like &ldquo;<em>Hey, my code can&rsquo;t have bugs</em>&rdquo;, but I believe this mindset helps prevent that potentially more harmful changes are merged into the codebase.</p>
-<p>Even if I&rsquo;ve this attitude through the bug, I&rsquo;ve all the interest in conducting an impartial analysis of the issue.</p>
+<p>Observing many people working around me, I&rsquo;ve got the impression that some of them when
+get a bug assigned, strive to fix the problem as soon as possible, more than to understand
+what has caused the problem.</p>
+<p>Sadly, the fastest way to smash a bug, is also rarely the better way; and almost always,
+it involves bringing changes to existing code.</p>
+<p>I&rsquo;ve a different attitude - <em>remember, I am a conservative person</em> - and when I&rsquo;ve to fix a bug,
+changing the code is the last thing I want to do.
+<br/>
+To make things easy, I try to convince myself that there&rsquo;s no bug at all; even when
+the bug report comes with a stack trace, this still does not prove that the issue
+is caused by code under my responsability (observation of the outcome of past bugs
+helps a lot here).</p>
+<p>I understand this may seems pretty arrogant quite like &ldquo;<em>Hey, my code can&rsquo;t have bugs</em>&rdquo;,
+but I believe this mindset helps prevent that potentially more harmful changes
+are merged into the codebase.</p>
+<p>Even if I&rsquo;ve this attitude through the bug, I&rsquo;ve all the interest in conducting
+an impartial investigation of the issue.</p>
 <p>I can now recognize a pattern, I almost always follow when I analyze a bug.</p>
 <h2 id="reading-carefully-the-bug-report">Reading carefully the bug report</h2>
 <p>Well, reading the bug report is something everyone on this earth surely does.</p>
-<p>When I read the notes attached to a bug, I try to map the error to an area of the codebase, e.g. if the bug prevents new user to register to my newsletter, I immediately start to think about the software components involved in this feature.</p>
-<p>When you&rsquo;re new to a codebase, this won&rsquo;t be easy to accomplish effectively, but probably you shouldn&rsquo;t have been left alone to fix a bug in a new codebase.</p>
-<p>Pair programming is definitely a great way to introduce new developers to your codebase, however <em>mentorship</em> is what works better for me. Having a mentor assure you the freedom to explore the new codebase, but prevents situations in which you could be stuck, without any ideas about how to approach the problem. Sorry, I&rsquo;ve deviated from the bug report.</p>
-<p>Well, if you&rsquo;ve a solid knowledge of the codebase, the time you spend reading, and thinking about the issue is definitely well spent.</p>
-<p>If I recognize the issue affects a pretty crap area of the codebase, my attitude through the bug changes a little; or I consolidate my attitude if I know the problem is on an area on which nobody has worked for the last two years.</p>
-<p>If your team has a QA, when you get assigned the bugs, they may also provide you additional details, which usually are not added to the bug report; such as <em>this is the third bug this week on the newsletter</em>, or <em>last week Junior has added a new field to the newsletter form</em>.</p>
-<p>In this phase, I don&rsquo;t care too much about other conditions such as browser, OS&hellip; and later you&rsquo;ll understand why.</p>
+<p>When I read the notes attached to a bug, I try to map the error to an area of the codebase,
+e.g. if the bug prevents new user to register to my newsletter, I immediately
+start to think about the software components involved in this feature.</p>
+<p>When you&rsquo;re new to a codebase, this won&rsquo;t be easy to accomplish effectively,
+but probably you shouldn&rsquo;t have been left alone to fix a bug in a new codebase.</p>
+<p>Pair programming is definitely a great way to introduce new developers to your codebase,
+however <em>mentorship</em> is what works better for me. Having a mentor assure you the freedom
+to explore the new codebase, but prevents situations in which you could be stuck,
+without any ideas about how to approach the problem. Sorry, I&rsquo;ve deviated from the bug report.</p>
+<p>Well, if you&rsquo;ve a solid knowledge of the codebase, the time you spend reading,
+and thinking about the issue is definitely well spent.</p>
+<p>If I recognize the issue affects a pretty crap area of the codebase, my attitude through
+the bug changes a little; or I consolidate my attitude if I know the problem is on an area
+on which nobody has worked for the last two years.</p>
+<p>If your team has a QA, when you get assigned the bugs, they may also provide you additional details,
+which usually are not added to the bug report; such as <em>this is the third bug this
+week on the newsletter</em>, or <em>last week Junior has added a new field to the newsletter form</em>.</p>
+<p>In this phase, I don&rsquo;t care too much about other conditions such as browser, OS&hellip;
+and later you&rsquo;ll understand why.</p>
 <p>At the end with all the info I collected I&rsquo;ve a better understanding of the problem I&rsquo;ve to solve.</p>
 <h2 id="epiphany">Epiphany</h2>
 <p>While reading carefully the report, I have sometimes an epiphany of the bug 😄</p>
-<p>I can remember the implementation of the feature, and immediately understand what is causing the problem. In truth, these situations are rare, and occur mostly on features which I personally developed, or that I know very well.</p>
-<p>In these cases the temptation to just fix the bug and move on is strong, however I keep following my usual workflow.</p>
+<p>I can remember the implementation of the feature, and immediately understand
+what is causing the problem. In truth, these situations are rare, and occur mostly
+on features which I personally developed, or that I know very well.</p>
+<p>In these cases the temptation to just fix the bug and move on is strong, however I keep
+following my usual workflow.</p>
 <h2 id="replicate-the-bug">Replicate the bug</h2>
 <p>When I&rsquo;ve enough information about the problem, I always want to see the bug happen with my eyes.</p>
-<p>Even when the bug report states the bug afflicts a very specific version of Internet Explorer, I always try to replicate the bug in Chrome first&hellip;
-that&rsquo;s partially because Chrome has the best debugging tools, and partially because I often work with jQuery, that takes care for me of all the cross browser inconsistencies.</p>
-<p>I never use Canary (or other browser dev release) for my job, and you shouldn&rsquo;t too. I like the new features, and I like to explore them in advance, but, hell, I can wait a couple of months before using them for my job, and in the meanwhile keep working without the hassles which an unstable platform might cause.</p>
-<p>In order to remove noise coming from previous sessions, addons, etc. I always switch to <em>Incognito</em> to replicate the bug; and when I&rsquo;ve to replicate the bug on a particular browser, that does not support incognito mode, I force my own private navigation by cleaning cache, cookies, everything.</p>
-<p>(Sadly) the number of fake bugs which I smashed by simply following this procedure is insanely high.</p>
-<p>Only when it&rsquo;s not possible to replicate the issue with Chrome, I try using the browser specified in the bug report.</p>
-<p>Sometimes, no matter how hard I try, I&rsquo;m not able to replicate the bug; in this case when possible I get up from my chair, to talk directly with the person who has opened the bug first. I always prefer real time communication channel (such as skype, slack, etc.) over email, cause prevents distractions. Usually we try together to reproduce the bug, and in the overall I get more insights on the issue; at the end, we find out how to reproduce the bug, or when the bug effectively is not anymore reproducible, we mark it as closed.</p>
-<p>In case the sequence to reproduce the bug is particularly complex, I am not ashamed by writing it down&hellip; then I&rsquo;ve just to follow a bullet list, and focus my attention on the real problem I want to solve.</p>
+<p>Even when the bug report states the bug afflicts a very specific version of Internet Explorer,
+I always try to replicate the bug in Chrome first&hellip; that&rsquo;s partially because Chrome
+has the best debugging tools, and partially because I often work with jQuery,
+that takes care for me of all the cross browser inconsistencies.</p>
+<p>I never use Canary (or other browser dev release) for my job, and you shouldn&rsquo;t too.
+I like the new features, and I like to explore them in advance, but, hell, I can wait a
+couple of months before using them for my job, and in the meanwhile keep working without
+the hassles which an unstable platform might cause.</p>
+<p>In order to remove noise coming from previous sessions, addons, etc. I always
+switch to <em>Incognito</em> to replicate the bug; and when I&rsquo;ve to replicate the bug
+on a particular browser, that does not support incognito mode, I force my own
+private navigation by cleaning cache, cookies, everything.
+<br/>
+(Sadly) the number of fake bugs which I smashed by simply following this procedure
+is insanely high.</p>
+<p>Only when it&rsquo;s not possible to replicate the issue with Chrome, I try using the browser
+specified in the bug report.</p>
+<p>Sometimes, no matter how hard I try, I&rsquo;m not able to replicate the bug; in this case
+when possible I get up from my chair, to talk directly with the person who has opened the bug first.
+I always prefer real time communication channel (such as skype, slack, etc.) over email,
+cause prevents distractions. Usually we try together to reproduce the bug, and in the overall
+I get more insights on the issue; at the end, we find out how to reproduce the bug,
+or when the bug effectively is not anymore reproducible, we mark it as closed.</p>
+<p>In case the sequence to reproduce the bug is particularly complex, I am not ashamed
+by writing it down&hellip; then I&rsquo;ve just to follow a bullet list, and focus my attention
+on the real problem I want to solve.</p>
 <h2 id="randomic-bugs">Randomic bugs</h2>
-<p>Every programmer sooner, or later faces the dreadful situation of a randomic bug; even when you scrupulously follow the same steps every time, the bug only sometimes shows up.</p>
-<p>One thing I learned in these years: randomic bugs do not exist; there&rsquo;re only bugs you just haven&rsquo;t found out how to reproduce yet.</p>
-<p>A bug can&rsquo;t be truly randomic, unless you&rsquo;re randomly trowing exceptions, using your language built-in random values generator&hellip; and even in this case, if you know the seed, you can still reproduce the issue.</p>
-<p>A bug could be hard to reproduce until you&rsquo;ve understood what is causing it; but when the cause is clear, reproduce whatever bug is a breeze.</p>
-<p>There&rsquo;re a few methods, which, I found out, work pretty well in order to understand how to reproduce a bug, that appears to be randomic.</p>
-<p>Logs are terrific. I grab a log of a healthy sequence, and a log of bugged sequence; then I compare the logs, and BOOM (if I don&rsquo;t suck at logging) I&rsquo;ve a great hint about what is causing the problem.</p>
-<p>Sometimes you might find there&rsquo;s a race condition between two network requests&hellip; then using a tool such as fiddler (<a href="http://www.telerik.com/fiddler" title="Fiddler, The free web debugging proxy">Fiddler</a> is really great) you could force a delay on a specific request, and make the bug always reproducible from your machine. Sometimes you might find there&rsquo;s correlation between the bug and the fail of a specific resource&hellip; then always with fiddler, or directly from Chrome, you could force the loading of that specific resource to fail; and again the bug comes to be always reproducible.</p>
-<p>At the end of the day, I always work with bugs which are always reproducible; and deal with such bugs is not that difficult; even when the problem is complex, having understood its causes, and being able to replicate it at my own pleasure, give me the feeling I dominate the problem, and find out the best solution is just a matter of time.</p>
-<p>When logs fails&hellip; well disposed logs rarely fail to help. So before going further it&rsquo;s probably a good idea to check if logs can be improved. Otherwise, the only remaining option for me is to randomly try to understand the causes of the randomic bug. The following are a couple of things which have worked for me in the past:</p>
+<p>Every programmer sooner, or later faces the dreadful situation of a randomic bug;
+even when you scrupulously follow the same steps every time, the bug only sometimes shows up.
+<br/>
+One thing I learned in these years: randomic bugs do not exist; there&rsquo;re only bugs
+you just haven&rsquo;t found out how to reproduce yet.</p>
+<p>A bug can&rsquo;t be truly randomic, unless you&rsquo;re randomly trowing exceptions, using your language
+built-in random values generator&hellip; and even in this case, if you know the seed,
+you can still reproduce the issue.</p>
+<p>A bug could be hard to reproduce until you&rsquo;ve understood what is causing it;
+but when the cause is clear, reproduce whatever bug is a breeze.</p>
+<p>There&rsquo;re a few methods, which, I found out, work pretty well in order to understand
+how to reproduce a bug, that appears to be randomic.</p>
+<p>Logs are terrific. I grab a log of a healthy sequence, and a log of bugged sequence;
+then I compare the logs, and BOOM (if I don&rsquo;t suck at logging) I&rsquo;ve a great hint
+about what is causing the problem.</p>
+<p>Sometimes you might find there&rsquo;s a race condition between two network requests&hellip;
+then using a tool such as fiddler
+(<a href="http://www.telerik.com/fiddler" title="Fiddler, The free web debugging proxy">Fiddler</a>
+is really great) you could force a delay on a specific request, and make the bug
+always reproducible from your machine. Sometimes you might find there&rsquo;s correlation between
+the bug and the fail of a specific resource&hellip; then always with fiddler, or directly from Chrome,
+you could force the loading of that specific resource to fail; and again the bug comes
+to be always reproducible.</p>
+<p>At the end of the day, I always work with bugs which are always reproducible;
+and deal with such bugs is not that difficult; even when the problem is complex,
+having understood its causes, and being able to replicate it at my own pleasure,
+give me the feeling I dominate the problem, and find out the best solution is just
+a matter of time.</p>
+<p>When logs fails&hellip; well disposed logs rarely fail to help. So before going further
+it&rsquo;s probably a good idea to check if logs can be improved. Otherwise, the only
+remaining option for me is to randomly try to understand the causes of the randomic bug.
+The following are a couple of things which have worked for me in the past:</p>
 <ul>
 <li>
-<p>Going backward in the time of a couple of weeks. If the bug wasn&rsquo;t there, I ask myself, what is changed in the meanwhile.</p>
+<p>Going backward in the time of a couple of weeks. If the bug wasn&rsquo;t there, I ask myself,
+what is changed in the meanwhile.</p>
 </li>
 <li>
-<p>Set breakpoints, or counters (when I can&rsquo;t break the flow of the program) here and there (I let my intuition guide me). This is helpful cause I might discover healthy sequence, and bugged sequence follow different code path.</p>
+<p>Set breakpoints, or counters (when I can&rsquo;t break the flow of the program) here and
+there (I let my intuition guide me). This is helpful cause I might discover healthy sequence,
+and bugged sequence follow different code path.</p>
 </li>
 <li>
-<p>Force a specific code path; there&rsquo;s always a suspect <code>if</code> statement somewhere&hellip; when I found it, I try to set its value to a constant (always true/false), then I check if this changes somehow the probability to replicate the bug.</p>
+<p>Force a specific code path; there&rsquo;s always a suspect <code>if</code> statement somewhere&hellip;
+when I found it, I try to set its value to a constant (always true/false), then I check
+if this changes somehow the probability to replicate the bug.</p>
 </li>
 </ul>
 <p>Until today, it&rsquo;s never happened that no one of these methods have worked.</p>
 <h2 id="debugging">Debugging</h2>
-<p>Unless that, in order to replicate the bug, I&rsquo;ve had to do a deep analysis of the problem, such as the one I described in the previous paragraph, at this point I usually have not a clue about what might being the cause of the issue. So it&rsquo;s time to start debugging to understand what is causing the problem.</p>
+<p>Unless that, in order to replicate the bug, I&rsquo;ve had to do a deep analysis of the problem,
+such as the one I described in the previous paragraph, at this point I usually have
+not a clue about what might being the cause of the issue. So it&rsquo;s time to start debugging
+to understand what is causing the problem.</p>
 <p>The obvious question at this point it&rsquo;s where should I attach breakpoints first?</p>
-<p>In case the bug report contained also a stack trace of the error, or when I can spot an error in the browser console (server logs applies as well), I usually parse it, looking for some familiar names&hellip; and it&rsquo;s not usually hard to spot at least one; so I start by attaching a breakpoint to that function.</p>
-<p>The worst bugs are those which happen silently; no errors in console, no stack trace, apparently everything is ok, but still the application is not acting the way expected. In this case I follow different strategies on the basis of the kind of issue I&rsquo;m facing. Perhaps the issue involves DOM interactions? Great, then I attach DOM breakpoints to the elements involved, so that every time something happen to them, the execution breaks in debugging mode. Perhaps there&rsquo;s an ajax request to a particular action? Good, I&rsquo;ll start from that action, or from its filters, in case I can&rsquo;t reach the action.</p>
-<p>After having disposed some breakpoints, I&rsquo;m ready to replicate the bug once again, but this time I&rsquo;m going to follow scrupulously the execution flow&hellip; and generally this is all I need to understand what is causing the problem, and form in my mind a general idea of how to fix it.</p>
-<p>However before fixing the issue, I always ask myself how it&rsquo;s possible that this bug wasn&rsquo;t discovered before. Even if sometimes asking this question does not make great sense, cause the bug might be on a new feature, or might be an edge case, I think it&rsquo;s very important in order to understand the real causes of the issue, and prevent it from returning in the future.</p>
-<p>If I am a library/framework provider, to answer this question, I take the time to understand how different people are using my code. Are they using the library, following the specifics, or have they somehow hacked it, to make it fit their specific need? Are different people using the library differently? Were they all forced to implement the same hack? Does the way people are using the library affect the reproducibility of the issue? These are all questions I try to answer, before effectively deciding if the issue is something that should be fixed by changing the code.</p>
-<p>However sometimes this is not enough; in this case I check the history of the files involved, and often find that they&rsquo;ve been recently modified. This not only answer my initial question, but it&rsquo;s also a great hint about what probably have caused the bug.</p>
+<p>In case the bug report contained also a stack trace of the error, or when I can spot
+an error in the browser console (server logs applies as well), I usually parse it,
+looking for some familiar names&hellip; and it&rsquo;s not usually hard to spot at least one;
+so I start by attaching a breakpoint to that function.</p>
+<p>The worst bugs are those which happen silently; no errors in console, no stack trace,
+apparently everything is ok, but still the application is not acting the way expected.
+In this case I follow different strategies on the basis of the kind of issue I&rsquo;m facing.
+Perhaps the issue involves DOM interactions? Great, then I attach DOM breakpoints to the
+elements involved, so that every time something happen to them, the execution
+breaks in debugging mode. Perhaps there&rsquo;s an ajax request to a particular action?
+Good, I&rsquo;ll start from that action, or from its filters, in case I can&rsquo;t reach the action.</p>
+<p>After having disposed some breakpoints, I&rsquo;m ready to replicate the bug once again,
+but this time I&rsquo;m going to follow scrupulously the execution flow&hellip; and generally
+this is all I need to understand what is causing the problem, and form in my mind a
+general idea of how to fix it.</p>
+<p>However before fixing the issue, I always ask myself how it&rsquo;s possible that this bug
+wasn&rsquo;t discovered before. Even if sometimes asking this question does not make great sense,
+cause the bug might be on a new feature, or might be an edge case, I think it&rsquo;s very important
+in order to understand the real causes of the issue, and prevent it from returning in the future.</p>
+<p>If I am a library/framework provider, to answer this question, I take the time to understand
+how different people are using my code. Are they using the library, following the specifics,
+or have they somehow hacked it, to make it fit their specific need? Are different people using
+the library differently? Were they all forced to implement the same hack? Does the way people
+are using the library affect the reproducibility of the issue? These are all questions I try to
+answer, before effectively deciding if the issue is something that should be fixed
+by changing the code.</p>
+<p>However sometimes this is not enough; in this case I check the history of the files involved,
+and often find that they&rsquo;ve been recently modified. This not only answer my initial question,
+but it&rsquo;s also a great hint about what probably have caused the bug.</p>
 <h2 id="the-fix">The fix</h2>
-<p>So at the end I was wrong. The bug was a real bug, and I&rsquo;ve to change the codebase; at least now I&rsquo;m sure it&rsquo;s for the good.</p>
-<p>I&rsquo;m everything, but definitely not a TDD fan. Don&rsquo;t get me wrong, I understand how important unit tests are, just haven&rsquo;t seen great benefits in writing them first all the time. However, one case in which I almost always prefer TDD approach is bug fixing.</p>
-<p>I think that TDD approach is great for bug fixing, cause writing a function that always bring out the issue, gives me a simplified environment in which I can more easily replicate, and fix the bug; then, when the bug is fixed, that test will also assure me that the issue won&rsquo;t come back.</p>
-<p>When I&rsquo;ve the test(s), everything I&rsquo;ve to do is to make them turn green, and (after a last check in the browser) voilà, the bug is gone.</p>
-<p>This is also a great moment to ask myself why the pre existent unit tests haven&rsquo;t protected the codebase against this new bug: low coverage? poor implementation? When it&rsquo;s possible I try to apply the <a href="http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule" title="Boy Scout rule applied to software development">boyscout rule</a>.</p>
+<p>So at the end I was wrong. The bug was a real bug, and I&rsquo;ve to change the codebase;
+at least now I&rsquo;m sure it&rsquo;s for the good.</p>
+<p>I&rsquo;m everything, but definitely not a TDD fan. Don&rsquo;t get me wrong, I understand how important
+unit tests are, just haven&rsquo;t seen great benefits in writing them first all the time.
+However, one case in which I almost always prefer TDD approach is bug fixing.</p>
+<p>I think that TDD approach is great for bug fixing, cause writing a function that always bring out
+the issue, gives me a simplified environment in which I can more easily replicate, and fix the bug;
+then, when the bug is fixed, that test will also assure me that the issue won&rsquo;t come back.</p>
+<p>When I&rsquo;ve the test(s), everything I&rsquo;ve to do is to make them turn green, and
+(after a last check in the browser) voilà, the bug is gone.</p>
+<p>This is also a great moment to ask myself why the pre existent unit tests haven&rsquo;t protected
+the codebase against this new bug: low coverage? poor implementation? When it&rsquo;s possible
+I try to apply the
+<a href="http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule" title="Boy Scout rule applied to software development">boyscout rule</a>.</p>
 <h2 id="releasing-the-bugfix">Releasing the bugfix</h2>
 <p>When the bug is fixed, it&rsquo;s yet time to release it.</p>
-<p>First thing to think about is how to update the version of the files I&rsquo;ve changed. I usually respect <a href="http://semver.org/" title="Semantic Versioning">SemVer</a> scheme; however it&rsquo;s pretty rare I&rsquo;m forced to break backward compatibility to fix a bug&hellip; so usually I just update the patch digit of the version number, then commit the changeset.</p>
-<p>I always strive to concentrate all the works I&rsquo;ve done in a single commit, because I think that, in the future having all changes displayed together could be useful. With this in mind, also the commit message is particularly important. In my opinion commit messages should be pretty short. The only thing that cannot miss is a reference to the bug; and usually the bug id is enough&hellip; so that someday in the future me, or my coworkers, reading the history, and watching the changeset, could have a better understanding of the rationale beyond a specific change.</p>
-<p>When it&rsquo;s not possible to complete all the work in a single commit, the best alternative is to open a new branch.</p>
+<p>First thing to think about is how to update the version of the files I&rsquo;ve changed.
+I usually respect <a href="http://semver.org/" title="Semantic Versioning">SemVer</a> scheme;
+however it&rsquo;s pretty rare I&rsquo;m forced to break backward compatibility to fix a bug&hellip;
+so usually I just update the patch digit of the version number, then commit the changeset.</p>
+<p>I always strive to concentrate all the works I&rsquo;ve done in a single commit, because I think that,
+in the future having all changes displayed together could be useful. With this in mind,
+also the commit message is particularly important. In my opinion commit messages
+should be pretty short. The only thing that cannot miss is a reference to the bug;
+and usually the bug id is enough&hellip; so that someday in the future me, or my coworkers,
+reading the history, and watching the changeset, could have a better understanding of the
+rationale beyond a specific change.</p>
+<p>When it&rsquo;s not possible to complete all the work in a single commit, the best alternative is
+to open a new branch.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>That&rsquo;s it, with the final push of the changeset the bug is fixed, and my personal bugfix workflow is completed.</p>
-<p>Probably I could spend less time to fix a bug; however taking the right time to understand the context in which the issue is happening gives me, and my team, additional benefits, such as progressive deeper understanding of the codebase, and reduction of regressions.</p>
-<p>Chances are that me and you are doing something differently and this is perfectly fine&hellip; this wasn&rsquo;t meant to be a lesson, or a tutorial of any kind&hellip; just some notes about my usual workflow, in order to have some sort of feedback. So, What are you doing differently? Have you found better strategies to replicate randomic bugs? Do you have some secret weapon, you use only against the hard bugs? Please share your opinion with a comment.</p>
+<p>That&rsquo;s it, with the final push of the changeset the bug is fixed, and my personal bugfix workflow
+is completed.</p>
+<p>Probably I could spend less time to fix a bug; however taking the right time
+to understand the context in which the issue is happening gives me, and my team,
+additional benefits, such as progressive deeper understanding of the codebase,
+and reduction of regressions.</p>
+<p>Chances are that me and you are doing something differently and this is perfectly fine&hellip;
+this wasn&rsquo;t meant to be a lesson, or a tutorial of any kind&hellip; just some notes about
+my usual workflow, in order to have some sort of feedback. So, What are you doing differently?
+Have you found better strategies to replicate randomic bugs? Do you have some secret weapon,
+you use only against the hard bugs? Please share your opinion with a comment.</p>
 </div>
   <div class="post-footer">
     <div class="post-date">June 1, 2016</div>

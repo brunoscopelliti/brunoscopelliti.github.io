@@ -26,9 +26,8 @@ First guesses One interesting thing about this menu is that its content is fetch
       
       <guid>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</guid>
       <description>TL:DR; You can watch me live coding a promise&amp;rsquo;s polyfill on YouTube. Watch Let&amp;rsquo;s build a promise polyfill playlist.
- We&amp;rsquo;re going to build a Promise polyfill; it&amp;rsquo;s the best way to understand how things work under the hood, after all.
-My goal is not to have the most performant, or feature rich, implementation, but I&amp;rsquo;ll try to optimize for ease of readability.
-A brief disclaimer before we even start: you might have heard that Promise are going to disappear soon, cause async function permit to further improve how we handle asynchronous code.</description>
+We&amp;rsquo;re going to build a Promise polyfill; it&amp;rsquo;s the best way to understand how things work under the hood, after all.  My goal is not to have the most performant, or feature rich, implementation, but I&amp;rsquo;ll try to optimize for ease of readability.
+A brief disclaimer before we start: you might have heard that Promise are going to disappear soon, cause async function permit to further improve how we handle asynchronous code.</description>
     </item>
     
     <item>
@@ -59,8 +58,7 @@ QUnit.assert.typeof = function (subject, expected) { // The current value of the
       <pubDate>Wed, 28 Sep 2016 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/first-1000-days-of-chiara/</guid>
-      <description>I usually wake up early in the morning, before anyone else at my house.
-I use this time to maintain this blog, run some side projects, stay updated about latest hot trends in our industry. In general I like to have some time to spend just with myself; then in the evening, when I come from work, I&amp;rsquo;m even more happy to stay with my family, and every device is off by default.</description>
+      <description>I usually wake up early in the morning, before anyone else at my house.  I use this time to maintain this blog, run some side projects, stay updated about latest hot trends in our industry. In general I like to have some time to spend just with myself; then in the evening, when I come from work, I&amp;rsquo;m even more happy to stay with my family, and every device is off by default.</description>
     </item>
     
     <item>

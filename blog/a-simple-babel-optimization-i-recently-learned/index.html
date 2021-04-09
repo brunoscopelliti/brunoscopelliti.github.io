@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="A simple Babel optimization I recently learned">
@@ -120,9 +120,11 @@
     
   </div>
   <h1>A simple Babel optimization I recently learned</h1>
-  <div class="post-body"><p>Babel relies on a few internal functions to generate the transpiled code.</p>
-<p>These functions, when needed, are placed at the top of the generated code, so they are not inlined multiple times across a single file.</p>
-<p>For example, a class declaration <code>class Foo {}</code> gets transpiled as:</p>
+  <div class="post-body"><p>Babel relies on a few internal functions to generate the transpiled code.
+<br/>
+These functions, when needed, are placed at the top of the generated code, so they are not
+inlined multiple times across a single file.
+For example, a class declaration <code>class Foo {}</code> gets transpiled as:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#f1fa8c">&#34;use strict&#34;</span>;
 
 <span style="color:#8be9fd;font-style:italic">function</span> _classCallCheck(instance, Constructor) { <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>(instance <span style="color:#ff79c6">instanceof</span> Constructor)) { <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> TypeError(<span style="color:#f1fa8c">&#34;Cannot call a class as a function&#34;</span>); } }
@@ -130,14 +132,19 @@
 <span style="color:#8be9fd;font-style:italic">var</span> Foo <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> Foo () {
   _classCallCheck(<span style="color:#ff79c6">this</span>, Foo);
 };
-</code></pre></div><p>Since Babel performs transpilation on single file basis, there&rsquo;s still the risk that these functions get duplicated across different files.
+</code></pre></div><p>Since Babel performs transpilation on single file basis, there&rsquo;s still the risk that
+these functions get duplicated across different files.
 Of course this is not an optimal solution.</p>
-<p>Recently I&rsquo;ve learned that it&rsquo;s possible to instruct Babel to do not place any declaration at the top of a file, and instead point them to a reference declared in a single shared module.</p>
-<p>In this post we&rsquo;ll learn how to achieve this goal, and what are the caveats.
+<p>Recently I&rsquo;ve learned that it&rsquo;s possible to instruct Babel to do not place any declaration
+at the top of a file, and instead point them to a reference declared in a single shared module.
+<br/>
+In this post we&rsquo;ll learn how to achieve this goal, and what are the caveats.
 I&rsquo;ve published a <a href="https://github.com/blog-brunoscopelliti/optimized-babel-setup">working example</a> on GitHub.</p>
 <h2 id="babels-runtime-to-the-rescue">Babel&rsquo;s runtime to the rescue</h2>
-<p>The easiest solution comes under the name of the <a href="https://www.npmjs.com/package/@babel/plugin-transform-runtime">@babel/plugin-transform-runtime plugin</a>.</p>
-<p>We have to install the plugin, and <a href="https://www.npmjs.com/package/@babel/runtime">@babel/runtime</a> standalone module.
+<p>The easiest solution comes under the name of the
+<a href="https://www.npmjs.com/package/@babel/plugin-transform-runtime">@babel/plugin-transform-runtime plugin</a>.</p>
+<p>We have to install the plugin, and <a href="https://www.npmjs.com/package/@babel/runtime">@babel/runtime</a>
+standalone module.
 Then configure Babel to use it.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-json" data-lang="json">{
   <span style="color:#ff79c6">&#34;presets&#34;</span>: [
@@ -165,7 +172,8 @@ Let&rsquo;s forget about <code>@babel/runtime</code>, and its companion plugin; 
 <p>First thing we&rsquo;ve to do is to generate the helpers functions for our personal use.</p>
 <p>To build the helpers, we&rsquo;ll need <a href="https://www.npmjs.com/package/@babel/cli">@babel/cli</a>.
 When we install it, it adds <code>babel-external-helpers</code> into <code>node_modules/.bin</code>.</p>
-<p>The executable comes with a couple of useful options, which permit to customize the module format of the generated output, or filter out the list of the generated helpers.</p>
+<p>The executable comes with a couple of useful options, which permit to customize
+the module format of the generated output, or filter out the list of the generated helpers.</p>
 <p>Below the formal cli reference, and a few examples you might would like to try yourself.</p>
 <ul>
 <li>
@@ -181,8 +189,10 @@ Whitelist of helpers to ONLY include</p>
 
 babel-external-helpers -t umd -l createClass,classCallCheck &gt; ./helpers.js
 </code></pre></div><h2 id="use-the-helpers">Use the helpers</h2>
-<p>Once we&rsquo;ve the helpers into our working directory, we have to tell Babel to do not include those helpers in the transpiled code.</p>
-<p>This is done using the <a href="https://www.npmjs.com/package/@babel/plugin-external-helpers">@babel/plugin-external-helpers plugin</a>.
+<p>Once we&rsquo;ve the helpers into our working directory, we have to tell Babel to do not include
+those helpers in the transpiled code.</p>
+<p>This is done using the
+<a href="https://www.npmjs.com/package/@babel/plugin-external-helpers">@babel/plugin-external-helpers plugin</a>.
 You may have to install it, and reference it in the .babelrc file.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-json" data-lang="json">{
   <span style="color:#ff79c6">&#34;presets&#34;</span>: [
@@ -198,10 +208,12 @@ You may have to install it, and reference it in the .babelrc file.</p>
 <span style="color:#8be9fd;font-style:italic">var</span> Foo <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> Foo () {
   babelHelpers.classCallCheck(<span style="color:#ff79c6">this</span>, Foo);
 };
-</code></pre></div><p>In which <code>babelHelpers</code> is a global reference to Babel&rsquo;s internal helpers.</p>
-<p>Sadly, the <a href="https://github.com/babel/babel/issues/5217">proposal to have a configurable namespace</a> didn&rsquo;t gain traction so far.</p>
+</code></pre></div><p>In which <code>babelHelpers</code> is a global reference to Babel&rsquo;s internal helpers.
+Sadly, the <a href="https://github.com/babel/babel/issues/5217">proposal to have a configurable namespace</a>
+didn&rsquo;t gain traction so far.</p>
 <p>Anyway, when we run <code>new Foo</code> we get a <code>ReferenceError</code>, because <code>babelHelpers</code> isn&rsquo;t defined.</p>
-<p>If we target only browsers, the solution is straightforward; we&rsquo;ve to include the helpers before application code.</p>
+<p>If we target only browsers, the solution is straightforward; we&rsquo;ve to include
+the helpers before application code.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text/javascript&#34;</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;path/to/babel-helpers.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
 &lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text/javascript&#34;</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
 </code></pre></div><p>In node we could follow a similar strategy, introducing a middleware that pollutes

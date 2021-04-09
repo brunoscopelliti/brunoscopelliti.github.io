@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="CSS3 box-sizing property">
@@ -120,15 +120,19 @@
     
   </div>
   <h1>CSS3 box-sizing property</h1>
-  <div class="post-body"><p>Recently I had to use the <code>box-sizing</code> property&hellip; and every time I needed to search on Internet for the correct usages. So, last time this happened I&rsquo;ve decided to write a post about it, with the hope this help me memorize it - or at least next time I can google for myself 🙂</p>
+  <div class="post-body"><p>Recently I had to use the <code>box-sizing</code> property&hellip; and every time I needed to search
+on Internet for the correct usages. So, last time this happened I&rsquo;ve decided to write a post
+about it, with the hope this help me memorize it - or at least next time I can google for myself 🙂</p>
 <h2 id="box-sizing-why">box-sizing, why?</h2>
-<p>Until a few years ago, when you assigned an element a ruleset like the following, you got a square with size 120 pixel.</p>
+<p>Until a few years ago, when you assigned an element a ruleset like the following,
+you got a square with size 120 pixel.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-css" data-lang="css">.<span style="color:#50fa7b">my-box</span> {
   <span style="color:#ff79c6">height</span>: <span style="color:#bd93f9">100</span><span style="color:#8be9fd">px</span>;
   <span style="color:#ff79c6">padding</span>: <span style="color:#bd93f9">10</span><span style="color:#8be9fd">px</span>;
   <span style="color:#ff79c6">width</span>: <span style="color:#bd93f9">100</span><span style="color:#8be9fd">px</span>;
 }
-</code></pre></div><p>So, in case you absolutely want the padding, and a squared box of 100 pixel, the only solution was to change the css rules to something like:</p>
+</code></pre></div><p>So, in case you absolutely want the padding, and a squared box of 100 pixel,
+the only solution was to change the css rules to something like:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-css" data-lang="css">.<span style="color:#50fa7b">my-box</span> {
   <span style="color:#ff79c6">height</span>: <span style="color:#bd93f9">80</span><span style="color:#8be9fd">px</span>;
   <span style="color:#ff79c6">padding</span>: <span style="color:#bd93f9">10</span><span style="color:#8be9fd">px</span>;
@@ -148,26 +152,31 @@
   <span style="color:#ff79c6">padding</span>: <span style="color:#bd93f9">20</span><span style="color:#8be9fd">px</span>;
   <span style="color:#ff79c6">width</span>: <span style="color:#bd93f9">180</span><span style="color:#8be9fd">px</span>;
 }
-</code></pre></div><p>The rectangles are different for the only fact that, at the second rectangle is applied the <code>box-sizing</code> CSS property.</p>
+</code></pre></div><p>The rectangles are different for the only fact that, at the second rectangle is applied
+the <code>box-sizing</code> CSS property.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-css" data-lang="css">.<span style="color:#50fa7b">box</span>.<span style="color:#50fa7b">severe</span> {
   <span style="color:#ff79c6">box-sizing</span>: <span style="color:#ff79c6">border-box</span>;
 }
-</code></pre></div><p>This forces the browser to render the rectangle with the specified width and height, and place the border and padding inside the box.</p>
+</code></pre></div><p>This forces the browser to render the rectangle with the specified width and height,
+and place the border and padding inside the box.</p>
 <h2 id="box-sizing-property">box-sizing property</h2>
 <p>Currently there are three possible values for the box-sizing property:</p>
 <ul>
 <li>
-<p><code>content-box</code>: the default behavior; the box has the width and height specified, and eventually the border and the padding are outside the specified width and height.</p>
+<p><code>content-box</code>: the default behavior; the box has the width and height specified,
+and eventually the border and the padding are outside the specified width and height.</p>
 </li>
 <li>
-<p><code>border-box</code>: force the browser to render border, and padding inside the specified width and height.</p>
+<p><code>border-box</code>: force the browser to render border, and padding inside the specified
+width and height.</p>
 </li>
 <li>
 <p><code>inherit</code>: the value is inherited from the parent node.</p>
 </li>
 </ul>
 <p>Are you thinking at the support of the browsers?</p>
-<p>Having <a href="http://caniuse.com/#feat=css3-boxsizing" title="Can I use box-sizing">Can I use&hellip;</a> as reference, I can say that the support of the browser is not too bad after all.</p>
+<p>Having <a href="http://caniuse.com/#feat=css3-boxsizing" title="Can I use box-sizing">Can I use&hellip;</a>
+as reference, I can say that the support of the browser is not too bad after all.</p>
 </div>
   <div class="post-footer">
     <div class="post-date">April 30, 2013</div>

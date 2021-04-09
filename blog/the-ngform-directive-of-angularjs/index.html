@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="The ngForm directive of AngularJS">
@@ -121,7 +121,10 @@
   </div>
   <h1>The ngForm directive of AngularJS</h1>
   <div class="post-body"><p>I&rsquo;m back writing about client side validation in an AngularJS application.</p>
-<p>Lately, I had to work with a form created dynamically on the basis of a JSON response, that I received from the server. In this case the approach is a bit different from the one I discussed in my first post about <a href="/blog/form-validation-the-angularjs-way/" title="Form Validation: The AngularJS Way">form validation with AngularJS</a>.</p>
+<p>Lately, I had to work with a form created dynamically on the basis of a JSON response, that
+I received from the server. In this case the approach is a bit different from the one I discussed
+in my first post about
+<a href="/blog/form-validation-the-angularjs-way/" title="Form Validation: The AngularJS Way">form validation with AngularJS</a>.</p>
 <p>Consider this markup:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">form</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;sf&#34;</span> <span style="color:#50fa7b">ng-controller</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;FormController&#34;</span> <span style="color:#50fa7b">novalidate</span>&gt;
   &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">ng-repeat</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;f in fields&#34;</span>&gt;
@@ -140,9 +143,12 @@
   ];
 }
 FormController.$inject <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;$scope&#34;</span>];
-</code></pre></div><p>But sadly the validation didn&rsquo;t work.</p>
-<p>The reason of this failure, is that currently it&rsquo;s not possible to dynamically generate a name of an input.</p>
-<p>To work around this issue there are two different alternatives: write a custom directive or use the builtin <a href="https://docs.angularjs.org/api/ng/directive/ngForm" title="AngularJS api: ngForm">ngForm</a> directive, to create an inner form; I chose this last one:</p>
+</code></pre></div><p>But sadly the validation didn&rsquo;t work.
+<br/>
+The reason of this failure, is that currently it&rsquo;s not possible to dynamically generate
+a name of an input.</p>
+<p>To work around this issue there are two different alternatives: write a custom directive
+or use the builtin <a href="https://docs.angularjs.org/api/ng/directive/ngForm" title="AngularJS api: ngForm">ngForm</a> directive, to create an inner form; I chose this last one:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">form</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;sf&#34;</span> <span style="color:#50fa7b">ng-controller</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;FormController&#34;</span> <span style="color:#50fa7b">novalidate</span>&gt;
   &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">ng-repeat</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;f in fields&#34;</span>&gt;
     &lt;<span style="color:#ff79c6">ng-form</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;sfIn&#34;</span>&gt;

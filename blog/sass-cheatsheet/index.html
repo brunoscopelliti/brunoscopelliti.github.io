@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="SASS Cheatsheet">
@@ -122,11 +122,13 @@
   <h1>SASS Cheatsheet</h1>
   <div class="post-body"><p>Few months ago, I started working with SASS - I use SCSS syntax cause I care about my mental health.</p>
 <p>It&rsquo;s not particularly difficult, and if you learnt CSS, well, you could learn SASS.</p>
-<p>One of the first thing I wanted was some kind of SASS cheatsheet - so I summarized the main features of SASS in a SASS file.</p>
+<p>One of the first thing I wanted was some kind of SASS cheatsheet - so I summarized
+the main features of SASS in a SASS file.</p>
 <h2 id="variables">Variables</h2>
 <p>Sass allows you to declare variables that can be used through the stylesheet.</p>
 <p>Variables begin with <code>$</code> and are declared just like properties.</p>
-<p>They can have any value that&rsquo;s allowed for a CSS property, such as colors, numbers (with units), or text.</p>
+<p>They can have any value that&rsquo;s allowed for a CSS property, such as colors, numbers
+(with units), or text.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#8be9fd;font-style:italic">$defaultWindowSize</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">960</span><span style="color:#8be9fd">px</span>;
 <span style="color:#8be9fd;font-style:italic">$defaultLinkColor</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">#46EAC2</span>;
 
@@ -150,15 +152,18 @@ SASS allows you to avoid duplication by nesting the child selectors within the a
   <span style="color:#ff79c6">color</span>: <span style="color:#ff79c6">lighten</span><span style="color:#ff79c6">(</span>$<span style="color:#ff79c6">defaultLinkColor</span><span style="color:#ff79c6">,</span> <span style="color:#ff79c6">10</span>%<span style="color:#ff79c6">)</span>;
 }
 </code></pre></div><h2 id="interpolation">Interpolation</h2>
-<p>Variables can be used for more than just property values. You can use <code>\#{variable}</code> to insert them into property names or selectors.</p>
+<p>Variables can be used for more than just property values. You can use <code>\#{variable}</code>
+to insert them into property names or selectors.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#8be9fd;font-style:italic">$wk</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">-</span>webkit-;
 
 <span style="color:#50fa7b">.rounded-box</span> {
   #{$<span style="color:#ff79c6">wk</span>}<span style="color:#ff79c6">border-radius</span>: <span style="color:#ff79c6">4px</span>;
 }
 </code></pre></div><h2 id="mixins">Mixins</h2>
-<p>Mixins allow re-use of styles without having to copy and paste them or move them into a non-semantic class.</p>
-<p>Mixins are defined using the <code>@mixin</code> directive, which takes a block of styles that can then be included in another selector using the <code>@include</code> directive.</p>
+<p>Mixins allow re-use of styles without having to copy and paste them or move them
+into a non-semantic class.</p>
+<p>Mixins are defined using the <code>@mixin</code> directive, which takes a block of styles
+that can then be included in another selector using the <code>@include</code> directive.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#ff79c6">@mixin</span><span style="color:#50fa7b"> default-box</span> {
   <span style="color:#8be9fd;font-style:italic">$borderColor</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">#333</span>;
   <span style="color:#6272a4">/* $borderColor could be used only
@@ -188,7 +193,8 @@ Each of those variables is assigned a value each time the mixin is used.</p>
 <span style="color:#ff79c6">header</span>{ <span style="color:#ff79c6">@include</span> default-box(<span style="color:#bd93f9">#333</span><span style="color:#ff79c6">,</span> block<span style="color:#ff79c6">,</span> <span style="color:#bd93f9">10</span><span style="color:#8be9fd">px</span>); }
 <span style="color:#ff79c6">footer</span>{ <span style="color:#ff79c6">@include</span> default-box(<span style="color:#bd93f9">#999</span><span style="color:#ff79c6">,</span> inline<span style="color:#ff79c6">-</span>block<span style="color:#ff79c6">,</span> <span style="color:#bd93f9">5</span><span style="color:#8be9fd">px</span>); }
 </code></pre></div><h2 id="selector-inheritance">Selector Inheritance</h2>
-<p>Sass, using the <code>@extend</code> directive, can tell one selector to inherit all the styles of another without duplicating the CSS properties.</p>
+<p>Sass, using the <code>@extend</code> directive, can tell one selector to inherit all the
+styles of another without duplicating the CSS properties.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#50fa7b">.error</span> {
   <span style="color:#ff79c6">border</span>: <span style="color:#ff79c6">1px</span> #f00;
   <span style="color:#ff79c6">background</span>: #fdd;
@@ -199,8 +205,9 @@ Each of those variables is assigned a value each time the mixin is used.</p>
   <span style="color:#ff79c6">font-size</span>: <span style="color:#ff79c6">18px</span>;
 }
 </code></pre></div><h2 id="import-stylesheet">Import stylesheet</h2>
-<p>CSS has an <code>@import</code> directive that allows you to break your styles up into multiple stylesheets.
-Any style rule, variables or mixins defined in imported files are available to the files that import them.</p>
+<p>CSS has an <code>@import</code> directive that allows you to break your styles up into
+multiple stylesheets. Any style rule, variables or mixins defined in imported
+files are available to the files that import them.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#ff79c6">@import</span> <span style="color:#f1fa8c">&#34;partials/_vars&#34;</span>;
 
 <span style="color:#ff79c6">body</span> {
@@ -211,11 +218,15 @@ Any style rule, variables or mixins defined in imported files are available to t
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sass --watch style.scss:style.css
 </code></pre></div><p>or to watch all the files in a directory:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sass --watch stylesheets/sass:stylesheets/compiled
-</code></pre></div><p>If you don&rsquo;t want to mess your mind with this different style of writing CSS, you could still continue to write your classic CSS rules in a .scss file and use the SASS engine to get the correspondent CSS. Why?</p>
+</code></pre></div><p>If you don&rsquo;t want to mess your mind with this different style of writing CSS,
+you could still continue to write your classic CSS rules in a .scss file and use
+the SASS engine to get the correspondent CSS. Why?</p>
 <p>Because, by setting the right options, you could use the SASS engine to minimize your CSS.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sass --style <span style="color:#ff79c6">{</span>nested | expanded | compact | compressed<span style="color:#ff79c6">}</span>
   --watch path/sass:path/compiled
-</code></pre></div><p>I leave to you the test of how the use of these different keywords changes the output. If you have not much time, you could find this answer, and much more, on the official <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html" title="SASS Reference">reference page</a>.</p>
+</code></pre></div><p>I leave to you the test of how the use of these different keywords changes the output.
+If you have not much time, you could find this answer, and much more, on the official
+<a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html" title="SASS Reference">reference page</a>.</p>
 </div>
   <div class="post-footer">
     <div class="post-date">March 20, 2013</div>

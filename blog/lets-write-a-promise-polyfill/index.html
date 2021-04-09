@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="Let&#39;s write a Promise polyfill">
@@ -122,25 +122,33 @@
   <h1>Let&#39;s write a Promise polyfill</h1>
   <div class="post-body"><p>TL:DR; You can watch me live coding a promise&rsquo;s polyfill on YouTube.
 Watch <a href="https://www.youtube.com/watch?v=E_p-PVNqhZE&amp;list=PLZYZ2RjeQoPiJcbCzArwMQXr3gr8tXCLC">Let&rsquo;s build a promise polyfill</a> playlist.</p>
+<p>We&rsquo;re going to build a Promise polyfill; it&rsquo;s the best way to understand how things
+work under the hood, after all.
 <br/>
-<p>We&rsquo;re going to build a Promise polyfill; it&rsquo;s the best way to understand how things work under the hood, after all.</p>
-<p>My goal is not to have the most performant, or feature rich, implementation, but I&rsquo;ll try to optimize for ease of readability.</p>
-<p>A brief disclaimer before we even start: you might have heard that Promise are going to disappear soon, cause <code>async function</code> permit to further improve how we handle asynchronous code.
-That&rsquo;s only partially true, because async functions are built on top of Promise, having a solid understanding of how Promise works is important as never before.</p>
-<p>So let&rsquo;s start from the very beginning: <strong>What&rsquo;s a Promise?</strong></p>
-<p>A promise represents the result of an operation (usually an asynchronous operation), it is a wrapper around a value, that may, or may not be available sometimes in the future. We stop to care about this.
-It&rsquo;s useful because it permits developers to more easily work with a future value, as it was already available.</p>
+My goal is not to have the most performant, or feature rich, implementation, but I&rsquo;ll try to
+optimize for ease of readability.</p>
+<p>A brief disclaimer before we start: you might have heard that Promise are going to disappear soon,
+cause <code>async function</code> permit to further improve how we handle asynchronous code.
+That&rsquo;s only partially true, because async functions are built on top of Promise,
+having a solid understanding of how Promise works is important as never before.</p>
+<p>So let&rsquo;s start from the very beginning: <strong>What&rsquo;s a Promise?</strong>
+<br/>
+A promise represents the result of an operation (usually an asynchronous operation),
+it is a wrapper around a value, that may, or may not be available sometimes in the future.
+We stop to care about this. It&rsquo;s useful because it permits developers to more easily
+work with a future value, as it was already available.</p>
 <p>We create a new promise using the <code>new</code> operator.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; {
   resolve(<span style="color:#bd93f9">42</span>);
 });
-</code></pre></div><p>Despite being a <code>function</code> under the hood, <code>class</code> in JavaScript can&rsquo;t be executed without the <code>new</code> operator.
-So it does make sense to model our shim as a class.</p>
+</code></pre></div><p>Despite being a <code>function</code> under the hood, <code>class</code> in JavaScript can&rsquo;t be executed without
+the <code>new</code> operator. So it does make sense to model our shim as a class.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
   constructor () {}
 }
 </code></pre></div><p>A promise is characterized by its <code>value</code> and <code>state</code>.</p>
-<p>A promise could have as value, whatever existing JavaScript value. It makes sense to consider <code>undefined</code> as initial value.</p>
+<p>A promise could have as value, whatever existing JavaScript value.
+It makes sense to consider <code>undefined</code> as initial value.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
   constructor () {
     <span style="color:#ff79c6">this</span>.value <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">void</span> <span style="color:#bd93f9">0</span>;
@@ -149,17 +157,21 @@ So it does make sense to model our shim as a class.</p>
 </code></pre></div><p>Differently the state could assume only three possibile <em>values</em>:</p>
 <ul>
 <li>
-<p><strong>FULFILLED</strong>, when the operation represented by the promise has been successfully completed, and its result has been used to define promise&rsquo;s value.</p>
+<p><strong>FULFILLED</strong>, when the operation represented by the promise has been successfully completed,
+and its result has been used to define promise&rsquo;s value.</p>
 </li>
 <li>
-<p><strong>REJECTED</strong>, when the operation represented by the promise has been completed, but it failed. In this case, the reason for the failure is used to define promise&rsquo;s value.</p>
+<p><strong>REJECTED</strong>, when the operation represented by the promise has been completed, but it failed.
+In this case, the reason for the failure is used to define promise&rsquo;s value.</p>
 </li>
 <li>
 <p><strong>PENDING</strong>, when the operation represented by the promise has not yet been completed.</p>
 </li>
 </ul>
-<p>Also, very important to remind is that once a promise is fulfilled, or rejected, there&rsquo;s no way its value, and state could be further modified.</p>
-<p>Domenic Denicola has written very clearly about <a href="https://github.com/domenic/promises-unwrapping/blob/4a1c72c0fc4f9e47dbc7ae866970caf261aa46ab/docs/states-and-fates.md">the nomenclature</a>.</p>
+<p>Also, very important to remind is that once a promise is fulfilled, or rejected,
+there&rsquo;s no way its value, and state could be further modified.
+<br/>
+Domenic Denicola has written very clearly about <a href="https://github.com/domenic/promises-unwrapping/blob/4a1c72c0fc4f9e47dbc7ae866970caf261aa46ab/docs/states-and-fates.md">the nomenclature</a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> [
   FULFILLED,
   REJECTED,
@@ -191,21 +203,27 @@ and <code>reject</code>, which have the power to settle the fate of the promise.
 
   executor(resolve, reject);
 }
-</code></pre></div><p><code>resolve</code> takes as argument the value that should be used to define value of the promise. For now, let&rsquo;s consider the state of the promise as fulfilled. That&rsquo;s not correct&hellip; but we&rsquo;ll fix this later.</p>
+</code></pre></div><p><code>resolve</code> takes as argument the value that should be used to define value of the promise.
+For now, let&rsquo;s consider the state of the promise as fulfilled. That&rsquo;s not correct&hellip;
+but we&rsquo;ll fix this later.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
   (value) =&gt; {
     <span style="color:#ff79c6">this</span>.value <span style="color:#ff79c6">=</span> value;
     <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">=</span> FULFILLED; <span style="color:#6272a4">// #FIXME
 </span><span style="color:#6272a4"></span>  };
-</code></pre></div><p>Also <code>reject</code> takes as input parameter the value, that should be used to define the value of the promise; for a rejected promise, the reason for the rejection is considered as the value.
+</code></pre></div><p>Also <code>reject</code> takes as input parameter the value, that should be used to define
+the value of the promise; for a rejected promise, the reason for the rejection
+is considered as value.
 The state in this case could be safely assumed as always rejected.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> reject <span style="color:#ff79c6">=</span>
   (reason) =&gt; {
     <span style="color:#ff79c6">this</span>.value <span style="color:#ff79c6">=</span> reason;
     <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">=</span> REJECTED;
   };
-</code></pre></div><p>The biggest flaw in current implementation is that it gives everybody free access to promise&rsquo;s internal state and value. Native promises keep this data into <em>internal slots</em>.</p>
-<p>It&rsquo;s not possible to replicate internal slots in userland, but we can go pretty close.</p>
+</code></pre></div><p>The biggest flaw in current implementation is that it gives everybody free access to
+promise&rsquo;s internal state and value. Native promises keep this data into <em>internal slots</em>.
+<br/>
+It&rsquo;s not possible to replicate internal slots in userland, but we can go pretty close.</p>
 <p>Let&rsquo;s start by replacing the instance&rsquo;s fields with readonly accessors on the class prototype.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
   get state () {
@@ -236,7 +254,8 @@ The state in this case could be safely assumed as always rejected.</p>
     executor(resolve, reject);
   }
 }
-</code></pre></div><p><code>resolve</code> and <code>reject</code> are going to shadow those fields when executing, by creating instance fields, which are not enumerable, not configurable, and not writable.</p>
+</code></pre></div><p><code>resolve</code> and <code>reject</code> are going to shadow those fields when executing, by creating
+instance fields, which are not enumerable, not configurable, and not writable.</p>
 <p>Let&rsquo;s create a simple utility for this job:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> defineProperty <span style="color:#ff79c6">=</span>
   (target, propName, propValue) =&gt; {
@@ -304,7 +323,8 @@ been settled.</p>
 </code></pre></div><p>Looking at the code written so far, we can see how the <code>executor</code> is immediately invoked.
 We can&rsquo;t know, nor should we care, about the kind of code we&rsquo;re running&hellip;
 It might throw, and we should be ready for this possibility.</p>
-<p>When <code>executor</code> throws an exception, we still get back a promise, that is rejected, with the error been thrown as value.
+<p>When <code>executor</code> throws an exception, we still get back a promise, that is rejected,
+with the error been thrown as value.
 Implementing this behaviour in our shim is pretty straightforward.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">try</span> {
   executor(resolve, reject);
@@ -336,9 +356,13 @@ executed when the promise becomes fulfilled, the latter when it gets rejected.
   }
 }
 </code></pre></div><p>However <code>onfulfill</code>, and <code>onreject</code> are not synchronously executed after promise&rsquo;s state changes.
-Their execution is asynchronous; the JavaScript engine schedules their execution as a microtask. This should guarantee that they&rsquo;re executed asynchronously, but anyway before any other task.</p>
-<p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Jake Archibald has a great post on this topic</a>, and more recently <a href="https://www.youtube.com/watch?v=cCOL7MC4Pl0">he has also spoken about JavaScript event loop at JSConf.Asia 2018</a>. I absolutely recommend these resources.</p>
-<p>We&rsquo;ll see later how to mock this behaviour in our polyfill; for now the take away is that since <code>onfulfill</code>, and <code>onreject</code> are not immediately executed, we need a place to store them for when the right moment arrives.
+Their execution is asynchronous; the JavaScript engine schedules their execution as a microtask.
+This should guarantee that they&rsquo;re executed asynchronously, but anyway before any other task.</p>
+<p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Jake Archibald has a great post on this topic</a>, and more recently
+<a href="https://www.youtube.com/watch?v=cCOL7MC4Pl0">he has also spoken about JavaScript event loop at JSConf.Asia 2018</a>. I absolutely recommend these resources.</p>
+<p>We&rsquo;ll see later how to mock this behaviour in our polyfill; for now the take away is that
+since <code>onfulfill</code>, and <code>onreject</code> are not immediately executed, we need a place to store them
+for when the right moment arrives.
 Let&rsquo;s prepare a such place:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
   constructor (executor) {
@@ -370,10 +394,14 @@ Let&rsquo;s prepare a such place:</p>
 }
 </code></pre></div><p>The above implementation is still incomplete, but it&rsquo;s a good starting point to understand
 what&rsquo;s going on.</p>
-<p>We&rsquo;ve wrapped the <code>onfulfill</code>, <code>onreject</code> functions (arguments of <code>then</code>) into another couple of functions, which capture in the closure <code>resolve</code>, and <code>reject</code>, and doing so, also the capability to resolve, reject the returned promise.
-These functions are then stored into <code>observers</code> field, so that later we can reference, and execute them.</p>
+<p>We&rsquo;ve wrapped the <code>onfulfill</code>, <code>onreject</code> functions (arguments of <code>then</code>) into another couple
+of functions, which capture in the closure <code>resolve</code>, and <code>reject</code>, and doing so, also the
+capability to resolve, reject the returned promise.
+These functions are then stored into <code>observers</code> field, so that later we can reference,
+and execute them.</p>
 <p><code>internalOnfulfill</code>, and <code>internalOnreject</code> are mostly incomplete at this point.</p>
-<p>For instance <code>internalOnfulfill</code> should also put into account the fact that <code>onfulfill</code> may not be provided, or that it may throw an exception.
+<p>For instance <code>internalOnfulfill</code> should also put into account the fact that <code>onfulfill</code>
+may not be provided, or that it may throw an exception.
 So it&rsquo;s better written as:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> internalOnfulfill <span style="color:#ff79c6">=</span>
   (value) =&gt; {
@@ -387,7 +415,8 @@ So it&rsquo;s better written as:</p>
       reject(error);
     }
   };
-</code></pre></div><p>And almost the same consideration could be done about <code>internalOnreject</code>, so that it could be rewritten as:</p>
+</code></pre></div><p>And almost the same consideration could be done about <code>internalOnreject</code>, so that
+it could be rewritten as:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> internalOnreject <span style="color:#ff79c6">=</span>
   (reason) =&gt; {
     <span style="color:#ff79c6">try</span> {
@@ -448,9 +477,10 @@ Do you remember the problem?</p>
     defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;value&#34;</span>, value);
     defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>, FULFILLED); <span style="color:#6272a4">// #FIXME
 </span><span style="color:#6272a4"></span>  };
-</code></pre></div><p>We had assumed that <code>resolve</code> always produce a fulfilled promise, but this doesn&rsquo;t always hold true: that&rsquo;s not the case when the value <code>resolve</code> receives as argument is itself a promise.</p>
-<p>So, first step is to determine whether a value is a promise (or better a <em>thenable</em>), or not.
-I use <em>duck checking</em> for this purpose:</p>
+</code></pre></div><p>We had assumed that <code>resolve</code> always produce a fulfilled promise, but this doesn&rsquo;t always hold true:
+that&rsquo;s not the case when the value <code>resolve</code> receives as argument is itself a promise.</p>
+<p>So, first step is to determine whether a value is a promise (or better a <em>thenable</em>),
+or not. I use <em>duck checking</em> for this purpose:</p>
 <blockquote>
 <p>If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.</p>
 </blockquote>
@@ -488,9 +518,11 @@ That&rsquo;s cause we can easily access state, and value of promises created by 
 We&rsquo;re going to register an observer on it, in order to be notified when its state changes.
 However we can&rsquo;t simply write it like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">value.then(resolve, reject);
-</code></pre></div><p>Otherwise the guard on <code>this.settled</code>, that we&rsquo;ve put in place earlier to protect the value/state from unlegitimate changes, won&rsquo;t permit us to proceed further.
-We need to put in place a mechanism to bypass that safety guard.</p>
-<p>Sure there are different ways to make this&hellip;
+</code></pre></div><p>Otherwise the guard on <code>this.settled</code>, that we&rsquo;ve put in place earlier to protect
+the value/state from unlegitimate changes, won&rsquo;t permit us to proceed further.
+We need to put in place a mechanism to bypass that safety guard.
+<br/>
+Sure there are different ways to make this&hellip;
 I&rsquo;m going to setup a bypass mechanism based on a key that simply is not possible to have
 from outside the class' constructor.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> secret <span style="color:#ff79c6">=</span> [];
@@ -558,7 +590,8 @@ Let&rsquo;s fix this:</p>
     }
   };
 </code></pre></div><p>On the other hand, <code>reject</code> was already pretty fine.
-At the point it&rsquo;s executed, is already pretty clear that we&rsquo;re going to end up with a new rejected promise, so there&rsquo;s no reason to wait:</p>
+At the point it&rsquo;s executed, is already pretty clear that we&rsquo;re going to end up with
+a new rejected promise, so there&rsquo;s no reason to wait:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> lateRejection <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((_, reject) =&gt; {
   setTimeout(reject, <span style="color:#bd93f9">60000</span>, <span style="color:#f1fa8c">&#34;A minute late rejection.&#34;</span>);
 });
@@ -582,9 +615,13 @@ So it ends up being as below:</p>
     defineProperty(<span style="color:#ff79c6">this</span>, <span style="color:#f1fa8c">&#34;state&#34;</span>, REJECTED);
   };
 </code></pre></div><p>Having fixed the <code>constructor</code>, let&rsquo;s recap what we&rsquo;ve done till this point.</p>
-<p>We&rsquo;ve in place a reliable mechanism to mark an object representing a promise as fulfilled, or rejected. We&rsquo;ve also a way to register an handler that should be invoked as microtask - that is before any other task - when promise&rsquo;s fate is set.</p>
-<p>What is still missing is something that triggers the execution of all the registered observers when a promise changes its state.</p>
-<p>But, at this point is not hard to find where promise&rsquo;s fate is defined: in the <code>resolve</code>, and <code>reject</code> functions, which are declared in the <code>constructor</code>.
+<p>We&rsquo;ve in place a reliable mechanism to mark an object representing a promise as fulfilled,
+or rejected. We&rsquo;ve also a way to register an handler that should be invoked as
+microtask - that is before any other task - when promise&rsquo;s fate is set.</p>
+<p>What is still missing is something that triggers the execution of all the registered observers
+when a promise changes its state.</p>
+<p>But, at this point is not hard to find where promise&rsquo;s fate is defined: in the <code>resolve</code>,
+and <code>reject</code> functions, which are declared in the <code>constructor</code>.
 That&rsquo;s the best place to schedule the observers as microtask.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
   (value, bypassKey) =&gt; {
@@ -633,8 +670,11 @@ That&rsquo;s the best place to schedule the observers as microtask.</p>
     schedule(<span style="color:#ff79c6">this</span>.observers);
   };
 </code></pre></div><p>Let for a moment <code>schedule</code> not implemented.
-The instance&rsquo;s <code>observers</code> field is an <code>array</code> of <code>object</code>s, each containing an <code>onfulfill</code>, and <code>onreject</code> handler&hellip; but only one of these is effectively executed, on the basis of the promise&rsquo;s state.
-When <code>schedule</code> is executed the promise&rsquo;s state is already known, so that we can pass to <code>schedule</code> the correct handler, together with the promise&rsquo;s value.</p>
+The instance&rsquo;s <code>observers</code> field is an <code>array</code> of <code>object</code>s, each containing an <code>onfulfill</code>,
+and <code>onreject</code> handler&hellip; but only one of these is effectively executed, on the basis of the
+promise&rsquo;s state.
+When <code>schedule</code> is executed the promise&rsquo;s state is already known, so that we can pass
+to <code>schedule</code> the correct handler, together with the promise&rsquo;s value.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">schedule(
   <span style="color:#ff79c6">this</span>.observers.map((observer) =&gt; ({
     handler<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">===</span> FULFILLED
@@ -643,8 +683,10 @@ When <code>schedule</code> is executed the promise&rsquo;s state is already know
     value<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">this</span>.value
   }))
 );
-</code></pre></div><p>Before moving on, it&rsquo;s important to consider that, <code>then</code> may happen to be called on a promise, that is already fulfilled, or rejected.
-To determine whether that&rsquo;s the case we can check promise&rsquo;s state, and consequently registering, or scheduling the observers.</p>
+</code></pre></div><p>Before moving on, it&rsquo;s important to consider that, <code>then</code> may happen to be called on a promise,
+that is already fulfilled, or rejected.
+To determine whether that&rsquo;s the case we can check promise&rsquo;s state, and consequently registering,
+or scheduling the observers.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.state <span style="color:#ff79c6">===</span> PENDING) {
   <span style="color:#ff79c6">this</span>.observers.push({
     onfulfill<span style="color:#ff79c6">:</span> internalOnfulfill,
@@ -665,7 +707,9 @@ The problem we&rsquo;re going to solve could be summerized as:</p>
 </blockquote>
 <p>Let&rsquo;s consider for now only browsers as target environment of our shim.
 Later we&rsquo;re going to extend it, to be environment-independent, but let&rsquo;s keep it simple for now.</p>
-<p>Since we&rsquo;re just considering browsers, we can exploit the fact that the handler passed to a <a href="https://developer.mozilla.org/it/docs/Web/API/MutationObserver">mutation observer</a> is scheduled as a microtask.</p>
+<p>Since we&rsquo;re just considering browsers, we can exploit the fact that the handler passed
+to a <a href="https://developer.mozilla.org/it/docs/Web/API/MutationObserver">mutation observer</a> is
+scheduled as a microtask.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> func <span style="color:#ff79c6">=</span>
   () =&gt; console.log(<span style="color:#f1fa8c">&#34;A microtask&#34;</span>);
 
@@ -676,7 +720,8 @@ observer.observe(node, { characterData<span style="color:#ff79c6">:</span> <span
 
 setTimeout(() =&gt; console.log(<span style="color:#f1fa8c">&#34;A task&#34;</span>), <span style="color:#bd93f9">0</span>);
 node.data <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
-</code></pre></div><p>In the above snippet, <code>func</code> is scheduled as microtask when <code>node</code>&rsquo;s data changes, and it&rsquo;s invoked before the handler passed to <code>setTimeout</code>.</p>
+</code></pre></div><p>In the above snippet, <code>func</code> is scheduled as microtask when <code>node</code>&rsquo;s data changes,
+and it&rsquo;s invoked before the handler passed to <code>setTimeout</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> schedule <span style="color:#ff79c6">=</span>
   (() =&gt; {
     <span style="color:#8be9fd;font-style:italic">let</span> microtasks <span style="color:#ff79c6">=</span> [];
@@ -714,11 +759,15 @@ Let&rsquo;s look better at the <code>while</code> loop:</p>
   handler(value);
 }
 </code></pre></div><p>What do you think should happen in case <code>handler</code> throws an exception?</p>
-<p>We&rsquo;ve sprinkled a few <code>try... catch</code>es around, which helps create rejected promises whenever an otherwise uncaught exception occurs.
+<p>We&rsquo;ve sprinkled a few <code>try... catch</code>es around, which helps create rejected promises
+whenever an otherwise uncaught exception occurs.
 But they are somehow overprotective.
-In fact what would have been an uncaught exception using the native built-in, is always caught somewhere in our shim.</p>
-<p>We’ve to re-throw the exception, immediately (not synchronously) after having marked the promise rejected.</p>
-<p>The only condition is that the promise&rsquo;s rejection remains uncaught, that is there&rsquo;s at least a promise&rsquo;s chain branch that is not recovered with <code>then(*, onreject)</code>.</p>
+In fact what would have been an uncaught exception using the native built-in,
+is always caught somewhere in our shim.</p>
+<p>We’ve to re-throw the exception, immediately (not synchronously) after having marked
+the promise rejected.</p>
+<p>The only condition is that the promise&rsquo;s rejection remains uncaught, that is there&rsquo;s
+at least a promise&rsquo;s chain branch that is not recovered with <code>then(*, onreject)</code>.</p>
 <p>In order to know whether that&rsquo;s the case we need to know the whole promises' chain.
 So, let&rsquo;s start by adding to our class another field, to track the chain.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
@@ -761,7 +810,8 @@ So, let&rsquo;s start by adding to our class another field, to track the chain.<
     }
     thrower(error);
   });
-</code></pre></div><p>We can now use <code>raiseUnhandledPromiseRejectionException</code> to schedule the throwing of an exception when a promise gets rejected.</p>
+</code></pre></div><p>We can now use <code>raiseUnhandledPromiseRejectionException</code> to schedule the throwing of an exception
+when a promise gets rejected.</p>
 <p>So it should be used in <code>reject</code> of course:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> reject <span style="color:#ff79c6">=</span>
   (reason, bypassKey) =&gt; {
@@ -827,7 +877,8 @@ So, let&rsquo;s start by adding to our class another field, to track the chain.<
       }
     }
   };
-</code></pre></div><p>Current implementation works quite well; but it has still a few problems in some edge cases, in which it ends up throwing more than what&rsquo;s due. As example:</p>
+</code></pre></div><p>Current implementation works quite well; but it has still a few problems in some edge cases,
+in which it ends up throwing more than what&rsquo;s due. As example:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> immediateRejection <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((_, reject) =&gt; {
   reject(<span style="color:#f1fa8c">&#34;Boom&#34;</span>);
 });
@@ -835,7 +886,8 @@ So, let&rsquo;s start by adding to our class another field, to track the chain.<
 <span style="color:#ff79c6">const</span> promise <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve) =&gt; {
   resolve(immediateRejection);
 });
-</code></pre></div><p>When a promise is resolved to a rejected promise, there should be only one throw after the promise is resolved.</p>
+</code></pre></div><p>When a promise is resolved to a rejected promise, there should be only one throw after
+the promise is resolved.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> resolve <span style="color:#ff79c6">=</span>
   (value, bypassKey) =&gt; {
     <span style="color:#6272a4">// ...
@@ -849,7 +901,8 @@ So, let&rsquo;s start by adding to our class another field, to track the chain.<
 
     <span style="color:#6272a4">// ...
 </span><span style="color:#6272a4"></span>  };
-</code></pre></div><p>This information is gold, and permits <code>raiseUnhandledPromiseRejectionException</code> to further restrict the condition on which it throws:</p>
+</code></pre></div><p>This information is gold, and permits <code>raiseUnhandledPromiseRejectionException</code> to further
+restrict the condition on which it throws:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> raiseUnhandledPromiseRejectionException <span style="color:#ff79c6">=</span>
   defer((error, promise) =&gt; {
     <span style="color:#ff79c6">if</span> (promise.preventThrow <span style="color:#ff79c6">||</span> promise.chain.length <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>) {
@@ -857,8 +910,11 @@ So, let&rsquo;s start by adding to our class another field, to track the chain.<
     }
     thrower(error);
   });
-</code></pre></div><p>Our scheduler works now pretty well on every browsers supporting <code>MutationObservers</code>; but it throws pretty fast when executed as Node.js module. That&rsquo;s cause there&rsquo;s no such a thing as mutation observers in node.
-Let&rsquo;s now try to extend <code>schedule</code>, so that it works indifferently both on browsers, both in Node.js.</p>
+</code></pre></div><p>Our scheduler works now pretty well on every browsers supporting <code>MutationObservers</code>;
+but it throws pretty fast when executed as Node.js module. That&rsquo;s cause there&rsquo;s no such a thing
+as mutation observers in node.
+Let&rsquo;s now try to extend <code>schedule</code>, so that it works indifferently both on browsers,
+both in Node.js.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> schedule <span style="color:#ff79c6">=</span>
   (() =&gt; {
     <span style="color:#8be9fd;font-style:italic">let</span> microtasks <span style="color:#ff79c6">=</span> [];
@@ -942,10 +998,13 @@ observer.observe(node, { characterData<span style="color:#ff79c6">:</span> <span
       ctrl.trigger();
     };
   })();
-</code></pre></div><p>Current version works exactly how the previous implementation, but it&rsquo;s far easier to extend; we only need to provide a different <em>strategy</em> for Node.js, or for browsers which don&rsquo;t support <code>MutationObserver</code>; and that&rsquo;s exactly what we&rsquo;re going to do now.</p>
-<p>The only requirement we&rsquo;ve is that all the strategies match the same unwritten interface, that is implement the <code>trigger</code> method.</p>
+</code></pre></div><p>Current version works exactly how the previous implementation, but it&rsquo;s far easier to extend;
+we only need to provide a different <em>strategy</em> for Node.js, or for browsers which don&rsquo;t support <code>MutationObserver</code>; and that&rsquo;s exactly what we&rsquo;re going to do now.</p>
+<p>The only requirement we&rsquo;ve is that all the strategies match the same unwritten interface,
+that is implement the <code>trigger</code> method.</p>
 <p>We can use the built-in <code>process.nextTick</code> to schedule a microtask in Node.js.
-I would have preferred <code>setImmediate</code>, <a href="https://github.com/nodejs/node/issues/7145">but it appears to not be completely reliable yet</a>.</p>
+I would have preferred <code>setImmediate</code>,
+<a href="https://github.com/nodejs/node/issues/7145">but it appears to not be completely reliable yet</a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> NextTickStrategy {
   constructor (handler) {
     <span style="color:#ff79c6">this</span>.scheduleNextTick <span style="color:#ff79c6">=</span>
@@ -956,7 +1015,9 @@ I would have preferred <code>setImmediate</code>, <a href="https://github.com/no
     <span style="color:#ff79c6">this</span>.scheduleNextTick();
   }
 }
-</code></pre></div><p>Finally in a browser that does not support <code>MutationObserver</code>, there&rsquo;s no way I am aware of to schedule a microtask. For such cases we can still provide a strategy that mostly works, despite not being 100% spec compliant.</p>
+</code></pre></div><p>Finally in a browser that does not support <code>MutationObserver</code>, there&rsquo;s no way I am aware
+of to schedule a microtask. For such cases we can still provide a strategy that mostly works,
+despite not being 100% spec compliant.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> BetterThanNothingStrategy {
   constructor (handler) {
     <span style="color:#ff79c6">this</span>.scheduleAsap <span style="color:#ff79c6">=</span>
@@ -967,7 +1028,9 @@ I would have preferred <code>setImmediate</code>, <a href="https://github.com/no
     <span style="color:#ff79c6">this</span>.scheduleAsap();
   }
 }
-</code></pre></div><p>Now that we&rsquo;ve a lib of possible strategies, what&rsquo;s missing is an orchestrator, that picks the most appropriate strategy, given the current environment. Despite this sounding as a really smart move, it&rsquo;s as simple as writing a function, with a couple of <code>if</code>s inside.</p>
+</code></pre></div><p>Now that we&rsquo;ve a lib of possible strategies, what&rsquo;s missing is an orchestrator, that picks
+the most appropriate strategy, given the current environment. Despite this sounding as
+a really smart move, it&rsquo;s as simple as writing a function, with a couple of <code>if</code>s inside.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> getStrategy <span style="color:#ff79c6">=</span>
   () =&gt; {
     <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> <span style="color:#8be9fd;font-style:italic">window</span> <span style="color:#ff79c6">!=</span> <span style="color:#f1fa8c">&#34;undefined&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span>
@@ -982,16 +1045,22 @@ I would have preferred <code>setImmediate</code>, <a href="https://github.com/no
 
     <span style="color:#ff79c6">return</span> BetterThanNothingStrategy;
   }
-</code></pre></div><p>At this point, making the scheduler isomorphic (or universal, or whatever it&rsquo;s used these days) it&rsquo;s just a matter of replacing the hardcoded use of <code>MutationObserverStrategy</code> with the code below:</p>
+</code></pre></div><p>At this point, making the scheduler isomorphic (or universal, or whatever it&rsquo;s used these days)
+it&rsquo;s just a matter of replacing the hardcoded use of <code>MutationObserverStrategy</code> with the code below:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> Strategy <span style="color:#ff79c6">=</span> getStrategy();
 <span style="color:#ff79c6">const</span> ctrl <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Strategy(run);
 </code></pre></div><p>At this point our shim works pretty well, both on browsers, both in Node.js.
-What&rsquo;s still missing is to complete its public interface, with both the <em>instance</em>, and <em>static</em> methods.</p>
-<p>Beyond <code>then</code> (that is already completed), each promise instance has two other methods, <code>catch</code> and <code>finally</code>.</p>
-<p><code>catch</code> takes as argument a function, <code>onreject</code>, that is invoked in case the promise on which <code>catch</code> is called gets rejected. It returns a new promise that is fulfilled with the value <code>onreject</code> will return.
+What&rsquo;s still missing is to complete its public interface, with both the <em>instance</em>,
+and <em>static</em> methods.</p>
+<p>Beyond <code>then</code> (that is already completed), each promise instance has two other methods,
+<code>catch</code> and <code>finally</code>.</p>
+<p><code>catch</code> takes as argument a function, <code>onreject</code>, that is invoked in case the promise
+on which <code>catch</code> is called gets rejected. It returns a new promise that is fulfilled with
+the value <code>onreject</code> will return.
 This description might sound familiar&hellip; and for good reasons.
 It&rsquo;s pretty much what <code>then(*, onreject)</code> does.
-In fact we can think of <code>catch</code> as a shortcut for <code>then(null, onreject)</code>, and we can also implement it as such:</p>
+In fact we can think of <code>catch</code> as a shortcut for <code>then(null, onreject)</code>, and we can
+also implement it as such:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
   constructor (executor) {
   }
@@ -1003,10 +1072,18 @@ In fact we can think of <code>catch</code> as a shortcut for <code>then(null, on
   then (onfulfill, onreject) {
   }
 }
-</code></pre></div><p><code>finally</code> is a recent addition; it is introduced with ES2018, mostly to make Promise&rsquo;s public api match the historic <code>try {} catch (error) {} finally {}</code> block.</p>
-<p>You might need <code>finally</code> in the same scenarios you would have used the <code>finally</code> clause of a <code>try {} catch (error) {}</code> block, that is when you want the same instruction to be executed indipendently from the fact the code has thrown an exception or not.</p>
-<p><code>finally</code> receives as input parameter a function, <code>oncomplete</code>, that is executed when the promise on which it&rsquo;s called becomes fulfilled, or gets rejected. <code>oncomplete</code> does not receive anything as input parameter, neither its return value is used for something; in fact <code>finally</code> returns a new promise, that has the exact same state, and value of the promise on which <code>finally</code> has been called.
-The only case in which <code>finally</code> can produce a promise with different state, and value is when <code>oncomplete</code> throws an exception.</p>
+</code></pre></div><p><code>finally</code> is a recent addition; it is introduced with ES2018, mostly to make Promise&rsquo;s public api
+match the historic <code>try {} catch (error) {} finally {}</code> block.</p>
+<p>You might need <code>finally</code> in the same scenarios you would have used the <code>finally</code> clause of
+a <code>try {} catch (error) {}</code> block, that is when you want the same instruction to be executed
+indipendently from the fact the code has thrown an exception or not.</p>
+<p><code>finally</code> receives as input parameter a function, <code>oncomplete</code>, that is executed when the promise
+on which it&rsquo;s called becomes fulfilled, or gets rejected. <code>oncomplete</code> does not receive anything
+as input parameter, neither its return value is used for something; in fact <code>finally</code>
+returns a new promise, that has the exact same state, and value of the promise on which
+<code>finally</code> has been called.
+The only case in which <code>finally</code> can produce a promise with different state, and value is
+when <code>oncomplete</code> throws an exception.</p>
 <p>So let&rsquo;s implement this behaviour:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
   constructor (executor) {
@@ -1050,11 +1127,17 @@ The only case in which <code>finally</code> can produce a promise with different
   then (onfulfill, onreject) {
   }
 }
-</code></pre></div><p>To complete our implementation of Promise built-in at this point we&rsquo;re only missing a couple of static methods.</p>
-<p><code>Promise.resolve</code>, and <code>Promise.reject</code> despite some important difference are quite similar, at least for what concern the scope of usability.
-They are pretty useful in case you&rsquo;re not sure about a value you need to work with, and want to be sure it&rsquo;s a promise, or in case you know it&rsquo;s a promise built with a different library, and want to cast it to a genuine <code>Promifill</code> promise.</p>
+</code></pre></div><p>To complete our implementation of Promise built-in at this point we&rsquo;re only missing a
+couple of static methods.</p>
+<p><code>Promise.resolve</code>, and <code>Promise.reject</code> despite some important difference are quite similar,
+at least for what concern the scope of usability.
+They are pretty useful in case you&rsquo;re not sure about a value you need to work with,
+and want to be sure it&rsquo;s a promise, or in case you know it&rsquo;s a promise built with a different
+library, and want to cast it to a genuine <code>Promifill</code> promise.</p>
 <p>Let&rsquo;s talk about <code>Promise.resolve</code>.
-In case the provided value is already an original Promifill&rsquo;s promise it returns it unchanged. Otherwise it creates a new promise that is resolved with the provided value, following - in case it&rsquo;s a thenable - its <code>then</code> method.</p>
+In case the provided value is already an original Promifill&rsquo;s promise it returns it unchanged.
+Otherwise it creates a new promise that is resolved with the provided value, following - in case
+it&rsquo;s a thenable - its <code>then</code> method.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
   <span style="color:#ff79c6">static</span> resolve (value) {
     <span style="color:#ff79c6">return</span> value.constructor <span style="color:#ff79c6">===</span> Promifill
@@ -1064,8 +1147,11 @@ In case the provided value is already an original Promifill&rsquo;s promise it r
       });
   }
 }
-</code></pre></div><p>Since we&rsquo;ve implemented <code>Promise.resolve</code> on the basis of our internal <code>resolve</code> function, we&rsquo;ve got for free the correct behaviour in case the value passed to <code>Promise.resolve</code> is a generic <em>thenable</em>.</p>
-<p><code>Promise.reject</code> creates always a new promise that is immediately rejected with the given reason. So it&rsquo;s pretty straightforward to implement.</p>
+</code></pre></div><p>Since we&rsquo;ve implemented <code>Promise.resolve</code> on the basis of our internal <code>resolve</code> function,
+we&rsquo;ve got for free the correct behaviour in case the value passed to <code>Promise.resolve</code> is a
+generic <em>thenable</em>.</p>
+<p><code>Promise.reject</code> creates always a new promise that is immediately rejected with the given reason.
+So it&rsquo;s pretty straightforward to implement.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
   <span style="color:#ff79c6">static</span> reject (reason) {
     <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> Promifill((_, reject) =&gt; {
@@ -1073,8 +1159,14 @@ In case the provided value is already an original Promifill&rsquo;s promise it r
     });
   }
 }
-</code></pre></div><p>Finally the other two functions <code>Promise.all</code>, and <code>Promise.race</code> are more the kind of utilities you could find in other libraries.</p>
-<p><code>Promise.all</code> receives as input an <em>iterable</em>, such as an array, and returns a new promise that is fulfilled only when all the values in the iterable are fulfilled. In this case the value of the promise is an array containing the fulfilled values of each element of the iterable. In case at least one of the element in the iterable gets rejected, the new promise is rejected as well, with the reason of the first element in the iterable been rejected.</p>
+</code></pre></div><p>Finally the other two functions <code>Promise.all</code>, and <code>Promise.race</code> are more the kind of
+utilities you could find in other libraries.</p>
+<p><code>Promise.all</code> receives as input an <em>iterable</em>, such as an array, and returns a new promise
+that is fulfilled only when all the values in the iterable are fulfilled. In this case
+the value of the promise is an array containing the fulfilled values of each element
+of the iterable. In case at least one of the element in the iterable gets rejected,
+the new promise is rejected as well, with the reason of the first element in the iterable
+been rejected.</p>
 <p>Let&rsquo;s implement this behaviour.</p>
 <p>We start by validating the input parameters: it&rsquo;s required that it is an <code>iterable</code>.
 Let&rsquo;s create a couple of utility for this task; let&rsquo;s have an <code>isIterable</code>:</p>
@@ -1100,7 +1192,9 @@ Let&rsquo;s create a couple of utility for this task; let&rsquo;s have an <code>
 </span><span style="color:#6272a4"></span>    });
   }
 }
-</code></pre></div><p>To implement <code>Promise.all</code> behaviour, we&rsquo;ll need an array where to store the fulfilled value of all the element in the iterable. It starts empty, and we&rsquo;ll add element to it as soon as each one become fulfilled.</p>
+</code></pre></div><p>To implement <code>Promise.all</code> behaviour, we&rsquo;ll need an array where to store the fulfilled
+value of all the element in the iterable. It starts empty, and we&rsquo;ll add element to it
+as soon as each one become fulfilled.</p>
 <p>So we start iterating on all the element in the iterable.
 We use <code>Promifill.resolve</code> to normalize each entry to a genuine <code>Promifill</code> object.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
@@ -1124,7 +1218,8 @@ We use <code>Promifill.resolve</code> to normalize each entry to a genuine <code
     });
   }
 }
-</code></pre></div><p>The internal <code>add</code> method should also check that all the elements in the iterable have been fulfilled, hence resolve the new promise.</p>
+</code></pre></div><p>The internal <code>add</code> method should also check that all the elements in the iterable have been
+fulfilled, hence resolve the new promise.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> add <span style="color:#ff79c6">=</span>
   (value, index) =&gt; {
     values[index] <span style="color:#ff79c6">=</span> value;
@@ -1132,8 +1227,11 @@ We use <code>Promifill.resolve</code> to normalize each entry to a genuine <code
       resolve(values);
     }
   };
-</code></pre></div><p>Current <code>add</code>&rsquo;s implementation might result bugged; in fact in case the last element in the iterable is not the last element to be fulfilled/rejected <code>values.length === iterableSize</code> results <code>true</code> (<code>values</code> becomes a sparse array) and the promise becomes fulfilled too early.
-That&rsquo;s could be fixed by remembering that <code>Array#filter</code> skips array&rsquo;s hole; so that the check becomes something like:</p>
+</code></pre></div><p>Current <code>add</code>&rsquo;s implementation might result bugged; in fact in case the last element in the iterable
+is not the last element to be fulfilled/rejected <code>values.length === iterableSize</code>
+results <code>true</code> (<code>values</code> becomes a sparse array) and the promise becomes fulfilled too early.
+That&rsquo;s could be fixed by remembering that <code>Array#filter</code> skips array&rsquo;s hole; so that the
+check becomes something like:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> add <span style="color:#ff79c6">=</span>
   (value, index) =&gt; {
     values[index] <span style="color:#ff79c6">=</span> value;
@@ -1143,7 +1241,8 @@ That&rsquo;s could be fixed by remembering that <code>Array#filter</code> skips 
   };
 </code></pre></div><p>To complete <code>Promise.all</code> we need to cover a last edge case.
 What would happen in case the iterable is empty?
-Current implementation returns a promise that never gets settled; but that&rsquo;s not what it&rsquo;s supposed to do.
+Current implementation returns a promise that never gets settled; but that&rsquo;s not what
+it&rsquo;s supposed to do.
 In this case it should return a promise that&rsquo;s fulfilled, and has as value an empty array.</p>
 <p>So first task is to determine whether an iterable is empty.
 So let&rsquo;s add <code>isEmptyIterable</code> in our lib:</p>
@@ -1189,7 +1288,9 @@ So let&rsquo;s add <code>isEmptyIterable</code> in our lib:</p>
   }
 }
 </code></pre></div><p>Finally <code>Promise.race</code>.
-It accepts an iterable as input parameter, and returns a new promise, that is fulfilled, or gets rejected as soon the first element in the iterable is fulfilled, or gets rejected with that value, or reason.</p>
+It accepts an iterable as input parameter, and returns a new promise, that is fulfilled,
+or gets rejected as soon the first element in the iterable is fulfilled, or gets rejected with
+that value, or reason.</p>
 <p>Strange enough, in case it receives an empty iterable, the promise it returns, never gets settled.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">class</span> Promifill {
   <span style="color:#ff79c6">static</span> race (iterable) {

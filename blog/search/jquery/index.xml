@@ -14,8 +14,7 @@
       
       <guid>https://brunoscopelliti.com/blog/jquery-custom-build/</guid>
       <description>Ok, jQuery doesn&amp;rsquo;t need any presentation.
-I really like it; it has simplified a lot my work&amp;hellip; BUT sometimes its almost 100Kb of sweetness are a price we can not pay.
-If this is the case a good trade-off between light weight pages and all the goodness of jQuery, is to use a custom build of jQuery.
+I really like it; it has simplified a lot my work&amp;hellip; BUT sometimes its almost 100Kb of sweetness are a price we can not pay. If this is the case a good trade-off between light weight pages and all the goodness of jQuery, is to use a custom build of jQuery.
 Custom builds allow to choose what features of jQuery are to be included in the minified file, and which not; perhaps you are working on a project and you are sure you&amp;rsquo;ll never have to do an asynchronous request?</description>
     </item>
     

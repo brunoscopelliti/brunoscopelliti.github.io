@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="How I ported my blog to HTTPS">
@@ -120,45 +120,87 @@
     
   </div>
   <h1>How I ported my blog to HTTPS</h1>
-  <div class="post-body"><p>In the last couple of years several elements are pushing for a widespread adoption of the HTTPS protocol.</p>
+  <div class="post-body"><p>In the last couple of years several elements are pushing for a widespread adoption
+of the HTTPS protocol.</p>
 <ul>
 <li>
-<p>Security. Of course security, what else would you expect from HTTPS. HTTPS is all about security! It guarantees that the server you&rsquo;re connecting is really the one you believe it is, and that the contents of the communications is private, so that it can&rsquo;t be read, or modified by a anyone else.</p>
+<p>Security. Of course security, what else would you expect from HTTPS.
+HTTPS is all about security! It guarantees that the server you&rsquo;re connecting is really
+the one you believe it is, and that the contents of the communications is private,
+so that it can&rsquo;t be read, or modified by a anyone else.</p>
 </li>
 <li>
-<p>Performance. HTTPS requires an <a href="http://publib.boulder.ibm.com/tividd/td/ITAME/SC32-1363-00/en_US/HTML/ss7aumst18.htm">extra round trip</a> in respect of HTTP. The resulting extra latency time, until now, has penalized HTTPS connections in terms of performance. However the fact that the most important <a href="http://caniuse.com/#feat=http2">browser vendors</a> have decided to support HTTP2 (a new, faster version of HTTP) only over TSL has the potential to turn the performance factor in favor of HTTPS.</p>
+<p>Performance. HTTPS requires an
+<a href="http://publib.boulder.ibm.com/tividd/td/ITAME/SC32-1363-00/en_US/HTML/ss7aumst18.htm">extra round trip</a>
+in respect of HTTP. The resulting extra latency time, until now, has penalized HTTPS
+connections in terms of performance. However the fact that the most important
+<a href="http://caniuse.com/#feat=http2">browser vendors</a> have decided to support HTTP2 (a new,
+faster version of HTTP) only over TSL has the potential to turn the performance factor
+in favor of HTTPS.</p>
 </li>
 <li>
-<p>Costs. I don&rsquo;t know of any hosting company that won&rsquo;t charge you at least 50€/year for an SSL certificate; in my opinion this is the single most important factor that until now has slowed down the adoption of HTTPS through small website like this one. However today using a service like <a href="https://letsencrypt.org/">letsencrypt</a>, everyone could generate a valid certificate with no additional costs.</p>
+<p>Costs. I don&rsquo;t know of any hosting company that won&rsquo;t charge you at least 50€/year
+for an SSL certificate; in my opinion this is the single most important factor that until
+now has slowed down the adoption of HTTPS through small website like this one.
+However today using a service like <a href="https://letsencrypt.org/">letsencrypt</a>, everyone could
+generate a valid certificate with no additional costs.</p>
 </li>
 <li>
-<p>Richer experience. Again, most browser vendors are blocking some HTML5 API over not secure connections. If your application, or website needs to access the browser native Geolocation API, it has to be on a secure domain; similarly for Service Worker&hellip; and probably more I still don&rsquo;t know about.</p>
+<p>Richer experience. Again, most browser vendors are blocking some HTML5 API
+over not secure connections. If your application, or website needs to access
+the browser native Geolocation API, it has to be on a secure domain; similarly
+for Service Worker&hellip; and probably more I still don&rsquo;t know about.</p>
 </li>
 <li>
-<p>SEO. Google doesn&rsquo;t share too much about its indexing criteria, so the few reliable information should be adequately considered&hellip; and it&rsquo;s not new that Google sees <a href="https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html">HTTPS as a ranking signal</a>.</p>
+<p>SEO. Google doesn&rsquo;t share too much about its indexing criteria, so the few reliable
+information should be adequately considered&hellip; and it&rsquo;s not new that Google sees
+<a href="https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html">HTTPS as a ranking signal</a>.</p>
 </li>
 </ul>
-<p>All these factors make me start considering the possibility to adopt HTTPS, and as you could well imagine from the title of this post, at the end I ported my blog on HTTPS.</p>
+<p>All these factors make me start considering the possibility to adopt HTTPS,
+and as you could well imagine from the title of this post, at the end I ported my blog on HTTPS.</p>
 <p>In this post I would like to share this experience.</p>
 <h2 id="finding-a-host">Finding a host</h2>
-<p>Until today my blog was hosted by GoDaddy.</p>
-<p>GoDaddy offers domain registration for 9€, and the hosting plan (which also includes 25 database - which I don&rsquo;t really need since have a static site) starts from 8€/month. Of course SSL is an extra, and it costs 90€/year. Doing the math is up to you. I didn&rsquo;t want to spend all this money.</p>
-<p>As many of you, I&rsquo;ve also other websites with different hosting companies; and <a href="https://m.do.co/c/bbd29edd0229">DigitalOcean</a> is by far the best I&rsquo;ve ever dealt with. They have really a great documentation, and their support is fast, and efficient (I talk for personal experience).</p>
-<p>DigitalOcean hosting plan starts from 5€/month, and include admin access to a server in the cloud (or droplet, as they call it).</p>
-<p>However moving my blog over DigitalOcean was not an easy choice. As everyone knows with great power comes great responsibility&hellip; and being administrator of my web server is definitely a lot of power.</p>
-<p>I didn&rsquo;t choose DigitalOcean to save a few money; being admin of a server in the cloud will be the occasion to learn something more, in a field I am still not so good.</p>
-<p>In case you want to give DigitalOcean a try, just be sure to register through <a href="https://m.do.co/c/bbd29edd0229">this link</a>, so you can get 10$ for free.</p>
+<p>Until today my blog was hosted by GoDaddy.
+<br/>
+GoDaddy offers domain registration for 9€, and the hosting plan (which also includes
+25 database - which I don&rsquo;t really need since have a static site) starts from 8€/month.
+Of course SSL is an extra, and it costs 90€/year. Doing the math is up to you.
+I didn&rsquo;t want to spend all this money.</p>
+<p>As many of you, I&rsquo;ve also other websites with different hosting companies; and
+<a href="https://m.do.co/c/bbd29edd0229">DigitalOcean</a> is by far the best I&rsquo;ve ever dealt with.
+They have really a great documentation, and their support is fast, and efficient
+(I talk for personal experience).</p>
+<p>DigitalOcean hosting plan starts from 5€/month, and include admin access to a server
+in the cloud (or droplet, as they call it).</p>
+<p>However moving my blog over DigitalOcean was not an easy choice. As everyone knows
+with great power comes great responsibility&hellip; and being administrator of my web server
+is definitely a lot of power.</p>
+<p>I didn&rsquo;t choose DigitalOcean to save a few money; being admin of a server in
+the cloud will be the occasion to learn something more, in a field I am still not so good.</p>
+<p>In case you want to give DigitalOcean a try, just be sure to register through
+<a href="https://m.do.co/c/bbd29edd0229">this link</a>, so you can get 10$ for free.</p>
 <h2 id="about-my-droplet">About my droplet</h2>
 <p>Let me provide some information about the droplet that hosts this website.</p>
-<p>It&rsquo;s a server with 512MB of memory, and 20GB of disk space; it&rsquo;s not that much, but it is enough for now, and being in the cloud give me further flexibility to make it grow, or shrink on necessity.</p>
+<p>It&rsquo;s a server with 512MB of memory, and 20GB of disk space; it&rsquo;s not that much,
+but it is enough for now, and being in the cloud give me further flexibility to make it grow,
+or shrink on necessity.</p>
 <p>The installed OS is Ubuntu 16.04, and the web server is Apache.</p>
 <p>Interaction happens through DigitalOcean control panel, or most of the time, via SSH.</p>
 <h2 id="migration-plan">Migration plan</h2>
-<p>Once I found my ideal hosting solution, I defined the migration plan; despite the name it was a pretty straightforward operation, that involved to transfer via SFTP my website on my new droplet, and then switching the DNS.</p>
-<p>I decided to enable HTTPS in a second phase, in order to verify that everything was still ok, even on the new host.</p>
+<p>Once I found my ideal hosting solution, I defined the migration plan; despite
+the name it was a pretty straightforward operation, that involved to transfer via SFTP
+my website on my new droplet, and then switching the DNS.</p>
+<p>I decided to enable HTTPS in a second phase, in order to verify that everything was still ok,
+even on the new host.</p>
 <h2 id="deploy">Deploy</h2>
-<p>The first thing I did was to upload via SFTP the content of my website. I did this manually, using my loyal <em>Filezilla</em> client. In the future I would like to make this process run automatically (just after the <code>jekyll build</code> command), and since I already use <em>grunt</em> as task runner, use the <a href="https://www.npmjs.com/package/grunt-sftp-deploy">grunt-sftp-deploy</a> task seems the way to go.</p>
-<p>Before switching the DNS, I checked everything was fine, via browser, pointing directly to my droplet IP address, and then navigating through the directory tree.</p>
+<p>The first thing I did was to upload via SFTP the content of my website. I did this manually,
+using my loyal <em>Filezilla</em> client. In the future I would like to make this process
+run automatically (just after the <code>jekyll build</code> command), and since I already use <em>grunt</em>
+as task runner, use the <a href="https://www.npmjs.com/package/grunt-sftp-deploy">grunt-sftp-deploy</a>
+task seems the way to go.</p>
+<p>Before switching the DNS, I checked everything was fine, via browser, pointing
+directly to my droplet IP address, and then navigating through the directory tree.</p>
 <p>Once I verified that upload succeeded, I proceeded configuring a new virtual host on Apache.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">&lt;VirtualHost *:80&gt;
   ServerAdmin admin@brunoscopelliti.com
@@ -168,11 +210,18 @@
   ErrorLog ${APACHE_LOG_DIR}/error.log
   CustomLog ${APACHE_LOG_DIR}/access.log combined
 &lt;/VirtualHost&gt;
-</code></pre></div><p>If you have one or more domains on the third level, you should configure them as well. I suggest you to put the configuration in a separate file; this not only helps keeping clean the config file, but I found it is necessary to make letsencrypt work properly.</p>
+</code></pre></div><p>If you have one or more domains on the third level, you should configure them as well.
+I suggest you to put the configuration in a separate file; this not only helps keeping
+clean the config file, but I found it is necessary to make letsencrypt work properly.</p>
 <h2 id="switch-dns">Switch DNS</h2>
-<p>DigitalOcean (not surprisingly) provides documentation about how to switch DNS in their favor. In this case following the steps of <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean">How to setup a host name with DigitalOcean</a> made the trick.</p>
+<p>DigitalOcean (not surprisingly) provides documentation about how to switch DNS in their favor.
+In this case following the steps of
+<a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean">How to setup a host name with DigitalOcean</a> made the trick.</p>
 <h2 id="enable-https">Enable HTTPS</h2>
-<p>Using letsencrypt is pretty easy. I didn&rsquo;t have much more to do than cloning it from Github, and then launching the certificate generation command. However even in this case DigitalOcean has a tutorial to guide you through the process, <a href="https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-16-04">Secure Apache via letsencrypt</a>.</p>
+<p>Using letsencrypt is pretty easy. I didn&rsquo;t have much more to do than cloning
+it from Github, and then launching the certificate generation command. However even
+in this case DigitalOcean has a tutorial to guide you through the process,
+<a href="https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-16-04">Secure Apache via letsencrypt</a>.</p>
 <p>So briefly these are the steps which I followed.</p>
 <ol>
 <li>Clone letsencrypt client.</li>
@@ -184,7 +233,9 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#8be9fd;font-style:italic">cd</span> /opt/letsencrypt
 ./letsencrypt-auto --apache -d brunoscopelliti.com -d slides.brunoscopelliti.com
 </code></pre></div><ol start="3">
-<li>Complete following the wizard instructions, and eventually verify the validity of the certificate <a href="https://www.ssllabs.com/ssltest/analyze.html">here</a>. That&rsquo;s the result for my blog:</li>
+<li>Complete following the wizard instructions, and eventually verify the validity
+of the certificate <a href="https://www.ssllabs.com/ssltest/analyze.html">here</a>.
+That&rsquo;s the result for my blog:</li>
 </ol>
 <figure class="post-figure">
   <img class="post-img " src="/images/posts/ssl-report.png" alt="Security report for brunoscopelliti.com provided by ssllabs"/>
@@ -194,10 +245,14 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sudo crontab -e
 </code></pre></div><p>And then in the cron job editor, something like:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#bd93f9">0</span> <span style="color:#bd93f9">1</span> * * <span style="color:#bd93f9">1</span> /opt/letsencrypt/letsencrypt-auto renew &gt;&gt; /var/log/le-renew.log
-</code></pre></div><p>which every Monday, at 1.00AM, run the <code>letsencrypt-auto renew</code>, and then save its output in the specified file.</p>
+</code></pre></div><p>which every Monday, at 1.00AM, run the <code>letsencrypt-auto renew</code>, and then save
+its output in the specified file.</p>
 <h2 id="next-steps">Next steps</h2>
-<p>I would like to improve further the experience of the readers of my blog; I think it&rsquo;s my card visit as web developer.</p>
-<p>Now that my website is served on a secured domain, I would try to enable HTTP2, and adopt a CDN for the static resources (CloudFare is the only one I know about which starts with a free plan).</p>
+<p>I would like to improve further the experience of the readers of my blog; I think it&rsquo;s
+my card visit as web developer.</p>
+<p>Now that my website is served on a secured domain, I would try to enable HTTP2,
+and adopt a CDN for the static resources (CloudFare is the only one I know about which
+starts with a free plan).</p>
 </div>
   <div class="post-footer">
     <div class="post-date">September 7, 2016</div>

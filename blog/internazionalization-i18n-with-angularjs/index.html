@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <link rel="stylesheet" href="/css/style.60a17aba8dcd9036d2932e6dadb256c1a62f60e0d2b4f969ea8d316720037bea.css" integrity="sha256-YKF6uo3NkDbSky5trbJWwaYvYODStPlp6o0xZyADe&#43;o=">
+    <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
 <meta name="twitter:title" content="Internazionalization (i18n) with AngularJS">
@@ -121,21 +121,29 @@
   </div>
   <h1>Internazionalization (i18n) with AngularJS</h1>
   <div class="post-body"><p>These days I am trying the internationalization (and pluralization) capabilities of AngularJS.</p>
-<p>I just defined my personal approach to the internationalization of a web app based on AngularJS, and I would like to share it, to have some feedback about it. My approach is based on two main points:</p>
+<p>I just defined my personal approach to the internationalization of a web app based on AngularJS,
+and I would like to share it, to have some feedback about it. My approach is based on
+two main points:</p>
 <ul>
 <li>
-<p>The use of technologies of backend (such as PHP) to detect the most probably preferred language of the user.</p>
+<p>The use of technologies of backend (such as PHP) to detect the most probably
+preferred language of the user.</p>
 </li>
 <li>
-<p><a href="https://docs.angularjs.org/api/ng/service/$filter" title="AngularJS api: $filter">AngularJS filters</a>, to format the data that has to be shown to the users.</p>
+<p><a href="https://docs.angularjs.org/api/ng/service/$filter" title="AngularJS api: $filter">AngularJS filters</a>,
+to format the data that has to be shown to the users.</p>
 </li>
 </ul>
 <h2 id="digging-into-the-code">Digging into the code</h2>
-<p>I will discuss my approach in relation to the demo available on the Github <a href="https://github.com/blog-brunoscopelliti/angularjs-i18n" title="Github repo: angularjs-i18n">angularjs-i18n</a> public repository.</p>
+<p>I will discuss my approach in relation to the demo available on the Github
+<a href="https://github.com/blog-brunoscopelliti/angularjs-i18n" title="Github repo: angularjs-i18n">angularjs-i18n</a>
+public repository.</p>
 <p>In this post I will highlight the more important aspects of my approach.</p>
-<p>Everything starts guessing the user&rsquo;s preferred language.</p>
-<p>For this task I rely on server side technologies.</p>
-<p>In the context of the demo that I shared, I used the variable <code>$_SERVER[&quot;HTTP_ACCEPT_LANGUAGE&quot;]</code>. Then, on the basis of the language that the user would probably prefer, the appropriate locale files are loaded.</p>
+<p>Everything starts guessing the user&rsquo;s preferred language.
+<br/>
+For this task I rely on server side technologies.
+<br/>
+In the context of the demo that I shared, I used the variable <code>$_SERVER[&quot;HTTP_ACCEPT_LANGUAGE&quot;]</code>. Then, on the basis of the language that the user would probably prefer, the appropriate locale files are loaded.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php"><span style="color:#8be9fd;font-style:italic">$supportedLanguage</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">array</span>(<span style="color:#f1fa8c">&#34;en&#34;</span>, <span style="color:#f1fa8c">&#34;it&#34;</span>);
 <span style="color:#8be9fd;font-style:italic">$lang</span> <span style="color:#ff79c6">=</span> substr(<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;HTTP_ACCEPT_LANGUAGE&#34;</span>], <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">2</span>);
 
@@ -148,10 +156,15 @@
   &lt;script src=&#34;l/ng-locale_en.js&#34;&gt;&lt;/script&gt;
   &lt;script src=&#34;l/i18n_en.js&#34;&gt;&lt;/script&gt;
 &lt;?php endif; ?&gt;
-</code></pre></div><p>What do contain the two javascript files that I just included?</p>
-<p>The first file contains the localization rules relative to one specific locale, that is the default format for money, or date, the name of the months translated etc. These files could be downloaded from <a href="http://code.angularjs.org/1.0.5/i18n/" title="AngularJS locale">http://code.angularjs.org/1.0.5/i18n/</a> , for others versions just change the piece of url relative to the version.
-Instead, the second file contains all the labels that are to be translated in the web app.</p>
-<p>I chose to put all the labels in a service, so that they could always be available in every controllers. At the end the service is something like:</p>
+</code></pre></div><p>What do contain the two javascript files that I just included?
+<br/>
+The first file contains the localization rules relative to one specific locale,
+that is the default format for money, or date, the name of the months translated etc.
+These files could be downloaded from <a href="http://code.angularjs.org/1.0.5/i18n/" title="AngularJS locale">http://code.angularjs.org/1.0.5/i18n/</a>, for others versions just change the piece of url relative
+to the version. Instead, the second file contains all the labels that are to be
+translated in the web app.</p>
+<p>I chose to put all the labels in a service, so that they could always be available
+in every controllers. At the end the service is something like:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">angular.module(<span style="color:#f1fa8c">&#34;myApp.localeTranslation&#34;</span>, []).
 value(<span style="color:#f1fa8c">&#34;currentLocale&#34;</span>, {
   WRITTENBY<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Written by&#34;</span>,
@@ -167,9 +180,14 @@ value(<span style="color:#f1fa8c">&#34;currentLocale&#34;</span>, {
     <span style="color:#ff79c6">return</span> keys;
   }
 });
-</code></pre></div><p>As well as the labels, the object contains just one method, <code>_getLocalizationKeys</code>; it returns an object that has as properties the same properties of the object to which it belongs, and the value of each property is equal to the name of the property itself. As I will show later this method will be useful for making sure that my approach will work with AngularJS <code>ngPluralize</code> directive.</p>
+</code></pre></div><p>As well as the labels, the object contains just one method, <code>_getLocalizationKeys</code>;
+it returns an object that has as properties the same properties of the object to which it belongs,
+and the value of each property is equal to the name of the property itself.
+As I will show later this method will be useful for making sure that my approach will work
+with AngularJS <code>ngPluralize</code> directive.</p>
 <p>We&rsquo;ve reached the second milestone on which this approach is based, the use of AngularJS filters.</p>
-<p>As first thing I defined a custom filter to format the data that has to be shown to the users. The following is the filter definition:</p>
+<p>As first thing I defined a custom filter to format the data that has to be shown to the users.
+The following is the filter definition:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> filters <span style="color:#ff79c6">=</span> angular.module(<span style="color:#f1fa8c">&#34;myApp.filters&#34;</span>, []);
 filters.filter(<span style="color:#f1fa8c">&#34;i18n&#34;</span>, [<span style="color:#f1fa8c">&#34;currentLocale&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (cl) {
   <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">function</span> (key, p) {
@@ -179,19 +197,27 @@ filters.filter(<span style="color:#f1fa8c">&#34;i18n&#34;</span>, [<span style="
     }
   }
 }]);
-</code></pre></div><p>As you can see the <code>i18n</code> filter uses the label defined in the <code>currentLocale</code> service, imported via dependency injection.
-The functioning of the filter at this point is pretty easy: if the filter is applied to a string corresponding to a property of the currentLocale object, the string itself is replaced with the value of that property.</p>
-<p>The i18n filter could be used as every others AngularJS filter; so in whatever HTML file I want, I can write something like:</p>
+</code></pre></div><p>As you can see the <code>i18n</code> filter uses the label defined in the <code>currentLocale</code> service,
+imported via dependency injection.
+The functioning of the filter at this point is pretty easy: if the filter is applied to a string
+corresponding to a property of the currentLocale object, the string itself is replaced with
+the value of that property.</p>
+<p>The i18n filter could be used as every others AngularJS filter; so in whatever HTML file I want,
+I can write something like:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;author&#34;</span>&gt;{{ &#34;{{ &#39;WRITTENBY&#39; | i18n &#34; }}}}  Bruno&lt;/<span style="color:#ff79c6">span</span>&gt;
-</code></pre></div><p>Moreover as for every others AngularJS filter, I could even pass a parameter (or even more than one) at the i18n filter; what I&rsquo;ve to do is just write the parameter after the filter name, using a colon as separator.</p>
+</code></pre></div><p>Moreover as for every others AngularJS filter, I could even pass a parameter (or even more
+than one) at the i18n filter; what I&rsquo;ve to do is just write the parameter after the filter name,
+using a colon as separator.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;author&#34;</span>&gt;{{ &#34;{{ &#39;LOCALIZATIONKEY&#39; | i18n:parameter &#34; }}}}&lt;/<span style="color:#ff79c6">span</span>&gt;
-</code></pre></div><p>In case, the parameter is used to replace the special string <code>@{}@</code> in the localized label (see line 5 of the snippet in which the i18n filter is defined).</p>
+</code></pre></div><p>In case, the parameter is used to replace the special string <code>@{}@</code> in the localized label
+(see line 5 of the snippet in which the i18n filter is defined).</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In conclusion, my approach has two main benefits:</p>
 <ul>
 <li>
 <p><strong>Chainable filters:</strong></p>
-<p>AngularJS filters are chainable; so I could chain my custom filter for internationalization with each others AngularJS filters:</p>
+<p>AngularJS filters are chainable; so I could chain my custom filter for internationalization
+with each others AngularJS filters:</p>
 </li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;top&#39;</span>&gt;
@@ -200,9 +226,14 @@ The functioning of the filter at this point is pretty easy: if the filter is app
 </code></pre></div><ul>
 <li>
 <p><strong>ngPluralize compatibility:</strong></p>
-<p>Another important strong point of this approach is that the i18n filter could be used in combination with the ngPluralize directive.</p>
-<p>In this case there is a need to only care of not use directly the name of the property inside the ngPluralize directive, but store the property name in some other variable, and use this in its place. For this reason, in the currentLocale service I defined the <code>_getLocalizationKeys</code> method.</p>
-<p>Ultimately, this is the way the ngPluralize directive should be used in combination with the i18n filter (the code is again extracted from the demo):</p>
+<p>Another important strong point of this approach is that the i18n filter could be used
+in combination with the ngPluralize directive.</p>
+<p>In this case there is a need to only care of not use directly the name of the property
+inside the ngPluralize directive, but store the property name in some other variable,
+and use this in its place. For this reason, in the currentLocale service I defined the
+<code>_getLocalizationKeys</code> method.</p>
+<p>Ultimately, this is the way the ngPluralize directive should be used in combination
+with the i18n filter (the code is again extracted from the demo):</p>
 </li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">
@@ -216,7 +247,13 @@ The functioning of the filter at this point is pretty easy: if the filter is app
   <span style="color:#50fa7b">one:</span> &#39;{{ &#34;{{ <span style="color:#50fa7b">keys</span>.<span style="color:#50fa7b">ONELIKE</span> | <span style="color:#50fa7b">i18n</span> &#34; }}}}&#39;,
   <span style="color:#50fa7b">other:</span> &#39;{{ &#34;{{ <span style="color:#50fa7b">keys</span>.<span style="color:#50fa7b">MANYLIKES</span> | <span style="color:#50fa7b">i18n:this</span>.<span style="color:#50fa7b">p</span>.<span style="color:#50fa7b">likes</span> &#34; }}}}&#39;&gt;
 &lt;/<span style="color:#ff79c6">ng-pluralize</span>&gt;
-</code></pre></div><p>Currently, I can see just one possible downside in this approach; indeed use <code>$_SERVER</code> to detect the user preferred language is probably a not infallible way. This possible issue could be overcome using more sophisticated ways to detect, from the server side, the user preferred language; a possible way is to use the GeoIP extension, but neither this solution is 100% error free (what happen when I accede to the web app from another country?). However this approach could be easily improved using cookies to store the user&rsquo;s preferences about languages, and the other locale stuff.</p>
+</code></pre></div><p>Currently, I can see just one possible downside in this approach; indeed use <code>$_SERVER</code>
+to detect the user preferred language is probably a not infallible way. This possible issue
+could be overcome using more sophisticated ways to detect, from the server side, the user
+preferred language; a possible way is to use the GeoIP extension, but neither this solution
+is 100% error free (what happen when I accede to the web app from another country?).
+However this approach could be easily improved using cookies to store the user&rsquo;s preferences
+about languages, and the other locale stuff.</p>
 </div>
   <div class="post-footer">
     <div class="post-date">May 7, 2013</div>

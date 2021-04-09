@@ -164,8 +164,7 @@ I just defined my personal approach to the internationalization of a web app bas
       
       <guid>https://brunoscopelliti.com/blog/angularjs-directive-to-test-the-strength-of-a-password/</guid>
       <description>Recently I&amp;rsquo;m working a lot with AngularJS and validation of forms, and maybe you have noticed this (see: form validation in AngularJS, and validate password in AngularJS).
-The topic of today is not strictly related to form validation, but, like also the form validation, it could be useful to improve the form usability, and even the user&amp;rsquo;s data security.
-Always more frequently during the registration on a new website, I happen to see that the password that I chose is judged, and I&amp;rsquo;m informed about its strength value.</description>
+The topic of today is not strictly related to form validation, but, like also the form validation, it could be useful to improve the form usability, and even the user&amp;rsquo;s data security. Always more frequently during the registration on a new website, I happen to see that the password that I chose is judged, and I&amp;rsquo;m informed about its strength value.</description>
     </item>
     
     <item>
@@ -176,7 +175,7 @@ Always more frequently during the registration on a new website, I happen to see
       <guid>https://brunoscopelliti.com/blog/angularjs-directive-to-check-that-passwords-match/</guid>
       <description>I already wrote about form validation some time ago.
 In that occasion I had the opportunity to show you how much powerful is the native form validation system of AngularJS. But no matter how powerful, of course, it can not cover all possible scenarios. For example we all are used to fill two times the password fields during the registration on a new website.
-Currently AngularJS has not a native method to check, during the form validation, if the user entered two different passwords.</description>
+Currently AngularJS has not a native method to check, during the form validation, if the user entered two different passwords; but if you&amp;rsquo;ve read the previous article, you also know that validation system of AngularJS could even be extended with custom directives.</description>
     </item>
     
     <item>
@@ -185,11 +184,9 @@ Currently AngularJS has not a native method to check, during the form validation
       <pubDate>Tue, 02 Apr 2013 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</guid>
-      <description>Promise&amp;rsquo;s support is one of my favorite features of AngularJS.
-Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.
-This post will show you a typical use case for the promise in an AngularJS app.
-It could be simplified as follows:
-function stageController(scope, p) { scope.revenues = []; scope.$watch(&amp;#34;revenues&amp;#34;, function () { p.drawPlot(scope.revenues); }, true); p.getData(); } stageController.</description>
+      <description>Promise&amp;rsquo;s support is one of my favorite features of AngularJS.  Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.
+This post will show you a typical use case for the promise in an AngularJS app.  It could be simplified as follows:
+function stageController(scope, p) { scope.revenues = []; scope.$watch(&amp;#34;revenues&amp;#34;, function () { p.drawPlot(scope.revenues); }, true); p.</description>
     </item>
     
     <item>
