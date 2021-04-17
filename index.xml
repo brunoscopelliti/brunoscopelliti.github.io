@@ -6,7 +6,7 @@
     <description>Recent content in Home on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Apr 2021 22:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Apr 2021 23:26:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://brunoscopelliti.com/about/</link>
@@ -23,7 +23,7 @@ I currently live in Bologna, Italy. These pages are my very own home on the Inte
     <item>
       <title>How to configure SSH keys for different GitHub accounts on the same pc</title>
       <link>https://brunoscopelliti.com/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/</link>
-      <pubDate>Fri, 09 Apr 2021 22:00:00 +0100</pubDate>
+      <pubDate>Fri, 09 Apr 2021 23:26:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/</guid>
       <description>Recently I fought - and at the end succeded - to configure two different set of SSH keys for different GitHub accounts on the same computer.  I&amp;rsquo;m writing it down the procedure, so that I won&amp;rsquo;t have to repeat this fight again.
@@ -596,10 +596,10 @@ A final note Currently this blog is using the Twenty Eleven WordPress theme.</de
     
     <item>
       <title>404 Error ~ Not Found</title>
-      <link>https://brunoscopelliti.com/404/</link>
+      <link>https://brunoscopelliti.com/404.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://brunoscopelliti.com/404/</guid>
+      <guid>https://brunoscopelliti.com/404.html</guid>
       <description>The document you&amp;rsquo;re looking for no longer exists - maybe it never did, we&amp;rsquo;ll never know.
  Go back to the homepage.</description>
     </item>
