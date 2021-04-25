@@ -6,7 +6,19 @@
     <description>Recent content in Memo on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Apr 2021 23:26:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/memo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Apr 2021 15:18:21 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/memo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to kill a process by port on MacOS</title>
+      <link>https://brunoscopelliti.com/blog/how-to-kill-a-process-by-port-on-macos/</link>
+      <pubDate>Sun, 25 Apr 2021 15:18:21 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-to-kill-a-process-by-port-on-macos/</guid>
+      <description>Every now and then I find myself in need to kill a process, knowing only the port it&amp;rsquo;s using.
+Below you can read the magic spell to kill a process in Unix-like system, running on a specific port.
+lsof -nti: | xargs kill -9 Copy, and replace &amp;lt;PORT&amp;gt; with the port number.
+Kill a process programatically There are numerous npm modules that allow to kill a process programatically; fkill is my favorite.</description>
+    </item>
+    
     <item>
       <title>How to configure SSH keys for different GitHub accounts on the same pc</title>
       <link>https://brunoscopelliti.com/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/</link>

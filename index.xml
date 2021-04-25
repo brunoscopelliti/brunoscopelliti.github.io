@@ -6,7 +6,7 @@
     <description>Recent content in Home on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Apr 2021 23:26:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Apr 2021 15:18:21 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://brunoscopelliti.com/about/</link>
@@ -18,6 +18,18 @@ Apparently you and I have something in common - I am also one of those weird, cu
  I am Bruno Scopelliti.
 I currently live in Bologna, Italy. These pages are my very own home on the Internet&amp;hellip; Welcome!
  I am blessed to have a wonderful wife, and two kids, Chiara and Matteo.  I still don&amp;rsquo;t feel particularly comfortable in writing about my family over the Internet; however they&amp;rsquo;re everything for me.</description>
+    </item>
+    
+    <item>
+      <title>How to kill a process by port on MacOS</title>
+      <link>https://brunoscopelliti.com/blog/how-to-kill-a-process-by-port-on-macos/</link>
+      <pubDate>Sun, 25 Apr 2021 15:18:21 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-to-kill-a-process-by-port-on-macos/</guid>
+      <description>Every now and then I find myself in need to kill a process, knowing only the port it&amp;rsquo;s using.
+Below you can read the magic spell to kill a process in Unix-like system, running on a specific port.
+lsof -nti: | xargs kill -9 Copy, and replace &amp;lt;PORT&amp;gt; with the port number.
+Kill a process programatically There are numerous npm modules that allow to kill a process programatically; fkill is my favorite.</description>
     </item>
     
     <item>
