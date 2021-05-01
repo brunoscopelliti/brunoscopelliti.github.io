@@ -4,10 +4,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <meta charset="utf-8">
 
-    <title>Blog | Bruno Scopelliti</title>
+    <title>Function deprecation in JavaScript | Bruno Scopelliti</title>
 
     
-    <meta name="description" content="Bruno Scopelliti&#39;s blog, software development, JavaScript, Node.js, React, Apollo, Firebase.">
+    <meta name="description" content="Deprecate function in JavaScript, eslint-plugin-deprecate">
     
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -16,10 +16,15 @@
 
     
     <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@brunoscopelliti">
-    <meta name="twitter:title" content="Blog">
-    <meta name="twitter:image" content="/images/twitter-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@brunoscopelliti">
+<meta name="twitter:title" content="Function deprecation in JavaScript">
+
+
+
+<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/function-deprecation-in-javascript.png">
+<meta name="twitter:description" content="A little known ESLint plugin helps deal with aging codebase.">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -34,7 +39,7 @@
 
     <meta name="theme-color" content="#192039">
   </head>
-  <body class="list">
+  <body class="">
     <a id="skip-nav" href="#main">Go to content</a>
 
     <header class="site-header">
@@ -59,7 +64,7 @@
         <a href="/">Home</a>
       </li>
     
-      <li class="active">
+      <li class="">
         <a href="/blog/">Blog</a>
       </li>
     
@@ -105,89 +110,83 @@
 
     <div class="page-main-content">
       <main id="main">
-<h1>Blog</h1>
-<div class="post-list">
-  <article class="post-entry">
-  <h2>
-    <a href="/blog/qunit-custom-assertions/" title="Custom assertions are my favourite QUnit feature">Custom assertions are my favourite QUnit feature</a>
-  </h2>
-  <div class="post-preview">I think custom assertions are great, because in a concise manner, they make extremely clear what a test is for. You should definetely give them a try.</div>
-  <div class="post-link">
-    <a href="/blog/qunit-custom-assertions/" title="Custom assertions are my favourite QUnit feature">Read article</a>
+<article class="post" data-js="post">
+  <div class="post-breadcrumbs">
+    <a href="/blog" aria-label="View all articles">Blog</a>
+    <span>/</span>
+    
+    <a href="/blog/search/tools/">Tools</a>
+    <span>/</span>
+    
   </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/webpack-101/" title="Webpack 101">Webpack 101</a>
-  </h2>
-  <div class="post-preview">I've published on GitHub a series to help make sense of WebPack.</div>
-  <div class="post-link">
-    <a href="/blog/webpack-101/" title="Webpack 101">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/git-productivity-trick/" title="Git workflow PRO tip">Git workflow PRO tip</a>
-  </h2>
-  <div class="post-preview">That's something really simple, and yet extremely effective, especially if you're the kind of developer, who is often switching context ...</div>
-  <div class="post-link">
-    <a href="/blog/git-productivity-trick/" title="Git workflow PRO tip">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/history-of-a-support-ticket-for-apple/" title="History of a support ticket for Apple">History of a support ticket for Apple</a>
-  </h2>
-  <div class="post-preview">A recent support I've had to open to Apple has given me the opportunity to reflect on my work; I'm doing some terrible mistakes.</div>
-  <div class="post-link">
-    <a href="/blog/history-of-a-support-ticket-for-apple/" title="History of a support ticket for Apple">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/first-1000-days-of-chiara/" title="The Chiara&#39;s first thousand days task">The Chiara&#39;s first thousand days task</a>
-  </h2>
-  <div class="post-preview">TDD, and Functional Programming applied to accomplish a real world feature request.</div>
-  <div class="post-link">
-    <a href="/blog/first-1000-days-of-chiara/" title="The Chiara&#39;s first thousand days task">Read article</a>
+  <h1>Function deprecation in JavaScript</h1>
+  <div class="post-body"><p>When a codebase grows, and gets old is inevitable that functions, or whole areas become obsolete,
+and their usage is discouraged in favour of better alternatives.</p>
+<p>If the codebase is big enough, it might be not possible, or not easy to replace the usages
+of legacy components with their alternative in a single step &hellip; in such cases it&rsquo;s important
+to have a way to signal a particular component is <em>deprecated</em>, and shouldn&rsquo;t be used anymore,
+so that at least it doesn&rsquo;t spread further.</p>
+<p>To deal with such situations, I&rsquo;ve found helpful the <a href="https://www.npmjs.com/package/eslint-plugin-deprecate">deprecate</a> ESLint plugin.</p>
+<p>It permits to emit a warning, or error - I prefer the first in such case - when it finds a
+reference for a certain component marked as deprecated.
+<br/>
+Below an example of configuration:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-json" data-lang="json">{
+    <span style="color:#ff79c6">&#34;plugins&#34;</span>: [
+        <span style="color:#f1fa8c">&#34;deprecate&#34;</span>
+    ],
+    <span style="color:#ff79c6">&#34;rules&#34;</span>: {
+        <span style="color:#ff79c6">&#34;deprecate/function&#34;</span>: [
+            <span style="color:#f1fa8c">&#34;warn&#34;</span>,
+            {
+                <span style="color:#ff79c6">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;doSomething&#34;</span>,
+                <span style="color:#ff79c6">&#34;use&#34;</span>: <span style="color:#f1fa8c">&#34;Use doSomethingBetter instead&#34;</span>
+            }
+        ],
+        <span style="color:#ff79c6">&#34;deprecate/import&#34;</span>: [
+            <span style="color:#f1fa8c">&#34;warn&#34;</span>,
+            {
+                <span style="color:#ff79c6">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;leftpad&#34;</span>,
+                <span style="color:#ff79c6">&#34;use&#34;</span>: <span style="color:#f1fa8c">&#34;Use built-in padStart instead&#34;</span>
+            }
+        ]
+    }
+}
+</code></pre></div><p>There is also the option to deprecate object members - through the <code>deprecate/member-expression</code>
+rule - but I didn&rsquo;t find any use case for it so far.</p>
+</div>
+  <div class="post-footer">
+    <div class="post-date">May 1, 2021</div>
+    <div class="post-links">
+      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2ffunction-deprecation-in-javascript%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
+      <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
+      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/function-deprecation-in-javascript.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
+    </div>
+    <div class="post-share">
+      <span class="post-share-line"></span>
+      <span class="post-share-text">Share article</span>
+      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2ffunction-deprecation-in-javascript%2f&text=Function%20deprecation%20in%20JavaScript&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
+      <a class="post-share-link" href="https://www.reddit.com/submit?title=Function%20deprecation%20in%20JavaScript&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2ffunction-deprecation-in-javascript%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
+    </div>
+    <div class="post-author">
+      <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>
+      <div class="post-author-bio">
+        <strong>Bruno Scopelliti</strong> is an independent software engineer, with focus on frontend development.
+        <br/>He lives in nice Bologna, Italy.
+      </div>
+    </div>
   </div>
 </article>
 
-</div>
-<ul class="pagination">
-  <li class="page-item">
-    <a href="/blog/" class="page-link" aria-label="First">
-      <span aria-hidden="true">&laquo;</span>
-    </a>
-  </li>
-  
-  <li class="page-item">
-    <a class="page-link" href="/blog/">1</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/2/">2</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/3/">3</a>
-  </li>
-  <li class="page-item active">
-    <a class="page-link" href="/blog/page/4/">4</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/5/">5</a>
-  </li>
-  <li class="page-item disabled">
-    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/11/">11</a>
-  </li>
-  <li class="page-item">
-    <a href="/blog/page/11/" class="page-link" aria-label="Last">
-      <span aria-hidden="true">&raquo;</span>
-    </a>
-  </li>
-</ul>
+<script>
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+
+</script>
+
+<script>
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+
+</script>
 
       </main>
     </div>

@@ -6,7 +6,7 @@
     <description>Recent content in Home on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Apr 2021 15:18:21 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 May 2021 20:52:17 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://brunoscopelliti.com/about/</link>
@@ -18,6 +18,16 @@ Apparently you and I have something in common - I am also one of those weird, cu
  I am Bruno Scopelliti.
 I currently live in Bologna, Italy. These pages are my very own home on the Internet&amp;hellip; Welcome!
  I am blessed to have a wonderful wife, and two kids, Chiara and Matteo.  I still don&amp;rsquo;t feel particularly comfortable in writing about my family over the Internet; however they&amp;rsquo;re everything for me.</description>
+    </item>
+    
+    <item>
+      <title>Function deprecation in JavaScript</title>
+      <link>https://brunoscopelliti.com/blog/function-deprecation-in-javascript/</link>
+      <pubDate>Sat, 01 May 2021 20:52:17 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/function-deprecation-in-javascript/</guid>
+      <description>When a codebase grows, and gets old is inevitable that functions, or whole areas become obsolete, and their usage is discouraged in favour of better alternatives.
+If the codebase is big enough, it might be not possible, or not easy to replace the usages of legacy components with their alternative in a single step &amp;hellip; in such cases it&amp;rsquo;s important to have a way to signal a particular component is deprecated, and shouldn&amp;rsquo;t be used anymore, so that at least it doesn&amp;rsquo;t spread further.</description>
     </item>
     
     <item>
@@ -236,7 +246,7 @@ I&amp;rsquo;ve also bought the BookArc stand. When at home, I wanted to use the 
       <guid>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</guid>
       <description>Having recently switched to ESLint, I often find myself googling for how to disable a rule on a particular occurrence via JavaScript comment.
 Hope writing this will help me to memorize the syntax, I&amp;rsquo;ll bookmark this page otherwise 😅.
-// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;); alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for that specific line.</description>
+// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;); alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for the entire line.</description>
     </item>
     
     <item>

@@ -6,7 +6,17 @@
     <description>Recent content in Tools on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Apr 2021 15:18:21 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 May 2021 20:52:17 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Function deprecation in JavaScript</title>
+      <link>https://brunoscopelliti.com/blog/function-deprecation-in-javascript/</link>
+      <pubDate>Sat, 01 May 2021 20:52:17 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/function-deprecation-in-javascript/</guid>
+      <description>When a codebase grows, and gets old is inevitable that functions, or whole areas become obsolete, and their usage is discouraged in favour of better alternatives.
+If the codebase is big enough, it might be not possible, or not easy to replace the usages of legacy components with their alternative in a single step &amp;hellip; in such cases it&amp;rsquo;s important to have a way to signal a particular component is deprecated, and shouldn&amp;rsquo;t be used anymore, so that at least it doesn&amp;rsquo;t spread further.</description>
+    </item>
+    
     <item>
       <title>How to kill a process by port on MacOS</title>
       <link>https://brunoscopelliti.com/blog/how-to-kill-a-process-by-port-on-macos/</link>
@@ -105,7 +115,7 @@ Instead we&amp;rsquo;re going to build a WebPack configuration step by step toge
       <guid>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</guid>
       <description>Having recently switched to ESLint, I often find myself googling for how to disable a rule on a particular occurrence via JavaScript comment.
 Hope writing this will help me to memorize the syntax, I&amp;rsquo;ll bookmark this page otherwise 😅.
-// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;); alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for that specific line.</description>
+// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;); alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for the entire line.</description>
     </item>
     
     <item>
