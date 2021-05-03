@@ -4,10 +4,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <meta charset="utf-8">
 
-    <title>How to execute an AngularJS directive after the DOM has completed rendering | Bruno Scopelliti</title>
+    <title>TypeScript | Bruno Scopelliti</title>
 
-    
-    <meta name="description" content="How to execute an AngularJS directive after the DOM has finished rendering">
     
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -16,15 +14,10 @@
 
     
     <link rel="stylesheet" href="/css/style.d82744f1a5b03afaf923a4744c95b7d0a975c238a4f1a5d7cd8bd34a13e7a096.css" integrity="sha256-2CdE8aWwOvr5I6R0TJW30Kl1wjik8aXXzYvTShPnoJY=">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:creator" content="@brunoscopelliti">
-<meta name="twitter:title" content="How to execute an AngularJS directive after the DOM has completed rendering">
-
-
-
-<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/how-to-execute-an-angularjs-directive-after-the-dom-has-completed-rendering.png">
-<meta name="twitter:description" content="Rendering an AngularJS directive after DOM is rendered is a common requirement. In this post I&#39;ll show you how to do it.">
-
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@brunoscopelliti">
+    <meta name="twitter:title" content="TypeScript">
+    <meta name="twitter:image" content="/images/twitter-card.png">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -110,90 +103,10 @@
 
     <div class="page-main-content">
       <main id="main">
-<article class="post" data-js="post">
-  <div class="post-breadcrumbs">
-    <a href="/blog" aria-label="View all articles">Blog</a>
-    <span>/</span>
-    
-    <a href="/blog/search/angularjs/">AngularJS</a>
-    <span>/</span>
-    
-  </div>
-  <h1>How to execute an AngularJS directive after the DOM has completed rendering</h1>
-  <div class="post-body"><p>You have a custom directive, <code>repeatHelloWorld</code>; it has the important task to log
-the message &ldquo;Hello, world!&rdquo; in the console, the number of times specified by the parameter
-accepted by the directive, and defined in the controller.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">body</span> <span style="color:#50fa7b">ng-controller</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;stageController&#34;</span>&gt;
-  &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">repeat-hello-world</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{{ &#34;</span>{{ <span style="color:#50fa7b">repeat</span> &#34; }}}}&#34;&gt;&lt;/<span style="color:#ff79c6">div</span>&gt;
-&lt;/<span style="color:#ff79c6">body</span>&gt;
-</code></pre></div><p>Controller and directive are defined as:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">// Controller
-</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">function</span> stageController($scope) {
-  $scope.repeat <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>;
-}
-
-angular.module(<span style="color:#f1fa8c">&#34;myApp&#34;</span>, [<span style="color:#f1fa8c">&#34;myApp.directives&#34;</span>]);
-
-<span style="color:#6272a4">// Directive
-</span><span style="color:#6272a4"></span>angular.module(<span style="color:#f1fa8c">&#34;myApp.directives&#34;</span>, [])
-  .directive(<span style="color:#f1fa8c">&#34;repeatHelloWorld&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> () {
-    <span style="color:#ff79c6">return</span> {
-      link<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (scope, elem, attrs, ctrl) {
-        <span style="color:#8be9fd;font-style:italic">var</span> hello <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-          <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">var</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> attrs.repeatHelloWorld; i<span style="color:#ff79c6">++</span>) {
-            console.log(<span style="color:#f1fa8c">&#34;Hello world!&#34;</span>);
-          }
-        }
-
-        hello();
-      }
-    }
-  });
-</code></pre></div><p>Everything looks ok, but when you run the page, the console remains empty. This is due
-to the fact that when the directive is executed the DOM has not already finished the rendering.
-In fact, if we debug the code, we immediately recognize that <code>attrs.repeatHelloWorld</code>
-is <code>undefined</code> during the execution of the <code>link</code> function.</p>
-<h2 id="the-solution">The solution</h2>
-<p>To run the directive after the DOM has finished rendering you should postpone the execution,
-for example using the <code>setTimeout</code> function. AngularJS has a method wrapper for the
-<code>window.setTimeout</code> function, that is <a href="https://docs.angularjs.org/api/ng/service/$timeout" title="AngularJS api: $timeout">$timeout</a>.</p>
-<p><code>$timeout</code> adds a new event to the browser event queue (the rendering engine is already
-in this queue) so it will complete the execution before the new timeout event.</p>
-<p>So in the end in our directive we have just to replace <code>hello();</code> with the following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">$timeout(hello, <span style="color:#bd93f9">0</span>);
-</code></pre></div></div>
-  <div class="post-footer">
-    <div class="post-date">March 4, 2013</div>
-    <div class="post-links">
-      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2frun-a-directive-after-the-dom-has-finished-rendering%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
-      <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
-      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/run-a-directive-after-the-dom-has-finished-rendering.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
-    </div>
-    <div class="post-share">
-      <span class="post-share-line"></span>
-      <span class="post-share-text">Share article</span>
-      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2frun-a-directive-after-the-dom-has-finished-rendering%2f&text=How%20to%20execute%20an%20AngularJS%20directive%20after%20the%20DOM%20has%20completed%20rendering&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
-      <a class="post-share-link" href="https://www.reddit.com/submit?title=How%20to%20execute%20an%20AngularJS%20directive%20after%20the%20DOM%20has%20completed%20rendering&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2frun-a-directive-after-the-dom-has-finished-rendering%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
-    </div>
-    <div class="post-author">
-      <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>
-      <div class="post-author-bio">
-        <strong>Bruno Scopelliti</strong> is an independent software engineer, with focus on frontend development.
-        <br/>He lives in nice Bologna, Italy.
-      </div>
-    </div>
-  </div>
-</article>
-
-<script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
-
-</script>
-
-<script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
-
-</script>
+<h1>Articles on "TypeScript"</h1>
+<section class="page-taxonomy-body">
+  
+  <h2>Chronological archive</h2></section>
 
       </main>
     </div>
