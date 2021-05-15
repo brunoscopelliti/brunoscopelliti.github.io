@@ -627,5 +627,14 @@ A final note Currently this blog is using the Twenty Eleven WordPress theme.</de
  Go back to the homepage.</description>
     </item>
     
+    <item>
+      <title>CV</title>
+      <link>https://brunoscopelliti.com/cv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://brunoscopelliti.com/cv/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
