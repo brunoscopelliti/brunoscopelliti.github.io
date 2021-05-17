@@ -6,7 +6,7 @@
     <description>Recent content in Home on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 May 2021 20:52:17 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 May 2021 21:42:46 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://brunoscopelliti.com/about/</link>
@@ -19,6 +19,18 @@ I am Bruno Scopelliti.
 I currently live in Bologna, Italy. These pages are my very own home on the Internet&amp;hellip; Welcome!
 I am blessed to have a wonderful wife, and two kids, Chiara and Matteo.
 I still don&amp;rsquo;t feel particularly comfortable in writing about my family over the Internet; however they&amp;rsquo;re everything for me.</description>
+    </item>
+    
+    <item>
+      <title>What&#39;s the difference between undefined and void in TypeScript?</title>
+      <link>https://brunoscopelliti.com/blog/whats-the-difference-between-undefined-and-void-in-typescript/</link>
+      <pubDate>Mon, 17 May 2021 21:42:46 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/whats-the-difference-between-undefined-and-void-in-typescript/</guid>
+      <description>If I have to describe my relationship with TypeScript in one word, I&amp;rsquo;ll say it is complicated.
+To put it shortly, I think most of the time it&amp;rsquo;s not worth the additional work, and headaches it causes - especially considering that in my usual setup I&amp;rsquo;ve unit test with high coverage, and meaningful JSDoc annotations.
+If you disagree - don&amp;rsquo;t worry, it&amp;rsquo;s fine 🙂
+Anyway, in recent years TypeScript has grown in popularity, and always more often I find it in my way.</description>
     </item>
     
     <item>
