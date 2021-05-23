@@ -6,7 +6,7 @@
     <description>Recent content in Home on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 May 2021 21:42:46 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 May 2021 21:50:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://brunoscopelliti.com/about/</link>
@@ -19,6 +19,18 @@ I am Bruno Scopelliti.
 I currently live in Bologna, Italy. These pages are my very own home on the Internet&amp;hellip; Welcome!
 I am blessed to have a wonderful wife, and two kids, Chiara and Matteo.
 I still don&amp;rsquo;t feel particularly comfortable in writing about my family over the Internet; however they&amp;rsquo;re everything for me.</description>
+    </item>
+    
+    <item>
+      <title>What is JavaScript?</title>
+      <link>https://brunoscopelliti.com/blog/what-is-javascript/</link>
+      <pubDate>Sun, 23 May 2021 21:50:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/what-is-javascript/</guid>
+      <description>I am really impressed here with Kyle&amp;rsquo;s ability to summarize a topic.
+What is JavaScript?
+ JavaScript is an implementation of the ECMAScript standard (version ES2019 as of this writing), which is guided by the TC39 committee and hosted by ECMA. It runs in browsers and other JS environments such as Node.js.
+JavaScript is a multi-paradigm language, meaning the syntax and capabilities allow a developer to mix and match (and bend and reshape!</description>
     </item>
     
     <item>

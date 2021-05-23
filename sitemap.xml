@@ -3,14 +3,14 @@
   
   <url>
     <loc>https://brunoscopelliti.com/</loc>
-    <lastmod>2021-05-17T21:42:46+01:00</lastmod>
+    <lastmod>2021-05-23T21:50:00+01:00</lastmod>
     
     
   </url>
   
   <url>
     <loc>https://brunoscopelliti.com/blog/</loc>
-    <lastmod>2021-05-17T21:42:46+01:00</lastmod>
+    <lastmod>2021-05-23T21:50:00+01:00</lastmod>
     
     
   </url>
@@ -24,9 +24,30 @@
   
   <url>
     <loc>https://brunoscopelliti.com/blog/search/</loc>
-    <lastmod>2021-05-17T21:42:46+01:00</lastmod>
+    <lastmod>2021-05-23T21:50:00+01:00</lastmod>
     
     
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/javascript/</loc>
+    <lastmod>2021-05-23T21:50:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/links/</loc>
+    <lastmod>2021-05-23T21:50:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/what-is-javascript/</loc>
+    <lastmod>2021-05-23T21:50:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   <url>
@@ -104,13 +125,6 @@
     <lastmod>2021-03-27T08:39:10+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://brunoscopelliti.com/blog/search/javascript/</loc>
-    <lastmod>2021-03-27T08:39:10+01:00</lastmod>
-    
-    
   </url>
   
   <url>
@@ -321,13 +335,6 @@
     <lastmod>2021-01-01T09:00:00+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://brunoscopelliti.com/blog/search/links/</loc>
-    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
-    
-    
   </url>
   
   <url>

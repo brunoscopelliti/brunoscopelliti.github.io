@@ -6,7 +6,25 @@
     <description>Recent content on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 May 2021 21:42:46 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 May 2021 21:50:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript</title>
+      <link>https://brunoscopelliti.com/blog/search/javascript/</link>
+      <pubDate>Sun, 23 May 2021 21:50:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/search/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>https://brunoscopelliti.com/blog/search/links/</link>
+      <pubDate>Sun, 23 May 2021 21:50:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/search/links/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>TypeScript</title>
       <link>https://brunoscopelliti.com/blog/search/typescript/</link>
@@ -59,15 +77,6 @@
       
       <guid>https://brunoscopelliti.com/blog/search/bugs/</guid>
       <description>It&amp;rsquo;s not a bug &amp;hellip; it&amp;rsquo;s a feature!</description>
-    </item>
-    
-    <item>
-      <title>JavaScript</title>
-      <link>https://brunoscopelliti.com/blog/search/javascript/</link>
-      <pubDate>Sat, 27 Mar 2021 08:39:10 +0100</pubDate>
-      
-      <guid>https://brunoscopelliti.com/blog/search/javascript/</guid>
-      <description></description>
     </item>
     
     <item>
@@ -175,15 +184,6 @@
       <pubDate>Wed, 07 Sep 2016 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/search/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Links</title>
-      <link>https://brunoscopelliti.com/blog/search/links/</link>
-      <pubDate>Thu, 01 Sep 2016 09:00:00 +0100</pubDate>
-      
-      <guid>https://brunoscopelliti.com/blog/search/links/</guid>
       <description></description>
     </item>
     
