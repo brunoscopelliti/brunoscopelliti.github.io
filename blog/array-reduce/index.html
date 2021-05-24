@@ -4,10 +4,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <meta charset="utf-8">
 
-    <title>Squash commits with git rebase | Bruno Scopelliti</title>
+    <title>About array&#39;s reduce | Bruno Scopelliti</title>
 
     
-    <meta name="description" content="git rebase, how to forge git history to your wants">
+    <meta name="description" content="Array&#39;s reduce">
     
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="/css/blog.dfea23f01caf35ef9f2e8f05d7ff5ebb1587aecd74c5041d0207692b29575374.css" integrity="sha256-3&#43;oj8ByvNe&#43;fLo8F1/9euxWHrs10xQQdAgdpKylXU3Q=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
-<meta name="twitter:title" content="Squash commits with git rebase">
+<meta name="twitter:title" content="About array&#39;s reduce">
 
 
 
-<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/squash-commits-with-git-rebase.png">
-<meta name="twitter:description" content="Until recently I watched at those people able to squash git commits as magicians. I&#39;ve probably overestimated them a bit, and now that I&#39;ve finally learned the trick, I want to celebrate, and share …">
+<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/about-arrays-reduce.png">
+<meta name="twitter:description" content="Let&#39;s use this week tech drama to discuss readability of code.">
 
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -115,111 +115,116 @@
     <a href="/blog" aria-label="View all articles">Blog</a>
     <span>/</span>
     
-    <a href="/blog/search/tools/">Tools</a>
+    <a href="/blog/search/opinions/">Opinions</a>
     <span>/</span>
     
   </div>
-  <h1>Squash commits with git rebase</h1>
-  <div class="post-body"><p>That&rsquo;s one thing I&rsquo;ve just recently learned, and I&rsquo;m writing down here for future reference.</p>
-<p>Git&rsquo;s <code>rebase</code> command permits to change the history of a git repository.
-<br/>
-Note that this is safe to do only for commits that haven&rsquo;t already been shared
-to the team you are working with.</p>
-<h2 id="why-is-it-useful">Why is it useful?</h2>
-<p>Consider the following scenario:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git hist
-<span style="color:#6272a4"># git hist is a custom alias for &#34;git log --pretty=format:&#39;%h %ad | %s%d [%an]&#39; --graph --date=short&#34;</span>
-* 8a3a015 2016-10-26 | The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe <span style="color:#ff79c6">(</span>HEAD -&gt; master<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-* a48ca6d 2016-10-26 | Init repo <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-</code></pre></div><p>I&rsquo;m so proud of myself&hellip; I&rsquo;ve just pushed the best commit in the whole history of the Universe!</p>
-<p>I should absolutely show someone else my greatness, so it&rsquo;s time for a code review&hellip;
-and it turns out that the commit was not so perfect as I thought. 
-However the fix is easy, and so we arrive here:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git hist
-* bd2b8f4 2016-10-26 | Ops, I&#39;ve forgot something... Fixed now <span style="color:#ff79c6">(</span>HEAD -&gt; master<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-* 8a3a015 2016-10-26 | The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-* a48ca6d 2016-10-26 | Init repo <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-</code></pre></div><p>It works, but the history is a bit messy, and going down this path, it won&rsquo;t get better!</p>
-<p>Git gives the option to squash two, or more commits into a single one using the <code>rebase</code> command.</p>
-<h2 id="how-to-squash-commits">How to squash commits?</h2>
-<p>Let&rsquo;s try to squash those commits into a single one.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git rebase -i HEAD~2
-</code></pre></div><p>This cause your default Git editor - on my macbook pro, it is <em>nano</em> - to show up
-with the following content:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">pick 5e170e0 The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe
-pick bd2b8f4 Ops, I&#39;ve forgot something... Fixed now
-<span style="color:#6272a4"># Rebase a48ca6d..bd2b8f4 onto a48ca6d (2 commands)</span>
-<span style="color:#6272a4">#</span>
-<span style="color:#6272a4"># Commands:</span>
-<span style="color:#6272a4"># p, pick = use commit</span>
-<span style="color:#6272a4"># r, reword = use commit, but edit the commit message</span>
-<span style="color:#6272a4"># e, edit = use commit, but stop for amending</span>
-<span style="color:#6272a4"># s, squash = use commit, but meld into previous commit</span>
-<span style="color:#6272a4"># f, fixup = like &#34;squash&#34;, but discard this commit log message</span>
-<span style="color:#6272a4"># x, exec = run command (the rest of the line) using shell</span>
-<span style="color:#6272a4"># d, drop = remove commit</span>
-<span style="color:#6272a4">#</span>
-<span style="color:#6272a4"># These lines can be re-ordered; they are executed from top to bottom.</span>
-<span style="color:#6272a4">#</span>
-<span style="color:#6272a4"># If you remove a line here THAT COMMIT WILL BE LOST.</span>
-<span style="color:#6272a4">#</span>
-<span style="color:#6272a4"># However, if you remove everything, the rebase will be aborted.</span>
-<span style="color:#6272a4">#</span>
-<span style="color:#6272a4"># Note that empty commits are commented out</span>
-</code></pre></div><p>We&rsquo;re seeing only the last two commits cause I expressly requested to rebase only
-the last two (remember the <code>HEAD~2</code>).</p>
-<p>The comments make pretty clear how to proceed; so I change the content.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">pick 5e170e0 The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe
-squash bd2b8f4 Ops, I&#39;ve forgot something... Fixed now
-</code></pre></div><p>Save, exit. Git will give you a reassuring successfull message at the end of the process.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git rebase -i HEAD~2
-<span style="color:#ff79c6">[</span>detached HEAD 7c442c5<span style="color:#ff79c6">]</span> The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe
- Date: Wed Oct <span style="color:#bd93f9">26</span> 18:31:15 <span style="color:#bd93f9">2016</span> +0200
- <span style="color:#bd93f9">1</span> file changed, <span style="color:#bd93f9">10</span> insertions<span style="color:#ff79c6">(</span>+<span style="color:#ff79c6">)</span>, <span style="color:#bd93f9">1</span> deletion<span style="color:#ff79c6">(</span>-<span style="color:#ff79c6">)</span>
-Successfully rebased and updated refs/heads/master.
-</code></pre></div><p>However let&rsquo;s check.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git hist
-* 7c442c5 2016-10-26 | The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe <span style="color:#ff79c6">(</span>HEAD -&gt; master<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-* a48ca6d 2016-10-26 | Init repo <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-</code></pre></div><p>You may have noted that in the process the hash of the commit with the message
-<em>The most perfect commit in the history of the Universe</em> has changed.
-That&rsquo;s because this process actually generates brand new commits with completely
-different IDs than the old commits, and leaves the old commits where they were.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git cat-file -t bd2b8f4
-commit
-</code></pre></div><h2 id="common-pitfalls">Common pitfalls</h2>
-<p>It&rsquo;s not possible to squash a commit without a previous commit. So if you try this one</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">squash 5e170e0 The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe
+  <h1>About array&#39;s reduce</h1>
+  <div class="post-body"><p>This week tech drama is courtesy of <a href="https://twitter.com/maxfmckay">@maxfmckay</a>.</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Simplify your .reduce calls by doing as much work as possible in .filter and .map instead. Compare these two snippets. Which is more readable? Notice that when map arranges data exactly how we want, our .reduce can be just Object.assign.<a href="https://twitter.com/hashtag/typescript?src=hash&amp;ref_src=twsrc%5Etfw">#typescript</a> <a href="https://twitter.com/hashtag/javascript?src=hash&amp;ref_src=twsrc%5Etfw">#javascript</a> <a href="https://t.co/3TW57kaCar">pic.twitter.com/3TW57kaCar</a></p>&mdash; Rupert Foggo McKay (@maxfmckay) <a href="https://twitter.com/maxfmckay/status/1396252890721918979?ref_src=twsrc%5Etfw">May 22, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Let&rsquo;s for a moment forget the original snippet, and its flaws pointed out in the
+thread on Twitter, and focus on the topic.</p>
+<p><code>[].reduce</code> has a long story of being criticized.<br>
+In most cases the arguments fall in one, or both of these two categories:</p>
+<ul>
+<li>
+<p><code>[].reduce</code> makes code no - or <em>less</em> - readable.</p>
+</li>
+<li>
+<p><code>[].reduce</code> is used by people to show off how smart they are.</p>
+</li>
+</ul>
+<p>I disagree with both these arguments.<br>
+First one criticize the api - I respect this stance.<br>
+The second one attacks people using reduce; it adds nothing to the discussion.
+It&rsquo;s particularly sad I&rsquo;ve seen this used also by people I respect, and admire for their work.</p>
+<h2 id="reduce-is-not-perfect">Reduce is not perfect</h2>
+<p>Well, <code>[].reduce</code> is not perfect.</p>
+<p>For example, I was surprised when first learned it throws an exception, when called on an empty
+array, and no initial value is provided.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">[].reduce(() =&gt; {}); 
+<span style="color:#6272a4">// Uncaught TypeError: Reduce of empty array with no initial value
+</span></code></pre></div><p>Others api have other shenanigans - then you learn it, and they become just tools
+in your belt, you can use when it makes sense.</p>
+<h2 id="readability-of-the-code">Readability of the code</h2>
+<p>I believe code readability is an intrinsic feature of the code when you look at the big picture.
+There are techniques, and patterns to adopt that makes easier to a person to make sense of a
+program, or a whole codebase; for example split functionalities in short functions, each with meaningful
+name goes a long way.</p>
+<p>But the more you restrict the area you look at, the more code readability becomes subjective,
+arguably meaningless, like any other stylistic preference.<br>
+First of all it depends by the ability of a person to read the code.<br>
+I trust everyone who is criticizing <code>[].reduce</code> in this regard, know the api well;
+but even assuming the same level of understanding of the api, readability remains subjective,
+and depends, between the other things, by how much you&rsquo;ve been exposed to a pattern.
+Eg. if you&rsquo;re deliberately not using <code>[].reduce</code> - even when it would make sense to - you
+can&rsquo;t expect to read it with same ease as someone who does.</p>
+<p>For these reasons I prefer to talk in terms of intrinsic ability of an api to communicate
+well developer&rsquo;s intention.</p>
+<h2 id="what-i-usually-do">What I usually do</h2>
+<p>I usually prefer array&rsquo;s built-in methods over loops, cause most of the time, they better
+communicate developer&rsquo;s intention.</p>
+<p>For example, when I meet <code>[].filter</code> in the code, I know a new array containing only a subset
+of the initial array&rsquo;s element is being created (even before looking at the function
+implementation).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> odds <span style="color:#ff79c6">=</span> numbers.filter(
+  (number) =&gt; {
+    <span style="color:#ff79c6">return</span> number <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">2</span> <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>;
+  }
+)
+</code></pre></div><p>When I see <code>[].map</code>, I know all the elements in the initial array are going to be transformed
+into something else, and a new array is being returned.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> squares <span style="color:#ff79c6">=</span> numbers.map(
+  (number) =&gt; {
+    <span style="color:#ff79c6">return</span> number <span style="color:#ff79c6">**</span> <span style="color:#bd93f9">2</span>;
+  }
+)
+</code></pre></div><p>&hellip; and there&rsquo;re many more, <code>[].find</code>, <code>[].every</code>, <code>[].some</code>, etc.</p>
+<p>These methods are generally slower than loops, but most people agree that the performance loss
+is negligible compared to the clarity they bring.</p>
+<p>Now, <code>[].reduce</code> is much more powerful of all these methods - in fact it can be used to implement
+all of the previous methods, but the contrary is not true.<br>
+The cost of this power is that it carries less intrinsic meaning respect the others.<br>
+In fact with <code>[].reduce</code> you can&rsquo;t say anything about the result, without also looking at the
+function implementation - and if you&rsquo;re having hard time there it is most likely cause
+that specific function is a mess.</p>
+<p>I agree that using <code>[].filter</code>, and <code>[].map</code>, as our friend suggests, brings more clarity here;
+but it is so just because we&rsquo;re splitting a big function into smaller pieces - and this
+always helps!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> squaresOfOdds <span style="color:#ff79c6">=</span> numbers
+  .filter(isOdd)
+  .map(square);
+</code></pre></div><p>In fact, we can use same approach to improve the <code>[].reduce</code>-based implementation
+of the same functionality.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> squaresOfOdds <span style="color:#ff79c6">=</span> numbers.reduce(
+  (result, number) =&gt; {
+    <span style="color:#ff79c6">if</span> (isOdd(number)) {
+      result.push(
+        square(number)
+      );
+    }
 
-pick bd2b8f4 Ops, I&#39;ve forgot something... Fixed now
-</code></pre></div><p>Git will throw an error at you.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git rebase -i HEAD~2
-error: Cannot <span style="color:#f1fa8c">&#39;squash&#39;</span> without a previous commit
-You can fix this with <span style="color:#f1fa8c">&#39;git rebase --edit-todo&#39;</span> and <span style="color:#ff79c6">then</span> run <span style="color:#f1fa8c">&#39;git rebase --continue&#39;</span>.
-Or you can abort the rebase with <span style="color:#f1fa8c">&#39;git rebase --abort&#39;</span>.
-</code></pre></div><p>However Git is also so kind that suggest how to solve the issue:
-<br/><code>git rebase --edit-todo</code> will reopen the editor and give you a chance to review,
-then <code>git rebase --continue</code> will restart the rebase process.</p>
+    <span style="color:#ff79c6">return</span> result;
+  },
+  []
+)
+</code></pre></div><p>In this particular case <code>[].filter</code>, then <code>[].map</code> looks acceptable alternative
+to me - but it doesn&rsquo;t cover all the possible use cases <code>[].reduce</code> does.<br>
+In particular, it looks pointless to me to move logic out of the reduce function, when
+you still need to use <code>[].reduce</code> at the end of the chain.</p>
 </div>
   <div class="post-footer">
-    <div class="post-date">January 23, 2017</div>
+    <div class="post-date">May 24, 2021</div>
     <div class="post-links">
-      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fsquash-commits-with-git-rebase%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
+      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2farray-reduce%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
       <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
-      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/squash-commits-with-git-rebase.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
+      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/array-reduce.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
     </div>
     <div class="post-share">
       <span class="post-share-line"></span>
       <span class="post-share-text">Share article</span>
-      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fsquash-commits-with-git-rebase%2f&text=Squash%20commits%20with%20git%20rebase&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
-      <a class="post-share-link" href="https://www.reddit.com/submit?title=Squash%20commits%20with%20git%20rebase&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fsquash-commits-with-git-rebase%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
+      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2farray-reduce%2f&text=About%20array%27s%20reduce&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
+      <a class="post-share-link" href="https://www.reddit.com/submit?title=About%20array%27s%20reduce&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2farray-reduce%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
     </div>
     <div class="post-author">
       <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>

@@ -6,7 +6,18 @@
     <description>Recent content in Blog on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 May 2021 21:50:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 May 2021 20:45:15 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About array&#39;s reduce</title>
+      <link>https://brunoscopelliti.com/blog/array-reduce/</link>
+      <pubDate>Mon, 24 May 2021 20:45:15 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/array-reduce/</guid>
+      <description>This week tech drama is courtesy of @maxfmckay.
+Simplify your .reduce calls by doing as much work as possible in .filter and .map instead. Compare these two snippets. Which is more readable? Notice that when map arranges data exactly how we want, our .reduce can be just Object.assign.#typescript #javascript pic.twitter.com/3TW57kaCar
+&amp;mdash; Rupert Foggo McKay (@maxfmckay) May 22, 2021  Let&amp;rsquo;s for a moment forget the original snippet, and its flaws pointed out in the thread on Twitter, and focus on the topic.</description>
+    </item>
+    
     <item>
       <title>What is JavaScript?</title>
       <link>https://brunoscopelliti.com/blog/what-is-javascript/</link>

@@ -4,10 +4,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <meta charset="utf-8">
 
-    <title>Squash commits with git rebase | Bruno Scopelliti</title>
+    <title>Opinions | Bruno Scopelliti</title>
 
-    
-    <meta name="description" content="git rebase, how to forge git history to your wants">
     
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -16,15 +14,10 @@
 
     
     <link rel="stylesheet" href="/css/blog.dfea23f01caf35ef9f2e8f05d7ff5ebb1587aecd74c5041d0207692b29575374.css" integrity="sha256-3&#43;oj8ByvNe&#43;fLo8F1/9euxWHrs10xQQdAgdpKylXU3Q=">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:creator" content="@brunoscopelliti">
-<meta name="twitter:title" content="Squash commits with git rebase">
-
-
-
-<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/squash-commits-with-git-rebase.png">
-<meta name="twitter:description" content="Until recently I watched at those people able to squash git commits as magicians. I&#39;ve probably overestimated them a bit, and now that I&#39;ve finally learned the trick, I want to celebrate, and share …">
-
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@brunoscopelliti">
+    <meta name="twitter:title" content="Opinions">
+    <meta name="twitter:image" content="/images/twitter-card.png">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -110,136 +103,22 @@
 
     <div class="page-main-content">
       <main id="main">
-<article class="post" data-js="post">
-  <div class="post-breadcrumbs">
-    <a href="/blog" aria-label="View all articles">Blog</a>
-    <span>/</span>
+<h1>Articles on "Opinions"</h1>
+<section class="page-taxonomy-body">
+  
+  <h2>Chronological archive</h2>
+  <div class="year-section" data-js="group">
+    <h3>2021</h3>
+    <div class="taxonomy-post-list">
     
-    <a href="/blog/search/tools/">Tools</a>
-    <span>/</span>
-    
-  </div>
-  <h1>Squash commits with git rebase</h1>
-  <div class="post-body"><p>That&rsquo;s one thing I&rsquo;ve just recently learned, and I&rsquo;m writing down here for future reference.</p>
-<p>Git&rsquo;s <code>rebase</code> command permits to change the history of a git repository.
-<br/>
-Note that this is safe to do only for commits that haven&rsquo;t already been shared
-to the team you are working with.</p>
-<h2 id="why-is-it-useful">Why is it useful?</h2>
-<p>Consider the following scenario:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git hist
-<span style="color:#6272a4"># git hist is a custom alias for &#34;git log --pretty=format:&#39;%h %ad | %s%d [%an]&#39; --graph --date=short&#34;</span>
-* 8a3a015 2016-10-26 | The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe <span style="color:#ff79c6">(</span>HEAD -&gt; master<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-* a48ca6d 2016-10-26 | Init repo <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-</code></pre></div><p>I&rsquo;m so proud of myself&hellip; I&rsquo;ve just pushed the best commit in the whole history of the Universe!</p>
-<p>I should absolutely show someone else my greatness, so it&rsquo;s time for a code review&hellip;
-and it turns out that the commit was not so perfect as I thought. 
-However the fix is easy, and so we arrive here:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git hist
-* bd2b8f4 2016-10-26 | Ops, I&#39;ve forgot something... Fixed now <span style="color:#ff79c6">(</span>HEAD -&gt; master<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-* 8a3a015 2016-10-26 | The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-* a48ca6d 2016-10-26 | Init repo <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-</code></pre></div><p>It works, but the history is a bit messy, and going down this path, it won&rsquo;t get better!</p>
-<p>Git gives the option to squash two, or more commits into a single one using the <code>rebase</code> command.</p>
-<h2 id="how-to-squash-commits">How to squash commits?</h2>
-<p>Let&rsquo;s try to squash those commits into a single one.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git rebase -i HEAD~2
-</code></pre></div><p>This cause your default Git editor - on my macbook pro, it is <em>nano</em> - to show up
-with the following content:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">pick 5e170e0 The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe
-pick bd2b8f4 Ops, I&#39;ve forgot something... Fixed now
-<span style="color:#6272a4"># Rebase a48ca6d..bd2b8f4 onto a48ca6d (2 commands)</span>
-<span style="color:#6272a4">#</span>
-<span style="color:#6272a4"># Commands:</span>
-<span style="color:#6272a4"># p, pick = use commit</span>
-<span style="color:#6272a4"># r, reword = use commit, but edit the commit message</span>
-<span style="color:#6272a4"># e, edit = use commit, but stop for amending</span>
-<span style="color:#6272a4"># s, squash = use commit, but meld into previous commit</span>
-<span style="color:#6272a4"># f, fixup = like &#34;squash&#34;, but discard this commit log message</span>
-<span style="color:#6272a4"># x, exec = run command (the rest of the line) using shell</span>
-<span style="color:#6272a4"># d, drop = remove commit</span>
-<span style="color:#6272a4">#</span>
-<span style="color:#6272a4"># These lines can be re-ordered; they are executed from top to bottom.</span>
-<span style="color:#6272a4">#</span>
-<span style="color:#6272a4"># If you remove a line here THAT COMMIT WILL BE LOST.</span>
-<span style="color:#6272a4">#</span>
-<span style="color:#6272a4"># However, if you remove everything, the rebase will be aborted.</span>
-<span style="color:#6272a4">#</span>
-<span style="color:#6272a4"># Note that empty commits are commented out</span>
-</code></pre></div><p>We&rsquo;re seeing only the last two commits cause I expressly requested to rebase only
-the last two (remember the <code>HEAD~2</code>).</p>
-<p>The comments make pretty clear how to proceed; so I change the content.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">pick 5e170e0 The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe
-squash bd2b8f4 Ops, I&#39;ve forgot something... Fixed now
-</code></pre></div><p>Save, exit. Git will give you a reassuring successfull message at the end of the process.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git rebase -i HEAD~2
-<span style="color:#ff79c6">[</span>detached HEAD 7c442c5<span style="color:#ff79c6">]</span> The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe
- Date: Wed Oct <span style="color:#bd93f9">26</span> 18:31:15 <span style="color:#bd93f9">2016</span> +0200
- <span style="color:#bd93f9">1</span> file changed, <span style="color:#bd93f9">10</span> insertions<span style="color:#ff79c6">(</span>+<span style="color:#ff79c6">)</span>, <span style="color:#bd93f9">1</span> deletion<span style="color:#ff79c6">(</span>-<span style="color:#ff79c6">)</span>
-Successfully rebased and updated refs/heads/master.
-</code></pre></div><p>However let&rsquo;s check.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git hist
-* 7c442c5 2016-10-26 | The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe <span style="color:#ff79c6">(</span>HEAD -&gt; master<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-* a48ca6d 2016-10-26 | Init repo <span style="color:#ff79c6">[</span>brunoscopelliti<span style="color:#ff79c6">]</span>
-</code></pre></div><p>You may have noted that in the process the hash of the commit with the message
-<em>The most perfect commit in the history of the Universe</em> has changed.
-That&rsquo;s because this process actually generates brand new commits with completely
-different IDs than the old commits, and leaves the old commits where they were.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git cat-file -t bd2b8f4
-commit
-</code></pre></div><h2 id="common-pitfalls">Common pitfalls</h2>
-<p>It&rsquo;s not possible to squash a commit without a previous commit. So if you try this one</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">squash 5e170e0 The most perfect commit in the <span style="color:#8be9fd;font-style:italic">history</span> of the Universe
-
-pick bd2b8f4 Ops, I&#39;ve forgot something... Fixed now
-</code></pre></div><p>Git will throw an error at you.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">bruno ~/git/hello-git
-$ git rebase -i HEAD~2
-error: Cannot <span style="color:#f1fa8c">&#39;squash&#39;</span> without a previous commit
-You can fix this with <span style="color:#f1fa8c">&#39;git rebase --edit-todo&#39;</span> and <span style="color:#ff79c6">then</span> run <span style="color:#f1fa8c">&#39;git rebase --continue&#39;</span>.
-Or you can abort the rebase with <span style="color:#f1fa8c">&#39;git rebase --abort&#39;</span>.
-</code></pre></div><p>However Git is also so kind that suggest how to solve the issue:
-<br/><code>git rebase --edit-todo</code> will reopen the editor and give you a chance to review,
-then <code>git rebase --continue</code> will restart the rebase process.</p>
-</div>
-  <div class="post-footer">
-    <div class="post-date">January 23, 2017</div>
-    <div class="post-links">
-      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fsquash-commits-with-git-rebase%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
-      <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
-      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/squash-commits-with-git-rebase.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
-    </div>
-    <div class="post-share">
-      <span class="post-share-line"></span>
-      <span class="post-share-text">Share article</span>
-      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fsquash-commits-with-git-rebase%2f&text=Squash%20commits%20with%20git%20rebase&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
-      <a class="post-share-link" href="https://www.reddit.com/submit?title=Squash%20commits%20with%20git%20rebase&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fsquash-commits-with-git-rebase%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
-    </div>
-    <div class="post-author">
-      <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>
-      <div class="post-author-bio">
-        <strong>Bruno Scopelliti</strong> is an independent software engineer, with focus on frontend development.
-        <br/>He lives in nice Bologna, Italy.
+      <div class="post-entry" data-js="post-entry" data-tags="opinions,javascript,">
+        <span class="post-date">24 May</span>
+        <a href="/blog/array-reduce/">About array&#39;s reduce</a>
       </div>
+    
     </div>
   </div>
-</article>
-
-<script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
-
-</script>
-
-<script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
-
-</script>
+</section>
 
       </main>
     </div>

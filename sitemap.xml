@@ -3,14 +3,14 @@
   
   <url>
     <loc>https://brunoscopelliti.com/</loc>
-    <lastmod>2021-05-23T21:50:00+01:00</lastmod>
+    <lastmod>2021-05-24T20:45:15+01:00</lastmod>
     
     
   </url>
   
   <url>
     <loc>https://brunoscopelliti.com/blog/</loc>
-    <lastmod>2021-05-23T21:50:00+01:00</lastmod>
+    <lastmod>2021-05-24T20:45:15+01:00</lastmod>
     
     
   </url>
@@ -24,14 +24,28 @@
   
   <url>
     <loc>https://brunoscopelliti.com/blog/search/</loc>
-    <lastmod>2021-05-23T21:50:00+01:00</lastmod>
+    <lastmod>2021-05-24T20:45:15+01:00</lastmod>
     
     
   </url>
   
   <url>
+    <loc>https://brunoscopelliti.com/blog/array-reduce/</loc>
+    <lastmod>2021-05-24T20:45:15+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
     <loc>https://brunoscopelliti.com/blog/search/javascript/</loc>
-    <lastmod>2021-05-23T21:50:00+01:00</lastmod>
+    <lastmod>2021-05-24T20:45:15+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/opinions/</loc>
+    <lastmod>2021-05-24T20:45:15+01:00</lastmod>
     
     
   </url>
