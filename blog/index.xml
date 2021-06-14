@@ -6,7 +6,19 @@
     <description>Recent content in Blog on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 May 2021 20:45:15 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Jun 2021 21:08:24 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Default vs Named exports</title>
+      <link>https://brunoscopelliti.com/blog/export/</link>
+      <pubDate>Mon, 14 Jun 2021 21:08:24 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/export/</guid>
+      <description>I&amp;rsquo;m always been on default export team.
+I cannot find the link now - but I remember this being what TC39 recommended at some point.
+I kept using almost exclusively default export even after Nicholas Zakas - a person in the tech space I really admire, and respect - wrote his motivation for not using default export anymore.
+Lately I&amp;rsquo;ve been working more with named exports (not my choice, btw) and came to realize that to me it&amp;rsquo;s really not important the export format - both have their own specific pros - as long as the file is not a mess.</description>
+    </item>
+    
     <item>
       <title>About array&#39;s reduce</title>
       <link>https://brunoscopelliti.com/blog/array-reduce/</link>

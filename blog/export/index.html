@@ -4,10 +4,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <meta charset="utf-8">
 
-    <title>Blog | Bruno Scopelliti</title>
+    <title>Default vs Named exports | Bruno Scopelliti</title>
 
     
-    <meta name="description" content="Bruno Scopelliti&#39;s blog, software development, JavaScript, Node.js, React, Apollo, Firebase.">
+    <meta name="description" content="JavaScript modules: default export, named export">
     
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -16,10 +16,15 @@
 
     
     <link rel="stylesheet" href="/css/blog.dfea23f01caf35ef9f2e8f05d7ff5ebb1587aecd74c5041d0207692b29575374.css" integrity="sha256-3&#43;oj8ByvNe&#43;fLo8F1/9euxWHrs10xQQdAgdpKylXU3Q=">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@brunoscopelliti">
-    <meta name="twitter:title" content="Blog">
-    <meta name="twitter:image" content="/images/twitter-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@brunoscopelliti">
+<meta name="twitter:title" content="Default vs Named exports">
+
+
+
+<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/default-vs-named-exports.png">
+<meta name="twitter:description" content="TL:DR it doesn&#39;t matter, as long as the file is not a giant mess.">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -34,7 +39,7 @@
 
     <meta name="theme-color" content="#192039">
   </head>
-  <body class="list">
+  <body class="">
     <a id="skip-nav" href="#main">Go to content</a>
 
     <header class="site-header">
@@ -59,7 +64,7 @@
         <a href="/">Home</a>
       </li>
     
-      <li class="active">
+      <li class="">
         <a href="/blog/">Blog</a>
       </li>
     
@@ -105,86 +110,91 @@
 
     <div class="page-main-content">
       <main id="main">
-<h1>Blog</h1>
-<div class="post-list">
-  <article class="post-entry">
-  <h2>
-    <a href="/blog/lets-write-a-promise-polyfill/" title="Let&#39;s write a Promise polyfill">Let&#39;s write a Promise polyfill</a>
-  </h2>
-  <div class="post-preview">Everybody in this industry know the ancient wisdom for which it's better avoid reinventing the wheel. Anyway, that's often necessary to really understand how things work.</div>
-  <div class="post-link">
-    <a href="/blog/lets-write-a-promise-polyfill/" title="Let&#39;s write a Promise polyfill">Read article</a>
+<article class="post" data-js="post">
+  <div class="post-breadcrumbs">
+    <a href="/blog" aria-label="View all articles">Blog</a>
+    <span>/</span>
+    
+    <a href="/blog/search/opinions/">Opinions</a>
+    <span>/</span>
+    
   </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/exception-handling-in-async-functions/" title="Exception handling in async functions">Exception handling in async functions</a>
-  </h2>
-  <div class="post-preview">One aspect in which async/await really shine is error handling, but there's a caveat you'd be better be aware of.</div>
-  <div class="post-link">
-    <a href="/blog/exception-handling-in-async-functions/" title="Exception handling in async functions">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/a-csharp-automapper-trick/" title="A C# Automapper trick">A C# Automapper trick</a>
-  </h2>
-  <div class="post-preview">This is just me trying to memorize something I've searched lots of time on Google.</div>
-  <div class="post-link">
-    <a href="/blog/a-csharp-automapper-trick/" title="A C# Automapper trick">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/new-util-promisify-in-nodejs/" title="New util.promisify in Node.js">New util.promisify in Node.js</a>
-  </h2>
-  <div class="post-preview">This probably isn't a ground breaking news, but surely relevant if you work with Node.js.</div>
-  <div class="post-link">
-    <a href="/blog/new-util-promisify-in-nodejs/" title="New util.promisify in Node.js">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/dry-and-strawberries/" title="DRY and strawberries">DRY and strawberries</a>
-  </h2>
-  <div class="post-preview">Code reuse is important, but if you're not careful it can make more damage than good. In this post I explore one of a such cases, and provide a still DRY-compliant alternative. The strawberries? Just read the post.</div>
-  <div class="post-link">
-    <a href="/blog/dry-and-strawberries/" title="DRY and strawberries">Read article</a>
+  <h1>Default vs Named exports</h1>
+  <div class="post-body"><p>I&rsquo;m always been on <em>default export</em> team.<br>
+I cannot find the link now - but I remember this being what TC39 recommended at some point.</p>
+<p>I kept using almost exclusively default export even after
+<a href="https://twitter.com/slicknet">Nicholas Zakas</a> - a person in the tech space I really admire,
+and respect - wrote his <a href="https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/">motivation for not using default export</a> anymore.</p>
+<p>Lately I&rsquo;ve been working more with <em>named exports</em> (not my choice, btw) and came to realize
+that to me it&rsquo;s really not important the export format - both have their own specific
+pros - as long as the file is not a mess.<br>
+The only problem I have with named exports is that this syntax <em>seems to encourage</em> developer
+creating a mess. Consider the module below as an example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> something <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
+<span style="color:#ff79c6">const</span> somethingElse <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> a () {}
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> b () {}
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> c () {}
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> d () {}
+</code></pre></div><p>Who really is using <code>something</code>? Does <code>a</code> depends on <code>b</code>, or <code>c</code> - or viceversa, maybe?
+Hard to say without looking carefully at the code.</p>
+<p>I find easier maintain modules that exports a single value (exceptions might occur
+when it makes sense) no matter the specific syntax is used to export this file.
+So, I would write the previous snippet as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">// a.js
+</span><span style="color:#6272a4"></span>
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> a () {}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">// b.js
+</span><span style="color:#6272a4"></span>
+<span style="color:#ff79c6">import</span> { a } from <span style="color:#f1fa8c">&#34;./a&#34;</span>;
+
+<span style="color:#ff79c6">const</span> something <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> b () {}
+</code></pre></div><p>This makes way simpler to understand each function, and its dependencies at a quick glance - and
+it&rsquo;s independent from the export syntax we adopt.</p>
+<p>One common complaint I receive at this point is that related things should stay together.
+For example, you might want to have a <code>utils/array.js</code> file that contains all the utilities
+functions to work with array.<br>
+I agree with the principle, and suggest to keep all these utilities under the same folder,
+eg. <code>utils/array/[map,filter].js</code>.</p>
+</div>
+  <div class="post-footer">
+    <div class="post-date">June 14, 2021</div>
+    <div class="post-links">
+      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fexport%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
+      <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
+      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/export.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
+    </div>
+    <div class="post-share">
+      <span class="post-share-line"></span>
+      <span class="post-share-text">Share article</span>
+      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fexport%2f&text=Default%20vs%20Named%20exports&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
+      <a class="post-share-link" href="https://www.reddit.com/submit?title=Default%20vs%20Named%20exports&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fexport%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
+    </div>
+    <div class="post-author">
+      <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>
+      <div class="post-author-bio">
+        <strong>Bruno Scopelliti</strong> is an independent software engineer, with focus on frontend development.
+        <br/>He lives in nice Bologna, Italy.
+      </div>
+    </div>
   </div>
 </article>
 
-</div>
-<ul class="pagination">
-  <li class="page-item">
-    <a href="/blog/" class="page-link" aria-label="First">
-      <span aria-hidden="true">&laquo;</span>
-    </a>
-  </li>
-  
-  <li class="page-item">
-    <a class="page-link" href="/blog/">1</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/2/">2</a>
-  </li>
-  <li class="page-item active">
-    <a class="page-link" href="/blog/page/3/">3</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/4/">4</a>
-  </li>
-  <li class="page-item disabled">
-    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/12/">12</a>
-  </li>
-  <li class="page-item">
-    <a href="/blog/page/12/" class="page-link" aria-label="Last">
-      <span aria-hidden="true">&raquo;</span>
-    </a>
-  </li>
-</ul>
+<script>
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+
+</script>
+
+<script>
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+
+</script>
 
       </main>
     </div>
