@@ -4,8 +4,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <meta charset="utf-8">
 
-    <title>Opinions | Bruno Scopelliti</title>
+    <title>Default vs Named exports | Bruno Scopelliti</title>
 
+    
+    <meta name="description" content="JavaScript modules: default export, named export">
     
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -14,10 +16,15 @@
 
     
     <link rel="stylesheet" href="/css/blog.dfea23f01caf35ef9f2e8f05d7ff5ebb1587aecd74c5041d0207692b29575374.css" integrity="sha256-3&#43;oj8ByvNe&#43;fLo8F1/9euxWHrs10xQQdAgdpKylXU3Q=">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@brunoscopelliti">
-    <meta name="twitter:title" content="Opinions">
-    <meta name="twitter:image" content="/images/twitter-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@brunoscopelliti">
+<meta name="twitter:title" content="Default vs Named exports">
+
+
+
+<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/default-vs-named-exports.png">
+<meta name="twitter:description" content="TL:DR it doesn&#39;t matter, as long as the file is not a giant mess.">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -103,27 +110,91 @@
 
     <div class="page-main-content">
       <main id="main">
-<h1>Articles on "Opinions"</h1>
-<section class="page-taxonomy-body">
-  
-  <h2>Chronological archive</h2>
-  <div class="year-section" data-js="group">
-    <h3>2021</h3>
-    <div class="taxonomy-post-list">
+<article class="post" data-js="post">
+  <div class="post-breadcrumbs">
+    <a href="/blog" aria-label="View all articles">Blog</a>
+    <span>/</span>
     
-      <div class="post-entry" data-js="post-entry" data-tags="opinions,javascript,">
-        <span class="post-date">14 Jun</span>
-        <a href="/blog/default-vs-named-export/">Default vs Named exports</a>
+    <a href="/blog/search/opinions/">Opinions</a>
+    <span>/</span>
+    
+  </div>
+  <h1>Default vs Named exports</h1>
+  <div class="post-body"><p>I&rsquo;m always been on <em>default export</em> team.<br>
+I cannot find the link now - but I remember this being what TC39 recommended at some point.</p>
+<p>I kept using almost exclusively default export even after
+<a href="https://twitter.com/slicknet">Nicholas Zakas</a> - a person in the tech space I really admire,
+and respect - wrote his <a href="https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/">motivation for not using default export</a> anymore.</p>
+<p>Lately I&rsquo;ve been working more with <em>named exports</em> (not my choice, btw) and came to realize
+that to me it&rsquo;s really not important the export format - both have their own specific
+pros - as long as the file is not a mess.<br>
+The only problem I have with named exports is that this syntax <em>seems to encourage</em> developer
+creating a mess. Consider the module below as an example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> something <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
+<span style="color:#ff79c6">const</span> somethingElse <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> a () {}
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> b () {}
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> c () {}
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> d () {}
+</code></pre></div><p>Who really is using <code>something</code>? Does <code>a</code> depends on <code>b</code>, or <code>c</code> - or viceversa, maybe?
+Hard to say without looking carefully at the code.</p>
+<p>I find easier maintain modules that exports a single value (exceptions might occur
+when it makes sense) no matter the specific syntax is used to export this file.
+So, I would write the previous snippet as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">// a.js
+</span><span style="color:#6272a4"></span>
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> a () {}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">// b.js
+</span><span style="color:#6272a4"></span>
+<span style="color:#ff79c6">import</span> { a } from <span style="color:#f1fa8c">&#34;./a&#34;</span>;
+
+<span style="color:#ff79c6">const</span> something <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">function</span> b () {}
+</code></pre></div><p>This makes way simpler to understand each function, and its dependencies at a quick glance - and
+it&rsquo;s independent from the export syntax we adopt.</p>
+<p>One common complaint I receive at this point is that related things should stay together.
+For example, you might want to have a <code>utils/array.js</code> file that contains all the utilities
+functions to work with array.<br>
+I agree with the principle, and suggest to keep all these utilities under the same folder,
+eg. <code>utils/array/[map,filter].js</code>.</p>
+</div>
+  <div class="post-footer">
+    <div class="post-date">June 14, 2021</div>
+    <div class="post-links">
+      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fdefault-vs-named-export%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
+      <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
+      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/default-vs-named-export.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
+    </div>
+    <div class="post-share">
+      <span class="post-share-line"></span>
+      <span class="post-share-text">Share article</span>
+      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fdefault-vs-named-export%2f&text=Default%20vs%20Named%20exports&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
+      <a class="post-share-link" href="https://www.reddit.com/submit?title=Default%20vs%20Named%20exports&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fdefault-vs-named-export%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
+    </div>
+    <div class="post-author">
+      <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>
+      <div class="post-author-bio">
+        <strong>Bruno Scopelliti</strong> is an independent software engineer, with focus on frontend development.
+        <br/>He lives in nice Bologna, Italy.
       </div>
-    
-      <div class="post-entry" data-js="post-entry" data-tags="opinions,javascript,">
-        <span class="post-date">24 May</span>
-        <a href="/blog/array-reduce/">About array&#39;s reduce</a>
-      </div>
-    
     </div>
   </div>
-</section>
+</article>
+
+<script>
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+
+</script>
+
+<script>
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+
+</script>
 
       </main>
     </div>

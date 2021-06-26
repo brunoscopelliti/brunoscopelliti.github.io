@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 14 Jun 2021 21:08:24 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Default vs Named exports</title>
-      <link>https://brunoscopelliti.com/blog/export/</link>
+      <link>https://brunoscopelliti.com/blog/default-vs-named-export/</link>
       <pubDate>Mon, 14 Jun 2021 21:08:24 +0100</pubDate>
       
-      <guid>https://brunoscopelliti.com/blog/export/</guid>
+      <guid>https://brunoscopelliti.com/blog/default-vs-named-export/</guid>
       <description>I&amp;rsquo;m always been on default export team.
 I cannot find the link now - but I remember this being what TC39 recommended at some point.
 I kept using almost exclusively default export even after Nicholas Zakas - a person in the tech space I really admire, and respect - wrote his motivation for not using default export anymore.
