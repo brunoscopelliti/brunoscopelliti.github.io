@@ -6,7 +6,20 @@
     <description>Recent content in Blog on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Jun 2021 21:08:24 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Jun 2021 15:12:42 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to delete last commit in git</title>
+      <link>https://brunoscopelliti.com/blog/how-to-delete-last-commit-in-git/</link>
+      <pubDate>Sat, 26 Jun 2021 15:12:42 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/how-to-delete-last-commit-in-git/</guid>
+      <description>I always struggle to remember how to delete last commit in git - not that I&amp;rsquo;ve to do it often btw 😝
+The git reset command permits to reset current HEAD to the specified state.
+We can use the syntax HEAD~1 to specify the desired state; it means one commit back from current HEAD.
+Putting everything together:
+git reset --soft HEAD~1 The --soft flag assures the changes are preserved in the working copy.</description>
+    </item>
+    
     <item>
       <title>Default vs Named exports</title>
       <link>https://brunoscopelliti.com/blog/default-vs-named-export/</link>
