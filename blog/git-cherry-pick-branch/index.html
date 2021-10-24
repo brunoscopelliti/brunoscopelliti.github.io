@@ -4,10 +4,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <meta charset="utf-8">
 
-    <title>Blog | Bruno Scopelliti</title>
+    <title>How to cherry-pick a branch using git | Bruno Scopelliti</title>
 
     
-    <meta name="description" content="Bruno Scopelliti&#39;s blog, software development, JavaScript, Node.js, React, Apollo, Firebase.">
+    <meta name="description" content="How to git cherry-pick a branch">
     
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -16,10 +16,15 @@
 
     
     <link rel="stylesheet" href="/css/blog.dfea23f01caf35ef9f2e8f05d7ff5ebb1587aecd74c5041d0207692b29575374.css" integrity="sha256-3&#43;oj8ByvNe&#43;fLo8F1/9euxWHrs10xQQdAgdpKylXU3Q=">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@brunoscopelliti">
-    <meta name="twitter:title" content="Blog">
-    <meta name="twitter:image" content="/images/twitter-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@brunoscopelliti">
+<meta name="twitter:title" content="How to cherry-pick a branch using git">
+
+
+
+<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/how-to-cherry-pick-a-branch-using-git.png">
+<meta name="twitter:description" content="In this post I put together a couple of git commands to cherry-pick all commits from a given branch.">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -34,7 +39,7 @@
 
     <meta name="theme-color" content="#192039">
   </head>
-  <body class="list">
+  <body class="">
     <a id="skip-nav" href="#main">Go to content</a>
 
     <header class="site-header">
@@ -59,7 +64,7 @@
         <a href="/">Home</a>
       </li>
     
-      <li class="active">
+      <li class="">
         <a href="/blog/">Blog</a>
       </li>
     
@@ -105,95 +110,64 @@
 
     <div class="page-main-content">
       <main id="main">
-<h1>Blog</h1>
-<div class="post-list">
-  <article class="post-entry">
-  <h2>
-    <a href="/blog/test-angularjs-app-with-karma-jasmine-and-protractor/" title="Test AngularJS app with Karma, Jasmine, and Protractor">Test AngularJS app with Karma, Jasmine, and Protractor</a>
-  </h2>
-  <div class="post-preview">I wrote a simple AngularJS todo app with the goal of learning how to write better unit, and integration tests.</div>
-  <div class="post-link">
-    <a href="/blog/test-angularjs-app-with-karma-jasmine-and-protractor/" title="Test AngularJS app with Karma, Jasmine, and Protractor">Read article</a>
+<article class="post" data-js="post">
+  <div class="post-breadcrumbs">
+    <a href="/blog" aria-label="View all articles">Blog</a>
+    <span>/</span>
+    
+    <a href="/blog/search/tools/">Tools</a>
+    <span>/</span>
+    
   </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/bye-2013-welcome-2014/" title="Bye 2013, Welcome 2014">Bye 2013, Welcome 2014</a>
-  </h2>
-  <div class="post-preview">In 2013 I started this blog; what's next?</div>
-  <div class="post-link">
-    <a href="/blog/bye-2013-welcome-2014/" title="Bye 2013, Welcome 2014">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/xhr-interceptor-in-an-angularjs-web-app/" title="XHR interceptor in an AngularJS web app">XHR interceptor in an AngularJS web app</a>
-  </h2>
-  <div class="post-preview">AngularJS allows to intercept the response coming from the server.</div>
-  <div class="post-link">
-    <a href="/blog/xhr-interceptor-in-an-angularjs-web-app/" title="XHR interceptor in an AngularJS web app">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/show-route-only-after-all-promises-are-resolved/" title="Show route only after all promises are resolved">Show route only after all promises are resolved</a>
-  </h2>
-  <div class="post-preview">This post is about a trick I learned this summer while reading the book AngularJS, by Brad Green.</div>
-  <div class="post-link">
-    <a href="/blog/show-route-only-after-all-promises-are-resolved/" title="Show route only after all promises are resolved">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/authentication-to-a-restful-web-service-in-an-angularjs-web-app/" title="Authentication to a RESTful web service in an AngularJS web app">Authentication to a RESTful web service in an AngularJS web app</a>
-  </h2>
-  <div class="post-preview">How to authenticate to a RESTful web service.</div>
-  <div class="post-link">
-    <a href="/blog/authentication-to-a-restful-web-service-in-an-angularjs-web-app/" title="Authentication to a RESTful web service in an AngularJS web app">Read article</a>
+  <h1>How to cherry-pick a branch using git</h1>
+  <div class="post-body"><p>Git has a command called <a href="https://git-scm.com/docs/git-cherry-pick">cherry-pick</a>, it permits to <em>copy</em> an existing commit to a different branch - it&rsquo;s very useful.</p>
+<p>Lately, I needed to cherry-pick all the commits existing on a certain branch - merging or rebasing the branch was not an option.<br>
+Surprisingly, this use case is not supported.</p>
+<p>It is possible to cherry-pick a range of commits, though.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">git cherry-pick start..end
+</code></pre></div><p>So we can split the problem into smaller pieces.</p>
+<h2 id="find-the-first-commit-of-a-branch">Find the first commit of a branch</h2>
+<p>Here, I am assuming the branch started from <code>master</code>, but it works with other branches as well.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">git merge-base master &lt;branch&gt;
+</code></pre></div><h2 id="find-last-commit-of-a-branch">Find last commit of a branch</h2>
+<p>In this case, <code>git log</code> does already a pretty good job:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">git log -n <span style="color:#bd93f9">1</span> &lt;branch&gt; --pretty<span style="color:#ff79c6">=</span>format:<span style="color:#f1fa8c">&#34;%H&#34;</span>
+</code></pre></div><h2 id="put-it-all-together">Put it all together</h2>
+<p>Once we now the first, and last commit of the branch, we can use cherry-pick to re-apply all the commits in this range.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">git cherry-pick <span style="color:#ff79c6">$(</span>git merge-base master &lt;branch&gt;<span style="color:#ff79c6">)</span>..<span style="color:#ff79c6">$(</span>git log -n <span style="color:#bd93f9">1</span> &lt;branch&gt; --pretty<span style="color:#ff79c6">=</span>format:<span style="color:#f1fa8c">&#34;%H&#34;</span><span style="color:#ff79c6">)</span>
+</code></pre></div></div>
+  <div class="post-footer">
+    <div class="post-date">October 24, 2021</div>
+    <div class="post-links">
+      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fgit-cherry-pick-branch%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
+      <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
+      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/git-cherry-pick-branch.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
+    </div>
+    <div class="post-share">
+      <span class="post-share-line"></span>
+      <span class="post-share-text">Share article</span>
+      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fgit-cherry-pick-branch%2f&text=How%20to%20cherry-pick%20a%20branch%20using%20git&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
+      <a class="post-share-link" href="https://www.reddit.com/submit?title=How%20to%20cherry-pick%20a%20branch%20using%20git&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fgit-cherry-pick-branch%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
+    </div>
+    <div class="post-author">
+      <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>
+      <div class="post-author-bio">
+        <strong>Bruno Scopelliti</strong> is an independent software engineer, with focus on frontend development.
+        <br/>He lives in nice Bologna, Italy.
+      </div>
+    </div>
   </div>
 </article>
 
-</div>
-<ul class="pagination">
-  <li class="page-item">
-    <a href="/blog/" class="page-link" aria-label="First">
-      <span aria-hidden="true">&laquo;</span>
-    </a>
-  </li>
-  
-  <li class="page-item">
-    <a class="page-link" href="/blog/">1</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/2/">2</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/3/">3</a>
-  </li>
-  <li class="page-item disabled">
-    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/7/">7</a>
-  </li>
-  <li class="page-item active">
-    <a class="page-link" href="/blog/page/8/">8</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/9/">9</a>
-  </li>
-  <li class="page-item disabled">
-    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/13/">13</a>
-  </li>
-  <li class="page-item">
-    <a href="/blog/page/13/" class="page-link" aria-label="Last">
-      <span aria-hidden="true">&raquo;</span>
-    </a>
-  </li>
-</ul>
+<script>
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+
+</script>
+
+<script>
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+
+</script>
 
       </main>
     </div>

@@ -3,14 +3,14 @@
   
   <url>
     <loc>https://brunoscopelliti.com/</loc>
-    <lastmod>2021-06-26T15:12:42+01:00</lastmod>
+    <lastmod>2021-10-13T22:10:45+01:00</lastmod>
     
     
   </url>
   
   <url>
     <loc>https://brunoscopelliti.com/blog/</loc>
-    <lastmod>2021-06-26T15:12:42+01:00</lastmod>
+    <lastmod>2021-10-13T22:10:45+01:00</lastmod>
     
     
   </url>
@@ -24,14 +24,35 @@
   
   <url>
     <loc>https://brunoscopelliti.com/blog/search/</loc>
-    <lastmod>2021-06-26T15:12:42+01:00</lastmod>
+    <lastmod>2021-10-13T22:10:45+01:00</lastmod>
     
     
   </url>
   
   <url>
     <loc>https://brunoscopelliti.com/blog/search/git/</loc>
-    <lastmod>2021-06-26T15:12:42+01:00</lastmod>
+    <lastmod>2021-10-13T22:10:45+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/git-cherry-pick-branch/</loc>
+    <lastmod>2021-10-13T22:10:45+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/memo/</loc>
+    <lastmod>2021-10-13T22:10:45+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/search/tools/</loc>
+    <lastmod>2021-10-13T22:10:45+01:00</lastmod>
     
     
   </url>
@@ -41,20 +62,6 @@
     <lastmod>2021-06-26T15:12:42+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://brunoscopelliti.com/blog/search/memo/</loc>
-    <lastmod>2021-06-26T15:12:42+01:00</lastmod>
-    
-    
-  </url>
-  
-  <url>
-    <loc>https://brunoscopelliti.com/blog/search/tools/</loc>
-    <lastmod>2021-06-26T15:12:42+01:00</lastmod>
-    
-    
   </url>
   
   <url>

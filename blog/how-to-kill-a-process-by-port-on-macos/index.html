@@ -123,7 +123,7 @@
   <div class="post-body"><p>Every now and then I find myself in need to kill a process, knowing only the port it&rsquo;s using.</p>
 <p>Below you can read the <em>magic spell</em> to kill a process in Unix-like system, running on a
 specific port.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">lsof -nti: | xargs <span style="color:#8be9fd;font-style:italic">kill</span> -9
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">lsof -nti:&lt;PORT&gt; | xargs <span style="color:#8be9fd;font-style:italic">kill</span> -9
 </code></pre></div><p>Copy, and replace <code>&lt;PORT&gt;</code> with the port number.</p>
 <h2 id="kill-a-process-programatically">Kill a process programatically</h2>
 <p>There are numerous npm modules that allow to kill a process programatically;
