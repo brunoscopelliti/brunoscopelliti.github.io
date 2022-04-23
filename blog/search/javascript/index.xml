@@ -83,8 +83,8 @@ However try... catch is able to catch only exeptions thrown in functions which a
       
       <guid>https://brunoscopelliti.com/blog/qunit-custom-assertions/</guid>
       <description>This post is meant to share my favourite QUnit feature, custom assertions.
-Compared to other library, QUnit has not a particularly rich assertions&#39; library; however that&amp;rsquo;s not a big deal, cause QUnit makes extremely simple to extend its core assertions collection.
-QUnit.assert.typeof = function (subject, expected) { // The current value of the expression  const actual = typeof subject; // It&amp;#39;s a boolean;  // It expresses wheter the test has passed, or not.</description>
+Compared to other library, QUnit has not a particularly rich assertions&amp;rsquo; library; however that&amp;rsquo;s not a big deal, cause QUnit makes extremely simple to extend its core assertions collection.
+QUnit.assert.typeof = function (subject, expected) {  // The current value of the expression  const actual = typeof subject;   // It&amp;#39;s a boolean;  // It expresses wheter the test has passed, or not.</description>
     </item>
     
     <item>
@@ -115,7 +115,7 @@ I published a repo on Github with basic usage examples; it&amp;rsquo;s here: ES2
       <guid>https://brunoscopelliti.com/blog/fake-today-in-unit-tests/</guid>
       <description>If the app which you are working on is strongly influenced by the date, you definitely need a simple and consistent way to create a fake today, to have significant unit tests.
 I do not want to make you wait&amp;hellip; this is the way I mock the Date constructor.
-function fakeDate (fakeToday) { var BuiltinDate = Date; spyOn(window, &amp;#34;Date&amp;#34;).and.callFake(function () { var args = Array.prototype.slice.call(arguments); if (args.length === 0) { return new BuiltinDate(fakeToday); } var _factoryFn = Function.</description>
+function fakeDate (fakeToday) {  var BuiltinDate = Date;   spyOn(window, &amp;#34;Date&amp;#34;).and.callFake(function () {  var args = Array.prototype.slice.call(arguments);  if (args.</description>
     </item>
     
   </channel>

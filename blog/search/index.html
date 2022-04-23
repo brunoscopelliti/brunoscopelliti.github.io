@@ -731,7 +731,7 @@
 </article>
 
 <script>
-  (function(){var r=window.BS_blog,o=r.$1,d=r.$,v=r.delegate,n=r.listen,s={keywords:[]};function k(e){return s.keywords.indexOf(e)<0}function h(e){s.keywords.push(e)}function p(e){e=e.trim(),e?s.keywords=e.split(",").map(function(t){return t.trim()}):s.keywords=[]}function j(e){s.keywords=s.keywords.filter(function(t){return t!==e})}var c=o("[data-js='posts-search']");function K(){c.value=s.keywords.join(", ")}function L(){d("[data-keyword]").forEach(function(e){var t=e.dataset.keyword;e.classList.toggle("selected",s.keywords.join(",").toLowerCase().split(",").indexOf(t)>=0)})}function m(){var e=d("[data-js='group']");e.forEach(function(t){var a=!0,w=d("[data-js='post-entry']",t);t.classList.remove("hidden"),w.forEach(function(i){var y=i.dataset.tags.split(","),l=s.keywords.some(function(g){return y.indexOf(g.toLowerCase())<0});l||(a=!1),i.classList.toggle("hidden",l)}),a&&t.classList.add("hidden")})}function u(){return d("[data-js='post-entry']:not(.hidden)").length}function x(){var e=o("[data-js='posts-count']");e&&(e.textContent=u())}function C(){var e=o("[data-js='no-results']");e&&e.classList.toggle("hidden",u()>0)}function f(){K(),L(),m(),x(),C()}function $(e){var t=e.target.closest(".keyword"),a=t.dataset.keyword;k(a)?h(a):j(a),f(a)}n("click",o("[data-js='keywords']"),v($,".keyword"));function P(e){p(e.target.value),f()}n("change",c,P);function b(){var e=o("[data-js='keywords']");e.classList.add("expanded")}function E(){var e=o("[data-js='keywords']");e.classList.remove("expanded")}n("click",o("[data-js='more-keyword']"),b);n("click",o("[data-js='less-keyword']"),E);})();
+  (function(){var d=window.BS_blog,o=d.$1,r=d.$,v=d.delegate,n=d.listen,s={keywords:[]};function k(e){return s.keywords.indexOf(e)<0}function h(e){s.keywords.push(e)}function p(e){e=e.trim(),e?s.keywords=e.split(",").map(function(t){return t.trim()}):s.keywords=[]}function j(e){s.keywords=s.keywords.filter(function(t){return t!==e})}var c=o("[data-js='posts-search']");function K(){c.value=s.keywords.join(", ")}function L(){r("[data-keyword]").forEach(function(e){var t=e.dataset.keyword;e.classList.toggle("selected",s.keywords.join(",").toLowerCase().split(",").indexOf(t)>=0)})}function m(){var e=r("[data-js='group']");e.forEach(function(t){var a=!0,w=r("[data-js='post-entry']",t);t.classList.remove("hidden"),w.forEach(function(i){var y=i.dataset.tags.split(","),l=s.keywords.some(function(g){return y.indexOf(g.toLowerCase())<0});l||(a=!1),i.classList.toggle("hidden",l)}),a&&t.classList.add("hidden")})}function u(){return r("[data-js='post-entry']:not(.hidden)").length}function x(){var e=o("[data-js='posts-count']");e&&(e.textContent=u())}function C(){var e=o("[data-js='no-results']");e&&e.classList.toggle("hidden",u()>0)}function f(){K(),L(),m(),x(),C()}function $(e){var t=e.target.closest(".keyword"),a=t.dataset.keyword;k(a)?h(a):j(a),f(a)}n("click",o("[data-js='keywords']"),v($,".keyword"));function P(e){p(e.target.value),f()}n("change",c,P);function b(){var e=o("[data-js='keywords']");e.classList.add("expanded")}function E(){var e=o("[data-js='keywords']");e.classList.remove("expanded")}n("click",o("[data-js='more-keyword']"),b);n("click",o("[data-js='less-keyword']"),E);})();
 
 </script>
 
@@ -786,7 +786,7 @@
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

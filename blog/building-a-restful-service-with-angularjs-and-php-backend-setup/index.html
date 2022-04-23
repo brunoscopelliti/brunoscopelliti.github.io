@@ -141,38 +141,38 @@ of this post is scheduled for 5 September.</p>
 <p>This post will guide you through the creation of a web service that manages the data
 about a library. The web service makes possible to access the data about a specific book,
 or retrieve the list of all the books of the library.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">GET book/42
-// Retrieve the book with ID = 42
-
-GET book
-// Retrieve all the books
-</code></pre></div><p>It also makes possible to save a new book, or to update the information about an existing book.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">POST book
-// Create a new book entry.
-// Information about the new entry are in the POST data.
-
-PUT book/42
-// Update the data of the book with ID = 42
-</code></pre></div><p><code>PUT</code>, and <code>POST</code> are basically interchangeable; the norm is to use PUT when in
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>GET book/42
+</span></span><span style="display:flex;"><span>// Retrieve the book with ID = 42
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET book
+</span></span><span style="display:flex;"><span>// Retrieve all the books
+</span></span></code></pre></div><p>It also makes possible to save a new book, or to update the information about an existing book.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>POST book
+</span></span><span style="display:flex;"><span>// Create a new book entry.
+</span></span><span style="display:flex;"><span>// Information about the new entry are in the POST data.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PUT book/42
+</span></span><span style="display:flex;"><span>// Update the data of the book with ID = 42
+</span></span></code></pre></div><p><code>PUT</code>, and <code>POST</code> are basically interchangeable; the norm is to use PUT when in
 the request is specified the URL of the resource.</p>
 <p>Finally the web service should also allow to delete a book.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">DELETE book/42
-// Delete the book with ID = 42
-</code></pre></div><p>How can you see the URLs are really similar, or completely equals&hellip; but they are
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>DELETE book/42
+</span></span><span style="display:flex;"><span>// Delete the book with ID = 42
+</span></span></code></pre></div><p>How can you see the URLs are really similar, or completely equals&hellip; but they are
 supposed to do different operations and send different responses. In the following
 of this post I will introduce the code to create a such type of web service.</p>
 <h2 id="redirect-of-the-requests">Redirect of the requests</h2>
 <p>First thing to do is to make possible that each request is managed by the same file.
 In order to obtain that each request is managed with the same process, it is necessary
 to add the following rule to the .htaccess file of the web server.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">&lt;IfModule mod_rewrite.c&gt;
-RewriteEngine On
-RewriteBase /book/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /handlers/libraryManager.php [L]
-&lt;/IfModule&gt;
-</code></pre></div><p>In this way each request towards an url starting with <em>/book/</em> is redirected to
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt;IfModule mod_rewrite.c&gt;
+</span></span><span style="display:flex;"><span>RewriteEngine On
+</span></span><span style="display:flex;"><span>RewriteBase /book/
+</span></span><span style="display:flex;"><span>RewriteCond %{REQUEST_FILENAME} !-f
+</span></span><span style="display:flex;"><span>RewriteCond %{REQUEST_FILENAME} !-d
+</span></span><span style="display:flex;"><span>RewriteRule . /handlers/libraryManager.php [L]
+</span></span><span style="display:flex;"><span>&lt;/IfModule&gt;
+</span></span></code></pre></div><p>In this way each request towards an url starting with <em>/book/</em> is redirected to
 the <em>/handlers/libraryManager.php</em> file.</p>
 <h2 id="handle-the-different-requests">Handle the different requests</h2>
 <p>We just saw how to centralize the management of the requests.</p>
@@ -188,108 +188,108 @@ essentially for three factors:</p>
 is available in the variable <code>$_SERVER['REQUEST_METHOD']</code>.</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php"><span style="color:#6272a4">// The behaviour has to be different on the basis
-</span><span style="color:#6272a4">// of the request method.
-</span><span style="color:#6272a4"></span>
-<span style="color:#ff79c6">switch</span> (<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_METHOD&#34;</span>]) {
-  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;GET&#34;</span><span style="color:#ff79c6">:</span>
-    <span style="color:#6272a4">// get stuff
-</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">break</span>;
-  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;DELETE&#34;</span><span style="color:#ff79c6">:</span>
-    <span style="color:#6272a4">// delete stuff
-</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">break</span>;
-}
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#6272a4">// The behaviour has to be different on the basis
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// of the request method.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">switch</span> (<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_METHOD&#34;</span>]) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;GET&#34;</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// get stuff
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;DELETE&#34;</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// delete stuff
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
 <li>
 <p><strong>Requested url</strong>.</p>
 <p>The URL is available as <code>$_SERVER[&quot;REQUEST_URI&quot;]</code>.</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php"><span style="color:#6272a4">// It is possible to explode the requested URL.
-</span><span style="color:#6272a4"></span>explode(<span style="color:#f1fa8c">&#34;/&#34;</span>, <span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_URI&#34;</span>]);
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#6272a4">// It is possible to explode the requested URL.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>explode(<span style="color:#f1fa8c">&#34;/&#34;</span>, <span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_URI&#34;</span>]);
+</span></span></code></pre></div><ul>
 <li><strong>Additional data</strong>, optional.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php"><span style="color:#6272a4">// For GET, or POST
-</span><span style="color:#6272a4">// PHP makes available the $_GET, and $_POST arrays.
-</span><span style="color:#6272a4"></span>
-<span style="color:#8be9fd;font-style:italic">$id</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$_GET</span>[<span style="color:#f1fa8c">&#34;id&#34;</span>];
-<span style="color:#8be9fd;font-style:italic">$title</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$_POST</span>[<span style="color:#f1fa8c">&#34;title&#34;</span>];
-
-<span style="color:#6272a4">// Also PUT (and DELETE) request can be accompanied by
-</span><span style="color:#6272a4">// additional information.
-</span><span style="color:#6272a4">// Unlike the GET, or POST method, there is not a built in way  
-</span><span style="color:#6272a4">// to reference these data.
-</span><span style="color:#6272a4">// But in this case it is necessary the following code:
-</span><span style="color:#6272a4"></span>
-<span style="color:#8be9fd;font-style:italic">$data</span> <span style="color:#ff79c6">=</span> json_decode(file_get_contents(<span style="color:#f1fa8c">&#34;php://input&#34;</span>), <span style="color:#ff79c6">false</span>);
-</code></pre></div><p>Basing on this, I wrote the web service as follows. Please note how the implementation
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#6272a4">// For GET, or POST
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// PHP makes available the $_GET, and $_POST arrays.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$id</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$_GET</span>[<span style="color:#f1fa8c">&#34;id&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$title</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$_POST</span>[<span style="color:#f1fa8c">&#34;title&#34;</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Also PUT (and DELETE) request can be accompanied by
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// additional information.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// Unlike the GET, or POST method, there is not a built in way  
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// to reference these data.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// But in this case it is necessary the following code:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$data</span> <span style="color:#ff79c6">=</span> json_decode(file_get_contents(<span style="color:#f1fa8c">&#34;php://input&#34;</span>), <span style="color:#ff79c6">false</span>);
+</span></span></code></pre></div><p>Basing on this, I wrote the web service as follows. Please note how the implementation
 of each action is hidden inside the Library object.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php"><span style="color:#ff79c6">require_once</span> <span style="color:#f1fa8c">&#34;../classes/Library.php&#34;</span>;
-
-<span style="color:#8be9fd;font-style:italic">$obj</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Library();
-
-<span style="color:#ff79c6">switch</span> (<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_METHOD&#34;</span>]) {
-
-  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;GET&#34;</span><span style="color:#ff79c6">:</span>
-
-    <span style="color:#8be9fd;font-style:italic">$id</span> <span style="color:#ff79c6">=</span> explode(<span style="color:#f1fa8c">&#34;book/&#34;</span>, <span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_URI&#34;</span>]);
-
-    <span style="color:#ff79c6">if</span> (isset(<span style="color:#8be9fd;font-style:italic">$id</span>[<span style="color:#bd93f9">1</span>])){
-
-      <span style="color:#6272a4">/*
-</span><span style="color:#6272a4">       Query the database to get the information
-</span><span style="color:#6272a4">       about the book with ID = $id[1]
-</span><span style="color:#6272a4">      */</span>
-
-      <span style="color:#8be9fd;font-style:italic">$result</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$obj</span><span style="color:#ff79c6">-&gt;</span><span style="color:#50fa7b">get_book_by_id</span>(<span style="color:#8be9fd;font-style:italic">$id</span>[<span style="color:#bd93f9">1</span>]);
-
-    }
-    <span style="color:#ff79c6">else</span> {
-
-      <span style="color:#6272a4">/*
-</span><span style="color:#6272a4">       Query the database to get the information
-</span><span style="color:#6272a4">       about all the books
-</span><span style="color:#6272a4">      */</span>
-
-      <span style="color:#8be9fd;font-style:italic">$result</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$obj</span><span style="color:#ff79c6">-&gt;</span><span style="color:#50fa7b">get_books</span>();
-
-    }
-
-    <span style="color:#ff79c6">break</span>;
-
-  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;POST&#34;</span><span style="color:#ff79c6">:</span>
-
-    <span style="color:#6272a4">// Save a new record in the database
-</span><span style="color:#6272a4"></span>
-    <span style="color:#8be9fd;font-style:italic">$result</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$obj</span><span style="color:#ff79c6">-&gt;</span><span style="color:#50fa7b">register_new_book</span>(<span style="color:#8be9fd;font-style:italic">$_POST</span>);
-
-    <span style="color:#ff79c6">break</span>;
-
-  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;PUT&#34;</span><span style="color:#ff79c6">:</span>
-
-    <span style="color:#6272a4">// Retrieve additional data
-</span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">$d</span> <span style="color:#ff79c6">=</span> json_decode(file_get_contents(<span style="color:#f1fa8c">&#34;php://input&#34;</span>), <span style="color:#ff79c6">false</span>);
-
-    <span style="color:#8be9fd;font-style:italic">$result</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$obj</span><span style="color:#ff79c6">-&gt;</span><span style="color:#50fa7b">loan_book</span>(<span style="color:#8be9fd;font-style:italic">$d</span>);
-
-    <span style="color:#ff79c6">break</span>;
-
-  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;DELETE&#34;</span><span style="color:#ff79c6">:</span>
-
-    <span style="color:#8be9fd;font-style:italic">$id</span> <span style="color:#ff79c6">=</span> explode(<span style="color:#f1fa8c">&#34;book/&#34;</span>, <span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_URI&#34;</span>]);
-
-    <span style="color:#ff79c6">if</span> (isset(<span style="color:#8be9fd;font-style:italic">$id</span>[<span style="color:#bd93f9">1</span>])){
-      <span style="color:#8be9fd;font-style:italic">$result</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$obj</span><span style="color:#ff79c6">-&gt;</span><span style="color:#50fa7b">delete_book</span>(<span style="color:#8be9fd;font-style:italic">$id</span>[<span style="color:#bd93f9">1</span>]);
-    }
-
-    <span style="color:#ff79c6">break</span>;
-
-}
-
-<span style="color:#8be9fd;font-style:italic">$json</span> <span style="color:#ff79c6">=</span> json_encode(<span style="color:#8be9fd;font-style:italic">$result</span>);
-<span style="color:#ff79c6">echo</span> <span style="color:#8be9fd;font-style:italic">$json</span>;
-</code></pre></div><h2 id="http-status-code">HTTP Status Code</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#ff79c6">require_once</span> <span style="color:#f1fa8c">&#34;../classes/Library.php&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$obj</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Library();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">switch</span> (<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_METHOD&#34;</span>]) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;GET&#34;</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">$id</span> <span style="color:#ff79c6">=</span> explode(<span style="color:#f1fa8c">&#34;book/&#34;</span>, <span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_URI&#34;</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (isset(<span style="color:#8be9fd;font-style:italic">$id</span>[<span style="color:#bd93f9">1</span>])){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       Query the database to get the information
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       about the book with ID = $id[1]
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">      */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#8be9fd;font-style:italic">$result</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$obj</span><span style="color:#ff79c6">-&gt;</span><span style="color:#50fa7b">get_book_by_id</span>(<span style="color:#8be9fd;font-style:italic">$id</span>[<span style="color:#bd93f9">1</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       Query the database to get the information
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       about all the books
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">      */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#8be9fd;font-style:italic">$result</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$obj</span><span style="color:#ff79c6">-&gt;</span><span style="color:#50fa7b">get_books</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;POST&#34;</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Save a new record in the database
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">$result</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$obj</span><span style="color:#ff79c6">-&gt;</span><span style="color:#50fa7b">register_new_book</span>(<span style="color:#8be9fd;font-style:italic">$_POST</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;PUT&#34;</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Retrieve additional data
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">$d</span> <span style="color:#ff79c6">=</span> json_decode(file_get_contents(<span style="color:#f1fa8c">&#34;php://input&#34;</span>), <span style="color:#ff79c6">false</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">$result</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$obj</span><span style="color:#ff79c6">-&gt;</span><span style="color:#50fa7b">loan_book</span>(<span style="color:#8be9fd;font-style:italic">$d</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;DELETE&#34;</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">$id</span> <span style="color:#ff79c6">=</span> explode(<span style="color:#f1fa8c">&#34;book/&#34;</span>, <span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_URI&#34;</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (isset(<span style="color:#8be9fd;font-style:italic">$id</span>[<span style="color:#bd93f9">1</span>])){
+</span></span><span style="display:flex;"><span>      <span style="color:#8be9fd;font-style:italic">$result</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">$obj</span><span style="color:#ff79c6">-&gt;</span><span style="color:#50fa7b">delete_book</span>(<span style="color:#8be9fd;font-style:italic">$id</span>[<span style="color:#bd93f9">1</span>]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$json</span> <span style="color:#ff79c6">=</span> json_encode(<span style="color:#8be9fd;font-style:italic">$result</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">echo</span> <span style="color:#8be9fd;font-style:italic">$json</span>;
+</span></span></code></pre></div><h2 id="http-status-code">HTTP Status Code</h2>
 <p>The web service written in the previous section is 100% working. However it can&rsquo;t be
 considered yet a RESTful service, because it still does not use appropriate
 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" title="HTTP Status Code">HTTP status codes</a>
@@ -298,20 +298,20 @@ for the responses.</p>
 the <a href="http://php.net/manual/en/function.header.php" title="PHP api: header">header</a> function.</p>
 <p>For example, if the web service should be accessible only to logged users, it has to respond
 with a 401 error message to users who are not logged to the system.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php">session_start();
-<span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>isset(<span style="color:#8be9fd;font-style:italic">$_SESSION</span>[<span style="color:#f1fa8c">&#34;user&#34;</span>])) {
-  header(<span style="color:#f1fa8c">&#34;HTTP/1.1 401 Unauthorized&#34;</span>);
-  <span style="color:#ff79c6">return</span>;
-}
-</code></pre></div><p>Or, just to make another example, if the web service is just for reading operations,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>session_start();
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>isset(<span style="color:#8be9fd;font-style:italic">$_SESSION</span>[<span style="color:#f1fa8c">&#34;user&#34;</span>])) {
+</span></span><span style="display:flex;"><span>  header(<span style="color:#f1fa8c">&#34;HTTP/1.1 401 Unauthorized&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Or, just to make another example, if the web service is just for reading operations,
 it is possible to respond with the <strong>405</strong> error message to all the methods, but the GET.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php"><span style="color:#ff79c6">if</span> (<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_METHOD&#34;</span>] <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>) {
-  <span style="color:#6272a4">// read stuff
-</span><span style="color:#6272a4"></span>}
-<span style="color:#ff79c6">else</span> {
-  header(<span style="color:#f1fa8c">&#34;HTTP/1.1 405 Method Not Allowed&#34;</span>);
-}
-</code></pre></div><h2 id="conclusion">Conclusion</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REQUEST_METHOD&#34;</span>] <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// read stuff
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>  header(<span style="color:#f1fa8c">&#34;HTTP/1.1 405 Method Not Allowed&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
 <p>Great! Now, our RESTful web service is ready, and it is just waiting of requests.</p>
 <p>In a few days will be published also the second (and last) part of this mini series,
 and I&rsquo;ll cover how to send requests to this web service through a web application built
@@ -341,12 +341,12 @@ with AngularJS.</p>
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -401,7 +401,7 @@ with AngularJS.</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

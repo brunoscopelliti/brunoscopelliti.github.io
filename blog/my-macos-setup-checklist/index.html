@@ -142,8 +142,8 @@ for future reference&hellip; and what best place than my freshly restyled blog.<
 <ul>
 <li>Show hidden files/folders</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt">defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder
-</code></pre></div><p>Recently learned a shortcut - <code>CMD + Shift + .</code> - to toggle quickly between two modes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder
+</span></span></code></pre></div><p>Recently learned a shortcut - <code>CMD + Shift + .</code> - to toggle quickly between two modes.</p>
 <h2 id="fundamentals">Fundamentals</h2>
 <ul>
 <li>
@@ -176,27 +176,27 @@ To fix this issue:</p>
 <p><a href="https://git-scm.com/">Git</a> is usually already installed on MacOS, but there&rsquo;re a couple
 of things to have it properly configured.</p>
 <h3 id="config">Config</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt"># Committer
-git config --global user.name &#34;Bruno Scopelliti&#34;
-git config --global user.email &#34;*****&#34;
-
-# Default editor
-git config --global core.editor &#34;code --wait&#34;
-</code></pre></div><h3 id="alias">Alias</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span># Committer
+</span></span><span style="display:flex;"><span>git config --global user.name &#34;Bruno Scopelliti&#34;
+</span></span><span style="display:flex;"><span>git config --global user.email &#34;*****&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># Default editor
+</span></span><span style="display:flex;"><span>git config --global core.editor &#34;code --wait&#34;
+</span></span></code></pre></div><h3 id="alias">Alias</h3>
 <p>In <code>~/.zshrc</code> define alias for common commands.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt">alias ga=&#34;git add&#34;
-alias gaa=&#34;git add .&#34;
-alias gst=&#34;git status&#34;
-alias gb=&#34;git branch&#34;
-alias gbd=&#34;git branch --delete &#34;
-alias gc=&#34;git commit&#34;
-alias gcm=&#34;git commit --message&#34;
-alias gco=&#34;git checkout&#34;
-alias gcob=&#34;git checkout -b&#34;
-alias gcom=&#34;git checkout master&#34;
-alias gpl=&#34;git pull&#34;
-alias gps=&#34;git push&#34;
-</code></pre></div><h3 id="configure-ssh-auth">Configure SSH auth</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>alias ga=&#34;git add&#34;
+</span></span><span style="display:flex;"><span>alias gaa=&#34;git add .&#34;
+</span></span><span style="display:flex;"><span>alias gst=&#34;git status&#34;
+</span></span><span style="display:flex;"><span>alias gb=&#34;git branch&#34;
+</span></span><span style="display:flex;"><span>alias gbd=&#34;git branch --delete &#34;
+</span></span><span style="display:flex;"><span>alias gc=&#34;git commit&#34;
+</span></span><span style="display:flex;"><span>alias gcm=&#34;git commit --message&#34;
+</span></span><span style="display:flex;"><span>alias gco=&#34;git checkout&#34;
+</span></span><span style="display:flex;"><span>alias gcob=&#34;git checkout -b&#34;
+</span></span><span style="display:flex;"><span>alias gcom=&#34;git checkout master&#34;
+</span></span><span style="display:flex;"><span>alias gpl=&#34;git pull&#34;
+</span></span><span style="display:flex;"><span>alias gps=&#34;git push&#34;
+</span></span></code></pre></div><h3 id="configure-ssh-auth">Configure SSH auth</h3>
 <p>GitHub is moving away from basic authentication.</p>
 <ol>
 <li>
@@ -216,13 +216,13 @@ alias gps=&#34;git push&#34;
 <p><a href="https://docs.github.com/en/github/authenticating-to-github/telling-git-about-your-signing-key">Add GPG key in GitHub</a></p>
 </li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt">git config --global commit.gpgsign true
-git config --global gpg.program gpg
-git config --global user.signingkey *****
-</code></pre></div><p>Recently I got the <code>gpg failed to write commit object</code> error on the first commit;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>git config --global commit.gpgsign true
+</span></span><span style="display:flex;"><span>git config --global gpg.program gpg
+</span></span><span style="display:flex;"><span>git config --global user.signingkey *****
+</span></span></code></pre></div><p>Recently I got the <code>gpg failed to write commit object</code> error on the first commit;
 to fix this issue I found I had to export the <code>GPG_TTY</code> environment variable from my .zshrc file:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-txt" data-lang="txt">export GPG_TTY=$(tty)
-</code></pre></div><h2 id="nodejs">Node.js</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>export GPG_TTY=$(tty)
+</span></span></code></pre></div><h2 id="nodejs">Node.js</h2>
 <ul>
 <li><a href="https://github.com/nvm-sh/nvm">NVM</a>, to manage multiple Node.js version.</li>
 </ul>
@@ -296,12 +296,12 @@ to fix this issue I found I had to export the <code>GPG_TTY</code> environment v
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -356,7 +356,7 @@ to fix this issue I found I had to export the <code>GPG_TTY</code> environment v
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

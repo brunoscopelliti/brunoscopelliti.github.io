@@ -133,90 +133,90 @@ post to have a fast and more focused reference in the future.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>The only prerequisite is to have installed at least the version 0.8.0 of <a href="http://nodejs.org/" title="Nodejs">Nodejs</a>.
 When nodejs is installed, it&rsquo;s possible to install the grunt command line interface via npm:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">$:&gt; npm uninstall -g grunt
-<span style="color:#6272a4"># Remove previous global installation of grunt</span>
-
-$:&gt; npm install -g grunt-cli
-<span style="color:#6272a4"># Install grunt-cli</span>
-</code></pre></div><h2 id="setup-the-environment">Setup the environment</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$:&gt; npm uninstall -g grunt
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Remove previous global installation of grunt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$:&gt; npm install -g grunt-cli
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Install grunt-cli</span>
+</span></span></code></pre></div><h2 id="setup-the-environment">Setup the environment</h2>
 <p>Set up a project, to be ready to work with Grunt, just requires to add two files,
 <code>package.json</code> and <code>Gruntfile.js</code>, to the main root of the project itself.</p>
 <h2 id="packagejson">package.json</h2>
 <p>The package.json file should contain some data about the project (for example the name,
 the version etc.), and more important, the list of the Grunt plugins that will be used.</p>
 <p>The following is my first package.json file:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">{
-  <span style="color:#f1fa8c">&#34;name&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;the-next-big-thing&#34;</span>,
-  <span style="color:#f1fa8c">&#34;version&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;0.1.0&#34;</span>,
-  <span style="color:#f1fa8c">&#34;author&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Bruno&#34;</span>,
-  <span style="color:#f1fa8c">&#34;devDependencies&#34;</span><span style="color:#ff79c6">:</span> {
-    <span style="color:#f1fa8c">&#34;grunt&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;~0.4.1&#34;</span>,        
-    <span style="color:#f1fa8c">&#34;grunt-contrib-uglify&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;~0.2.0&#34;</span>,
-    <span style="color:#f1fa8c">&#34;grunt-contrib-concat&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;~0.3.0&#34;</span>
-    <span style="color:#6272a4">// &#39;~&#39; is a range specifier:
-</span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// it means that the version must be at least
-</span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// as high as the range, and less than
-</span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// the next major revision above the range.
-</span><span style="color:#6272a4"></span>  }
-}
-</code></pre></div><p>Before the plugins can be used, it&rsquo;s necessary to install all the plugins which will be used
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;name&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;the-next-big-thing&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;version&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;0.1.0&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;author&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Bruno&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;devDependencies&#34;</span><span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;grunt&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;~0.4.1&#34;</span>,        
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;grunt-contrib-uglify&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;~0.2.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;grunt-contrib-concat&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;~0.3.0&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// &#39;~&#39; is a range specifier:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// it means that the version must be at least
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// as high as the range, and less than
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// the next major revision above the range.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Before the plugins can be used, it&rsquo;s necessary to install all the plugins which will be used
 by Grunt. This could be easily achieved by running the <code>npm install</code> command in the root
 folder of the project.</p>
 <h2 id="gruntfilejs">Gruntfile.js</h2>
 <p>Gruntfile.js is used to configure or define tasks, and load Grunt plugins.
 I write my first Gruntfile starting from this basic structure:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">module.exports <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> (grunt) {
-
-  grunt.initConfig({
-    pkg<span style="color:#ff79c6">:</span> grunt.file.readJSON(<span style="color:#f1fa8c">&#34;package.json&#34;</span>),
-
-    uglify<span style="color:#ff79c6">:</span> {
-      <span style="color:#6272a4">// uglify task configuration
-</span><span style="color:#6272a4"></span>    }
-  });
-
-  <span style="color:#6272a4">// load the plugin that provides the &#34;uglify&#34; task.
-</span><span style="color:#6272a4"></span>  grunt.loadNpmTasks(<span style="color:#f1fa8c">&#34;grunt-contrib-uglify&#34;</span>);
-
-  <span style="color:#6272a4">// log something
-</span><span style="color:#6272a4"></span>  grunt.log.write(<span style="color:#f1fa8c">&#34;Hello world!\n&#34;</span>);
-
-  <span style="color:#6272a4">// define default task(s).
-</span><span style="color:#6272a4"></span>  grunt.registerTask(<span style="color:#f1fa8c">&#34;default&#34;</span>, [<span style="color:#f1fa8c">&#34;uglify&#34;</span>]);
-
-  <span style="color:#6272a4">// define an alias for common tasks
-</span><span style="color:#6272a4"></span>  <span style="color:#6272a4">// grunt.registerTask(&#34;myTasks&#34;, [&#34;t1&#34;, &#34;t2:child&#34;, &#34;t3&#34;]);   
-</span><span style="color:#6272a4"></span>
-};
-</code></pre></div><p>At this point is already possible to execute Grunt, but this will just produce an error
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>module.exports <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> (grunt) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  grunt.initConfig({
+</span></span><span style="display:flex;"><span>    pkg<span style="color:#ff79c6">:</span> grunt.file.readJSON(<span style="color:#f1fa8c">&#34;package.json&#34;</span>),
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    uglify<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// uglify task configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// load the plugin that provides the &#34;uglify&#34; task.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  grunt.loadNpmTasks(<span style="color:#f1fa8c">&#34;grunt-contrib-uglify&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// log something
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  grunt.log.write(<span style="color:#f1fa8c">&#34;Hello world!\n&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// define default task(s).
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  grunt.registerTask(<span style="color:#f1fa8c">&#34;default&#34;</span>, [<span style="color:#f1fa8c">&#34;uglify&#34;</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// define an alias for common tasks
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  <span style="color:#6272a4">// grunt.registerTask(&#34;myTasks&#34;, [&#34;t1&#34;, &#34;t2:child&#34;, &#34;t3&#34;]);   
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>At this point is already possible to execute Grunt, but this will just produce an error
 because there are not configuration options specified for the uglify task.</p>
 <h2 id="task-configuration">Task configuration</h2>
 <p>The following is the basic structure used to configure a task:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">uglify<span style="color:#ff79c6">:</span> {
-  options<span style="color:#ff79c6">:</span> {
-    banner<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;&#34;</span>
-  },      
-  target_1<span style="color:#ff79c6">:</span> {
-
-    <span style="color:#6272a4">/* source file */</span>
-    src<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#34;src/test.js&#34;</span>],
-
-    <span style="color:#6272a4">/* destination file */</span>
-    dest<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;build/test.min.js&#34;</span>     
-
-  },
-  target_2<span style="color:#ff79c6">:</span> {
-
-    options<span style="color:#ff79c6">:</span> {
-      banner<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;/* Minified version of doc.js */&#34;</span>
-    },
-
-    src<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#34;src/doc.js&#34;</span>],
-    dest<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;build/doc.min.js&#34;</span>
-
-  }
-}
-</code></pre></div><p>The structure is composed by an <code>options</code> property, and by one, or more, target properties.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>uglify<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>  options<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>    banner<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  },      
+</span></span><span style="display:flex;"><span>  target_1<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/* source file */</span>
+</span></span><span style="display:flex;"><span>    src<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#34;src/test.js&#34;</span>],
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/* destination file */</span>
+</span></span><span style="display:flex;"><span>    dest<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;build/test.min.js&#34;</span>     
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  target_2<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    options<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>      banner<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;/* Minified version of doc.js */&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    src<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#34;src/doc.js&#34;</span>],
+</span></span><span style="display:flex;"><span>    dest<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;build/doc.min.js&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The structure is composed by an <code>options</code> property, and by one, or more, target properties.</p>
 <ul>
 <li>
 <p>options: contains the settings valid at task level.<br/>Task level settings can be overwritten
@@ -230,23 +230,23 @@ than a target.</p>
 <h2 id="run-grunt">Run Grunt</h2>
 <p>Execute Grunt is a really straightforward operation; from the root folder of the project type
 in the shell:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">$:&gt; grunt
-<span style="color:#6272a4"># execute grunt</span>
-</code></pre></div><p>In this case all the tasks registered as default will be executed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$:&gt; grunt
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># execute grunt</span>
+</span></span></code></pre></div><p>In this case all the tasks registered as default will be executed.</p>
 <p>It&rsquo;s possible even to execute only specific task or subgroup of tasks; even in this case
 the syntax is really simple:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">$:&gt; grunt uglify
-<span style="color:#6272a4"># execute the uglify task.</span>
-<span style="color:#6272a4"># if there are more than a target,</span>
-<span style="color:#6272a4"># Grunt will iterate and procell all the targets</span>
-
-$:&gt; grunt uglify:target_1
-<span style="color:#6272a4"># execute the uglify task.</span>
-<span style="color:#6272a4"># only the specified target will be executed.</span>
-
-$:&gt; grunt myTasks
-<span style="color:#6272a4"># execute all the task associated to the myTasks alias.</span>
-</code></pre></div><h2 id="conclusive-notes">Conclusive notes</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$:&gt; grunt uglify
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># execute the uglify task.</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># if there are more than a target,</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Grunt will iterate and procell all the targets</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$:&gt; grunt uglify:target_1
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># execute the uglify task.</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># only the specified target will be executed.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$:&gt; grunt myTasks
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># execute all the task associated to the myTasks alias.</span>
+</span></span></code></pre></div><h2 id="conclusive-notes">Conclusive notes</h2>
 <p>Learning all this was fun, pleasant (thanks to the documentation), and did not require more
 than a couples of hours: really a great investment, if you consider how time consuming are
 some repetitive tasks.</p>
@@ -276,12 +276,12 @@ some repetitive tasks.</p>
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -336,7 +336,7 @@ some repetitive tasks.</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

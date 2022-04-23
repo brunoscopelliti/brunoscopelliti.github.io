@@ -135,130 +135,130 @@ JavaScript SDK.</p>
 <h2 id="initialize-the-javascript-sdk">Initialize the javascript SDK</h2>
 <p>I think the ideal is to init the javascript SDK as soon as possible, for this reason
 I will put the initialization code inside the <a href="https://docs.angularjs.org/api/ng/type/angular.Module#run" title="AngularJS api: run">run</a> method. Moreover this will be the place from which load the SDK itself:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">app.run([<span style="color:#f1fa8c">&#34;$rootScope&#34;</span>, <span style="color:#f1fa8c">&#34;$window&#34;</span>, <span style="color:#f1fa8c">&#34;srvAuth&#34;</span>,
-  <span style="color:#8be9fd;font-style:italic">function</span> ($rootScope, $window, sAuth) {
-
-  $rootScope.user <span style="color:#ff79c6">=</span> {};
-
-  $window.fbAsyncInit <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-    <span style="color:#6272a4">// Executed when the SDK is loaded
-</span><span style="color:#6272a4"></span>
-    FB.init({
-
-      <span style="color:#6272a4">/*
-</span><span style="color:#6272a4">       The app id of the web app;
-</span><span style="color:#6272a4">       To register a new app visit Facebook App Dashboard
-</span><span style="color:#6272a4">       ( https://developers.facebook.com/apps/ )
-</span><span style="color:#6272a4">      */</span>
-
-      appId<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;***************&#34;</span>,
-
-      <span style="color:#6272a4">/*
-</span><span style="color:#6272a4">       Adding a Channel File improves the performance
-</span><span style="color:#6272a4">       of the javascript SDK, by addressing issues
-</span><span style="color:#6272a4">       with cross-domain communication in certain browsers.
-</span><span style="color:#6272a4">      */</span>
-
-      channelUrl<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;app/channel.html&#34;</span>,
-
-      <span style="color:#6272a4">/*
-</span><span style="color:#6272a4">       Set if you want to check the authentication status
-</span><span style="color:#6272a4">       at the start up of the app
-</span><span style="color:#6272a4">      */</span>
-
-      status<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
-
-      <span style="color:#6272a4">/*
-</span><span style="color:#6272a4">       Enable cookies to allow the server to access
-</span><span style="color:#6272a4">       the session
-</span><span style="color:#6272a4">      */</span>
-
-      cookie<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
-
-      <span style="color:#6272a4">/* Parse XFBML */</span>
-
-      xfbml<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>
-    });
-
-    sAuth.watchAuthenticationStatusChange();
-
-  };
-
-  (<span style="color:#8be9fd;font-style:italic">function</span> (d){
-    <span style="color:#6272a4">// load the Facebook javascript SDK
-</span><span style="color:#6272a4"></span>
-    <span style="color:#8be9fd;font-style:italic">var</span> js,
-    id <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;facebook-jssdk&#34;</span>,
-    ref <span style="color:#ff79c6">=</span> d.getElementsByTagName(<span style="color:#f1fa8c">&#34;script&#34;</span>)[<span style="color:#bd93f9">0</span>];
-
-    <span style="color:#ff79c6">if</span> (d.getElementById(id)) {
-      <span style="color:#ff79c6">return</span>;
-    }
-
-    js <span style="color:#ff79c6">=</span> d.createElement(<span style="color:#f1fa8c">&#34;script&#34;</span>);
-    js.id <span style="color:#ff79c6">=</span> id;
-    js.<span style="color:#ff79c6">async</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
-    js.src <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;//connect.facebook.net/en_US/all.js&#34;</span>;
-
-    ref.parentNode.insertBefore(js, ref);
-
-  }(<span style="color:#8be9fd;font-style:italic">document</span>));
-
-}]);
-</code></pre></div><p>Just a couple of notes before to move to the next paragraph:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>app.run([<span style="color:#f1fa8c">&#34;$rootScope&#34;</span>, <span style="color:#f1fa8c">&#34;$window&#34;</span>, <span style="color:#f1fa8c">&#34;srvAuth&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">function</span> ($rootScope, $window, sAuth) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  $rootScope.user <span style="color:#ff79c6">=</span> {};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  $window.fbAsyncInit <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Executed when the SDK is loaded
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    FB.init({
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       The app id of the web app;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       To register a new app visit Facebook App Dashboard
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       ( https://developers.facebook.com/apps/ )
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">      */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      appId<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;***************&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       Adding a Channel File improves the performance
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       of the javascript SDK, by addressing issues
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       with cross-domain communication in certain browsers.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">      */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      channelUrl<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;app/channel.html&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       Set if you want to check the authentication status
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       at the start up of the app
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">      */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      status<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       Enable cookies to allow the server to access
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       the session
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">      */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      cookie<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">/* Parse XFBML */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      xfbml<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    sAuth.watchAuthenticationStatusChange();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#8be9fd;font-style:italic">function</span> (d){
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// load the Facebook javascript SDK
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">var</span> js,
+</span></span><span style="display:flex;"><span>    id <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;facebook-jssdk&#34;</span>,
+</span></span><span style="display:flex;"><span>    ref <span style="color:#ff79c6">=</span> d.getElementsByTagName(<span style="color:#f1fa8c">&#34;script&#34;</span>)[<span style="color:#bd93f9">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (d.getElementById(id)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    js <span style="color:#ff79c6">=</span> d.createElement(<span style="color:#f1fa8c">&#34;script&#34;</span>);
+</span></span><span style="display:flex;"><span>    js.id <span style="color:#ff79c6">=</span> id;
+</span></span><span style="display:flex;"><span>    js.<span style="color:#ff79c6">async</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>    js.src <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;//connect.facebook.net/en_US/all.js&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ref.parentNode.insertBefore(js, ref);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  }(<span style="color:#8be9fd;font-style:italic">document</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}]);
+</span></span></code></pre></div><p>Just a couple of notes before to move to the next paragraph:</p>
 <ul>
 <li>What is <code>srvAuth</code> ? Is a custom AngularJS service that I use to wrap all the
 authentication related stuff.</li>
 <li>What is the channel file? It helps dealing with cross-domain communication in certain browsers.
 The contents of the channel.html file should be just a single line:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;http://connect.facebook.net/en_US/all.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
-</code></pre></div><p>To end with the initialization tasks, it&rsquo;s also a good practice to add the fb-root div,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;http://connect.facebook.net/en_US/all.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
+</span></span></code></pre></div><p>To end with the initialization tasks, it&rsquo;s also a good practice to add the fb-root div,
 that is the place where the Javascript SDK attaches itself to; however if you skip this step
 the fb-root div will be created automatically. Accomplish this task is so simple that
 we can do it ourselves; just write the following snippet wherever you want in the body of your page.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;fb-root&#34;</span>&gt;&lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></div><h2 id="the-authentication-service">The authentication service</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;fb-root&#34;</span>&gt;&lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span></code></pre></div><h2 id="the-authentication-service">The authentication service</h2>
 <p>If you have read even my previous post about user&rsquo;s authentication, you won&rsquo;t be surprised
 by the fact that I put the logic inherent authentication in a specific purpose service.</p>
 <p>The service I created is pretty simple: just three methods, and a single property
 that stores the user&rsquo;s information retrieved from Facebook.</p>
 <p>You already saw the first method because it&rsquo;s executed from the previous snippet:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">watchLoginChange <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-
-  <span style="color:#8be9fd;font-style:italic">var</span> _self <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>;
-
-  FB.Event.subscribe(<span style="color:#f1fa8c">&#34;auth.authResponseChange&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (res) {
-
-    <span style="color:#ff79c6">if</span> (res.status <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;connected&#34;</span>) {
-
-      <span style="color:#6272a4">/*
-</span><span style="color:#6272a4">       The user is already logged,
-</span><span style="color:#6272a4">       is possible retrieve his personal info
-</span><span style="color:#6272a4">      */</span>
-      _self.getUserInfo();
-
-      <span style="color:#6272a4">/*
-</span><span style="color:#6272a4">       This is also the point where you should create a
-</span><span style="color:#6272a4">       session for the current user.
-</span><span style="color:#6272a4">       For this purpose you can use the data inside the
-</span><span style="color:#6272a4">       res.authResponse object.
-</span><span style="color:#6272a4">      */</span>
-
-    }
-    <span style="color:#ff79c6">else</span> {
-
-      <span style="color:#6272a4">/*
-</span><span style="color:#6272a4">       The user is not logged to the app, or into Facebook:
-</span><span style="color:#6272a4">       destroy the session on the server.
-</span><span style="color:#6272a4">      */</span>
-
-    }
-
-  });
-
-}
-</code></pre></div><p>This method uses the Facebook api to register a callback function that will be executed
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>watchLoginChange <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">var</span> _self <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  FB.Event.subscribe(<span style="color:#f1fa8c">&#34;auth.authResponseChange&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (res) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (res.status <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;connected&#34;</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       The user is already logged,
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       is possible retrieve his personal info
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">      */</span>
+</span></span><span style="display:flex;"><span>      _self.getUserInfo();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       This is also the point where you should create a
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       session for the current user.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       For this purpose you can use the data inside the
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       res.authResponse object.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">      */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       The user is not logged to the app, or into Facebook:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">       destroy the session on the server.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">      */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This method uses the Facebook api to register a callback function that will be executed
 each time a change to the user authentication status occurs.</p>
 <p>When the user is logged to Facebook, and also to the web app we receive the connected
 response status; then it&rsquo;s possible to retrieve the user personal information from
@@ -268,18 +268,18 @@ the Facebook api to retrieve personal information, so in this case we have also 
 the user&rsquo;s session on the server, created at the moment of the login.</p>
 <p>How to retrieve user&rsquo;s personal information from Facebook? Continue the analysis of
 the service with the <code>getUserInfo</code> method:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">getUserInfo <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-
-  <span style="color:#8be9fd;font-style:italic">var</span> _self <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>;
-
-  FB.api(<span style="color:#f1fa8c">&#34;/me&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (res) {
-    $rootScope.$apply(<span style="color:#8be9fd;font-style:italic">function</span> () {
-      $rootScope.user <span style="color:#ff79c6">=</span> _self.user <span style="color:#ff79c6">=</span> res;
-    });
-  });
-
-}
-</code></pre></div><p>This method wraps a call to the Facebook&rsquo;s service that responds with the user&rsquo;s profile
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>getUserInfo <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">var</span> _self <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  FB.api(<span style="color:#f1fa8c">&#34;/me&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (res) {
+</span></span><span style="display:flex;"><span>    $rootScope.$apply(<span style="color:#8be9fd;font-style:italic">function</span> () {
+</span></span><span style="display:flex;"><span>      $rootScope.user <span style="color:#ff79c6">=</span> _self.user <span style="color:#ff79c6">=</span> res;
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This method wraps a call to the Facebook&rsquo;s service that responds with the user&rsquo;s profile
 information. The most important thing to note here is the use of the
 <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply" title="AngularJS api: $apply">$apply</a>
 AngularJS method. Indeed, because the answer from Facebook is asynchronous, and so it comes
@@ -287,23 +287,23 @@ from outside the framework world, we need to include it in AngularJS with the <c
 <p>Finally, the last method of the service provide a way to logout the user from the web application
 (and from Facebook). However this operation won&rsquo;t revokes the permission accorded to the app;
 so when the user will logged to Facebook in the future, he will logged to the app as well.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">logout <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-
-  <span style="color:#8be9fd;font-style:italic">var</span> _self <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>;
-
-  FB.logout(<span style="color:#8be9fd;font-style:italic">function</span> (response) {
-    $rootScope.$apply(<span style="color:#8be9fd;font-style:italic">function</span> () {
-      $rootScope.user <span style="color:#ff79c6">=</span> _self.user <span style="color:#ff79c6">=</span> {};
-    });
-  });
-
-}
-</code></pre></div><h2 id="the-facebook-login-button">The Facebook login button</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>logout <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">var</span> _self <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  FB.logout(<span style="color:#8be9fd;font-style:italic">function</span> (response) {
+</span></span><span style="display:flex;"><span>    $rootScope.$apply(<span style="color:#8be9fd;font-style:italic">function</span> () {
+</span></span><span style="display:flex;"><span>      $rootScope.user <span style="color:#ff79c6">=</span> _self.user <span style="color:#ff79c6">=</span> {};
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="the-facebook-login-button">The Facebook login button</h2>
 <p>Finally, is the time to introduce the real star of this post: the Facebook login button&hellip;
 and the good news is that you&rsquo;ve not more to do that include the following snippet in your web app.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">&lt;</span>fb<span style="color:#ff79c6">:</span>login<span style="color:#ff79c6">-</span>button show<span style="color:#ff79c6">-</span>faces<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;true&#34;</span> max<span style="color:#ff79c6">-</span>rows<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;1&#34;</span>
-  size<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;large&#34;</span><span style="color:#ff79c6">&gt;&lt;</span>/fb:login-button&gt;
-</code></pre></div><p>You can put this snippet everywhere you want; you can even use the
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;</span>fb<span style="color:#ff79c6">:</span>login<span style="color:#ff79c6">-</span>button show<span style="color:#ff79c6">-</span>faces<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;true&#34;</span> max<span style="color:#ff79c6">-</span>rows<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>  size<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;large&#34;</span><span style="color:#ff79c6">&gt;&lt;</span>/fb:login-button&gt;
+</span></span></code></pre></div><p>You can put this snippet everywhere you want; you can even use the
 <a href="https://docs.angularjs.org/api/ng/directive/ngInclude" title="AngularJS api: ngInclude">ngInclude</a>
 directive to load it from an external template. That&rsquo;s all.</p>
 <p>However probably, sooner or later, you would like to
@@ -340,12 +340,12 @@ login system based on Facebook&rsquo;s authentication system that I described in
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -400,7 +400,7 @@ login system based on Facebook&rsquo;s authentication system that I described in
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

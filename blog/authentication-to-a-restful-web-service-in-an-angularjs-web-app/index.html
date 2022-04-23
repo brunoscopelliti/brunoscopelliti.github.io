@@ -134,62 +134,62 @@ showing how to set a custom header using the simple $http service.</p>
 <p>In this case there are two ways to proceed. When we want that our custom header is appended
 to each ajax requests, which is made from the application, we can just add our new header
 to the array of the default headers.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">// Define a new http header,
-</span><span style="color:#6272a4">// that will be used for each new xhr request
-</span><span style="color:#6272a4"></span>$http.defaults.headers.common[<span style="color:#f1fa8c">&#34;auth-token&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;C3PO-R2D2&#34;</span>;
-</code></pre></div><p>In a real world scenario the authentication token is returned from the server, so the previous
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#6272a4">// Define a new http header,
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// that will be used for each new xhr request
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>$http.defaults.headers.common[<span style="color:#f1fa8c">&#34;auth-token&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;C3PO-R2D2&#34;</span>;
+</span></span></code></pre></div><p>In a real world scenario the authentication token is returned from the server, so the previous
 snippet probably should be used as callback of a login procedure. Time ago I wrote a more generic
 post about <a href="/blog/deal-with-users-authentication-in-an-angularjs-web-app/" title="Authentication in an AngularJS web application">user authentication</a>, and most of the information contained in
 that post could be useful also in this case.</p>
 <p>We can change really a few of the previous snippet, to have an header used only for a
 particular type of xhr request.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">$http.defaults.headers.<span style="color:#ff79c6">delete</span> <span style="color:#ff79c6">=</span> {};
-$http.defaults.headers.<span style="color:#ff79c6">delete</span> [<span style="color:#f1fa8c">&#39;auth-token&#39;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;C3PO-R2D2&#39;</span>;
-<span style="color:#6272a4">// It will be used for each new xhr &#39;delete&#39; request
-</span><span style="color:#6272a4">// Easy!
-</span></code></pre></div><p>In this case since $resource (again) is built upon $http, and since we are writing inside
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>$http.defaults.headers.<span style="color:#ff79c6">delete</span> <span style="color:#ff79c6">=</span> {};
+</span></span><span style="display:flex;"><span>$http.defaults.headers.<span style="color:#ff79c6">delete</span> [<span style="color:#f1fa8c">&#39;auth-token&#39;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;C3PO-R2D2&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// It will be used for each new xhr &#39;delete&#39; request
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// Easy!
+</span></span></span></code></pre></div><p>In this case since $resource (again) is built upon $http, and since we are writing inside
 <code>$http.defaults</code>, the headers which we set will be used also in the xhr requests that we made
 through the $resource service&hellip; and this is great!</p>
 <p>Another possibility is that we need to set a custom header only for a particular xhr request
 (and not for all). In this case the best way to proceed is to use the headers property
 of the configuration object passed as parameter of the methods of the $http service.
 Just to make a simple example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">$http.get(<span style="color:#f1fa8c">&#34;books&#34;</span>, {
-  headers<span style="color:#ff79c6">:</span> { <span style="color:#f1fa8c">&#34;auth-token&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;C3PO-R2D2&#34;</span> },
-  params<span style="color:#ff79c6">:</span> { bookId<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">42</span> }
-}).success(<span style="color:#8be9fd;font-style:italic">function</span> () {
-  <span style="color:#6272a4">// Strive for success
-</span><span style="color:#6272a4"></span>});
-</code></pre></div><p>The header that I set in this way will affect just this xhr request, and won&rsquo;t be present
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>$http.get(<span style="color:#f1fa8c">&#34;books&#34;</span>, {
+</span></span><span style="display:flex;"><span>  headers<span style="color:#ff79c6">:</span> { <span style="color:#f1fa8c">&#34;auth-token&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;C3PO-R2D2&#34;</span> },
+</span></span><span style="display:flex;"><span>  params<span style="color:#ff79c6">:</span> { bookId<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">42</span> }
+</span></span><span style="display:flex;"><span>}).success(<span style="color:#8be9fd;font-style:italic">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// Strive for success
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>});
+</span></span></code></pre></div><p>The header that I set in this way will affect just this xhr request, and won&rsquo;t be present
 in all the others.</p>
 <h2 id="custom-headers-with-resource">Custom headers with $resource</h2>
 <p>In my opinion the best things about the $resource service is the possibility to define our custom
 request methods. In my previous post I defined the <code>loan</code> method:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">return</span> $resource(<span style="color:#f1fa8c">&#34;/book/:bookId&#34;</span>,
-  { bookId<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;@bookId&#34;</span> }, {
-    loan<span style="color:#ff79c6">:</span> {
-      method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;PUT&#34;</span>,
-      params<span style="color:#ff79c6">:</span> { bookId<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;@bookId&#34;</span> },
-      isArray<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>
-    }
-  });
-</code></pre></div><p>Sadly I don&rsquo;t know a simple way to set a custom header only for a $resource custom xhr request,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> $resource(<span style="color:#f1fa8c">&#34;/book/:bookId&#34;</span>,
+</span></span><span style="display:flex;"><span>  { bookId<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;@bookId&#34;</span> }, {
+</span></span><span style="display:flex;"><span>    loan<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>      method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;PUT&#34;</span>,
+</span></span><span style="display:flex;"><span>      params<span style="color:#ff79c6">:</span> { bookId<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;@bookId&#34;</span> },
+</span></span><span style="display:flex;"><span>      isArray<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span></code></pre></div><p>Sadly I don&rsquo;t know a simple way to set a custom header only for a $resource custom xhr request,
 using a version of AngularJS prior than 1.2rc1. If you are aware of it I will be happy to read
 the explanation of your approach in the comments, or to link your explanation.</p>
 <p>&hellip; However if you&rsquo;ve already embraced the future, and ported your web application
 to the last version of AngularJS, there is really a simple way to set the custom header of each
 of your xhr requests. In this case the previous snippet will become:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">return</span> $resource(<span style="color:#f1fa8c">&#34;/book/:bookId&#34;</span>,
-  { bookId<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;@bookId&#34;</span> }, {
-    loan<span style="color:#ff79c6">:</span> {
-      method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;PUT&#34;</span>,
-      params<span style="color:#ff79c6">:</span> { bookId<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;@bookId&#34;</span> },
-      isArray<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
-      <span style="color:#6272a4">/* Note the headers property */</span>
-      headers<span style="color:#ff79c6">:</span> { <span style="color:#f1fa8c">&#34;auth-token&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;C3PO-R2D2&#34;</span> }
-    }
-  });
-</code></pre></div><h2 id="conclusion">Conclusion</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> $resource(<span style="color:#f1fa8c">&#34;/book/:bookId&#34;</span>,
+</span></span><span style="display:flex;"><span>  { bookId<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;@bookId&#34;</span> }, {
+</span></span><span style="display:flex;"><span>    loan<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>      method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;PUT&#34;</span>,
+</span></span><span style="display:flex;"><span>      params<span style="color:#ff79c6">:</span> { bookId<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;@bookId&#34;</span> },
+</span></span><span style="display:flex;"><span>      isArray<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">/* Note the headers property */</span>
+</span></span><span style="display:flex;"><span>      headers<span style="color:#ff79c6">:</span> { <span style="color:#f1fa8c">&#34;auth-token&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;C3PO-R2D2&#34;</span> }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
 <p>In conclusion, as said there are many ways to set custom headers, and we have just to understand
 which one is the better fit for the needs of the web application we are building.</p>
 </div>
@@ -217,12 +217,12 @@ which one is the better fit for the needs of the web application we are building
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -277,7 +277,7 @@ which one is the better fit for the needs of the web application we are building
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

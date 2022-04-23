@@ -135,81 +135,81 @@ But you know, <em>a code snippet is worth a thousand words</em>.</p>
 <p>Let&rsquo;s say I want to read the content of a file.
 <a href="https://nodejs.org/dist/latest-v7.x/docs/api/fs.html#fs_fs_readfile_file_options_callback">fs.readFile</a>
 is the tool for this job, but its implementation currently only works with callbacks:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>);
-
-fs.readFile(<span style="color:#f1fa8c">&#34;./notes.txt&#34;</span>, (err, txt) =&gt; {
-  <span style="color:#ff79c6">if</span> (err) {
-    <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Error</span>(err.message);
-  }
-  console.log(txt);
-});
-</code></pre></div><p>If I wanted a Promise-based <code>fs.readFile</code>, I had two choices; pick one of those modules
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fs.readFile(<span style="color:#f1fa8c">&#34;./notes.txt&#34;</span>, (err, txt) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">if</span> (err) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Error</span>(err.message);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  console.log(txt);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>If I wanted a Promise-based <code>fs.readFile</code>, I had two choices; pick one of those modules
 from npm, or manually code my promise aware <code>fs.readFile</code>. Here, I&rsquo;m going for the second option,
 just for the sake of showing what&rsquo;s going on under the nice abstraction of a <em>promisifier function</em>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>);
-
-exports <span style="color:#ff79c6">=</span> module.exports <span style="color:#ff79c6">=</span> 
-  (file, options) =&gt; 
-    <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((res, rej) =&gt; {
-      fs.readFile(file, options, (err, txt) =&gt; {
-        <span style="color:#ff79c6">if</span> (err) {
-          <span style="color:#ff79c6">return</span> rej(err.message);
-        }
-        res(txt);
-      });
-    });
-</code></pre></div><p>That&rsquo;s pretty straightforward, but it does not scale very well&hellip; I won&rsquo;t use a such approach
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>exports <span style="color:#ff79c6">=</span> module.exports <span style="color:#ff79c6">=</span> 
+</span></span><span style="display:flex;"><span>  (file, options) =&gt; 
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((res, rej) =&gt; {
+</span></span><span style="display:flex;"><span>      fs.readFile(file, options, (err, txt) =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (err) {
+</span></span><span style="display:flex;"><span>          <span style="color:#ff79c6">return</span> rej(err.message);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        res(txt);
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>    });
+</span></span></code></pre></div><p>That&rsquo;s pretty straightforward, but it does not scale very well&hellip; I won&rsquo;t use a such approach
 if I need more functions working with promises.</p>
 <p>We can think to extract the capacity of promisifying a given function into a proper utility;
 and that&rsquo;s exactly what the authors of those packages did&hellip; and what now we have in the core,
 exposed as <code>util.promisify</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>);
-<span style="color:#ff79c6">const</span> util <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;util&#34;</span>);
-
-<span style="color:#ff79c6">const</span> readFile <span style="color:#ff79c6">=</span> util.promisify(fs.readFile);
-
-readFile(<span style="color:#f1fa8c">&#34;./notes.txt&#34;</span>)
-  .then(txt =&gt; console.log(txt));
-</code></pre></div><p><code>util.promisify</code> could eventually work even with methods which do not take an
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> util <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;util&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> readFile <span style="color:#ff79c6">=</span> util.promisify(fs.readFile);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>readFile(<span style="color:#f1fa8c">&#34;./notes.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>  .then(txt =&gt; console.log(txt));
+</span></span></code></pre></div><p><code>util.promisify</code> could eventually work even with methods which do not take an
 error-first <code>(err, value) =&gt; ...</code> callback as last argument. Let&rsquo;s consider
 as example <code>fs.exists</code> (that it is now deprecated).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">fs.exists(<span style="color:#f1fa8c">&#34;/etc/passwd&#34;</span>, (exists) =&gt; {
-  console.log(exists <span style="color:#ff79c6">?</span> <span style="color:#f1fa8c">&#34;it\&#39;s there&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;no passwd!&#34;</span>);
-});
-</code></pre></div><p>Using the <code>util.promisify.custom</code> symbol it is possible to override the return
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>fs.exists(<span style="color:#f1fa8c">&#34;/etc/passwd&#34;</span>, (exists) =&gt; {
+</span></span><span style="display:flex;"><span>  console.log(exists <span style="color:#ff79c6">?</span> <span style="color:#f1fa8c">&#34;it\&#39;s there&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;no passwd!&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Using the <code>util.promisify.custom</code> symbol it is possible to override the return
 value of <code>util.promisify</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>);
-
-<span style="color:#ff79c6">const</span> exists <span style="color:#ff79c6">=</span> (file) =&gt;
-  <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((res, rej) =&gt; {
-    fs.access(file, (err) =&gt; {
-      <span style="color:#ff79c6">if</span> (err) {
-        <span style="color:#ff79c6">if</span> (err.code <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;ENOENT&#34;</span>) {
-          <span style="color:#ff79c6">return</span> res(<span style="color:#ff79c6">false</span>);
-        }
-
-        <span style="color:#ff79c6">return</span> rej(err);
-      }
-
-      res(<span style="color:#ff79c6">true</span>);
-    });
-  });
-
-fs.exists[util.promisify.custom] <span style="color:#ff79c6">=</span> exists;
-
-util.promisify(fs.exists) <span style="color:#ff79c6">===</span> exists; <span style="color:#6272a4">// true
-</span></code></pre></div><p>Having the possibility to use native Promise these days is particularly exciting,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> exists <span style="color:#ff79c6">=</span> (file) =&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((res, rej) =&gt; {
+</span></span><span style="display:flex;"><span>    fs.access(file, (err) =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">if</span> (err) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (err.code <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;ENOENT&#34;</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#ff79c6">return</span> res(<span style="color:#ff79c6">false</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> rej(err);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      res(<span style="color:#ff79c6">true</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fs.exists[util.promisify.custom] <span style="color:#ff79c6">=</span> exists;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>util.promisify(fs.exists) <span style="color:#ff79c6">===</span> exists; <span style="color:#6272a4">// true
+</span></span></span></code></pre></div><p>Having the possibility to use native Promise these days is particularly exciting,
 cause the support for <code>async/await</code> is starting to spread.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">(<span style="color:#ff79c6">async</span> () =&gt; {
-  <span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>);
-  <span style="color:#ff79c6">const</span> util <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;util&#34;</span>);
-
-  <span style="color:#ff79c6">const</span> readFile <span style="color:#ff79c6">=</span> util.promisify(fs.readFile);
-
-  <span style="color:#ff79c6">const</span> txt <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> readFile(<span style="color:#f1fa8c">&#34;./notes.txt&#34;</span>);
-  console.log(txt);
-})();
-</code></pre></div><p><code>util.promisify</code> is planned to be released for the first time as part of first
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>(<span style="color:#ff79c6">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> util <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;util&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> readFile <span style="color:#ff79c6">=</span> util.promisify(fs.readFile);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> txt <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> readFile(<span style="color:#f1fa8c">&#34;./notes.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>  console.log(txt);
+</span></span><span style="display:flex;"><span>})();
+</span></span></code></pre></div><p><code>util.promisify</code> is planned to be released for the first time as part of first
 Release Candidate for Node.js 8.0.0; <a href="https://github.com/nodejs/node/pull/12442">here</a>
 you can watch the pull request progress, that is now merged.</p>
 </div>
@@ -237,12 +237,12 @@ you can watch the pull request progress, that is now merged.</p>
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -297,7 +297,7 @@ you can watch the pull request progress, that is now merged.</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

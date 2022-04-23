@@ -127,113 +127,113 @@ a stable and better way to intercept XHR requests and responses in our web app.
 We&rsquo;ll start by looking at how to define a new interceptor, using this new best practice.</p>
 <p>The following code has to be placed inside the config section of the web app
 (the only place of your app where the <em>service providers</em> are accessible).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">$httpProvider.interceptors.push([<span style="color:#f1fa8c">&#34;$q&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($q) {
-  <span style="color:#ff79c6">return</span> {
-
-    <span style="color:#6272a4">// All the following methods are optional
-</span><span style="color:#6272a4"></span>
-    request<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (config) {
-      <span style="color:#6272a4">// Called before send a new XHR request.
-</span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// This is a good place where manipulate the
-</span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// request parameters.
-</span><span style="color:#6272a4"></span>
-      <span style="color:#ff79c6">return</span> config <span style="color:#ff79c6">||</span> $q.when(config);
-    },
-
-    requestError<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (rejection) {
-      <span style="color:#6272a4">// Called when another request fails.
-</span><span style="color:#6272a4"></span>
-      <span style="color:#6272a4">// I am still searching a good use case for this.
-</span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// If you are aware of it, please write a comment
-</span><span style="color:#6272a4"></span>
-      <span style="color:#ff79c6">return</span> $q.reject(rejection);
-    },
-
-    response<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (response) {
-      <span style="color:#6272a4">// Called before a promise is resolved.
-</span><span style="color:#6272a4"></span>
-      <span style="color:#ff79c6">return</span> response <span style="color:#ff79c6">||</span> $q.when(response);
-    },
-
-    responseError<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (rejection) {
-      <span style="color:#6272a4">// Called when another XHR request returns with
-</span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// an error status code.
-</span><span style="color:#6272a4"></span>
-      <span style="color:#ff79c6">return</span> $q.reject(rejection);
-    }
-
-  }
-
-}]);
-</code></pre></div><p>Now that it&rsquo;s clear how to create XHR interceptor, let&rsquo;s take a look at why we should use
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>$httpProvider.interceptors.push([<span style="color:#f1fa8c">&#34;$q&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($q) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// All the following methods are optional
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    request<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (config) {
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// Called before send a new XHR request.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// This is a good place where manipulate the
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// request parameters.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> config <span style="color:#ff79c6">||</span> $q.when(config);
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    requestError<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (rejection) {
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// Called when another request fails.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// I am still searching a good use case for this.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// If you are aware of it, please write a comment
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> $q.reject(rejection);
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    response<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (response) {
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// Called before a promise is resolved.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> response <span style="color:#ff79c6">||</span> $q.when(response);
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    responseError<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (rejection) {
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// Called when another XHR request returns with
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// an error status code.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> $q.reject(rejection);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}]);
+</span></span></code></pre></div><p>Now that it&rsquo;s clear how to create XHR interceptor, let&rsquo;s take a look at why we should use
 XHR interceptor in a web application.</p>
 <h2 id="xhr-request-interceptor">XHR request interceptor</h2>
 <p>It may surprise some readers, but by default in AngularJS the payload of a POST request
 is always in JSON format. This means that, for example, if PHP is your backend language,
 you won&rsquo;t find any data in your <code>$_POST</code> array. Instead, you can use the PHP function
 <code>file_get_contents</code> to read the payload.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php"><span style="color:#ff79c6">if</span>(stripos(<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;CONTENT_TYPE&#34;</span>],<span style="color:#f1fa8c">&#34;application/json&#34;</span>)<span style="color:#ff79c6">==</span><span style="color:#bd93f9">0</span>){
-  <span style="color:#8be9fd;font-style:italic">$data</span> <span style="color:#ff79c6">=</span> json_decode(file_get_contents(<span style="color:#f1fa8c">&#34;php://input&#34;</span>), <span style="color:#ff79c6">true</span>);
-}
-</code></pre></div><p>All this pain can be avoided with the savvy use of request interceptors. To achieve this,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#ff79c6">if</span>(stripos(<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;CONTENT_TYPE&#34;</span>],<span style="color:#f1fa8c">&#34;application/json&#34;</span>)<span style="color:#ff79c6">==</span><span style="color:#bd93f9">0</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">$data</span> <span style="color:#ff79c6">=</span> json_decode(file_get_contents(<span style="color:#f1fa8c">&#34;php://input&#34;</span>), <span style="color:#ff79c6">true</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>All this pain can be avoided with the savvy use of request interceptors. To achieve this,
 first change the default content-type header used by AngularJS (need more info about
 <a href="/blog/authentication-to-a-restful-web-service-in-an-angularjs-web-app/" title="Set xhr http header in an AngularJS web application">request header</a>?). This should do the trick:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">$http.defaults.headers.post[<span style="color:#f1fa8c">&#34;Content-Type&#34;</span>] <span style="color:#ff79c6">=</span> 
-  <span style="color:#f1fa8c">&#34;application/x-www-form-urlencoded; charset=UTF-8;&#34;</span>;
-<span style="color:#6272a4">// You could place this everywhere; the only condition is
-</span><span style="color:#6272a4">// that the $http service is in that scope.
-</span></code></pre></div><p>We can then use the request interceptor to encode the payload:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">$httpProvider.interceptors.push([<span style="color:#f1fa8c">&#34;$q&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($q) {
-  <span style="color:#ff79c6">return</span> {
-    request<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (config) {
-      <span style="color:#ff79c6">if</span> (config.data <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#ff79c6">typeof</span> config.data <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;object&#34;</span>) {
-
-        <span style="color:#6272a4">// Before the request starts,
-</span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// the interceptor serializes the data object
-</span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// as a string.
-</span><span style="color:#6272a4"></span>
-        config.data <span style="color:#ff79c6">=</span> serialize(config.data);
-        <span style="color:#6272a4">// Check
-</span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// https://gist.github.com/brunoscopelliti/7492579
-</span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// for a possible implementation of serialize.
-</span><span style="color:#6272a4"></span>
-      }
-      <span style="color:#ff79c6">return</span> config <span style="color:#ff79c6">||</span> $q.when(config);
-    }
-  };
-}]);
-</code></pre></div><h2 id="xhr-response-interceptor">XHR response interceptor</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>$http.defaults.headers.post[<span style="color:#f1fa8c">&#34;Content-Type&#34;</span>] <span style="color:#ff79c6">=</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;application/x-www-form-urlencoded; charset=UTF-8;&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// You could place this everywhere; the only condition is
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// that the $http service is in that scope.
+</span></span></span></code></pre></div><p>We can then use the request interceptor to encode the payload:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>$httpProvider.interceptors.push([<span style="color:#f1fa8c">&#34;$q&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($q) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>    request<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (config) {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">if</span> (config.data <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#ff79c6">typeof</span> config.data <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;object&#34;</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Before the request starts,
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// the interceptor serializes the data object
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// as a string.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>        config.data <span style="color:#ff79c6">=</span> serialize(config.data);
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Check
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// https://gist.github.com/brunoscopelliti/7492579
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// for a possible implementation of serialize.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> config <span style="color:#ff79c6">||</span> $q.when(config);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>}]);
+</span></span></code></pre></div><h2 id="xhr-response-interceptor">XHR response interceptor</h2>
 <p>In my experience response interceptors are particularly helpful to handle specific error case.</p>
 <p>In my previous post about XHR interceptors, I wrote about how to intercept a
 401 (Unauthorized) error response. Let&rsquo;s rewrite that example with this new approach.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">$httpProvider.interceptors.push([<span style="color:#f1fa8c">&#34;$q&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($q) {
-  <span style="color:#ff79c6">return</span> {
-    response<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (response) {
-      <span style="color:#6272a4">// response.status === 200
-</span><span style="color:#6272a4"></span>      <span style="color:#ff79c6">return</span> response <span style="color:#ff79c6">||</span> $q.when(response);
-    },
-    responseError<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (rejection) {
-      <span style="color:#6272a4">// Executed only when the XHR response
-</span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// has an error status code
-</span><span style="color:#6272a4"></span>
-      <span style="color:#ff79c6">if</span> (rejection.status <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">401</span>) {
-
-        <span style="color:#6272a4">// The interceptor &#34;blocks&#34; the error;
-</span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// and the success callback will be executed.
-</span><span style="color:#6272a4"></span>
-        rejection.data <span style="color:#ff79c6">=</span> {stauts<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">401</span>, descr<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;unauthorized&#34;</span>}
-        <span style="color:#ff79c6">return</span> rejection.data;
-      }
-
-      <span style="color:#6272a4">// $q.reject creates a promise that is resolved as
-</span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// rejected with the specified reason.
-</span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// In this case the error callback will be executed.
-</span><span style="color:#6272a4"></span>
-      <span style="color:#ff79c6">return</span> $q.reject(rejection);
-    }
-  }
-}]);
-</code></pre></div></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>$httpProvider.interceptors.push([<span style="color:#f1fa8c">&#34;$q&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($q) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>    response<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (response) {
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// response.status === 200
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#ff79c6">return</span> response <span style="color:#ff79c6">||</span> $q.when(response);
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    responseError<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (rejection) {
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// Executed only when the XHR response
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// has an error status code
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">if</span> (rejection.status <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">401</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// The interceptor &#34;blocks&#34; the error;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// and the success callback will be executed.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>        rejection.data <span style="color:#ff79c6">=</span> {stauts<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">401</span>, descr<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;unauthorized&#34;</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> rejection.data;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// $q.reject creates a promise that is resolved as
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// rejected with the specified reason.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#6272a4">// In this case the error callback will be executed.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> $q.reject(rejection);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}]);
+</span></span></code></pre></div></div>
   <div class="post-footer">
     <div class="post-date">November 19, 2013</div>
     <div class="post-links">
@@ -258,12 +258,12 @@ first change the default content-type header used by AngularJS (need more info a
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -318,7 +318,7 @@ first change the default content-type header used by AngularJS (need more info a
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

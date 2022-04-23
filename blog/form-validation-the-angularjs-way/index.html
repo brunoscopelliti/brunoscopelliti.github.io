@@ -137,16 +137,16 @@ on server side validation.</p>
 <h2 id="angularjs-directives-for-form-validation">AngularJS directives for form validation</h2>
 <p>AngularJS has many directives to run form validation. The following are only those usable
 on a classic input field:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text&#34;</span>
-  <span style="color:#50fa7b">ng-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>
-  [<span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>]
-  [<span style="color:#50fa7b">required</span>]
-  [<span style="color:#50fa7b">ng-required</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>]
-  [<span style="color:#50fa7b">ng-minlength</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{number}&#34;</span>]
-  [<span style="color:#50fa7b">ng-maxlength</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{number}&#34;</span>]
-  [<span style="color:#50fa7b">ng-pattern</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>]
-  [<span style="color:#50fa7b">ng-change</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>]&gt;
-</code></pre></div><p>Some of these (like <code>required</code>, <code>pattern</code>, etc.) repeat the behavior of the new HTML5 attributes.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">ng-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>
+</span></span><span style="display:flex;"><span>  [<span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>]
+</span></span><span style="display:flex;"><span>  [<span style="color:#50fa7b">required</span>]
+</span></span><span style="display:flex;"><span>  [<span style="color:#50fa7b">ng-required</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>]
+</span></span><span style="display:flex;"><span>  [<span style="color:#50fa7b">ng-minlength</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{number}&#34;</span>]
+</span></span><span style="display:flex;"><span>  [<span style="color:#50fa7b">ng-maxlength</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{number}&#34;</span>]
+</span></span><span style="display:flex;"><span>  [<span style="color:#50fa7b">ng-pattern</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>]
+</span></span><span style="display:flex;"><span>  [<span style="color:#50fa7b">ng-change</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{string}&#34;</span>]&gt;
+</span></span></code></pre></div><p>Some of these (like <code>required</code>, <code>pattern</code>, etc.) repeat the behavior of the new HTML5 attributes.
 The advantage of using AngularJS directives instead of classic HTML5 attributes,
 is that the AngularJS way allows to mantain the two way data binding between model and view.</p>
 <h2 id="the-simplest-example">The simplest example</h2>
@@ -158,10 +158,10 @@ is that the AngularJS way allows to mantain the two way data binding between mod
 This simple scenario allows us to note some very important things about form validation
 with AngularJS.</p>
 <p>One of the most important things is the way I declared the form in the HTML code:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">form</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myForm&#34;</span> <span style="color:#50fa7b">novalidate</span> <span style="color:#50fa7b">ng-submit</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;submitForm();&#34;</span>&gt;
-  <span style="color:#6272a4">&lt;!-- ... --&gt;</span>
-&lt;/<span style="color:#ff79c6">form</span>&gt;
-</code></pre></div><p>As you can see, I didn&rsquo;t specify an action property for the form. That&rsquo;s because
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">form</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myForm&#34;</span> <span style="color:#50fa7b">novalidate</span> <span style="color:#50fa7b">ng-submit</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;submitForm();&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">&lt;!-- ... --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">form</span>&gt;
+</span></span></code></pre></div><p>As you can see, I didn&rsquo;t specify an action property for the form. That&rsquo;s because
 AngularJS prevents the default action (form submission to the server) unless
 the form element has an action attribute specified.
 I used the <a href="https://docs.angularjs.org/api/ng/directive/ngSubmit" title="AngularJS api: ngSubmit">ngSubmit</a>
@@ -174,34 +174,34 @@ directive that allow to show a portion of the DOM tree conditionally. I also use
 directive to conditionally disable the submit button. To write the condition I used
 several property of the form object that AngularJS makes available.
 These properties are the following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">//[formName].[inputFieldName].property
-</span><span style="color:#6272a4"></span>
-myForm.email1.$pristine;
-<span style="color:#6272a4">// Boolean. True if the user has not yet modified the form.
-</span><span style="color:#6272a4"></span>
-myForm.email1.$dirty
-<span style="color:#6272a4">// Boolean. True if the user has already modified the form.
-</span><span style="color:#6272a4"></span>
-myForm.email1.$valid
-<span style="color:#6272a4">// Boolean.True if the the form passes the validation.
-</span><span style="color:#6272a4"></span>
-myForm.email1.$invalid
-<span style="color:#6272a4">// Boolean. True if the the form doesn&#39;t pass the validation.
-</span><span style="color:#6272a4"></span>
-myForm.email1.$error
-<span style="color:#6272a4">// Object. Could be something like this:
-</span><span style="color:#6272a4">// { required: false, pattern:true }
-</span><span style="color:#6272a4">// or { required: false, email:true }
-</span></code></pre></div><p>The properties are true or false, on the basis of the fact that, the particular validation
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#6272a4">//[formName].[inputFieldName].property
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>myForm.email1.$pristine;
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Boolean. True if the user has not yet modified the form.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>myForm.email1.$dirty
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Boolean. True if the user has already modified the form.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>myForm.email1.$valid
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Boolean.True if the the form passes the validation.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>myForm.email1.$invalid
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Boolean. True if the the form doesn&#39;t pass the validation.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>myForm.email1.$error
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Object. Could be something like this:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// { required: false, pattern:true }
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// or { required: false, email:true }
+</span></span></span></code></pre></div><p>The properties are true or false, on the basis of the fact that, the particular validation
 expressed by that property has failed or not. Setting of these properties is a task of the
 correspondent directive. So at this point you have already understood that the <code>required</code>
 directive used on the username1 input field will set:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">myForm.username1.$error.required <span style="color:#ff79c6">===</span> <span style="color:#ff79c6">true</span>;
-<span style="color:#6272a4">// Only if the username1 field is left blank.
-</span></code></pre></div><p>&hellip; and in the same way the email directive will set:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">myForm.email1.$error.email <span style="color:#ff79c6">===</span> <span style="color:#ff79c6">true</span>
-<span style="color:#6272a4">// When email1 field does not contain a real email.
-</span></code></pre></div><h2 id="customize-form-look-with-the-css-classes-of-angularjs">Customize form look with the CSS classes of AngularJS</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>myForm.username1.$error.required <span style="color:#ff79c6">===</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Only if the username1 field is left blank.
+</span></span></span></code></pre></div><p>&hellip; and in the same way the email directive will set:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>myForm.email1.$error.email <span style="color:#ff79c6">===</span> <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// When email1 field does not contain a real email.
+</span></span></span></code></pre></div><h2 id="customize-form-look-with-the-css-classes-of-angularjs">Customize form look with the CSS classes of AngularJS</h2>
 <p>AngularJS makes available also numerous CSS classes to allow to customize the style of the form.
 This is good because different styles could be used to better communicate with the users.
 To better understand what I mean, take a look at the following example.</p>
@@ -210,26 +210,26 @@ To better understand what I mean, take a look at the following example.</p>
 </p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 <p>In the previous demo, I used only the most common classes:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-css" data-lang="css">.<span style="color:#50fa7b">ng-pristine</span> {}
-.<span style="color:#50fa7b">ng-dirty</span> {}
-.<span style="color:#50fa7b">ng-invalid</span> {}
-.<span style="color:#50fa7b">ng-valid</span> {}
-</code></pre></div><p>The meaning of these classes is the same of that of the properties seen in the previous section.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#50fa7b">ng-pristine</span> {}
+</span></span><span style="display:flex;"><span>.<span style="color:#50fa7b">ng-dirty</span> {}
+</span></span><span style="display:flex;"><span>.<span style="color:#50fa7b">ng-invalid</span> {}
+</span></span><span style="display:flex;"><span>.<span style="color:#50fa7b">ng-valid</span> {}
+</span></span></code></pre></div><p>The meaning of these classes is the same of that of the properties seen in the previous section.
 For example you could find the <code>ng-pristine</code> class only if you don&rsquo;t have already used the input
 field, vice versa the <code>ng-dirty</code> class is present only if you have modified the default value, etc.</p>
 <p>Styling a form using these classes is simple as use your custom class. Take a look at the
 CSS tab of the previous pen:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-css" data-lang="css">.<span style="color:#50fa7b">ng-pristine</span> { <span style="color:#ff79c6">border</span>:<span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> <span style="color:#ff79c6">solid</span> Gold; }
-.<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-valid</span> { <span style="color:#ff79c6">border</span>:<span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> <span style="color:#ff79c6">solid</span> Green; }
-.<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-invalid</span> { <span style="color:#ff79c6">border</span>:<span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> <span style="color:#ff79c6">solid</span> Red; }
-.<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-valid</span> <span style="color:#ff79c6">~</span> <span style="color:#ff79c6">span</span>.<span style="color:#50fa7b">ok</span> { <span style="color:#ff79c6">color</span>:<span style="color:#ff79c6">green</span>; <span style="color:#ff79c6">display</span>:<span style="color:#ff79c6">inline</span>; }
-.<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-invalid</span> <span style="color:#ff79c6">~</span> <span style="color:#ff79c6">span</span>.<span style="color:#50fa7b">ko</span> { <span style="color:#ff79c6">color</span>:<span style="color:#ff79c6">red</span>; <span style="color:#ff79c6">display</span>:<span style="color:#ff79c6">inline</span>; }
-</code></pre></div><h2 id="the-power-of-the-ngpattern-directive">The power of the ngPattern directive</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#50fa7b">ng-pristine</span> { <span style="color:#ff79c6">border</span>:<span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> <span style="color:#ff79c6">solid</span> Gold; }
+</span></span><span style="display:flex;"><span>.<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-valid</span> { <span style="color:#ff79c6">border</span>:<span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> <span style="color:#ff79c6">solid</span> Green; }
+</span></span><span style="display:flex;"><span>.<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-invalid</span> { <span style="color:#ff79c6">border</span>:<span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> <span style="color:#ff79c6">solid</span> Red; }
+</span></span><span style="display:flex;"><span>.<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-valid</span> <span style="color:#ff79c6">~</span> <span style="color:#ff79c6">span</span>.<span style="color:#50fa7b">ok</span> { <span style="color:#ff79c6">color</span>:<span style="color:#ff79c6">green</span>; <span style="color:#ff79c6">display</span>:<span style="color:#ff79c6">inline</span>; }
+</span></span><span style="display:flex;"><span>.<span style="color:#50fa7b">ng-dirty</span>.<span style="color:#50fa7b">ng-invalid</span> <span style="color:#ff79c6">~</span> <span style="color:#ff79c6">span</span>.<span style="color:#50fa7b">ko</span> { <span style="color:#ff79c6">color</span>:<span style="color:#ff79c6">red</span>; <span style="color:#ff79c6">display</span>:<span style="color:#ff79c6">inline</span>; }
+</span></span></code></pre></div><h2 id="the-power-of-the-ngpattern-directive">The power of the ngPattern directive</h2>
 <p>The <code>ngPattern</code> directive leads all the power of regular expression inside AngularJS.
 It allows to validate the content of a field on the basis of a custom [Regular Expression](<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions</a> &lsquo;Regular Expression MDN&rsquo;s reference&rsquo;).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text&#34;</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;userId&#34;</span> <span style="color:#50fa7b">ng-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;userId&#34;</span>
-  <span style="color:#50fa7b">required</span> <span style="color:#50fa7b">ng-pattern</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/^id_[0-9]+$/&#34;</span>/&gt;
-</code></pre></div><p>In the above example, a string in order to be valid has to be in the format &ldquo;id_numbers&rdquo;,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text&#34;</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;userId&#34;</span> <span style="color:#50fa7b">ng-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;userId&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">required</span> <span style="color:#50fa7b">ng-pattern</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/^id_[0-9]+$/&#34;</span>/&gt;
+</span></span></code></pre></div><p>In the above example, a string in order to be valid has to be in the format &ldquo;id_numbers&rdquo;,
 otherwise the ngPattern directive will sets to true the pattern validation error key.
 See the <a href="http://codepen.io/brunoscopelliti/pen/plFLI" title="Form validation through ngPattern directive">ngPattern directive in action</a>.</p>
 <p>If you will play a lot with the previous demo, maybe you will note that also string like
@@ -252,33 +252,33 @@ username chosen is already used, or not.</p>
 </p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 <p>Let&rsquo;s break this directive:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text&#34;</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;username&#34;</span> <span style="color:#50fa7b">ng-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;username&#34;</span>
-  <span style="color:#50fa7b">ng-pattern</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/^[a-zA-Z0-9]{4,10}$/&#34;</span>
-  <span style="color:#50fa7b">ng-unique</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;tableDB.userDBField&#34;</span> /&gt;
-</code></pre></div><p>The ngUnique accepts as parameter the names of the field and of the table, where the
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text&#34;</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;username&#34;</span> <span style="color:#50fa7b">ng-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;username&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">ng-pattern</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/^[a-zA-Z0-9]{4,10}$/&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">ng-unique</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;tableDB.userDBField&#34;</span> /&gt;
+</span></span></code></pre></div><p>The ngUnique accepts as parameter the names of the field and of the table, where the
 username has to be unique.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">.directive(<span style="color:#f1fa8c">&#34;ngUnique&#34;</span>, [<span style="color:#f1fa8c">&#34;$http&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($http) {
-  <span style="color:#ff79c6">return</span> {
-    require<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;ngModel&#34;</span>,
-    link<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (scope, elem, attrs, ctrl) {
-      elem.on(<span style="color:#f1fa8c">&#34;blur&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (evt) {
-        scope.$apply(<span style="color:#8be9fd;font-style:italic">function</span> () {
-          $http({
-            method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;POST&#34;</span>,
-            url<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;backendServices/checkUsername.php&#34;</span>,
-            data<span style="color:#ff79c6">:</span> {
-              username<span style="color:#ff79c6">:</span>elem.val(),
-              dbField<span style="color:#ff79c6">:</span>attrs.ngUnique
-            }
-          }).success(<span style="color:#8be9fd;font-style:italic">function</span> (data, status, headers, config) {
-            ctrl.$setValidity(<span style="color:#f1fa8c">&#34;unique&#34;</span>, data.status);
-          });
-        });
-      }
-    }
-  }
-]);
-</code></pre></div><p>The validation process begins when the username field fires the blur event.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>.directive(<span style="color:#f1fa8c">&#34;ngUnique&#34;</span>, [<span style="color:#f1fa8c">&#34;$http&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($http) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>    require<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;ngModel&#34;</span>,
+</span></span><span style="display:flex;"><span>    link<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (scope, elem, attrs, ctrl) {
+</span></span><span style="display:flex;"><span>      elem.on(<span style="color:#f1fa8c">&#34;blur&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (evt) {
+</span></span><span style="display:flex;"><span>        scope.$apply(<span style="color:#8be9fd;font-style:italic">function</span> () {
+</span></span><span style="display:flex;"><span>          $http({
+</span></span><span style="display:flex;"><span>            method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;POST&#34;</span>,
+</span></span><span style="display:flex;"><span>            url<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;backendServices/checkUsername.php&#34;</span>,
+</span></span><span style="display:flex;"><span>            data<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>              username<span style="color:#ff79c6">:</span>elem.val(),
+</span></span><span style="display:flex;"><span>              dbField<span style="color:#ff79c6">:</span>attrs.ngUnique
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>          }).success(<span style="color:#8be9fd;font-style:italic">function</span> (data, status, headers, config) {
+</span></span><span style="display:flex;"><span>            ctrl.$setValidity(<span style="color:#f1fa8c">&#34;unique&#34;</span>, data.status);
+</span></span><span style="display:flex;"><span>          });
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>]);
+</span></span></code></pre></div><p>The validation process begins when the username field fires the blur event.</p>
 <p>At this point, an AJAX request starts. The objective is to check against the database
 if the value in the username field already exists. The response is false if the value
 already exists, otherwise true. The response is available in the callback, where it&rsquo;s
@@ -287,16 +287,16 @@ used as parameter of the AngularJS <code>$setValidity</code> api.
 changes the validity state, and notifies the form when the control changes validity.</p>
 <p>This allow us to use our custom <code>unique</code> error key, to improve usability of the form,
 as seen in the previous examples:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;invalid&#34;</span>
-  <span style="color:#50fa7b">ng-show</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myForm.username.$dirty &amp;&amp; myForm.username.$invalid&#34;</span>&gt;
-  &lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">ng-show</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myForm.username.$error.pattern&#34;</span>&gt;
-    Pattern validation fails
-  &lt;/<span style="color:#ff79c6">span</span>&gt;
-  &lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">ng-show</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myForm.username.$error.unique&#34;</span>&gt;
-    Username already exists.
-  &lt;/<span style="color:#ff79c6">span</span>&gt;
-&lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></div><h2 id="a-little-extra">A little Extra</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;invalid&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">ng-show</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myForm.username.$dirty &amp;&amp; myForm.username.$invalid&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">ng-show</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myForm.username.$error.pattern&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    Pattern validation fails
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#ff79c6">span</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">ng-show</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;myForm.username.$error.unique&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    Username already exists.
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#ff79c6">span</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span></code></pre></div><h2 id="a-little-extra">A little Extra</h2>
 <p>I summerized all the demo of this post in this <a href="http://jsfiddle.net/bruscopelliti/3vRXy/embedded/result/" title="Form Validation">jsFiddle</a>.</p>
 </div>
   <div class="post-footer">
@@ -323,12 +323,12 @@ as seen in the previous examples:</p>
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -383,7 +383,7 @@ as seen in the previous examples:</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

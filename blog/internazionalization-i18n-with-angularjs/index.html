@@ -144,19 +144,19 @@ public repository.</p>
 For this task I rely on server side technologies.
 <br/>
 In the context of the demo that I shared, I used the variable <code>$_SERVER[&quot;HTTP_ACCEPT_LANGUAGE&quot;]</code>. Then, on the basis of the language that the user would probably prefer, the appropriate locale files are loaded.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-php" data-lang="php"><span style="color:#8be9fd;font-style:italic">$supportedLanguage</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">array</span>(<span style="color:#f1fa8c">&#34;en&#34;</span>, <span style="color:#f1fa8c">&#34;it&#34;</span>);
-<span style="color:#8be9fd;font-style:italic">$lang</span> <span style="color:#ff79c6">=</span> substr(<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;HTTP_ACCEPT_LANGUAGE&#34;</span>], <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">2</span>);
-
-<span style="color:#6272a4">// ...
-</span><span style="color:#6272a4"></span>
-<span style="color:#ff79c6">&lt;?</span>php <span style="color:#ff79c6">if</span> (in_array(<span style="color:#8be9fd;font-style:italic">$lang</span>, <span style="color:#8be9fd;font-style:italic">$supportedLanguage</span>))<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">?&gt;</span>
-  &lt;script src=&#34;l/ng-locale_&lt;?php echo $lang; ?&gt;.js&#34;&gt;&lt;/script&gt;
-  &lt;script src=&#34;l/i18n_&lt;?php echo $lang; ?&gt;.js&#34;&gt;&lt;/script&gt;
-&lt;?php else: ?&gt;
-  &lt;script src=&#34;l/ng-locale_en.js&#34;&gt;&lt;/script&gt;
-  &lt;script src=&#34;l/i18n_en.js&#34;&gt;&lt;/script&gt;
-&lt;?php endif; ?&gt;
-</code></pre></div><p>What do contain the two javascript files that I just included?
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$supportedLanguage</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">array</span>(<span style="color:#f1fa8c">&#34;en&#34;</span>, <span style="color:#f1fa8c">&#34;it&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$lang</span> <span style="color:#ff79c6">=</span> substr(<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;HTTP_ACCEPT_LANGUAGE&#34;</span>], <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;?</span>php <span style="color:#ff79c6">if</span> (in_array(<span style="color:#8be9fd;font-style:italic">$lang</span>, <span style="color:#8be9fd;font-style:italic">$supportedLanguage</span>))<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">?&gt;</span>
+</span></span><span style="display:flex;"><span>  &lt;script src=&#34;l/ng-locale_&lt;?php echo $lang; ?&gt;.js&#34;&gt;&lt;/script&gt;
+</span></span><span style="display:flex;"><span>  &lt;script src=&#34;l/i18n_&lt;?php echo $lang; ?&gt;.js&#34;&gt;&lt;/script&gt;
+</span></span><span style="display:flex;"><span>&lt;?php else: ?&gt;
+</span></span><span style="display:flex;"><span>  &lt;script src=&#34;l/ng-locale_en.js&#34;&gt;&lt;/script&gt;
+</span></span><span style="display:flex;"><span>  &lt;script src=&#34;l/i18n_en.js&#34;&gt;&lt;/script&gt;
+</span></span><span style="display:flex;"><span>&lt;?php endif; ?&gt;
+</span></span></code></pre></div><p>What do contain the two javascript files that I just included?
 <br/>
 The first file contains the localization rules relative to one specific locale,
 that is the default format for money, or date, the name of the months translated etc.
@@ -165,22 +165,22 @@ to the version. Instead, the second file contains all the labels that are to be
 translated in the web app.</p>
 <p>I chose to put all the labels in a service, so that they could always be available
 in every controllers. At the end the service is something like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">angular.module(<span style="color:#f1fa8c">&#34;myApp.localeTranslation&#34;</span>, []).
-value(<span style="color:#f1fa8c">&#34;currentLocale&#34;</span>, {
-  WRITTENBY<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Written by&#34;</span>,
-  ...
-  TOTOP<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Top&#34;</span>,
-  _getLocalizationKeys<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-    <span style="color:#8be9fd;font-style:italic">var</span> keys <span style="color:#ff79c6">=</span> {};
-    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">var</span> k <span style="color:#ff79c6">in</span> <span style="color:#ff79c6">this</span>) {
-      <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.hasOwnProperty(k)) {
-        keys[k] <span style="color:#ff79c6">=</span> k;
-      }
-    }
-    <span style="color:#ff79c6">return</span> keys;
-  }
-});
-</code></pre></div><p>As well as the labels, the object contains just one method, <code>_getLocalizationKeys</code>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>angular.module(<span style="color:#f1fa8c">&#34;myApp.localeTranslation&#34;</span>, []).
+</span></span><span style="display:flex;"><span>value(<span style="color:#f1fa8c">&#34;currentLocale&#34;</span>, {
+</span></span><span style="display:flex;"><span>  WRITTENBY<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Written by&#34;</span>,
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>  TOTOP<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Top&#34;</span>,
+</span></span><span style="display:flex;"><span>  _getLocalizationKeys<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">var</span> keys <span style="color:#ff79c6">=</span> {};
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">var</span> k <span style="color:#ff79c6">in</span> <span style="color:#ff79c6">this</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">this</span>.hasOwnProperty(k)) {
+</span></span><span style="display:flex;"><span>        keys[k] <span style="color:#ff79c6">=</span> k;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> keys;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>As well as the labels, the object contains just one method, <code>_getLocalizationKeys</code>;
 it returns an object that has as properties the same properties of the object to which it belongs,
 and the value of each property is equal to the name of the property itself.
 As I will show later this method will be useful for making sure that my approach will work
@@ -188,28 +188,28 @@ with AngularJS <code>ngPluralize</code> directive.</p>
 <p>We&rsquo;ve reached the second milestone on which this approach is based, the use of AngularJS filters.</p>
 <p>As first thing I defined a custom filter to format the data that has to be shown to the users.
 The following is the filter definition:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> filters <span style="color:#ff79c6">=</span> angular.module(<span style="color:#f1fa8c">&#34;myApp.filters&#34;</span>, []);
-filters.filter(<span style="color:#f1fa8c">&#34;i18n&#34;</span>, [<span style="color:#f1fa8c">&#34;currentLocale&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (cl) {
-  <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">function</span> (key, p) {
-    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> cl[key] <span style="color:#ff79c6">!==</span> <span style="color:#f1fa8c">&#34;undefined&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span> cl[key] <span style="color:#ff79c6">!==</span> <span style="color:#f1fa8c">&#34;&#34;</span>) {
-      <span style="color:#ff79c6">return</span> (<span style="color:#ff79c6">typeof</span> p <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;undefined&#34;</span>) <span style="color:#ff79c6">?</span>
-        cl[key] <span style="color:#ff79c6">:</span> cl[key].replace(<span style="color:#f1fa8c">&#34;@{}@&#34;</span>, p);
-    }
-  }
-}]);
-</code></pre></div><p>As you can see the <code>i18n</code> filter uses the label defined in the <code>currentLocale</code> service,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">var</span> filters <span style="color:#ff79c6">=</span> angular.module(<span style="color:#f1fa8c">&#34;myApp.filters&#34;</span>, []);
+</span></span><span style="display:flex;"><span>filters.filter(<span style="color:#f1fa8c">&#34;i18n&#34;</span>, [<span style="color:#f1fa8c">&#34;currentLocale&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (cl) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">function</span> (key, p) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> cl[key] <span style="color:#ff79c6">!==</span> <span style="color:#f1fa8c">&#34;undefined&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span> cl[key] <span style="color:#ff79c6">!==</span> <span style="color:#f1fa8c">&#34;&#34;</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> (<span style="color:#ff79c6">typeof</span> p <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;undefined&#34;</span>) <span style="color:#ff79c6">?</span>
+</span></span><span style="display:flex;"><span>        cl[key] <span style="color:#ff79c6">:</span> cl[key].replace(<span style="color:#f1fa8c">&#34;@{}@&#34;</span>, p);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}]);
+</span></span></code></pre></div><p>As you can see the <code>i18n</code> filter uses the label defined in the <code>currentLocale</code> service,
 imported via dependency injection.
 The functioning of the filter at this point is pretty easy: if the filter is applied to a string
 corresponding to a property of the currentLocale object, the string itself is replaced with
 the value of that property.</p>
 <p>The i18n filter could be used as every others AngularJS filter; so in whatever HTML file I want,
 I can write something like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;author&#34;</span>&gt;{{ &#34;{{ &#39;WRITTENBY&#39; | i18n &#34; }}}}  Bruno&lt;/<span style="color:#ff79c6">span</span>&gt;
-</code></pre></div><p>Moreover as for every others AngularJS filter, I could even pass a parameter (or even more
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;author&#34;</span>&gt;{{ &#34;{{ &#39;WRITTENBY&#39; | i18n &#34; }}}}  Bruno&lt;/<span style="color:#ff79c6">span</span>&gt;
+</span></span></code></pre></div><p>Moreover as for every others AngularJS filter, I could even pass a parameter (or even more
 than one) at the i18n filter; what I&rsquo;ve to do is just write the parameter after the filter name,
 using a colon as separator.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;author&#34;</span>&gt;{{ &#34;{{ &#39;LOCALIZATIONKEY&#39; | i18n:parameter &#34; }}}}&lt;/<span style="color:#ff79c6">span</span>&gt;
-</code></pre></div><p>In case, the parameter is used to replace the special string <code>@{}@</code> in the localized label
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;author&#34;</span>&gt;{{ &#34;{{ &#39;LOCALIZATIONKEY&#39; | i18n:parameter &#34; }}}}&lt;/<span style="color:#ff79c6">span</span>&gt;
+</span></span></code></pre></div><p>In case, the parameter is used to replace the special string <code>@{}@</code> in the localized label
 (see line 5 of the snippet in which the i18n filter is defined).</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In conclusion, my approach has two main benefits:</p>
@@ -220,10 +220,10 @@ using a colon as separator.</p>
 with each others AngularJS filters:</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;top&#39;</span>&gt;
-  &lt;<span style="color:#ff79c6">a</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;#top&#39;</span>&gt;{{ &#34;{{ &#39;TOTOP&#39; | i18n | uppercase &#34; }}}}&lt;/<span style="color:#ff79c6">a</span>&gt;
-&lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;top&#39;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">a</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;#top&#39;</span>&gt;{{ &#34;{{ &#39;TOTOP&#39; | i18n | uppercase &#34; }}}}&lt;/<span style="color:#ff79c6">a</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span></code></pre></div><ul>
 <li>
 <p><strong>ngPluralize compatibility:</strong></p>
 <p>Another important strong point of this approach is that the i18n filter could be used
@@ -236,18 +236,18 @@ and use this in its place. For this reason, in the currentLocale service I defin
 with the i18n filter (the code is again extracted from the demo):</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">
-<span style="color:#6272a4">&lt;!--
-</span><span style="color:#6272a4">  keys is a $scope property defined as:
-</span><span style="color:#6272a4">  $scope.keys = locale._getLocalizationKeys();
-</span><span style="color:#6272a4">--&gt;</span>
-
-&lt;<span style="color:#ff79c6">ng-pluralize</span> <span style="color:#50fa7b">count</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;p.likes&#34;</span> <span style="color:#50fa7b">when</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;{
-</span><span style="color:#f1fa8c">  0: &#39;</span>{{ &#34;{{ <span style="color:#50fa7b">keys</span>.<span style="color:#50fa7b">NOLIKES</span> | <span style="color:#50fa7b">i18n</span> &#34; }}}}&#39;,
-  <span style="color:#50fa7b">one:</span> &#39;{{ &#34;{{ <span style="color:#50fa7b">keys</span>.<span style="color:#50fa7b">ONELIKE</span> | <span style="color:#50fa7b">i18n</span> &#34; }}}}&#39;,
-  <span style="color:#50fa7b">other:</span> &#39;{{ &#34;{{ <span style="color:#50fa7b">keys</span>.<span style="color:#50fa7b">MANYLIKES</span> | <span style="color:#50fa7b">i18n:this</span>.<span style="color:#50fa7b">p</span>.<span style="color:#50fa7b">likes</span> &#34; }}}}&#39;&gt;
-&lt;/<span style="color:#ff79c6">ng-pluralize</span>&gt;
-</code></pre></div><p>Currently, I can see just one possible downside in this approach; indeed use <code>$_SERVER</code>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">&lt;!--
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">  keys is a $scope property defined as:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">  $scope.keys = locale._getLocalizationKeys();
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">--&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">ng-pluralize</span> <span style="color:#50fa7b">count</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;p.likes&#34;</span> <span style="color:#50fa7b">when</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">  0: &#39;</span>{{ &#34;{{ <span style="color:#50fa7b">keys</span>.<span style="color:#50fa7b">NOLIKES</span> | <span style="color:#50fa7b">i18n</span> &#34; }}}}&#39;,
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">one:</span> &#39;{{ &#34;{{ <span style="color:#50fa7b">keys</span>.<span style="color:#50fa7b">ONELIKE</span> | <span style="color:#50fa7b">i18n</span> &#34; }}}}&#39;,
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">other:</span> &#39;{{ &#34;{{ <span style="color:#50fa7b">keys</span>.<span style="color:#50fa7b">MANYLIKES</span> | <span style="color:#50fa7b">i18n:this</span>.<span style="color:#50fa7b">p</span>.<span style="color:#50fa7b">likes</span> &#34; }}}}&#39;&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">ng-pluralize</span>&gt;
+</span></span></code></pre></div><p>Currently, I can see just one possible downside in this approach; indeed use <code>$_SERVER</code>
 to detect the user preferred language is probably a not infallible way. This possible issue
 could be overcome using more sophisticated ways to detect, from the server side, the user
 preferred language; a possible way is to use the GeoIP extension, but neither this solution
@@ -279,12 +279,12 @@ about languages, and the other locale stuff.</p>
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -339,7 +339,7 @@ about languages, and the other locale stuff.</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

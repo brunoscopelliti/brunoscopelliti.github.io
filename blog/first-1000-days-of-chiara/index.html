@@ -154,7 +154,7 @@ from the myriads of imaginary problems we sometimes create for ourself.
 Taking words from Nicholas Zakas:</p>
 <blockquote>
 <p>Imaginary problems are often described using phrases like, &ldquo;what if one day someone wants to&hellip;&rdquo;
-and tend to trigger software engineers' creative brain to try to plan for all possibilities.
+and tend to trigger software engineers&rsquo; creative brain to try to plan for all possibilities.
 [&hellip;] You should only ever build solutions for clearly-defined problems because
 that&rsquo;s the only way you&rsquo;ll know if your solution works.</p>
 <p>Nicholas C. Zakas, (<a href="https://www.nczonline.net/newsletter/archive/f0e1d724dd/">source</a>)</p>
@@ -164,21 +164,21 @@ I should only add a few days to an arbitrary date 😮, and that making those va
 parametric could be somewhat beneficial both in terms of code readability, both in terms of
 reusability (what if one day we have another child?!).</p>
 <p>So this is the function we&rsquo;re going to write:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#6272a4">/*
-</span><span style="color:#6272a4"> * @function
-</span><span style="color:#6272a4"> * @name computeDate
-</span><span style="color:#6272a4"> * @description Compute the date that is `offsetDays` days before/after `startingDate`
-</span><span style="color:#6272a4"> *
-</span><span style="color:#6272a4"> * @param {Date} startingDate:
-</span><span style="color:#6272a4"> *  The date from which start to count the passing days
-</span><span style="color:#6272a4"> *
-</span><span style="color:#6272a4"> * @param {Number} offsetDays:
-</span><span style="color:#6272a4"> *  The number of days in the future
-</span><span style="color:#6272a4"> *
-</span><span style="color:#6272a4"> * @return {Date}
-</span><span style="color:#6272a4"> */</span>
-<span style="color:#8be9fd;font-style:italic">function</span> computeDate(startingDate, offsetDays) { }
-</code></pre></div><h2 id="start-development">Start development</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @function
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @name computeDate
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @description Compute the date that is `offsetDays` days before/after `startingDate`
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @param {Date} startingDate:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *  The date from which start to count the passing days
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @param {Number} offsetDays:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *  The number of days in the future
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @return {Date}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> computeDate(startingDate, offsetDays) { }
+</span></span></code></pre></div><h2 id="start-development">Start development</h2>
 <p>Even if we&rsquo;ve not still implemented <code>computeDate</code>, we could well imagine that,
 it for the same set of input parameters returns always the same result (so it doesn&rsquo;t rely
 on any external state). Moreover it would be surprisingly if it does something else
@@ -204,45 +204,45 @@ of a given function; <code>tape</code> is as well lightweight, and has a bigger 
 that permits to extends its core functionalities.</p>
 <p>Both would be a great fit, but this time, I&rsquo;ll go for <code>tape</code> in order to take advantage
 of its ecosystem.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> tape <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;tape&#34;</span>);
-<span style="color:#ff79c6">const</span> computeDate <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;./path/to/computeDate&#34;</span>);
-
-<span style="color:#ff79c6">const</span> christmas <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-25&#34;</span>);
-
-tape(<span style="color:#f1fa8c">&#34;check a week after Christmas&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(t) {
-  <span style="color:#ff79c6">const</span> expectedResult <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2017-01-01&#34;</span>);
-  <span style="color:#ff79c6">const</span> result <span style="color:#ff79c6">=</span> computeDate(christmas, <span style="color:#bd93f9">7</span>);
-  t.deepEqual(result, expectedResult);
-  t.end();
-});
-</code></pre></div><p>Once you&rsquo;ve written the first test, adding further tests is even easier&hellip;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> tape <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;tape&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> computeDate <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;./path/to/computeDate&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> christmas <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-25&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tape(<span style="color:#f1fa8c">&#34;check a week after Christmas&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(t) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> expectedResult <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2017-01-01&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> result <span style="color:#ff79c6">=</span> computeDate(christmas, <span style="color:#bd93f9">7</span>);
+</span></span><span style="display:flex;"><span>  t.deepEqual(result, expectedResult);
+</span></span><span style="display:flex;"><span>  t.end();
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Once you&rsquo;ve written the first test, adding further tests is even easier&hellip;
 it&rsquo;s just particularly important to be as clear as possible when writing the description.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">tape(<span style="color:#f1fa8c">&#34;check one year, and a week after Christmas&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(t) {
-  <span style="color:#ff79c6">const</span> expectedResult <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2018-01-01&#34;</span>);
-  <span style="color:#ff79c6">const</span> result <span style="color:#ff79c6">=</span> computeDate(christmas, <span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>);
-  t.deepEqual(result, expectedResult);
-  t.end();
-});
-
-tape(<span style="color:#f1fa8c">&#34;check one year, and a week after Christmas (leap year)&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(t) {
-  <span style="color:#ff79c6">const</span> preLeapYearChristmas <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2015-12-25&#34;</span>);
-  <span style="color:#ff79c6">const</span> expectedResult <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-31&#34;</span>);
-  <span style="color:#ff79c6">const</span> result <span style="color:#ff79c6">=</span> computeDate(preLeapYearChristmas, <span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>);
-  t.deepEqual(result, expectedResult);
-  t.end();
-});
-</code></pre></div><p>Having defined the <code>christmas</code> constant outside the test body gives me a way
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>tape(<span style="color:#f1fa8c">&#34;check one year, and a week after Christmas&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(t) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> expectedResult <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2018-01-01&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> result <span style="color:#ff79c6">=</span> computeDate(christmas, <span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>);
+</span></span><span style="display:flex;"><span>  t.deepEqual(result, expectedResult);
+</span></span><span style="display:flex;"><span>  t.end();
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tape(<span style="color:#f1fa8c">&#34;check one year, and a week after Christmas (leap year)&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(t) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> preLeapYearChristmas <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2015-12-25&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> expectedResult <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-31&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> result <span style="color:#ff79c6">=</span> computeDate(preLeapYearChristmas, <span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>);
+</span></span><span style="display:flex;"><span>  t.deepEqual(result, expectedResult);
+</span></span><span style="display:flex;"><span>  t.end();
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Having defined the <code>christmas</code> constant outside the test body gives me a way
 to implicitly test that <code>computeDate</code> does not change its input parameters.
 However this is far from be a best practice! Unit test should be as explicit as they could be&hellip;
 if it&rsquo;s so important for me that <code>computeDate</code> doesn&rsquo;t modify the date it gets as input,
 I&rsquo;d better write a specific test for this case.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">tape(<span style="color:#f1fa8c">&#34;does not modify input date&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(t){
-  <span style="color:#ff79c6">const</span> christmas <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-25&#34;</span>);
-  computeDate(startingDate, <span style="color:#bd93f9">1</span>);
-  t.equal(christmas.getDate(), <span style="color:#bd93f9">25</span>);
-  t.end();
-});
-</code></pre></div><p>&hellip; and then refactoring the previous tests, so that they do not share access
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>tape(<span style="color:#f1fa8c">&#34;does not modify input date&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(t){
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> christmas <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-25&#34;</span>);
+</span></span><span style="display:flex;"><span>  computeDate(startingDate, <span style="color:#bd93f9">1</span>);
+</span></span><span style="display:flex;"><span>  t.equal(christmas.getDate(), <span style="color:#bd93f9">25</span>);
+</span></span><span style="display:flex;"><span>  t.end();
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>&hellip; and then refactoring the previous tests, so that they do not share access
 to the <code>christmas</code> constant.</p>
 <p>The good old motto DRY, <em>don&rsquo;t repeat yourself</em>, does not apply to unit test.
 Keeping the state of each unit test isolate from the others is definitely a good thing.
@@ -252,28 +252,28 @@ Moreover code duplication could be addressed following a different strategy.
 For example, <a href="https://github.com/brunoscopelliti/tape-case">tape-case</a> permits to test
 the output of a pure function, against different input values, reducing the amount
 of boilerplate code.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> tapecase <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;tape-case&#39;</span>);
-<span style="color:#ff79c6">const</span> computeDate <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;./path/to/computeDate&#39;</span>);
-
-<span style="color:#ff79c6">const</span> cases <span style="color:#ff79c6">=</span> [
-  { description<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Test cases for computeDate&#34;</span>,
-    args<span style="color:#ff79c6">:</span> [<span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-25&#34;</span>), <span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2017-01-01&#34;</span>) },
-  { args<span style="color:#ff79c6">:</span> [<span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-25&#34;</span>), <span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2018-01-01&#34;</span>) },
-  { args<span style="color:#ff79c6">:</span> [<span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2015-12-25&#34;</span>), <span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-31&#34;</span>) }
-];
-
-tapecase(cases, computeDate);
-</code></pre></div><p>Now adding a new unit test costs just the adding of a new line on the <code>cases</code> array.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> tapecase <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;tape-case&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> computeDate <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;./path/to/computeDate&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> cases <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>  { description<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Test cases for computeDate&#34;</span>,
+</span></span><span style="display:flex;"><span>    args<span style="color:#ff79c6">:</span> [<span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-25&#34;</span>), <span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2017-01-01&#34;</span>) },
+</span></span><span style="display:flex;"><span>  { args<span style="color:#ff79c6">:</span> [<span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-25&#34;</span>), <span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2018-01-01&#34;</span>) },
+</span></span><span style="display:flex;"><span>  { args<span style="color:#ff79c6">:</span> [<span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2015-12-25&#34;</span>), <span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2016-12-31&#34;</span>) }
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tapecase(cases, computeDate);
+</span></span></code></pre></div><p>Now adding a new unit test costs just the adding of a new line on the <code>cases</code> array.</p>
 <h3 id="implementing-the-solution">Implementing the solution</h3>
 <p>Now that I&rsquo;ve a bunch of unit tests, I&rsquo;ve just to make all of them turn green.
 I won&rsquo;t you let wait more, in this case the following implementation of <code>computeDate</code> just works.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> computeDate (startingDate, offsetDays) {
-  <span style="color:#ff79c6">const</span> date <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(startingDate);
-  date.setDate(date.getDate() <span style="color:#ff79c6">+</span> offsetDays);
-  <span style="color:#ff79c6">return</span> date;
-}
-</code></pre></div><p>However its usage is not really ergonomic; I mean, currently we have only one daughter, Chiara,
-but every time I want to know <em>&ldquo;what date will be after N days since her birthday?&quot;</em>,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> computeDate (startingDate, offsetDays) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> date <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(startingDate);
+</span></span><span style="display:flex;"><span>  date.setDate(date.getDate() <span style="color:#ff79c6">+</span> offsetDays);
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> date;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>However its usage is not really ergonomic; I mean, currently we have only one daughter, Chiara,
+but every time I want to know <em>&ldquo;what date will be after N days since her birthday?&rdquo;</em>,
 I still have to provide her birthday as parameter. It would be much more useful
 if we could have something like <code>computeDateSinceChiaraBirthDay</code>.
 <br/>
@@ -295,23 +295,23 @@ fewer arguments arguments by providing one or more arguments in advance.</p>
 <p>All the functional programming libraries out there provide a way turn a normal function
 into one that could accept its input parameter lazily, however here to produce
 our <code>computeDateSinceChiaraBirthDay</code> function, I will be use the humble <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">Function#bind</a> method.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> chiaraBirthday <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2014-02-20&#34;</span>);
-<span style="color:#ff79c6">const</span> computeDateSinceChiaraBirthDay <span style="color:#ff79c6">=</span> computeDate.bind(<span style="color:#ff79c6">null</span>, chiaraBirthday);
-</code></pre></div><p>Just a final check to the tests in order to assure we&rsquo;ve not destroyed our beautiful work of before:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> tapecase <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;tape-case&#34;</span>);
-<span style="color:#ff79c6">const</span> computeDate <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;./path/to/computeDate&#34;</span>);
-
-<span style="color:#ff79c6">const</span> cases <span style="color:#ff79c6">=</span> [
-  { description<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Test cases for computeDate&#34;</span>,
-    args<span style="color:#ff79c6">:</span> [<span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2014-02-27&#34;</span>) },
-  { args<span style="color:#ff79c6">:</span> [<span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2015-02-27&#34;</span>) },
-  { args<span style="color:#ff79c6">:</span> [<span style="color:#bd93f9">3</span><span style="color:#ff79c6">*</span><span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2015-02-26&#34;</span>) }
-];
-
-tapecase(cases, computeDateSinceChiaraBirthDay);
-</code></pre></div><p>With a small refactoring they&rsquo;re still working. So it&rsquo;s time to get the answer for my wife:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">computeDateSinceChiaraBirthDay(<span style="color:#bd93f9">1000</span>);
-</code></pre></div><p>and we&rsquo;re lucky, we&rsquo;re still on time for celebrations 😄.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> chiaraBirthday <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2014-02-20&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> computeDateSinceChiaraBirthDay <span style="color:#ff79c6">=</span> computeDate.bind(<span style="color:#ff79c6">null</span>, chiaraBirthday);
+</span></span></code></pre></div><p>Just a final check to the tests in order to assure we&rsquo;ve not destroyed our beautiful work of before:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> tapecase <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;tape-case&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> computeDate <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;./path/to/computeDate&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> cases <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>  { description<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Test cases for computeDate&#34;</span>,
+</span></span><span style="display:flex;"><span>    args<span style="color:#ff79c6">:</span> [<span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2014-02-27&#34;</span>) },
+</span></span><span style="display:flex;"><span>  { args<span style="color:#ff79c6">:</span> [<span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2015-02-27&#34;</span>) },
+</span></span><span style="display:flex;"><span>  { args<span style="color:#ff79c6">:</span> [<span style="color:#bd93f9">3</span><span style="color:#ff79c6">*</span><span style="color:#bd93f9">365</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>], expectedResult<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(<span style="color:#f1fa8c">&#34;2015-02-26&#34;</span>) }
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tapecase(cases, computeDateSinceChiaraBirthDay);
+</span></span></code></pre></div><p>With a small refactoring they&rsquo;re still working. So it&rsquo;s time to get the answer for my wife:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>computeDateSinceChiaraBirthDay(<span style="color:#bd93f9">1000</span>);
+</span></span></code></pre></div><p>and we&rsquo;re lucky, we&rsquo;re still on time for celebrations 😄.</p>
 </div>
   <div class="post-footer">
     <div class="post-date">September 28, 2016</div>
@@ -337,12 +337,12 @@ tapecase(cases, computeDateSinceChiaraBirthDay);
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -397,7 +397,7 @@ tapecase(cases, computeDateSinceChiaraBirthDay);
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

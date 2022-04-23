@@ -86,7 +86,7 @@ General preference   Dock: don&amp;rsquo;t show recent applications.
       
       <guid>https://brunoscopelliti.com/blog/a-simple-babel-optimization-i-recently-learned/</guid>
       <description>Babel relies on a few internal functions to generate the transpiled code.  These functions, when needed, are placed at the top of the generated code, so they are not inlined multiple times across a single file. For example, a class declaration class Foo {} gets transpiled as:
-&amp;#34;use strict&amp;#34;; function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&amp;#34;Cannot call a class as a function&amp;#34;); } } var Foo = function Foo () { _classCallCheck(this, Foo); }; Since Babel performs transpilation on single file basis, there&amp;rsquo;s still the risk that these functions get duplicated across different files.</description>
+&amp;#34;use strict&amp;#34;;  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&amp;#34;Cannot call a class as a function&amp;#34;); } }  var Foo = function Foo () {  _classCallCheck(this, Foo); }; Since Babel performs transpilation on single file basis, there&amp;rsquo;s still the risk that these functions get duplicated across different files.</description>
     </item>
     
     <item>
@@ -141,7 +141,7 @@ Instead we&amp;rsquo;re going to build a WebPack configuration step by step toge
       <guid>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</guid>
       <description>Having recently switched to ESLint, I often find myself googling for how to disable a rule on a particular occurrence via JavaScript comment.
 Hope writing this will help me to memorize the syntax, I&amp;rsquo;ll bookmark this page otherwise 😅.
-// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;); alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for the entire line.</description>
+// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;);  alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for the entire line.</description>
     </item>
     
     <item>

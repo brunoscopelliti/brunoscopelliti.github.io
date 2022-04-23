@@ -145,7 +145,7 @@ General preference   Dock: don&amp;rsquo;t show recent applications.
       
       <guid>https://brunoscopelliti.com/blog/a-simple-babel-optimization-i-recently-learned/</guid>
       <description>Babel relies on a few internal functions to generate the transpiled code.  These functions, when needed, are placed at the top of the generated code, so they are not inlined multiple times across a single file. For example, a class declaration class Foo {} gets transpiled as:
-&amp;#34;use strict&amp;#34;; function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&amp;#34;Cannot call a class as a function&amp;#34;); } } var Foo = function Foo () { _classCallCheck(this, Foo); }; Since Babel performs transpilation on single file basis, there&amp;rsquo;s still the risk that these functions get duplicated across different files.</description>
+&amp;#34;use strict&amp;#34;;  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&amp;#34;Cannot call a class as a function&amp;#34;); } }  var Foo = function Foo () {  _classCallCheck(this, Foo); }; Since Babel performs transpilation on single file basis, there&amp;rsquo;s still the risk that these functions get duplicated across different files.</description>
     </item>
     
     <item>
@@ -179,7 +179,7 @@ However try... catch is able to catch only exeptions thrown in functions which a
       <description>Writing blog posts is infinitely valuable in helping me memorize new tricks; even when it does not work, I can still more easily google for myself. Today&amp;rsquo;s blog post is meant to continue this glorious tradition.
 In C# development it&amp;rsquo;s pretty common to have to map fields between objects of different class. Automapper simplifies a lot the work.
 For instance, in the simplest scenario given the two classes
-public class ProductDto { public string name { get; set; } public string code { get; set; } public decimal price { get; set; } public string currency { get; set; } } public class Product { public string Name { get; set; } public string Code { get; set; } public decimal Price { get; set; } public string Currency { get; set; } } in order to copy values from ProductDto fields into a new Product instance, we&amp;rsquo;ve to execute Automapper&amp;rsquo;s map method</description>
+public class ProductDto {  public string name { get; set; }  public string code { get; set; }  public decimal price { get; set; }  public string currency { get; set; } }  public class Product {  public string Name { get; set; }  public string Code { get; set; }  public decimal Price { get; set; }  public string Currency { get; set; } } in order to copy values from ProductDto fields into a new Product instance, we&amp;rsquo;ve to execute Automapper&amp;rsquo;s map method</description>
     </item>
     
     <item>
@@ -253,8 +253,8 @@ bruno ~/git/hello-git $ git hist # git hist is a custom alias for &amp;#34;git l
       
       <guid>https://brunoscopelliti.com/blog/qunit-custom-assertions/</guid>
       <description>This post is meant to share my favourite QUnit feature, custom assertions.
-Compared to other library, QUnit has not a particularly rich assertions&#39; library; however that&amp;rsquo;s not a big deal, cause QUnit makes extremely simple to extend its core assertions collection.
-QUnit.assert.typeof = function (subject, expected) { // The current value of the expression  const actual = typeof subject; // It&amp;#39;s a boolean;  // It expresses wheter the test has passed, or not.</description>
+Compared to other library, QUnit has not a particularly rich assertions&amp;rsquo; library; however that&amp;rsquo;s not a big deal, cause QUnit makes extremely simple to extend its core assertions collection.
+QUnit.assert.typeof = function (subject, expected) {  // The current value of the expression  const actual = typeof subject;   // It&amp;#39;s a boolean;  // It expresses wheter the test has passed, or not.</description>
     </item>
     
     <item>
@@ -306,7 +306,7 @@ I&amp;rsquo;ve also bought the BookArc stand. When at home, I wanted to use the 
       <guid>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</guid>
       <description>Having recently switched to ESLint, I often find myself googling for how to disable a rule on a particular occurrence via JavaScript comment.
 Hope writing this will help me to memorize the syntax, I&amp;rsquo;ll bookmark this page otherwise 😅.
-// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;); alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for the entire line.</description>
+// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;);  alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for the entire line.</description>
     </item>
     
     <item>
@@ -371,7 +371,7 @@ I published a repo on Github with basic usage examples; it&amp;rsquo;s here: ES2
       <guid>https://brunoscopelliti.com/blog/fake-today-in-unit-tests/</guid>
       <description>If the app which you are working on is strongly influenced by the date, you definitely need a simple and consistent way to create a fake today, to have significant unit tests.
 I do not want to make you wait&amp;hellip; this is the way I mock the Date constructor.
-function fakeDate (fakeToday) { var BuiltinDate = Date; spyOn(window, &amp;#34;Date&amp;#34;).and.callFake(function () { var args = Array.prototype.slice.call(arguments); if (args.length === 0) { return new BuiltinDate(fakeToday); } var _factoryFn = Function.</description>
+function fakeDate (fakeToday) {  var BuiltinDate = Date;   spyOn(window, &amp;#34;Date&amp;#34;).and.callFake(function () {  var args = Array.prototype.slice.call(arguments);  if (args.</description>
     </item>
     
     <item>
@@ -510,7 +510,7 @@ Authentication with Facebook When I started to work on this little experiment I 
       <guid>https://brunoscopelliti.com/blog/how-to-defer-route-definition-in-an-angularjs-web-app/</guid>
       <description>Recently, for a project built on AngularJS, I found myself in front of an unusual requirement: I needed to define dynamically the routes of the web application, on the basis of a response from the server.
 Server response For the sake of simplicity, I assume to have the following backend service, that when called, sends a JSON containing the data about the routes.
-$result = array( &amp;#34;routes&amp;#34; =&amp;gt; array( array(&amp;#34;name&amp;#34; =&amp;gt; &amp;#34;/home&amp;#34;, &amp;#34;templateUrl&amp;#34; =&amp;gt; &amp;#34;partials/home.</description>
+$result = array(  &amp;#34;routes&amp;#34; =&amp;gt; array(  array(&amp;#34;name&amp;#34; =&amp;gt; &amp;#34;/home&amp;#34;,  &amp;#34;templateUrl&amp;#34; =&amp;gt; &amp;#34;partials/home.</description>
     </item>
     
     <item>
@@ -554,7 +554,7 @@ I will talk about how to recognize, and maintain, the status of authentication o
       <description>I&amp;rsquo;m back writing about client side validation in an AngularJS application.
 Lately, I had to work with a form created dynamically on the basis of a JSON response, that I received from the server. In this case the approach is a bit different from the one I discussed in my first post about form validation with AngularJS.
 Consider this markup:
-&amp;lt;form name=&amp;#34;sf&amp;#34; ng-controller=&amp;#34;FormController&amp;#34; novalidate&amp;gt; &amp;lt;div ng-repeat=&amp;#34;f in fields&amp;#34;&amp;gt; &amp;lt;input name=&amp;#34;{{ &amp;#34;{{ f.</description>
+&amp;lt;form name=&amp;#34;sf&amp;#34; ng-controller=&amp;#34;FormController&amp;#34; novalidate&amp;gt;  &amp;lt;div ng-repeat=&amp;#34;f in fields&amp;#34;&amp;gt;  &amp;lt;input name=&amp;#34;{{ &amp;#34;{{ f.</description>
     </item>
     
     <item>
@@ -618,7 +618,7 @@ Custom builds allow to choose what features of jQuery are to be included in the 
       <guid>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</guid>
       <description>Promise&amp;rsquo;s support is one of my favorite features of AngularJS.  Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.
 This post will show you a typical use case for the promise in an AngularJS app.  It could be simplified as follows:
-function stageController(scope, p) { scope.revenues = []; scope.$watch(&amp;#34;revenues&amp;#34;, function () { p.drawPlot(scope.revenues); }, true); p.</description>
+function stageController(scope, p) {  scope.revenues = [];   scope.$watch(&amp;#34;revenues&amp;#34;, function () {  p.</description>
     </item>
     
     <item>
@@ -650,8 +650,8 @@ In this post I will show how to perform client side data validation with Angular
       
       <guid>https://brunoscopelliti.com/blog/run-a-directive-after-the-dom-has-finished-rendering/</guid>
       <description>You have a custom directive, repeatHelloWorld; it has the important task to log the message &amp;ldquo;Hello, world!&amp;rdquo; in the console, the number of times specified by the parameter accepted by the directive, and defined in the controller.
-&amp;lt;body ng-controller=&amp;#34;stageController&amp;#34;&amp;gt; &amp;lt;div repeat-hello-world=&amp;#34;{{ &amp;#34;{{ repeat &amp;#34; }}}}&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; Controller and directive are defined as:
-// Controller function stageController($scope) { $scope.repeat = 5; } angular.module(&amp;#34;myApp&amp;#34;, [&amp;#34;myApp.directives&amp;#34;]); // Directive angular.module(&amp;#34;myApp.directives&amp;#34;, []) .directive(&amp;#34;repeatHelloWorld&amp;#34;, function () { return { link: function (scope, elem, attrs, ctrl) { var hello = function () { for (var i = 0; i &amp;lt; attrs.</description>
+&amp;lt;body ng-controller=&amp;#34;stageController&amp;#34;&amp;gt;  &amp;lt;div repeat-hello-world=&amp;#34;{{ &amp;#34;{{ repeat &amp;#34; }}}}&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; Controller and directive are defined as:
+// Controller function stageController($scope) {  $scope.repeat = 5; }  angular.module(&amp;#34;myApp&amp;#34;, [&amp;#34;myApp.directives&amp;#34;]);  // Directive angular.module(&amp;#34;myApp.directives&amp;#34;, [])  .</description>
     </item>
     
     <item>

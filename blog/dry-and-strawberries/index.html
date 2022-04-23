@@ -140,46 +140,46 @@ That&rsquo;s much more reasonable.</p>
 <p>Get out of the metaphor now, and let&rsquo;s say we&rsquo;ve a method that returns information
 about order prices.</p>
 <p><em>I&rsquo;m going to use TypeScript syntax in the following snippets.</em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-ts" data-lang="ts"><span style="color:#ff79c6">interface</span> IOrderPrices {
-  products : <span style="color:#8be9fd">IProductPrice</span>[],
-  productsSubtotal : <span style="color:#8be9fd">number</span>,
-  shippingCosts : <span style="color:#8be9fd">number</span>,
-  paymentCosts : <span style="color:#8be9fd">number</span>
-  tax : <span style="color:#8be9fd">number</span>
-};
-
-<span style="color:#ff79c6">const</span> computeOrderPrices <span style="color:#ff79c6">:</span> (orderId: <span style="color:#8be9fd">string</span>) <span style="color:#ff79c6">=&gt;</span> IOrderPrices <span style="color:#ff79c6">=</span>
-  (orderId) <span style="color:#ff79c6">=&gt;</span> {
-    <span style="color:#6272a4">// do &#34;potentially&#34; lots of stuff
-</span><span style="color:#6272a4"></span>  };
-</code></pre></div><p>The <code>computeOrderPrices</code> method builds a model with price information&hellip; it potentially
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> IOrderPrices {
+</span></span><span style="display:flex;"><span>  products : <span style="color:#8be9fd">IProductPrice</span>[],
+</span></span><span style="display:flex;"><span>  productsSubtotal : <span style="color:#8be9fd">number</span>,
+</span></span><span style="display:flex;"><span>  shippingCosts : <span style="color:#8be9fd">number</span>,
+</span></span><span style="display:flex;"><span>  paymentCosts : <span style="color:#8be9fd">number</span>
+</span></span><span style="display:flex;"><span>  tax : <span style="color:#8be9fd">number</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> computeOrderPrices <span style="color:#ff79c6">:</span> (orderId: <span style="color:#8be9fd">string</span>) <span style="color:#ff79c6">=&gt;</span> IOrderPrices <span style="color:#ff79c6">=</span>
+</span></span><span style="display:flex;"><span>  (orderId) <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// do &#34;potentially&#34; lots of stuff
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  };
+</span></span></code></pre></div><p>The <code>computeOrderPrices</code> method builds a model with price information&hellip; it potentially
 needs to send requests to different apis. It is a useful abstraction in case you need
 to display the customer a general recap of their order.</p>
 <p>Let&rsquo;s say now we need only to render shipping costs. Since we already have <code>computeOrderPrices</code>,
 we could be tempted to do something like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-ts" data-lang="ts"><span style="color:#ff79c6">const</span> computeShippingCostPrices <span style="color:#ff79c6">:</span> (orderId: <span style="color:#8be9fd">string</span>) <span style="color:#ff79c6">=&gt;</span> <span style="color:#8be9fd">number</span> <span style="color:#ff79c6">=</span>
-  (orderId) <span style="color:#ff79c6">=&gt;</span> computeOrderPrices(orderId).shippingCosts;
-</code></pre></div><p>Naturally this is a nice one-liner! But beauty apart, here it&rsquo;s happening something really bad:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> computeShippingCostPrices <span style="color:#ff79c6">:</span> (orderId: <span style="color:#8be9fd">string</span>) <span style="color:#ff79c6">=&gt;</span> <span style="color:#8be9fd">number</span> <span style="color:#ff79c6">=</span>
+</span></span><span style="display:flex;"><span>  (orderId) <span style="color:#ff79c6">=&gt;</span> computeOrderPrices(orderId).shippingCosts;
+</span></span></code></pre></div><p>Naturally this is a nice one-liner! But beauty apart, here it&rsquo;s happening something really bad:
 we&rsquo;ve bought a strawberry cake to eat only the strawberries. We&rsquo;re paying (computation,
 network, &hellip;) for lots of data we don&rsquo;t really care, and just to be DRY-compliant.</p>
 <p>But, we can still being DRY; we just have to change perspective, and rewrite
 <code>computeOrderPrices</code> so that it does reuse <code>computeShippingCostPrices</code>.
 It should be something like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-ts" data-lang="ts"><span style="color:#ff79c6">const</span> computeShippingCostPrices <span style="color:#ff79c6">:</span> (orderId: <span style="color:#8be9fd">string</span>) <span style="color:#ff79c6">=&gt;</span> <span style="color:#8be9fd">number</span> <span style="color:#ff79c6">=</span>
-  (orderId) <span style="color:#ff79c6">=&gt;</span> {
-    <span style="color:#6272a4">// only computes shipping cost
-</span><span style="color:#6272a4"></span>  };
-
-<span style="color:#ff79c6">const</span> computeOrderPrices <span style="color:#ff79c6">:</span> (orderId: <span style="color:#8be9fd">string</span>) <span style="color:#ff79c6">=&gt;</span> IOrderPrices <span style="color:#ff79c6">=</span>
-  (orderId) <span style="color:#ff79c6">=&gt;</span> {
-    <span style="color:#ff79c6">const</span> orderPrice <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> OrderPrice();
-
-    <span style="color:#6272a4">// ...
-</span><span style="color:#6272a4"></span>    orderPrice.shippingCosts <span style="color:#ff79c6">=</span> computeShippingCostPrices(orderId);
-
-    <span style="color:#ff79c6">return</span> orderPrice;
-  };
-</code></pre></div></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> computeShippingCostPrices <span style="color:#ff79c6">:</span> (orderId: <span style="color:#8be9fd">string</span>) <span style="color:#ff79c6">=&gt;</span> <span style="color:#8be9fd">number</span> <span style="color:#ff79c6">=</span>
+</span></span><span style="display:flex;"><span>  (orderId) <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// only computes shipping cost
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> computeOrderPrices <span style="color:#ff79c6">:</span> (orderId: <span style="color:#8be9fd">string</span>) <span style="color:#ff79c6">=&gt;</span> IOrderPrices <span style="color:#ff79c6">=</span>
+</span></span><span style="display:flex;"><span>  (orderId) <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> orderPrice <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> OrderPrice();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    orderPrice.shippingCosts <span style="color:#ff79c6">=</span> computeShippingCostPrices(orderId);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> orderPrice;
+</span></span><span style="display:flex;"><span>  };
+</span></span></code></pre></div></div>
   <div class="post-footer">
     <div class="post-date">May 12, 2017</div>
     <div class="post-links">
@@ -204,12 +204,12 @@ It should be something like this:</p>
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -264,7 +264,7 @@ It should be something like this:</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

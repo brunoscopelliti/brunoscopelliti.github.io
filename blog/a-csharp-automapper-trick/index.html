@@ -126,45 +126,45 @@ to continue this glorious tradition.</p>
 <p>In C# development it&rsquo;s pretty common to have to map fields between objects of different class.
 <a href="http://automapper.org/">Automapper</a> simplifies a lot the work.</p>
 <p>For instance, in the simplest scenario given the two classes</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c#" data-lang="c#"><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">ProductDto</span> {
-  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> name { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> code { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">decimal</span> price { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> currency { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-}
-
-<span style="color:#ff79c6">public</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Product</span> {
-  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> Name { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> Code { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">decimal</span> Price { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> Currency { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-}
-</code></pre></div><p>in order to copy values from <code>ProductDto</code> fields into a new <code>Product</code> instance,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c#" data-lang="c#"><span style="display:flex;"><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">ProductDto</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> name { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> code { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">decimal</span> price { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> currency { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Product</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> Name { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> Code { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">decimal</span> Price { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> Currency { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>in order to copy values from <code>ProductDto</code> fields into a new <code>Product</code> instance,
 we&rsquo;ve to execute Automapper&rsquo;s <code>map</code> method</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c#" data-lang="c#"><span style="color:#6272a4">// ProductDto response.product
-</span><span style="color:#6272a4"></span>Product product = Mapper.Map&lt;Product&gt;(response.product);
-</code></pre></div><p>and assure that the mapping has been configured sometime before:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c#" data-lang="c#">Mapper.CreateMap&lt;ProductDto, Product&gt;()
-  .ForMember(dest =&gt; dest.Code, x =&gt; x.MapFrom(src =&gt; src.code.ToUpper()));
-</code></pre></div><p>Easy peasy. That has the nice bonus effect of working even with list of objects.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c#" data-lang="c#">List&lt;Product&gt; products = Mapper.Map&lt;List&lt;Product&gt;&gt;(response.products);
-</code></pre></div><p>Let&rsquo;s say now that one of <code>Product</code>&rsquo;s field is not defined in the source object,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c#" data-lang="c#"><span style="display:flex;"><span><span style="color:#6272a4">// ProductDto response.product</span>
+</span></span><span style="display:flex;"><span>Product product = Mapper.Map&lt;Product&gt;(response.product);
+</span></span></code></pre></div><p>and assure that the mapping has been configured sometime before:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c#" data-lang="c#"><span style="display:flex;"><span>Mapper.CreateMap&lt;ProductDto, Product&gt;()
+</span></span><span style="display:flex;"><span>  .ForMember(dest =&gt; dest.Code, x =&gt; x.MapFrom(src =&gt; src.code.ToUpper()));
+</span></span></code></pre></div><p>Easy peasy. That has the nice bonus effect of working even with list of objects.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c#" data-lang="c#"><span style="display:flex;"><span>List&lt;Product&gt; products = Mapper.Map&lt;List&lt;Product&gt;&gt;(response.products);
+</span></span></code></pre></div><p>Let&rsquo;s say now that one of <code>Product</code>&rsquo;s field is not defined in the source object,
 but it&rsquo;s known at run time in the context of the method that invokes the mapping.
 An easy way to get out this situation is</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c#" data-lang="c#">List&lt;Product&gt; products = Mapper.Map&lt;List&lt;Product&gt;&gt;(response.products);
-
-<span style="color:#ff79c6">foreach</span>(<span style="color:#8be9fd">var</span> product <span style="color:#ff79c6">in</span> products) {
-  product.Foo = ...
-}
-</code></pre></div><p>&hellip; but I cannot do this without feel guilty; even more after I&rsquo;ve found that
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c#" data-lang="c#"><span style="display:flex;"><span>List&lt;Product&gt; products = Mapper.Map&lt;List&lt;Product&gt;&gt;(response.products);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">foreach</span>(<span style="color:#8be9fd">var</span> product <span style="color:#ff79c6">in</span> products) {
+</span></span><span style="display:flex;"><span>  product.Foo = ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>&hellip; but I cannot do this without feel guilty; even more after I&rsquo;ve found that
 Automapper supports this use case almost as easily as the others.
 <br/>
 Let&rsquo;s start changing how we configure the mapping.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c#" data-lang="c#">Mapper.CreateMap&lt;ProductDto, Product&gt;()
-  .ForMember(dest =&gt; dest.Foo, x =&gt; x.ResolveUsing(res =&gt; res.Context.Options.Items[<span style="color:#f1fa8c">&#34;Foo&#34;</span>]));
-</code></pre></div><p>then how we map at runtime</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-c#" data-lang="c#">List&lt;Product&gt; products = Mapper.Map&lt;List&lt;ProductDto&gt;, List&lt;Product&gt;&gt;(response.products, opt =&gt; opt.Items[<span style="color:#f1fa8c">&#34;Foo&#34;</span>] = <span style="color:#f1fa8c">&#34;Bar&#34;</span>);
-</code></pre></div><p>and now the mapping should work just fine.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c#" data-lang="c#"><span style="display:flex;"><span>Mapper.CreateMap&lt;ProductDto, Product&gt;()
+</span></span><span style="display:flex;"><span>  .ForMember(dest =&gt; dest.Foo, x =&gt; x.ResolveUsing(res =&gt; res.Context.Options.Items[<span style="color:#f1fa8c">&#34;Foo&#34;</span>]));
+</span></span></code></pre></div><p>then how we map at runtime</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c#" data-lang="c#"><span style="display:flex;"><span>List&lt;Product&gt; products = Mapper.Map&lt;List&lt;ProductDto&gt;, List&lt;Product&gt;&gt;(response.products, opt =&gt; opt.Items[<span style="color:#f1fa8c">&#34;Foo&#34;</span>] = <span style="color:#f1fa8c">&#34;Bar&#34;</span>);
+</span></span></code></pre></div><p>and now the mapping should work just fine.</p>
 </div>
   <div class="post-footer">
     <div class="post-date">June 5, 2017</div>
@@ -190,12 +190,12 @@ Let&rsquo;s start changing how we configure the mapping.</p>
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -250,7 +250,7 @@ Let&rsquo;s start changing how we configure the mapping.</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

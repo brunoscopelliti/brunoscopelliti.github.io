@@ -129,102 +129,102 @@ the main features of SASS in a SASS file.</p>
 <p>Variables begin with <code>$</code> and are declared just like properties.</p>
 <p>They can have any value that&rsquo;s allowed for a CSS property, such as colors, numbers
 (with units), or text.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#8be9fd;font-style:italic">$defaultWindowSize</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">960</span><span style="color:#8be9fd">px</span>;
-<span style="color:#8be9fd;font-style:italic">$defaultLinkColor</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">#46EAC2</span>;
-
-<span style="color:#ff79c6">a</span> {
-  <span style="color:#ff79c6">color</span>: $<span style="color:#ff79c6">defaultLinkColor</span>;
-}
-</code></pre></div><h2 id="nesting-blocks">Nesting blocks</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$defaultWindowSize</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">960</span><span style="color:#8be9fd">px</span>;
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$defaultLinkColor</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">#46EAC2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">a</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">color</span><span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">$defaultLinkColor</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="nesting-blocks">Nesting blocks</h2>
 <p>Often when writing CSS, you have several selectors that share a common ancestor.
 SASS allows you to avoid duplication by nesting the child selectors within the ancestor.</p>
 <p>The special character <code>&amp;</code> references the parent selector.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#ff79c6">a</span> {
-  <span style="color:#ff79c6">text-decoration</span>: <span style="color:#ff79c6">none</span>;
-
-  <span style="color:#ff79c6">&amp;</span>:hover { 
-    <span style="color:#ff79c6">text-decoration</span>: <span style="color:#ff79c6">underline</span>; 
-  }
-}
-</code></pre></div><h2 id="operations-and-functions">Operations and Functions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#ff79c6">a</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">text-decoration</span><span style="color:#ff79c6">:</span> none;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&amp;</span>:hover { 
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">text-decoration</span><span style="color:#ff79c6">:</span> underline; 
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="operations-and-functions">Operations and Functions</h2>
 <p>SASS has a number of <a href="http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html">predefined functions</a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#ff79c6">a</span> {
-  <span style="color:#ff79c6">color</span>: <span style="color:#ff79c6">lighten</span><span style="color:#ff79c6">(</span>$<span style="color:#ff79c6">defaultLinkColor</span><span style="color:#ff79c6">,</span> <span style="color:#ff79c6">10</span>%<span style="color:#ff79c6">)</span>;
-}
-</code></pre></div><h2 id="interpolation">Interpolation</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#ff79c6">a</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">color</span><span style="color:#ff79c6">:</span> <span style="color:#50fa7b">lighten</span>(<span style="color:#8be9fd;font-style:italic">$defaultLinkColor</span><span style="color:#ff79c6">,</span> <span style="color:#bd93f9">10</span><span style="color:#8be9fd">%</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="interpolation">Interpolation</h2>
 <p>Variables can be used for more than just property values. You can use <code>\#{variable}</code>
 to insert them into property names or selectors.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#8be9fd;font-style:italic">$wk</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">-</span>webkit-;
-
-<span style="color:#50fa7b">.rounded-box</span> {
-  #{$<span style="color:#ff79c6">wk</span>}<span style="color:#ff79c6">border-radius</span>: <span style="color:#ff79c6">4px</span>;
-}
-</code></pre></div><h2 id="mixins">Mixins</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$wk</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">-</span>webkit-;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">.rounded-box</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">#{</span><span style="color:#8be9fd;font-style:italic">$wk</span><span style="color:#f1fa8c">}</span><span style="color:#50fa7b">border-radius</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">4</span><span style="color:#8be9fd">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="mixins">Mixins</h2>
 <p>Mixins allow re-use of styles without having to copy and paste them or move them
 into a non-semantic class.</p>
 <p>Mixins are defined using the <code>@mixin</code> directive, which takes a block of styles
 that can then be included in another selector using the <code>@include</code> directive.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#ff79c6">@mixin</span><span style="color:#50fa7b"> default-box</span> {
-  <span style="color:#8be9fd;font-style:italic">$borderColor</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">#333</span>;
-  <span style="color:#6272a4">/* $borderColor could be used only
-</span><span style="color:#6272a4">    in the scope of the default-box block; */</span>
-  <span style="color:#ff79c6">border</span>: <span style="color:#ff79c6">1px</span> <span style="color:#ff79c6">solid</span> $<span style="color:#ff79c6">borderColor</span>;
-  <span style="color:#ff79c6">clear</span>: <span style="color:#ff79c6">both</span>;
-  <span style="color:#ff79c6">display</span>: <span style="color:#ff79c6">block</span>;
-  <span style="color:#ff79c6">margin</span>: <span style="color:#ff79c6">5px</span> <span style="color:#ff79c6">0</span>;
-  <span style="color:#ff79c6">padding</span>: <span style="color:#ff79c6">5px</span> <span style="color:#ff79c6">10px</span>;
-}
-
-<span style="color:#ff79c6">footer</span><span style="color:#ff79c6">,</span> <span style="color:#ff79c6">header</span> {
-  <span style="color:#ff79c6">@include</span> default-box; 
-}
-</code></pre></div><h2 id="arguments">Arguments</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#ff79c6">@mixin</span><span style="color:#50fa7b"> default-box</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">$borderColor</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">#333</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">/* $borderColor could be used only
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">    in the scope of the default-box block; */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">border</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> solid <span style="color:#8be9fd;font-style:italic">$borderColor</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">clear</span><span style="color:#ff79c6">:</span> both;
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">display</span><span style="color:#ff79c6">:</span> block;
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">margin</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">5</span><span style="color:#8be9fd">px</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">padding</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">5</span><span style="color:#8be9fd">px</span> <span style="color:#bd93f9">10</span><span style="color:#8be9fd">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">footer</span><span style="color:#ff79c6">,</span> <span style="color:#ff79c6">header</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">@include</span> default-box; 
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="arguments">Arguments</h2>
 <p>The real power of mixins comes when you pass them arguments.
 Arguments are declared as a parenthesized, comma-separated list of variables.
 Each of those variables is assigned a value each time the mixin is used.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#ff79c6">@mixin</span><span style="color:#50fa7b"> default-box</span>(<span style="color:#8be9fd;font-style:italic">$color</span><span style="color:#ff79c6">,</span> <span style="color:#8be9fd;font-style:italic">$boxModel</span><span style="color:#ff79c6">,</span> <span style="color:#8be9fd;font-style:italic">$padding</span>) {
-  <span style="color:#ff79c6">border</span>: <span style="color:#ff79c6">1px</span> <span style="color:#ff79c6">solid</span> $<span style="color:#ff79c6">color</span>;
-  <span style="color:#ff79c6">clear</span>: <span style="color:#ff79c6">both</span>;
-  <span style="color:#ff79c6">display</span>: $<span style="color:#ff79c6">boxModel</span>;
-  <span style="color:#ff79c6">margin</span>: <span style="color:#ff79c6">5px</span> <span style="color:#ff79c6">0</span>;
-  <span style="color:#ff79c6">padding</span>: <span style="color:#ff79c6">5px</span> $<span style="color:#ff79c6">padding</span>;
-}
-
-<span style="color:#ff79c6">header</span>{ <span style="color:#ff79c6">@include</span> default-box(<span style="color:#bd93f9">#333</span><span style="color:#ff79c6">,</span> block<span style="color:#ff79c6">,</span> <span style="color:#bd93f9">10</span><span style="color:#8be9fd">px</span>); }
-<span style="color:#ff79c6">footer</span>{ <span style="color:#ff79c6">@include</span> default-box(<span style="color:#bd93f9">#999</span><span style="color:#ff79c6">,</span> inline<span style="color:#ff79c6">-</span>block<span style="color:#ff79c6">,</span> <span style="color:#bd93f9">5</span><span style="color:#8be9fd">px</span>); }
-</code></pre></div><h2 id="selector-inheritance">Selector Inheritance</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#ff79c6">@mixin</span><span style="color:#50fa7b"> default-box</span>(<span style="color:#8be9fd;font-style:italic">$color</span><span style="color:#ff79c6">,</span> <span style="color:#8be9fd;font-style:italic">$boxModel</span><span style="color:#ff79c6">,</span> <span style="color:#8be9fd;font-style:italic">$padding</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">border</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> solid <span style="color:#8be9fd;font-style:italic">$color</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">clear</span><span style="color:#ff79c6">:</span> both;
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">display</span><span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">$boxModel</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">margin</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">5</span><span style="color:#8be9fd">px</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">padding</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">5</span><span style="color:#8be9fd">px</span> <span style="color:#8be9fd;font-style:italic">$padding</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">header</span>{ <span style="color:#ff79c6">@include</span> default-box(<span style="color:#bd93f9">#333</span><span style="color:#ff79c6">,</span> block<span style="color:#ff79c6">,</span> <span style="color:#bd93f9">10</span><span style="color:#8be9fd">px</span>); }
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">footer</span>{ <span style="color:#ff79c6">@include</span> default-box(<span style="color:#bd93f9">#999</span><span style="color:#ff79c6">,</span> inline-block<span style="color:#ff79c6">,</span> <span style="color:#bd93f9">5</span><span style="color:#8be9fd">px</span>); }
+</span></span></code></pre></div><h2 id="selector-inheritance">Selector Inheritance</h2>
 <p>Sass, using the <code>@extend</code> directive, can tell one selector to inherit all the
 styles of another without duplicating the CSS properties.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#50fa7b">.error</span> {
-  <span style="color:#ff79c6">border</span>: <span style="color:#ff79c6">1px</span> #f00;
-  <span style="color:#ff79c6">background</span>: #fdd;
-}
-
-<span style="color:#50fa7b">.bigError</span> {
-  <span style="color:#ff79c6">@extend</span> <span style="color:#50fa7b">.error</span>;
-  <span style="color:#ff79c6">font-size</span>: <span style="color:#ff79c6">18px</span>;
-}
-</code></pre></div><h2 id="import-stylesheet">Import stylesheet</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#50fa7b">.error</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">border</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> <span style="color:#bd93f9">#f00</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">background</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">#fdd</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">.bigError</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">@extend</span> <span style="color:#50fa7b">.error</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">font-size</span><span style="color:#ff79c6">:</span> <span style="color:#bd93f9">18</span><span style="color:#8be9fd">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="import-stylesheet">Import stylesheet</h2>
 <p>CSS has an <code>@import</code> directive that allows you to break your styles up into
 multiple stylesheets. Any style rule, variables or mixins defined in imported
 files are available to the files that import them.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-scss" data-lang="scss"><span style="color:#ff79c6">@import</span> <span style="color:#f1fa8c">&#34;partials/_vars&#34;</span>;
-
-<span style="color:#ff79c6">body</span> {
-  <span style="color:#ff79c6">color</span>: $<span style="color:#ff79c6">color</span>;
-}
-</code></pre></div><h2 id="operations">Operations</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#ff79c6">@import</span> <span style="color:#f1fa8c">&#34;partials/_vars&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">body</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#50fa7b">color</span><span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">$color</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="operations">Operations</h2>
 <p>To compile the code simply use:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sass --watch style.scss:style.css
-</code></pre></div><p>or to watch all the files in a directory:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sass --watch stylesheets/sass:stylesheets/compiled
-</code></pre></div><p>If you don&rsquo;t want to mess your mind with this different style of writing CSS,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sass --watch style.scss:style.css
+</span></span></code></pre></div><p>or to watch all the files in a directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sass --watch stylesheets/sass:stylesheets/compiled
+</span></span></code></pre></div><p>If you don&rsquo;t want to mess your mind with this different style of writing CSS,
 you could still continue to write your classic CSS rules in a .scss file and use
 the SASS engine to get the correspondent CSS. Why?</p>
 <p>Because, by setting the right options, you could use the SASS engine to minimize your CSS.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sass --style <span style="color:#ff79c6">{</span>nested | expanded | compact | compressed<span style="color:#ff79c6">}</span>
-  --watch path/sass:path/compiled
-</code></pre></div><p>I leave to you the test of how the use of these different keywords changes the output.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sass --style <span style="color:#ff79c6">{</span>nested | expanded | compact | compressed<span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>  --watch path/sass:path/compiled
+</span></span></code></pre></div><p>I leave to you the test of how the use of these different keywords changes the output.
 If you have not much time, you could find this answer, and much more, on the official
 <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html" title="SASS Reference">reference page</a>.</p>
 </div>
@@ -252,12 +252,12 @@ If you have not much time, you could find this answer, and much more, on the off
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -312,7 +312,7 @@ If you have not much time, you could find this answer, and much more, on the off
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

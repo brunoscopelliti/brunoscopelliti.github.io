@@ -202,15 +202,15 @@ task seems the way to go.</p>
 <p>Before switching the DNS, I checked everything was fine, via browser, pointing
 directly to my droplet IP address, and then navigating through the directory tree.</p>
 <p>Once I verified that upload succeeded, I proceeded configuring a new virtual host on Apache.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">&lt;VirtualHost *:80&gt;
-  ServerAdmin admin@brunoscopelliti.com
-  ServerName brunoscopelliti.com
-  ServerAlias www.brunoscopelliti.com
-  DocumentRoot /path/to/website/folder
-  ErrorLog ${APACHE_LOG_DIR}/error.log
-  CustomLog ${APACHE_LOG_DIR}/access.log combined
-&lt;/VirtualHost&gt;
-</code></pre></div><p>If you have one or more domains on the third level, you should configure them as well.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt;VirtualHost *:80&gt;
+</span></span><span style="display:flex;"><span>  ServerAdmin admin@brunoscopelliti.com
+</span></span><span style="display:flex;"><span>  ServerName brunoscopelliti.com
+</span></span><span style="display:flex;"><span>  ServerAlias www.brunoscopelliti.com
+</span></span><span style="display:flex;"><span>  DocumentRoot /path/to/website/folder
+</span></span><span style="display:flex;"><span>  ErrorLog ${APACHE_LOG_DIR}/error.log
+</span></span><span style="display:flex;"><span>  CustomLog ${APACHE_LOG_DIR}/access.log combined
+</span></span><span style="display:flex;"><span>&lt;/VirtualHost&gt;
+</span></span></code></pre></div><p>If you have one or more domains on the third level, you should configure them as well.
 I suggest you to put the configuration in a separate file; this not only helps keeping
 clean the config file, but I found it is necessary to make letsencrypt work properly.</p>
 <h2 id="switch-dns">Switch DNS</h2>
@@ -226,13 +226,13 @@ in this case DigitalOcean has a tutorial to guide you through the process,
 <ol>
 <li>Clone letsencrypt client.</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt
-</code></pre></div><ol start="2">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt
+</span></span></code></pre></div><ol start="2">
 <li>Run the <code>letsencrypt-auto</code> command</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#8be9fd;font-style:italic">cd</span> /opt/letsencrypt
-./letsencrypt-auto --apache -d brunoscopelliti.com -d slides.brunoscopelliti.com
-</code></pre></div><ol start="3">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">cd</span> /opt/letsencrypt
+</span></span><span style="display:flex;"><span>./letsencrypt-auto --apache -d brunoscopelliti.com -d slides.brunoscopelliti.com
+</span></span></code></pre></div><ol start="3">
 <li>Complete following the wizard instructions, and eventually verify the validity
 of the certificate <a href="https://www.ssllabs.com/ssltest/analyze.html">here</a>.
 That&rsquo;s the result for my blog:</li>
@@ -242,10 +242,10 @@ That&rsquo;s the result for my blog:</li>
   <figcaption>Security report for brunoscopelliti.com provided by ssllabs</figcaption>
 </figure>
 <p>As an extra step, you may want to register a cron job to automatically renew the certificate</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sudo crontab -e
-</code></pre></div><p>And then in the cron job editor, something like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#bd93f9">0</span> <span style="color:#bd93f9">1</span> * * <span style="color:#bd93f9">1</span> /opt/letsencrypt/letsencrypt-auto renew &gt;&gt; /var/log/le-renew.log
-</code></pre></div><p>which every Monday, at 1.00AM, run the <code>letsencrypt-auto renew</code>, and then save
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo crontab -e
+</span></span></code></pre></div><p>And then in the cron job editor, something like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#bd93f9">0</span> <span style="color:#bd93f9">1</span> * * <span style="color:#bd93f9">1</span> /opt/letsencrypt/letsencrypt-auto renew &gt;&gt; /var/log/le-renew.log
+</span></span></code></pre></div><p>which every Monday, at 1.00AM, run the <code>letsencrypt-auto renew</code>, and then save
 its output in the specified file.</p>
 <h2 id="next-steps">Next steps</h2>
 <p>I would like to improve further the experience of the readers of my blog; I think it&rsquo;s
@@ -278,12 +278,12 @@ starts with a free plan).</p>
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -338,7 +338,7 @@ starts with a free plan).</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

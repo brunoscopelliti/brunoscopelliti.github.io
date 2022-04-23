@@ -129,19 +129,19 @@ the complete source of the demo on
 <a href="https://github.com/blog-brunoscopelliti/route-loading-delay-demo" title="Github Repository">Github</a>).</p>
 <p>In a regular AngularJS web app, the routes are configured via methods in the <code>$routeProvider</code>
 object, as below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">$routeProvider.when(<span style="color:#f1fa8c">&#34;/library&#34;</span>, {
-  templateUrl<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;partials/library.html&#34;</span>,
-  controller<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;LibraryCtrl&#34;</span>,
-  resolve<span style="color:#ff79c6">:</span> {
-    books<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (srvLibrary) {
-      <span style="color:#ff79c6">return</span> srvLibrary.getBooks();
-    },
-    movies<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (srvLibrary) {
-      <span style="color:#ff79c6">return</span> srvLibrary.getMovies();
-    }
-  }
-});
-</code></pre></div><p>From this code, we can see that a route information object is passed in as the second parameter
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>$routeProvider.when(<span style="color:#f1fa8c">&#34;/library&#34;</span>, {
+</span></span><span style="display:flex;"><span>  templateUrl<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;partials/library.html&#34;</span>,
+</span></span><span style="display:flex;"><span>  controller<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;LibraryCtrl&#34;</span>,
+</span></span><span style="display:flex;"><span>  resolve<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>    books<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (srvLibrary) {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> srvLibrary.getBooks();
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    movies<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (srvLibrary) {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> srvLibrary.getMovies();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>From this code, we can see that a route information object is passed in as the second parameter
 to the <code>when</code> method. The above example also includes the <code>resolve</code> property,
 that indicates which routes we want to appear only after the promises have been resolved.
 Quoting from the official docs:</p>
@@ -151,70 +151,70 @@ and converted to a value before the controller is instantiated and the $routeCha
 event is fired.</em></p>
 <p>To use this with AngularJS promises, the following is a simple implementation of the methods
 exposed by the <code>srvLibrary</code> service:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">angular.module(<span style="color:#f1fa8c">&#34;myApp.services&#34;</span>, [])
-.factory(<span style="color:#f1fa8c">&#34;srvLibrary&#34;</span>, [<span style="color:#f1fa8c">&#34;$http&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($http) {
-  <span style="color:#8be9fd;font-style:italic">var</span> sdo <span style="color:#ff79c6">=</span> {
-    getBooks<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-      <span style="color:#8be9fd;font-style:italic">var</span> promise <span style="color:#ff79c6">=</span> $http({
-        method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>,
-        url<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;api/books.php&#34;</span>
-      });
-      promise.success(<span style="color:#8be9fd;font-style:italic">function</span> (data, status, headers, conf) {
-        <span style="color:#ff79c6">return</span> data;
-      });
-      <span style="color:#ff79c6">return</span> promise;
-    },
-    getMovies<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-      <span style="color:#8be9fd;font-style:italic">var</span> promise <span style="color:#ff79c6">=</span> $http({
-        method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>,
-        url<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;api/movies.php&#34;</span>
-      });
-      promise.success(<span style="color:#8be9fd;font-style:italic">function</span> (data, status, headers, conf) {
-        <span style="color:#ff79c6">return</span> data;
-      });
-      <span style="color:#ff79c6">return</span> promise;
-    }
-  }
-  <span style="color:#ff79c6">return</span> sdo;
-}]);
-</code></pre></div><p>Finally, to be able to use the resolved promises data in the controller it is necessary to inject
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>angular.module(<span style="color:#f1fa8c">&#34;myApp.services&#34;</span>, [])
+</span></span><span style="display:flex;"><span>.factory(<span style="color:#f1fa8c">&#34;srvLibrary&#34;</span>, [<span style="color:#f1fa8c">&#34;$http&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($http) {
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">var</span> sdo <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    getBooks<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
+</span></span><span style="display:flex;"><span>      <span style="color:#8be9fd;font-style:italic">var</span> promise <span style="color:#ff79c6">=</span> $http({
+</span></span><span style="display:flex;"><span>        method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>,
+</span></span><span style="display:flex;"><span>        url<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;api/books.php&#34;</span>
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>      promise.success(<span style="color:#8be9fd;font-style:italic">function</span> (data, status, headers, conf) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> data;
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> promise;
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    getMovies<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
+</span></span><span style="display:flex;"><span>      <span style="color:#8be9fd;font-style:italic">var</span> promise <span style="color:#ff79c6">=</span> $http({
+</span></span><span style="display:flex;"><span>        method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>,
+</span></span><span style="display:flex;"><span>        url<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;api/movies.php&#34;</span>
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>      promise.success(<span style="color:#8be9fd;font-style:italic">function</span> (data, status, headers, conf) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> data;
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> promise;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> sdo;
+</span></span><span style="display:flex;"><span>}]);
+</span></span></code></pre></div><p>Finally, to be able to use the resolved promises data in the controller it is necessary to inject
 these data into the controller, and attach them to the <code>$scope</code> variable.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js">angular.module(<span style="color:#f1fa8c">&#34;myApp.controllers&#34;</span>, [])
-  .controller(<span style="color:#f1fa8c">&#34;LibraryCtrl&#34;</span>, [<span style="color:#f1fa8c">&#34;$scope&#34;</span>, <span style="color:#f1fa8c">&#34;books&#34;</span>, <span style="color:#f1fa8c">&#34;movies&#34;</span>,
-    <span style="color:#8be9fd;font-style:italic">function</span> ($scope, books, movies) {
-      $scope.books <span style="color:#ff79c6">=</span> books.data;
-      $scope.movies <span style="color:#ff79c6">=</span> movies.data;
-  }]);
-</code></pre></div><p>This is all that is required to delay the loading of a new route until the promises are resolved.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>angular.module(<span style="color:#f1fa8c">&#34;myApp.controllers&#34;</span>, [])
+</span></span><span style="display:flex;"><span>  .controller(<span style="color:#f1fa8c">&#34;LibraryCtrl&#34;</span>, [<span style="color:#f1fa8c">&#34;$scope&#34;</span>, <span style="color:#f1fa8c">&#34;books&#34;</span>, <span style="color:#f1fa8c">&#34;movies&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">function</span> ($scope, books, movies) {
+</span></span><span style="display:flex;"><span>      $scope.books <span style="color:#ff79c6">=</span> books.data;
+</span></span><span style="display:flex;"><span>      $scope.movies <span style="color:#ff79c6">=</span> movies.data;
+</span></span><span style="display:flex;"><span>  }]);
+</span></span></code></pre></div><p>This is all that is required to delay the loading of a new route until the promises are resolved.
 As a result, however, a user could be surprised by the fact that nothing happens
 after they click a link. It is therefore a good idea to implement an immediate visual feedback.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> app <span style="color:#ff79c6">=</span> angular.module(<span style="color:#f1fa8c">&#34;myApp&#34;</span>,
-  [<span style="color:#f1fa8c">&#34;myApp.services&#34;</span>, <span style="color:#f1fa8c">&#34;myApp.controllers&#34;</span>]);
-
-app.run([<span style="color:#f1fa8c">&#34;$rootScope&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($root) {
-  $root.$on(<span style="color:#f1fa8c">&#34;$routeChangeStart&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (e, curr, prev) {
-    <span style="color:#ff79c6">if</span> (curr.$$route <span style="color:#ff79c6">&amp;&amp;</span> curr.$$route.resolve) {
-      <span style="color:#6272a4">// Show a loading message until promises aren&#39;t resolved
-</span><span style="color:#6272a4"></span>      $root.loadingView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
-    }
-  });
-  $root.$on(<span style="color:#f1fa8c">&#34;$routeChangeSuccess&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (e, curr, prev) {
-    <span style="color:#6272a4">// Hide loading message
-</span><span style="color:#6272a4"></span>    $root.loadingView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
-  });
-}]);
-</code></pre></div><p>The following is one possible way to implement a loading message while waiting
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">var</span> app <span style="color:#ff79c6">=</span> angular.module(<span style="color:#f1fa8c">&#34;myApp&#34;</span>,
+</span></span><span style="display:flex;"><span>  [<span style="color:#f1fa8c">&#34;myApp.services&#34;</span>, <span style="color:#f1fa8c">&#34;myApp.controllers&#34;</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app.run([<span style="color:#f1fa8c">&#34;$rootScope&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> ($root) {
+</span></span><span style="display:flex;"><span>  $root.$on(<span style="color:#f1fa8c">&#34;$routeChangeStart&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (e, curr, prev) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (curr.$$route <span style="color:#ff79c6">&amp;&amp;</span> curr.$$route.resolve) {
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// Show a loading message until promises aren&#39;t resolved
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      $root.loadingView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  $root.$on(<span style="color:#f1fa8c">&#34;$routeChangeSuccess&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (e, curr, prev) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Hide loading message
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    $root.loadingView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}]);
+</span></span></code></pre></div><p>The following is one possible way to implement a loading message while waiting
 for the new route to appear.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;modal&#34;</span> <span style="color:#50fa7b">ng-show</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;loadingView&#34;</span>&gt;
-  <span style="color:#6272a4">&lt;!-- loadingView is a variable defined in the $rootScope --&gt;</span>
-
-  <span style="color:#6272a4">&lt;!-- The loading animation is inspired by
-</span><span style="color:#6272a4">    http://codepen.io/joni/details/FiKsd --&gt;</span>
-  &lt;<span style="color:#ff79c6">ul</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;loading&#34;</span>&gt;
-    &lt;<span style="color:#ff79c6">li</span> <span style="color:#50fa7b">ng-repeat</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;i in [0,1,2,3,4,5,6,7,8,9]&#34;</span>&gt;&lt;/<span style="color:#ff79c6">li</span>&gt;
-  &lt;/<span style="color:#ff79c6">ul</span>&gt;
-&lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></div><p>Then when a new route is requested, it is enough to set <code>loadingView = true</code> if the route
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;modal&#34;</span> <span style="color:#50fa7b">ng-show</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;loadingView&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">&lt;!-- loadingView is a variable defined in the $rootScope --&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">&lt;!-- The loading animation is inspired by
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">    http://codepen.io/joni/details/FiKsd --&gt;</span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">ul</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;loading&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">li</span> <span style="color:#50fa7b">ng-repeat</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;i in [0,1,2,3,4,5,6,7,8,9]&#34;</span>&gt;&lt;/<span style="color:#ff79c6">li</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#ff79c6">ul</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span></code></pre></div><p>Then when a new route is requested, it is enough to set <code>loadingView = true</code> if the route
 itself has pending promises.</p>
 </div>
   <div class="post-footer">
@@ -241,12 +241,12 @@ itself has pending promises.</p>
 </article>
 
 <script>
-  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(var e=0;e<r.length;e++)t=r[e],t.hostname!==location.hostname&&(t.setAttribute("target","_blank"),t.setAttribute("rel","noopener noreferrer"));var t;})();
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
 
 </script>
 
 <script>
-  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(var a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
 
 </script>
 
@@ -301,7 +301,7 @@ itself has pending promises.</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2021 Bruno Scopelliti
+        <p class="colophon">2013 ~ 2022 Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

@@ -60,7 +60,7 @@ If you have ever used one of those promisify modules, you won&amp;rsquo;t be too
       <guid>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</guid>
       <description>Promise&amp;rsquo;s support is one of my favorite features of AngularJS.  Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.
 This post will show you a typical use case for the promise in an AngularJS app.  It could be simplified as follows:
-function stageController(scope, p) { scope.revenues = []; scope.$watch(&amp;#34;revenues&amp;#34;, function () { p.drawPlot(scope.revenues); }, true); p.</description>
+function stageController(scope, p) {  scope.revenues = [];   scope.$watch(&amp;#34;revenues&amp;#34;, function () {  p.</description>
     </item>
     
   </channel>

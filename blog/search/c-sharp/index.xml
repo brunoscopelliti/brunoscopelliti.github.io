@@ -16,7 +16,7 @@
       <description>Writing blog posts is infinitely valuable in helping me memorize new tricks; even when it does not work, I can still more easily google for myself. Today&amp;rsquo;s blog post is meant to continue this glorious tradition.
 In C# development it&amp;rsquo;s pretty common to have to map fields between objects of different class. Automapper simplifies a lot the work.
 For instance, in the simplest scenario given the two classes
-public class ProductDto { public string name { get; set; } public string code { get; set; } public decimal price { get; set; } public string currency { get; set; } } public class Product { public string Name { get; set; } public string Code { get; set; } public decimal Price { get; set; } public string Currency { get; set; } } in order to copy values from ProductDto fields into a new Product instance, we&amp;rsquo;ve to execute Automapper&amp;rsquo;s map method</description>
+public class ProductDto {  public string name { get; set; }  public string code { get; set; }  public decimal price { get; set; }  public string currency { get; set; } }  public class Product {  public string Name { get; set; }  public string Code { get; set; }  public decimal Price { get; set; }  public string Currency { get; set; } } in order to copy values from ProductDto fields into a new Product instance, we&amp;rsquo;ve to execute Automapper&amp;rsquo;s map method</description>
     </item>
     
     <item>
