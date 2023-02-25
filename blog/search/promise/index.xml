@@ -13,9 +13,9 @@
       <pubDate>Sat, 27 Mar 2021 08:39:10 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/investigating-a-promise-bug/</guid>
-      <description>As most people do nowadays, I write code using modern JavaScript&amp;hellip; then serve the transpiled version, also adding the polyfills where needed. It mostly works fine, except when it doesn&amp;rsquo;t 🙃.  In fact, recently we got this bug report:
- When the user clicks the menu button, the menu doesn&amp;rsquo;t appear.
- The problem was easily reproducible on IE11 - and only on IE11.
+      <description>As most people do nowadays, I write code using modern JavaScript&amp;hellip; then serve the transpiled version, also adding the polyfills where needed. It mostly works fine, except when it doesn&amp;rsquo;t 🙃. In fact, recently we got this bug report:
+When the user clicks the menu button, the menu doesn&amp;rsquo;t appear.
+The problem was easily reproducible on IE11 - and only on IE11.
 First guesses One interesting thing about this menu is that its content is fetched asyncronously only after the user clicks on a particular button.</description>
     </item>
     
@@ -26,7 +26,7 @@ First guesses One interesting thing about this menu is that its content is fetch
       
       <guid>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</guid>
       <description>TL:DR; You can watch me live coding a promise&amp;rsquo;s polyfill on YouTube. Watch Let&amp;rsquo;s build a promise polyfill playlist.
-We&amp;rsquo;re going to build a Promise polyfill; it&amp;rsquo;s the best way to understand how things work under the hood, after all.  My goal is not to have the most performant, or feature rich, implementation, but I&amp;rsquo;ll try to optimize for ease of readability.
+We&amp;rsquo;re going to build a Promise polyfill; it&amp;rsquo;s the best way to understand how things work under the hood, after all. My goal is not to have the most performant, or feature rich, implementation, but I&amp;rsquo;ll try to optimize for ease of readability.
 A brief disclaimer before we start: you might have heard that Promise are going to disappear soon, cause async function permit to further improve how we handle asynchronous code.</description>
     </item>
     
@@ -58,9 +58,9 @@ If you have ever used one of those promisify modules, you won&amp;rsquo;t be too
       <pubDate>Tue, 02 Apr 2013 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</guid>
-      <description>Promise&amp;rsquo;s support is one of my favorite features of AngularJS.  Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.
-This post will show you a typical use case for the promise in an AngularJS app.  It could be simplified as follows:
-function stageController(scope, p) {  scope.revenues = [];   scope.$watch(&amp;#34;revenues&amp;#34;, function () {  p.</description>
+      <description>Promise&amp;rsquo;s support is one of my favorite features of AngularJS. Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.
+This post will show you a typical use case for the promise in an AngularJS app. It could be simplified as follows:
+function stageController(scope, p) { scope.revenues = []; scope.$watch(&amp;#34;revenues&amp;#34;, function () { p.drawPlot(scope.revenues); }, true); p.getData(); } stageController.</description>
     </item>
     
   </channel>

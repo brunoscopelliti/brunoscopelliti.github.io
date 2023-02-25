@@ -24,7 +24,7 @@ However fonts are generally heavy resources to load&amp;hellip; and having to lo
       
       <guid>https://brunoscopelliti.com/blog/how-i-ported-my-blog-to-https/</guid>
       <description>In the last couple of years several elements are pushing for a widespread adoption of the HTTPS protocol.
-  Security. Of course security, what else would you expect from HTTPS. HTTPS is all about security! It guarantees that the server you&amp;rsquo;re connecting is really the one you believe it is, and that the contents of the communications is private, so that it can&amp;rsquo;t be read, or modified by a anyone else.</description>
+Security. Of course security, what else would you expect from HTTPS. HTTPS is all about security! It guarantees that the server you&amp;rsquo;re connecting is really the one you believe it is, and that the contents of the communications is private, so that it can&amp;rsquo;t be read, or modified by a anyone else.</description>
     </item>
     
     <item>

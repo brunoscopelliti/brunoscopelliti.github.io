@@ -6,7 +6,25 @@
     <description>Recent content on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Oct 2021 07:31:35 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Feb 2023 07:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker</title>
+      <link>https://brunoscopelliti.com/blog/search/docker/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/search/docker/</guid>
+      <description>It&amp;rsquo;s my white whale 😅</description>
+    </item>
+    
+    <item>
+      <title>Memo</title>
+      <link>https://brunoscopelliti.com/blog/search/memo/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/search/memo/</guid>
+      <description>Things I searched on Google more times than I can remember.</description>
+    </item>
+    
     <item>
       <title>git</title>
       <link>https://brunoscopelliti.com/blog/search/git/</link>
@@ -14,15 +32,6 @@
       
       <guid>https://brunoscopelliti.com/blog/search/git/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Memo</title>
-      <link>https://brunoscopelliti.com/blog/search/memo/</link>
-      <pubDate>Sun, 24 Oct 2021 07:31:35 +0100</pubDate>
-      
-      <guid>https://brunoscopelliti.com/blog/search/memo/</guid>
-      <description>Things I searched on Google more times than I can remember.</description>
     </item>
     
     <item>

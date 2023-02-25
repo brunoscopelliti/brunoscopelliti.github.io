@@ -6,7 +6,19 @@
     <description>Recent content in Memo on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Oct 2021 07:31:35 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/memo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Feb 2023 07:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/memo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes on “Docker Mastery: ..”</title>
+      <link>https://brunoscopelliti.com/blog/notes-docker-mastery/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/notes-docker-mastery/</guid>
+      <description>Reference to the course: Docker Mastery: with Kubernetes +Swarm from a Docker Captain
+I will update this post while continuing advance through the course. Last updated: 25 February 2023.
+Image vs Container An Image is the application we want to run. A Container is an instance of that image running as a process. We can have many containers running off the same image.
+Containers Run a container docker container run --publish 80:80 --name my_server nginx --publish (short -p): Publish port 80 on local machines, and sends all traffic from it, to program running in container on port 80.</description>
+    </item>
+    
     <item>
       <title>How to cherry-pick a branch using git</title>
       <link>https://brunoscopelliti.com/blog/git-cherry-pick-branch/</link>
@@ -51,9 +63,9 @@ Kill a process programatically There are numerous npm modules that allow to kill
       <pubDate>Fri, 09 Apr 2021 23:26:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/</guid>
-      <description>Recently I fought - and at the end succeded - to configure two different set of SSH keys for different GitHub accounts on the same computer.  I&amp;rsquo;m writing it down the procedure, so that I won&amp;rsquo;t have to repeat this fight again.
-  Create two different SSH keys, and add both on GitHub. The documentation on GitHub explains the details.
-  SSH config The SSH key config file is usually located at ~/.</description>
+      <description>Recently I fought - and at the end succeded - to configure two different set of SSH keys for different GitHub accounts on the same computer. I&amp;rsquo;m writing it down the procedure, so that I won&amp;rsquo;t have to repeat this fight again.
+Create two different SSH keys, and add both on GitHub. The documentation on GitHub explains the details.
+SSH config The SSH key config file is usually located at ~/.</description>
     </item>
     
     <item>
@@ -63,10 +75,10 @@ Kill a process programatically There are numerous npm modules that allow to kill
       
       <guid>https://brunoscopelliti.com/blog/my-macos-setup-checklist/</guid>
       <description>This week I formatted my macbook, and after many years of keeping sparse notes in too many different place, I decided it is time to put everything together in one place for future reference&amp;hellip; and what best place than my freshly restyled blog.
-General preference   Dock: don&amp;rsquo;t show recent applications.
-  Mission control: set hot corners.
-  Trackpad/Mouse: Secondary click, click in bottom right corner.
-  Keyboard: Use F1, F2, etc.</description>
+General preference Dock: don&amp;rsquo;t show recent applications.
+Mission control: set hot corners.
+Trackpad/Mouse: Secondary click, click in bottom right corner.
+Keyboard: Use F1, F2, etc. keys as standard function keys.</description>
     </item>
     
     <item>
@@ -75,7 +87,7 @@ General preference   Dock: don&amp;rsquo;t show recent applications.
       <pubDate>Fri, 05 May 2017 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/git-alias-git-unstage/</guid>
-      <description>Git, between the others, has a powerful feature called alias.  It&amp;rsquo;s pretty straightforward&amp;hellip; Is there a command you always fail to remember? Add a more friendly shortcut! Is there a command you use frequently, that requires too much keystrokes? Create a shorter alias for it&amp;hellip; or perhaps, you think that a fundamental command is missing from git? Then you can create it yourself using existing commands.
+      <description>Git, between the others, has a powerful feature called alias. It&amp;rsquo;s pretty straightforward&amp;hellip; Is there a command you always fail to remember? Add a more friendly shortcut! Is there a command you use frequently, that requires too much keystrokes? Create a shorter alias for it&amp;hellip; or perhaps, you think that a fundamental command is missing from git? Then you can create it yourself using existing commands.
 My favourite alias is git unstage.</description>
     </item>
     
@@ -86,7 +98,7 @@ My favourite alias is git unstage.</description>
       
       <guid>https://brunoscopelliti.com/blog/squash-commits-with-git-rebase/</guid>
       <description>That&amp;rsquo;s one thing I&amp;rsquo;ve just recently learned, and I&amp;rsquo;m writing down here for future reference.
-Git&amp;rsquo;s rebase command permits to change the history of a git repository.  Note that this is safe to do only for commits that haven&amp;rsquo;t already been shared to the team you are working with.
+Git&amp;rsquo;s rebase command permits to change the history of a git repository. Note that this is safe to do only for commits that haven&amp;rsquo;t already been shared to the team you are working with.
 Why is it useful? Consider the following scenario:
 bruno ~/git/hello-git $ git hist # git hist is a custom alias for &amp;#34;git log --pretty=format:&amp;#39;%h %ad | %s%d [%an]&amp;#39; --graph --date=short&amp;#34; * 8a3a015 2016-10-26 | The most perfect commit in the history of the Universe (HEAD -&amp;gt; master) [brunoscopelliti] * a48ca6d 2016-10-26 | Init repo [brunoscopelliti] I&amp;rsquo;m so proud of myself&amp;hellip; I&amp;rsquo;ve just pushed the best commit in the whole history of the Universe!</description>
     </item>
@@ -99,7 +111,7 @@ bruno ~/git/hello-git $ git hist # git hist is a custom alias for &amp;#34;git l
       <guid>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</guid>
       <description>Having recently switched to ESLint, I often find myself googling for how to disable a rule on a particular occurrence via JavaScript comment.
 Hope writing this will help me to memorize the syntax, I&amp;rsquo;ll bookmark this page otherwise 😅.
-// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;);  alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for the entire line.</description>
+// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;); alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for the entire line.</description>
     </item>
     
     <item>

@@ -13,9 +13,9 @@
       <pubDate>Sat, 27 Mar 2021 08:39:10 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/investigating-a-promise-bug/</guid>
-      <description>As most people do nowadays, I write code using modern JavaScript&amp;hellip; then serve the transpiled version, also adding the polyfills where needed. It mostly works fine, except when it doesn&amp;rsquo;t 🙃.  In fact, recently we got this bug report:
- When the user clicks the menu button, the menu doesn&amp;rsquo;t appear.
- The problem was easily reproducible on IE11 - and only on IE11.
+      <description>As most people do nowadays, I write code using modern JavaScript&amp;hellip; then serve the transpiled version, also adding the polyfills where needed. It mostly works fine, except when it doesn&amp;rsquo;t 🙃. In fact, recently we got this bug report:
+When the user clicks the menu button, the menu doesn&amp;rsquo;t appear.
+The problem was easily reproducible on IE11 - and only on IE11.
 First guesses One interesting thing about this menu is that its content is fetched asyncronously only after the user clicks on a particular button.</description>
     </item>
     
@@ -25,7 +25,7 @@ First guesses One interesting thing about this menu is that its content is fetch
       <pubDate>Wed, 01 Jun 2016 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/my-personal-bugfixing-workflow/</guid>
-      <description>I am a conservative person.  Recently, I&amp;rsquo;ve started thinking this is a great quality, especially for a developer.
+      <description>I am a conservative person. Recently, I&amp;rsquo;ve started thinking this is a great quality, especially for a developer.
 Of course, I like improvements; the kind of changes I am more prone to make, are those which affect code readability, or bring coherence to the codebase; who have worked with me can confirm how pedantic I am on these kind of things. I change my own code (and blog posts) several times before I push on the repository.</description>
     </item>
     

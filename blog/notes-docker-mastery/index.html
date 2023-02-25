@@ -4,10 +4,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <meta charset="utf-8">
 
-    <title>Blog | Bruno Scopelliti</title>
+    <title>Notes on “Docker Mastery: ..” | Bruno Scopelliti</title>
 
     
-    <meta name="description" content="Bruno Scopelliti&#39;s blog, software development, JavaScript, Node.js, React, Apollo, Firebase.">
+    <meta name="description" content="My notes on Udemy Course: &#39;Docker Mastery: with Kubernetes &#43;Swarm from a Docker Captain&#39;">
     
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -16,10 +16,15 @@
 
     
     <link rel="stylesheet" href="/css/blog.dfea23f01caf35ef9f2e8f05d7ff5ebb1587aecd74c5041d0207692b29575374.css" integrity="sha256-3&#43;oj8ByvNe&#43;fLo8F1/9euxWHrs10xQQdAgdpKylXU3Q=">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@brunoscopelliti">
-    <meta name="twitter:title" content="Blog">
-    <meta name="twitter:image" content="/images/twitter-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@brunoscopelliti">
+<meta name="twitter:title" content="Notes on “Docker Mastery: ..”">
+
+
+
+<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/notes-on-docker-mastery-...png">
+<meta name="twitter:description" content="This post collects my notes while following “Docker Mastery: with Kubernetes &#43;Swarm from a Docker Captain” course, by Bret Fisher on Udemy.">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -34,7 +39,7 @@
 
     <meta name="theme-color" content="#192039">
   </head>
-  <body class="list">
+  <body class="">
     <a id="skip-nav" href="#main">Go to content</a>
 
     <header class="site-header">
@@ -59,7 +64,7 @@
         <a href="/">Home</a>
       </li>
     
-      <li class="active">
+      <li class="">
         <a href="/blog/">Blog</a>
       </li>
     
@@ -105,83 +110,164 @@
 
     <div class="page-main-content">
       <main id="main">
-<h1>Blog</h1>
-<div class="post-list">
-  <article class="post-entry">
-  <h2>
-    <a href="/blog/what-is-javascript/" title="What is JavaScript?">What is JavaScript?</a>
-  </h2>
-  <div class="post-preview">I challenge you to find a shorter, and yet so complete answer.</div>
-  <div class="post-link">
-    <a href="/blog/what-is-javascript/" title="What is JavaScript?">Read article</a>
+<article class="post" data-js="post">
+  <div class="post-breadcrumbs">
+    <a href="/blog" aria-label="View all articles">Blog</a>
+    <span>/</span>
+    
+    <a href="/blog/search/memo/">Memo</a>
+    <span>/</span>
+    
   </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/whats-the-difference-between-undefined-and-void-in-typescript/" title="What&#39;s the difference between undefined and void in TypeScript?">What&#39;s the difference between undefined and void in TypeScript?</a>
-  </h2>
-  <div class="post-preview">I didn't know, but I learned it - and you could learn it too ...</div>
-  <div class="post-link">
-    <a href="/blog/whats-the-difference-between-undefined-and-void-in-typescript/" title="What&#39;s the difference between undefined and void in TypeScript?">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/function-deprecation-in-javascript/" title="Function deprecation in JavaScript">Function deprecation in JavaScript</a>
-  </h2>
-  <div class="post-preview">A little known ESLint plugin helps deal with aging codebase.</div>
-  <div class="post-link">
-    <a href="/blog/function-deprecation-in-javascript/" title="Function deprecation in JavaScript">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/how-to-kill-a-process-by-port-on-macos/" title="How to kill a process by port on MacOS">How to kill a process by port on MacOS</a>
-  </h2>
-  <div class="post-preview">A quick memo post for when you need to kill a process, knowing its port.</div>
-  <div class="post-link">
-    <a href="/blog/how-to-kill-a-process-by-port-on-macos/" title="How to kill a process by port on MacOS">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/" title="How to configure SSH keys for different GitHub accounts on the same pc">How to configure SSH keys for different GitHub accounts on the same pc</a>
-  </h2>
-  <div class="post-preview">Recently I fought - and at the end succeded - to configure two different set of SSH keys for different GitHub account on the same computer.</div>
-  <div class="post-link">
-    <a href="/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/" title="How to configure SSH keys for different GitHub accounts on the same pc">Read article</a>
+  <h1>Notes on “Docker Mastery: ..”</h1>
+  <div class="post-body"><p>Reference to the course: <a href="https://www.udemy.com/course/docker-mastery/">Docker Mastery: with Kubernetes +Swarm from a Docker Captain</a></p>
+<p>I will update this post while continuing advance through the course.<br/>
+Last updated: 25 February 2023.</p>
+<h2 id="image-vs-container">Image vs Container</h2>
+<ul>
+<li>An Image is the application we want to run.</li>
+<li>A Container is an instance of that image running as a process.</li>
+</ul>
+<p>We can have many containers running off the same image.</p>
+<h2 id="containers">Containers</h2>
+<h3 id="run-a-container">Run a container</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container run --publish 80:80 --name my_server nginx
+</span></span></code></pre></div><ul>
+<li>
+<p><code>--publish</code> (short <code>-p</code>): Publish port 80 on local machines, and sends all traffic from it, to program running in container on port 80.</p>
+</li>
+<li>
+<p><code>--name</code>: Set a name for the container; if not specificed a random name is generated and used.</p>
+</li>
+</ul>
+<h3 id="run-a-container-detached-mode">Run a container detached mode</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container run --p 80:80 --detach nginx
+</span></span></code></pre></div><ul>
+<li><code>--detach</code> (short <code>-d</code>): Run detached from CLI.</li>
+</ul>
+<h3 id="list-all-containers">List all containers</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container ls -a
+</span></span></code></pre></div><h3 id="check-logs-for-running-container">Check logs for running container</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container logs &lt;container name&gt;
+</span></span></code></pre></div><h3 id="run-command-from-within-container">Run command from within container</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container <span style="color:#8be9fd;font-style:italic">exec</span> -it &lt;container name&gt; &lt;command&gt;
+</span></span></code></pre></div><h3 id="stop-running-container">Stop running container</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container stop &lt;container id&gt;
+</span></span></code></pre></div><h3 id="delete-container">Delete container</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container rm &lt;container id&gt; -f
+</span></span></code></pre></div><ul>
+<li><code>-f</code>: Needed to delete a running container.</li>
+</ul>
+<h2 id="docker-networks">Docker Networks</h2>
+<p>Relevant lectures:</p>
+<ul>
+<li><a href="https://www.udemy.com/course/docker-mastery/learn/lecture/6758364">Intro</a></li>
+<li><a href="https://www.udemy.com/course/docker-mastery/learn/lecture/6762268">CLI Management</a></li>
+<li><a href="https://www.udemy.com/course/docker-mastery/learn/lecture/6762270">How Containers find each other</a></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker network create my_net
+</span></span></code></pre></div><p>Create a new Docker network with the default bridge driver.</p>
+<h2 id="images">Images</h2>
+<p>It&rsquo;s the application binaries and dependencies for your app and the metadata on how to run it.</p>
+<p>Inside the image, there&rsquo;s not actually a complete OS. There&rsquo;s no kernel.
+There&rsquo;s no kernel modules like drivers.
+That&rsquo;s one of the distinct characteristics around containers that makes it different from a virtual machine; it&rsquo;s not booting up a full operating system.</p>
+<h3 id="pushing-an-image-to-docker-hub">Pushing an Image to Docker Hub</h3>
+<p>Image don&rsquo;t have a name.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker login
+</span></span><span style="display:flex;"><span>docker image push &lt;image&gt;:&lt;tag&gt;
+</span></span></code></pre></div><h3 id="dockerfile-basics">Dockerfile Basics</h3>
+<p><a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker image build --tag &lt;name&gt;:&lt;tag&gt; .
+</span></span></code></pre></div><ul>
+<li><code>--tag</code> (short <code>-t</code>): Name and optionally a tag in the &rsquo;name:tag&rsquo; format</li>
+</ul>
+<h2 id="volumes--bind-mounts">Volumes &amp; Bind Mounts</h2>
+<p>Containers are usually immutable and ephemeral.
+Docker has two solutions to persist data, known as <strong>data volumes</strong> and <strong>bind mounts</strong>.</p>
+<ul>
+<li>
+<p>Data Volumes are a configuration option for a container that creates a special location outside of that container&rsquo;s union file system to store unique data. This preserves it across container removals and allows us to attach it to whatever container we want. The container just sees it like a local file path.</p>
+</li>
+<li>
+<p>Bind Mounts allows sharing or mounting a host directory, or file, into a container. Again, it will just look like a local file path, or a directory path, to the container.</p>
+</li>
+</ul>
+<h3 id="data-volumes">Data Volumes</h3>
+<p><code>VOLUME</code> in Dockerfile.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span><span style="color:#ff79c6">VOLUME</span><span style="color:#f1fa8c"> /var/lib/mysql</span>
+</span></span></code></pre></div><p>Any data we put here from the container, will outlive the container.</p>
+<h3 id="create-named-volume">Create named volume</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container run -d --name mysql --volume my_db:/var/lib/mysql mysql
+</span></span></code></pre></div><ul>
+<li><code>--volume</code> (short <code>-v</code>): Bind mount a named volume, at given location.</li>
+</ul>
+<h3 id="view-existing-volumes">View existing volumes</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker volume ls
+</span></span></code></pre></div><h3 id="bind-mounts">Bind Mounts</h3>
+<p>We can still user <code>-v</code> to create Bind Mounts, altough <code>--mounts</code> option exists (<a href="https://docs.docker.com/storage/bind-mounts/#choose-the--v-or---mount-flag">see differences</a>).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container run -d --name ngnix -p 80:80 -v <span style="color:#ff79c6">$(</span><span style="color:#8be9fd;font-style:italic">pwd</span><span style="color:#ff79c6">)</span>:/usr/share/nginx/html nginx
+</span></span></code></pre></div><p>We can use Bind Mounts to quickly edit code running in a container.</p>
+<h2 id="docker-compose">Docker Compose</h2>
+<p>Allow to save Docker container run settings in a file, <code>docker-compose.yml</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span><span style="color:#6272a4"># same as</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># docker container run -p 80:4000 -v $(pwd):/site bretfisher/jekyll-serve</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>    jekyll:
+</span></span><span style="display:flex;"><span>        image: bretfisher/jekyll-serve
+</span></span><span style="display:flex;"><span>    volumes:
+</span></span><span style="display:flex;"><span>        - .:/site
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f1fa8c">&#34;80:4000&#34;</span>
+</span></span></code></pre></div><p>Run with: <code>docker compose up</code>.</p>
+<h3 id="build-image">Build image</h3>
+<p>Compose can also build custom images.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  proxy:
+</span></span><span style="display:flex;"><span>    build:
+</span></span><span style="display:flex;"><span>      context: .
+</span></span><span style="display:flex;"><span>      dockerfile: nginx.Dockerfile
+</span></span><span style="display:flex;"><span>    image: my_nginx
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f1fa8c">&#39;80:80&#39;</span>
+</span></span><span style="display:flex;"><span>  web:
+</span></span><span style="display:flex;"><span>    image: httpd
+</span></span><span style="display:flex;"><span>    volumes:
+</span></span><span style="display:flex;"><span>      - ./html:/usr/local/apache2/htdocs/
+</span></span></code></pre></div></div>
+  <div class="post-footer">
+    <div class="post-date">February 25, 2023</div>
+    <div class="post-links">
+      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fnotes-docker-mastery%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
+      <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
+      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/notes-docker-mastery.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
+    </div>
+    <div class="post-share">
+      <span class="post-share-line"></span>
+      <span class="post-share-text">Share article</span>
+      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fnotes-docker-mastery%2f&text=Notes%20on%20%e2%80%9cDocker%20Mastery%3a%20..%e2%80%9d&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
+      <a class="post-share-link" href="https://www.reddit.com/submit?title=Notes%20on%20%e2%80%9cDocker%20Mastery%3a%20..%e2%80%9d&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fnotes-docker-mastery%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
+    </div>
+    <div class="post-author">
+      <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>
+      <div class="post-author-bio">
+        <strong>Bruno Scopelliti</strong> is an independent software engineer, with focus on frontend development.
+        <br/>He lives in nice Bologna, Italy.
+      </div>
+    </div>
   </div>
 </article>
 
-</div>
-<ul class="pagination">
-  <li class="page-item">
-    <a href="/blog/" class="page-link" aria-label="First">
-      <span aria-hidden="true">&laquo;</span>
-    </a>
-  </li>
-  
-  <li class="page-item">
-    <a class="page-link" href="/blog/">1</a>
-  </li>
-  <li class="page-item active">
-    <a class="page-link" href="/blog/page/2/">2</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/3/">3</a>
-  </li>
-  <li class="page-item disabled">
-    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/blog/page/13/">13</a>
-  </li>
-  <li class="page-item">
-    <a href="/blog/page/13/" class="page-link" aria-label="Last">
-      <span aria-hidden="true">&raquo;</span>
-    </a>
-  </li>
-</ul>
+<script>
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
+
+</script>
+
+<script>
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+
+</script>
 
       </main>
     </div>

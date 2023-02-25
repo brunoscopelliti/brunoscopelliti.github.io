@@ -27,7 +27,7 @@ Lately I&amp;rsquo;ve been working more with named exports (not my choice, btw) 
       <guid>https://brunoscopelliti.com/blog/array-reduce/</guid>
       <description>This week tech drama is courtesy of @maxfmckay.
 Simplify your .reduce calls by doing as much work as possible in .filter and .map instead. Compare these two snippets. Which is more readable? Notice that when map arranges data exactly how we want, our .reduce can be just Object.assign.#typescript #javascript pic.twitter.com/3TW57kaCar
-&amp;mdash; Rupert Foggo McKay (@maxfmckay) May 22, 2021  Let&amp;rsquo;s for a moment forget the original snippet, and its flaws pointed out in the thread on Twitter, and focus on the topic.</description>
+&amp;mdash; Rupert Foggo McKay (@maxfmckay) May 22, 2021 Let&amp;rsquo;s for a moment forget the original snippet, and its flaws pointed out in the thread on Twitter, and focus on the topic.</description>
     </item>
     
     <item>
@@ -38,7 +38,7 @@ Simplify your .reduce calls by doing as much work as possible in .filter and .ma
       <guid>https://brunoscopelliti.com/blog/what-is-javascript/</guid>
       <description>I am really impressed here with Kyle&amp;rsquo;s ability to summarize a topic.
 What is JavaScript?
- JavaScript is an implementation of the ECMAScript standard (version ES2019 as of this writing), which is guided by the TC39 committee and hosted by ECMA. It runs in browsers and other JS environments such as Node.js.
+JavaScript is an implementation of the ECMAScript standard (version ES2019 as of this writing), which is guided by the TC39 committee and hosted by ECMA. It runs in browsers and other JS environments such as Node.js.
 JavaScript is a multi-paradigm language, meaning the syntax and capabilities allow a developer to mix and match (and bend and reshape!</description>
     </item>
     
@@ -48,9 +48,9 @@ JavaScript is a multi-paradigm language, meaning the syntax and capabilities all
       <pubDate>Sat, 27 Mar 2021 08:39:10 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/investigating-a-promise-bug/</guid>
-      <description>As most people do nowadays, I write code using modern JavaScript&amp;hellip; then serve the transpiled version, also adding the polyfills where needed. It mostly works fine, except when it doesn&amp;rsquo;t 🙃.  In fact, recently we got this bug report:
- When the user clicks the menu button, the menu doesn&amp;rsquo;t appear.
- The problem was easily reproducible on IE11 - and only on IE11.
+      <description>As most people do nowadays, I write code using modern JavaScript&amp;hellip; then serve the transpiled version, also adding the polyfills where needed. It mostly works fine, except when it doesn&amp;rsquo;t 🙃. In fact, recently we got this bug report:
+When the user clicks the menu button, the menu doesn&amp;rsquo;t appear.
+The problem was easily reproducible on IE11 - and only on IE11.
 First guesses One interesting thing about this menu is that its content is fetched asyncronously only after the user clicks on a particular button.</description>
     </item>
     
@@ -61,7 +61,7 @@ First guesses One interesting thing about this menu is that its content is fetch
       
       <guid>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</guid>
       <description>TL:DR; You can watch me live coding a promise&amp;rsquo;s polyfill on YouTube. Watch Let&amp;rsquo;s build a promise polyfill playlist.
-We&amp;rsquo;re going to build a Promise polyfill; it&amp;rsquo;s the best way to understand how things work under the hood, after all.  My goal is not to have the most performant, or feature rich, implementation, but I&amp;rsquo;ll try to optimize for ease of readability.
+We&amp;rsquo;re going to build a Promise polyfill; it&amp;rsquo;s the best way to understand how things work under the hood, after all. My goal is not to have the most performant, or feature rich, implementation, but I&amp;rsquo;ll try to optimize for ease of readability.
 A brief disclaimer before we start: you might have heard that Promise are going to disappear soon, cause async function permit to further improve how we handle asynchronous code.</description>
     </item>
     
@@ -84,7 +84,7 @@ However try... catch is able to catch only exeptions thrown in functions which a
       <guid>https://brunoscopelliti.com/blog/qunit-custom-assertions/</guid>
       <description>This post is meant to share my favourite QUnit feature, custom assertions.
 Compared to other library, QUnit has not a particularly rich assertions&amp;rsquo; library; however that&amp;rsquo;s not a big deal, cause QUnit makes extremely simple to extend its core assertions collection.
-QUnit.assert.typeof = function (subject, expected) {  // The current value of the expression  const actual = typeof subject;   // It&amp;#39;s a boolean;  // It expresses wheter the test has passed, or not.</description>
+QUnit.assert.typeof = function (subject, expected) { // The current value of the expression const actual = typeof subject; // It&amp;#39;s a boolean; // It expresses wheter the test has passed, or not.</description>
     </item>
     
     <item>
@@ -93,7 +93,7 @@ QUnit.assert.typeof = function (subject, expected) {  // The current value of th
       <pubDate>Wed, 28 Sep 2016 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/first-1000-days-of-chiara/</guid>
-      <description>I usually wake up early in the morning, before anyone else at my house.  I use this time to maintain this blog, run some side projects, stay updated about latest hot trends in our industry. In general I like to have some time to spend just with myself; then in the evening, when I come from work, I&amp;rsquo;m even more happy to stay with my family, and every device is off by default.</description>
+      <description>I usually wake up early in the morning, before anyone else at my house. I use this time to maintain this blog, run some side projects, stay updated about latest hot trends in our industry. In general I like to have some time to spend just with myself; then in the evening, when I come from work, I&amp;rsquo;m even more happy to stay with my family, and every device is off by default.</description>
     </item>
     
     <item>
@@ -115,7 +115,7 @@ I published a repo on Github with basic usage examples; it&amp;rsquo;s here: ES2
       <guid>https://brunoscopelliti.com/blog/fake-today-in-unit-tests/</guid>
       <description>If the app which you are working on is strongly influenced by the date, you definitely need a simple and consistent way to create a fake today, to have significant unit tests.
 I do not want to make you wait&amp;hellip; this is the way I mock the Date constructor.
-function fakeDate (fakeToday) {  var BuiltinDate = Date;   spyOn(window, &amp;#34;Date&amp;#34;).and.callFake(function () {  var args = Array.prototype.slice.call(arguments);  if (args.</description>
+function fakeDate (fakeToday) { var BuiltinDate = Date; spyOn(window, &amp;#34;Date&amp;#34;).and.callFake(function () { var args = Array.prototype.slice.call(arguments); if (args.length === 0) { return new BuiltinDate(fakeToday); } var _factoryFn = Function.</description>
     </item>
     
   </channel>

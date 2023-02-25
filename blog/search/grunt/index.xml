@@ -13,7 +13,7 @@
       <pubDate>Tue, 28 May 2013 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/start-using-gruntjs/</guid>
-      <description>Last weekend I finally found few time to give a try to Grunt.  I am surprised by how easy is to get started, and I am curious to experiment the benefits which its usage can bring in a real world app.
+      <description>Last weekend I finally found few time to give a try to Grunt. I am surprised by how easy is to get started, and I am curious to experiment the benefits which its usage can bring in a real world app.
 After some really trivial tests, my first serious attempt to create something useful with Grunt has been to create an automatic process to minify and then concatenate different JavaScript files; this post will collect a few notes about what I learned while I was trying to set up this process.</description>
     </item>
     

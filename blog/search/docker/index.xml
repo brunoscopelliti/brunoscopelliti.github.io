@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Bruno Scopelliti</title>
+    <link>https://brunoscopelliti.com/blog/search/docker/</link>
+    <description>Recent content in Docker on Bruno Scopelliti</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 25 Feb 2023 07:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes on “Docker Mastery: ..”</title>
+      <link>https://brunoscopelliti.com/blog/notes-docker-mastery/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/notes-docker-mastery/</guid>
+      <description>Reference to the course: Docker Mastery: with Kubernetes +Swarm from a Docker Captain
+I will update this post while continuing advance through the course. Last updated: 25 February 2023.
+Image vs Container An Image is the application we want to run. A Container is an instance of that image running as a process. We can have many containers running off the same image.
+Containers Run a container docker container run --publish 80:80 --name my_server nginx --publish (short -p): Publish port 80 on local machines, and sends all traffic from it, to program running in container on port 80.</description>
+    </item>
+    
+  </channel>
+</rss>

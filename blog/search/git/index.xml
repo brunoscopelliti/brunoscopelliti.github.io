@@ -39,9 +39,9 @@ git reset --soft HEAD~1 The --soft flag assures the changes are preserved in the
       <pubDate>Fri, 09 Apr 2021 23:26:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/</guid>
-      <description>Recently I fought - and at the end succeded - to configure two different set of SSH keys for different GitHub accounts on the same computer.  I&amp;rsquo;m writing it down the procedure, so that I won&amp;rsquo;t have to repeat this fight again.
-  Create two different SSH keys, and add both on GitHub. The documentation on GitHub explains the details.
-  SSH config The SSH key config file is usually located at ~/.</description>
+      <description>Recently I fought - and at the end succeded - to configure two different set of SSH keys for different GitHub accounts on the same computer. I&amp;rsquo;m writing it down the procedure, so that I won&amp;rsquo;t have to repeat this fight again.
+Create two different SSH keys, and add both on GitHub. The documentation on GitHub explains the details.
+SSH config The SSH key config file is usually located at ~/.</description>
     </item>
     
     <item>
@@ -50,7 +50,7 @@ git reset --soft HEAD~1 The --soft flag assures the changes are preserved in the
       <pubDate>Fri, 05 May 2017 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/git-alias-git-unstage/</guid>
-      <description>Git, between the others, has a powerful feature called alias.  It&amp;rsquo;s pretty straightforward&amp;hellip; Is there a command you always fail to remember? Add a more friendly shortcut! Is there a command you use frequently, that requires too much keystrokes? Create a shorter alias for it&amp;hellip; or perhaps, you think that a fundamental command is missing from git? Then you can create it yourself using existing commands.
+      <description>Git, between the others, has a powerful feature called alias. It&amp;rsquo;s pretty straightforward&amp;hellip; Is there a command you always fail to remember? Add a more friendly shortcut! Is there a command you use frequently, that requires too much keystrokes? Create a shorter alias for it&amp;hellip; or perhaps, you think that a fundamental command is missing from git? Then you can create it yourself using existing commands.
 My favourite alias is git unstage.</description>
     </item>
     
@@ -61,7 +61,7 @@ My favourite alias is git unstage.</description>
       
       <guid>https://brunoscopelliti.com/blog/squash-commits-with-git-rebase/</guid>
       <description>That&amp;rsquo;s one thing I&amp;rsquo;ve just recently learned, and I&amp;rsquo;m writing down here for future reference.
-Git&amp;rsquo;s rebase command permits to change the history of a git repository.  Note that this is safe to do only for commits that haven&amp;rsquo;t already been shared to the team you are working with.
+Git&amp;rsquo;s rebase command permits to change the history of a git repository. Note that this is safe to do only for commits that haven&amp;rsquo;t already been shared to the team you are working with.
 Why is it useful? Consider the following scenario:
 bruno ~/git/hello-git $ git hist # git hist is a custom alias for &amp;#34;git log --pretty=format:&amp;#39;%h %ad | %s%d [%an]&amp;#39; --graph --date=short&amp;#34; * 8a3a015 2016-10-26 | The most perfect commit in the history of the Universe (HEAD -&amp;gt; master) [brunoscopelliti] * a48ca6d 2016-10-26 | Init repo [brunoscopelliti] I&amp;rsquo;m so proud of myself&amp;hellip; I&amp;rsquo;ve just pushed the best commit in the whole history of the Universe!</description>
     </item>
@@ -73,8 +73,8 @@ bruno ~/git/hello-git $ git hist # git hist is a custom alias for &amp;#34;git l
       
       <guid>https://brunoscopelliti.com/blog/git-productivity-trick/</guid>
       <description>&amp;hellip; Yes, I know switching context is not so much productive, but sometimes we have to; so let&amp;rsquo;s better limit the issues! Here&amp;rsquo;s the tip 🥁
- Clone, and maintain in sync, your main working repository in at least two different folders on the same machine.
- Key benefit: easy to switch context when you&amp;rsquo;re on a long running feature branch. Simple, and yet effective!</description>
+Clone, and maintain in sync, your main working repository in at least two different folders on the same machine.
+Key benefit: easy to switch context when you&amp;rsquo;re on a long running feature branch. Simple, and yet effective!</description>
     </item>
     
   </channel>

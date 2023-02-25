@@ -15,7 +15,7 @@
       <guid>https://brunoscopelliti.com/blog/webpack-101/</guid>
       <description>I&amp;rsquo;ve published on GitHub a series to help make sense of WebPack.
 I&amp;rsquo;m not going to approach this like That&amp;rsquo;s the configuration file, copy and paste it into your root folder, and everything will just be fine!
-Instead we&amp;rsquo;re going to build a WebPack configuration step by step together.  We need to understand what we want to achieve with every single setting.  I won&amp;rsquo;t talk about WebPack in the abstract, or about a WebPack feature as a stand alone piece; instead we&amp;rsquo;re actually going to build a simple single page application, and everytime we&amp;rsquo;ll change something into WebPack configuration, immediately we&amp;rsquo;ll see how this change affects our bundle, and our application.</description>
+Instead we&amp;rsquo;re going to build a WebPack configuration step by step together. We need to understand what we want to achieve with every single setting. I won&amp;rsquo;t talk about WebPack in the abstract, or about a WebPack feature as a stand alone piece; instead we&amp;rsquo;re actually going to build a simple single page application, and everytime we&amp;rsquo;ll change something into WebPack configuration, immediately we&amp;rsquo;ll see how this change affects our bundle, and our application.</description>
     </item>
     
   </channel>

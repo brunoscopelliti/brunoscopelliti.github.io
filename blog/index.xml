@@ -6,7 +6,19 @@
     <description>Recent content in Blog on Bruno Scopelliti</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Oct 2021 07:31:35 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Feb 2023 07:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes on “Docker Mastery: ..”</title>
+      <link>https://brunoscopelliti.com/blog/notes-docker-mastery/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/notes-docker-mastery/</guid>
+      <description>Reference to the course: Docker Mastery: with Kubernetes +Swarm from a Docker Captain
+I will update this post while continuing advance through the course. Last updated: 25 February 2023.
+Image vs Container An Image is the application we want to run. A Container is an instance of that image running as a process. We can have many containers running off the same image.
+Containers Run a container docker container run --publish 80:80 --name my_server nginx --publish (short -p): Publish port 80 on local machines, and sends all traffic from it, to program running in container on port 80.</description>
+    </item>
+    
     <item>
       <title>How to cherry-pick a branch using git</title>
       <link>https://brunoscopelliti.com/blog/git-cherry-pick-branch/</link>
@@ -53,7 +65,7 @@ Lately I&amp;rsquo;ve been working more with named exports (not my choice, btw) 
       <guid>https://brunoscopelliti.com/blog/array-reduce/</guid>
       <description>This week tech drama is courtesy of @maxfmckay.
 Simplify your .reduce calls by doing as much work as possible in .filter and .map instead. Compare these two snippets. Which is more readable? Notice that when map arranges data exactly how we want, our .reduce can be just Object.assign.#typescript #javascript pic.twitter.com/3TW57kaCar
-&amp;mdash; Rupert Foggo McKay (@maxfmckay) May 22, 2021  Let&amp;rsquo;s for a moment forget the original snippet, and its flaws pointed out in the thread on Twitter, and focus on the topic.</description>
+&amp;mdash; Rupert Foggo McKay (@maxfmckay) May 22, 2021 Let&amp;rsquo;s for a moment forget the original snippet, and its flaws pointed out in the thread on Twitter, and focus on the topic.</description>
     </item>
     
     <item>
@@ -64,7 +76,7 @@ Simplify your .reduce calls by doing as much work as possible in .filter and .ma
       <guid>https://brunoscopelliti.com/blog/what-is-javascript/</guid>
       <description>I am really impressed here with Kyle&amp;rsquo;s ability to summarize a topic.
 What is JavaScript?
- JavaScript is an implementation of the ECMAScript standard (version ES2019 as of this writing), which is guided by the TC39 committee and hosted by ECMA. It runs in browsers and other JS environments such as Node.js.
+JavaScript is an implementation of the ECMAScript standard (version ES2019 as of this writing), which is guided by the TC39 committee and hosted by ECMA. It runs in browsers and other JS environments such as Node.js.
 JavaScript is a multi-paradigm language, meaning the syntax and capabilities allow a developer to mix and match (and bend and reshape!</description>
     </item>
     
@@ -108,9 +120,9 @@ Kill a process programatically There are numerous npm modules that allow to kill
       <pubDate>Fri, 09 Apr 2021 23:26:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/how-to-configure-ssh-keys-for-different-github-accounts-on-the-same-pc/</guid>
-      <description>Recently I fought - and at the end succeded - to configure two different set of SSH keys for different GitHub accounts on the same computer.  I&amp;rsquo;m writing it down the procedure, so that I won&amp;rsquo;t have to repeat this fight again.
-  Create two different SSH keys, and add both on GitHub. The documentation on GitHub explains the details.
-  SSH config The SSH key config file is usually located at ~/.</description>
+      <description>Recently I fought - and at the end succeded - to configure two different set of SSH keys for different GitHub accounts on the same computer. I&amp;rsquo;m writing it down the procedure, so that I won&amp;rsquo;t have to repeat this fight again.
+Create two different SSH keys, and add both on GitHub. The documentation on GitHub explains the details.
+SSH config The SSH key config file is usually located at ~/.</description>
     </item>
     
     <item>
@@ -119,9 +131,9 @@ Kill a process programatically There are numerous npm modules that allow to kill
       <pubDate>Sat, 27 Mar 2021 08:39:10 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/investigating-a-promise-bug/</guid>
-      <description>As most people do nowadays, I write code using modern JavaScript&amp;hellip; then serve the transpiled version, also adding the polyfills where needed. It mostly works fine, except when it doesn&amp;rsquo;t 🙃.  In fact, recently we got this bug report:
- When the user clicks the menu button, the menu doesn&amp;rsquo;t appear.
- The problem was easily reproducible on IE11 - and only on IE11.
+      <description>As most people do nowadays, I write code using modern JavaScript&amp;hellip; then serve the transpiled version, also adding the polyfills where needed. It mostly works fine, except when it doesn&amp;rsquo;t 🙃. In fact, recently we got this bug report:
+When the user clicks the menu button, the menu doesn&amp;rsquo;t appear.
+The problem was easily reproducible on IE11 - and only on IE11.
 First guesses One interesting thing about this menu is that its content is fetched asyncronously only after the user clicks on a particular button.</description>
     </item>
     
@@ -132,10 +144,10 @@ First guesses One interesting thing about this menu is that its content is fetch
       
       <guid>https://brunoscopelliti.com/blog/my-macos-setup-checklist/</guid>
       <description>This week I formatted my macbook, and after many years of keeping sparse notes in too many different place, I decided it is time to put everything together in one place for future reference&amp;hellip; and what best place than my freshly restyled blog.
-General preference   Dock: don&amp;rsquo;t show recent applications.
-  Mission control: set hot corners.
-  Trackpad/Mouse: Secondary click, click in bottom right corner.
-  Keyboard: Use F1, F2, etc.</description>
+General preference Dock: don&amp;rsquo;t show recent applications.
+Mission control: set hot corners.
+Trackpad/Mouse: Secondary click, click in bottom right corner.
+Keyboard: Use F1, F2, etc. keys as standard function keys.</description>
     </item>
     
     <item>
@@ -144,8 +156,8 @@ General preference   Dock: don&amp;rsquo;t show recent applications.
       <pubDate>Tue, 08 May 2018 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/a-simple-babel-optimization-i-recently-learned/</guid>
-      <description>Babel relies on a few internal functions to generate the transpiled code.  These functions, when needed, are placed at the top of the generated code, so they are not inlined multiple times across a single file. For example, a class declaration class Foo {} gets transpiled as:
-&amp;#34;use strict&amp;#34;;  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&amp;#34;Cannot call a class as a function&amp;#34;); } }  var Foo = function Foo () {  _classCallCheck(this, Foo); }; Since Babel performs transpilation on single file basis, there&amp;rsquo;s still the risk that these functions get duplicated across different files.</description>
+      <description>Babel relies on a few internal functions to generate the transpiled code. These functions, when needed, are placed at the top of the generated code, so they are not inlined multiple times across a single file. For example, a class declaration class Foo {} gets transpiled as:
+&amp;#34;use strict&amp;#34;; function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&amp;#34;Cannot call a class as a function&amp;#34;); } } var Foo = function Foo () { _classCallCheck(this, Foo); }; Since Babel performs transpilation on single file basis, there&amp;rsquo;s still the risk that these functions get duplicated across different files.</description>
     </item>
     
     <item>
@@ -155,7 +167,7 @@ General preference   Dock: don&amp;rsquo;t show recent applications.
       
       <guid>https://brunoscopelliti.com/blog/lets-write-a-promise-polyfill/</guid>
       <description>TL:DR; You can watch me live coding a promise&amp;rsquo;s polyfill on YouTube. Watch Let&amp;rsquo;s build a promise polyfill playlist.
-We&amp;rsquo;re going to build a Promise polyfill; it&amp;rsquo;s the best way to understand how things work under the hood, after all.  My goal is not to have the most performant, or feature rich, implementation, but I&amp;rsquo;ll try to optimize for ease of readability.
+We&amp;rsquo;re going to build a Promise polyfill; it&amp;rsquo;s the best way to understand how things work under the hood, after all. My goal is not to have the most performant, or feature rich, implementation, but I&amp;rsquo;ll try to optimize for ease of readability.
 A brief disclaimer before we start: you might have heard that Promise are going to disappear soon, cause async function permit to further improve how we handle asynchronous code.</description>
     </item>
     
@@ -179,7 +191,7 @@ However try... catch is able to catch only exeptions thrown in functions which a
       <description>Writing blog posts is infinitely valuable in helping me memorize new tricks; even when it does not work, I can still more easily google for myself. Today&amp;rsquo;s blog post is meant to continue this glorious tradition.
 In C# development it&amp;rsquo;s pretty common to have to map fields between objects of different class. Automapper simplifies a lot the work.
 For instance, in the simplest scenario given the two classes
-public class ProductDto {  public string name { get; set; }  public string code { get; set; }  public decimal price { get; set; }  public string currency { get; set; } }  public class Product {  public string Name { get; set; }  public string Code { get; set; }  public decimal Price { get; set; }  public string Currency { get; set; } } in order to copy values from ProductDto fields into a new Product instance, we&amp;rsquo;ve to execute Automapper&amp;rsquo;s map method</description>
+public class ProductDto { public string name { get; set; } public string code { get; set; } public decimal price { get; set; } public string currency { get; set; } } public class Product { public string Name { get; set; } public string Code { get; set; } public decimal Price { get; set; } public string Currency { get; set; } } in order to copy values from ProductDto fields into a new Product instance, we&amp;rsquo;ve to execute Automapper&amp;rsquo;s map method</description>
     </item>
     
     <item>
@@ -209,7 +221,7 @@ Recently, while explaining this concept to a collegue of mine, I came out with h
       <pubDate>Fri, 05 May 2017 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/git-alias-git-unstage/</guid>
-      <description>Git, between the others, has a powerful feature called alias.  It&amp;rsquo;s pretty straightforward&amp;hellip; Is there a command you always fail to remember? Add a more friendly shortcut! Is there a command you use frequently, that requires too much keystrokes? Create a shorter alias for it&amp;hellip; or perhaps, you think that a fundamental command is missing from git? Then you can create it yourself using existing commands.
+      <description>Git, between the others, has a powerful feature called alias. It&amp;rsquo;s pretty straightforward&amp;hellip; Is there a command you always fail to remember? Add a more friendly shortcut! Is there a command you use frequently, that requires too much keystrokes? Create a shorter alias for it&amp;hellip; or perhaps, you think that a fundamental command is missing from git? Then you can create it yourself using existing commands.
 My favourite alias is git unstage.</description>
     </item>
     
@@ -241,7 +253,7 @@ However fonts are generally heavy resources to load&amp;hellip; and having to lo
       
       <guid>https://brunoscopelliti.com/blog/squash-commits-with-git-rebase/</guid>
       <description>That&amp;rsquo;s one thing I&amp;rsquo;ve just recently learned, and I&amp;rsquo;m writing down here for future reference.
-Git&amp;rsquo;s rebase command permits to change the history of a git repository.  Note that this is safe to do only for commits that haven&amp;rsquo;t already been shared to the team you are working with.
+Git&amp;rsquo;s rebase command permits to change the history of a git repository. Note that this is safe to do only for commits that haven&amp;rsquo;t already been shared to the team you are working with.
 Why is it useful? Consider the following scenario:
 bruno ~/git/hello-git $ git hist # git hist is a custom alias for &amp;#34;git log --pretty=format:&amp;#39;%h %ad | %s%d [%an]&amp;#39; --graph --date=short&amp;#34; * 8a3a015 2016-10-26 | The most perfect commit in the history of the Universe (HEAD -&amp;gt; master) [brunoscopelliti] * a48ca6d 2016-10-26 | Init repo [brunoscopelliti] I&amp;rsquo;m so proud of myself&amp;hellip; I&amp;rsquo;ve just pushed the best commit in the whole history of the Universe!</description>
     </item>
@@ -254,7 +266,7 @@ bruno ~/git/hello-git $ git hist # git hist is a custom alias for &amp;#34;git l
       <guid>https://brunoscopelliti.com/blog/qunit-custom-assertions/</guid>
       <description>This post is meant to share my favourite QUnit feature, custom assertions.
 Compared to other library, QUnit has not a particularly rich assertions&amp;rsquo; library; however that&amp;rsquo;s not a big deal, cause QUnit makes extremely simple to extend its core assertions collection.
-QUnit.assert.typeof = function (subject, expected) {  // The current value of the expression  const actual = typeof subject;   // It&amp;#39;s a boolean;  // It expresses wheter the test has passed, or not.</description>
+QUnit.assert.typeof = function (subject, expected) { // The current value of the expression const actual = typeof subject; // It&amp;#39;s a boolean; // It expresses wheter the test has passed, or not.</description>
     </item>
     
     <item>
@@ -265,7 +277,7 @@ QUnit.assert.typeof = function (subject, expected) {  // The current value of th
       <guid>https://brunoscopelliti.com/blog/webpack-101/</guid>
       <description>I&amp;rsquo;ve published on GitHub a series to help make sense of WebPack.
 I&amp;rsquo;m not going to approach this like That&amp;rsquo;s the configuration file, copy and paste it into your root folder, and everything will just be fine!
-Instead we&amp;rsquo;re going to build a WebPack configuration step by step together.  We need to understand what we want to achieve with every single setting.  I won&amp;rsquo;t talk about WebPack in the abstract, or about a WebPack feature as a stand alone piece; instead we&amp;rsquo;re actually going to build a simple single page application, and everytime we&amp;rsquo;ll change something into WebPack configuration, immediately we&amp;rsquo;ll see how this change affects our bundle, and our application.</description>
+Instead we&amp;rsquo;re going to build a WebPack configuration step by step together. We need to understand what we want to achieve with every single setting. I won&amp;rsquo;t talk about WebPack in the abstract, or about a WebPack feature as a stand alone piece; instead we&amp;rsquo;re actually going to build a simple single page application, and everytime we&amp;rsquo;ll change something into WebPack configuration, immediately we&amp;rsquo;ll see how this change affects our bundle, and our application.</description>
     </item>
     
     <item>
@@ -275,8 +287,8 @@ Instead we&amp;rsquo;re going to build a WebPack configuration step by step toge
       
       <guid>https://brunoscopelliti.com/blog/git-productivity-trick/</guid>
       <description>&amp;hellip; Yes, I know switching context is not so much productive, but sometimes we have to; so let&amp;rsquo;s better limit the issues! Here&amp;rsquo;s the tip 🥁
- Clone, and maintain in sync, your main working repository in at least two different folders on the same machine.
- Key benefit: easy to switch context when you&amp;rsquo;re on a long running feature branch. Simple, and yet effective!</description>
+Clone, and maintain in sync, your main working repository in at least two different folders on the same machine.
+Key benefit: easy to switch context when you&amp;rsquo;re on a long running feature branch. Simple, and yet effective!</description>
     </item>
     
     <item>
@@ -285,7 +297,7 @@ Instead we&amp;rsquo;re going to build a WebPack configuration step by step toge
       <pubDate>Sun, 23 Oct 2016 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/history-of-a-support-ticket-for-apple/</guid>
-      <description>Some months ago, I changed my home working setup.  I changed my middle 2011 iMac with a macbook pro + Apple monitor combo. My old iMac was in great shape, however the new setup is an enhancement because now I&amp;rsquo;ve a bigger monitor, and the freedom to use my mac from everywhere.
+      <description>Some months ago, I changed my home working setup. I changed my middle 2011 iMac with a macbook pro + Apple monitor combo. My old iMac was in great shape, however the new setup is an enhancement because now I&amp;rsquo;ve a bigger monitor, and the freedom to use my mac from everywhere.
 I&amp;rsquo;ve also bought the BookArc stand. When at home, I wanted to use the monitor, and keep the macbook with the lid closed.</description>
     </item>
     
@@ -295,7 +307,7 @@ I&amp;rsquo;ve also bought the BookArc stand. When at home, I wanted to use the 
       <pubDate>Wed, 28 Sep 2016 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/first-1000-days-of-chiara/</guid>
-      <description>I usually wake up early in the morning, before anyone else at my house.  I use this time to maintain this blog, run some side projects, stay updated about latest hot trends in our industry. In general I like to have some time to spend just with myself; then in the evening, when I come from work, I&amp;rsquo;m even more happy to stay with my family, and every device is off by default.</description>
+      <description>I usually wake up early in the morning, before anyone else at my house. I use this time to maintain this blog, run some side projects, stay updated about latest hot trends in our industry. In general I like to have some time to spend just with myself; then in the evening, when I come from work, I&amp;rsquo;m even more happy to stay with my family, and every device is off by default.</description>
     </item>
     
     <item>
@@ -306,7 +318,7 @@ I&amp;rsquo;ve also bought the BookArc stand. When at home, I wanted to use the 
       <guid>https://brunoscopelliti.com/blog/how-to-disable-eslint-rule-via-javascript-comment/</guid>
       <description>Having recently switched to ESLint, I often find myself googling for how to disable a rule on a particular occurrence via JavaScript comment.
 Hope writing this will help me to memorize the syntax, I&amp;rsquo;ll bookmark this page otherwise 😅.
-// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;);  alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for the entire line.</description>
+// eslint-disable-next-line no-alert alert(&amp;#34;foo&amp;#34;); alert(&amp;#34;foo&amp;#34;); // eslint-disable-line no-alert It&amp;rsquo;s also possible to omit the name of the rule, and in this case lint is turned off for the entire line.</description>
     </item>
     
     <item>
@@ -316,7 +328,7 @@ Hope writing this will help me to memorize the syntax, I&amp;rsquo;ll bookmark t
       
       <guid>https://brunoscopelliti.com/blog/how-i-ported-my-blog-to-https/</guid>
       <description>In the last couple of years several elements are pushing for a widespread adoption of the HTTPS protocol.
-  Security. Of course security, what else would you expect from HTTPS. HTTPS is all about security! It guarantees that the server you&amp;rsquo;re connecting is really the one you believe it is, and that the contents of the communications is private, so that it can&amp;rsquo;t be read, or modified by a anyone else.</description>
+Security. Of course security, what else would you expect from HTTPS. HTTPS is all about security! It guarantees that the server you&amp;rsquo;re connecting is really the one you believe it is, and that the contents of the communications is private, so that it can&amp;rsquo;t be read, or modified by a anyone else.</description>
     </item>
     
     <item>
@@ -326,8 +338,8 @@ Hope writing this will help me to memorize the syntax, I&amp;rsquo;ll bookmark t
       
       <guid>https://brunoscopelliti.com/blog/the-art-of-controlling-complexity/</guid>
       <description>From Eloquent Javascript, by Marijn Haverbeke.
- Keeping programs under control is the main problem of programming. When a program works, it is beautiful. The art of programming is the skill of controlling complexity.
- Just a reminder, primarily for myself.
+Keeping programs under control is the main problem of programming. When a program works, it is beautiful. The art of programming is the skill of controlling complexity.
+Just a reminder, primarily for myself.
 As developers we not only have to solve problems, but do it in a way we do not harm our future-self.</description>
     </item>
     
@@ -348,7 +360,7 @@ Thanks for reading! See you around 🙂</description>
       <pubDate>Wed, 01 Jun 2016 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/my-personal-bugfixing-workflow/</guid>
-      <description>I am a conservative person.  Recently, I&amp;rsquo;ve started thinking this is a great quality, especially for a developer.
+      <description>I am a conservative person. Recently, I&amp;rsquo;ve started thinking this is a great quality, especially for a developer.
 Of course, I like improvements; the kind of changes I am more prone to make, are those which affect code readability, or bring coherence to the codebase; who have worked with me can confirm how pedantic I am on these kind of things. I change my own code (and blog posts) several times before I push on the repository.</description>
     </item>
     
@@ -371,7 +383,7 @@ I published a repo on Github with basic usage examples; it&amp;rsquo;s here: ES2
       <guid>https://brunoscopelliti.com/blog/fake-today-in-unit-tests/</guid>
       <description>If the app which you are working on is strongly influenced by the date, you definitely need a simple and consistent way to create a fake today, to have significant unit tests.
 I do not want to make you wait&amp;hellip; this is the way I mock the Date constructor.
-function fakeDate (fakeToday) {  var BuiltinDate = Date;   spyOn(window, &amp;#34;Date&amp;#34;).and.callFake(function () {  var args = Array.prototype.slice.call(arguments);  if (args.</description>
+function fakeDate (fakeToday) { var BuiltinDate = Date; spyOn(window, &amp;#34;Date&amp;#34;).and.callFake(function () { var args = Array.prototype.slice.call(arguments); if (args.length === 0) { return new BuiltinDate(fakeToday); } var _factoryFn = Function.</description>
     </item>
     
     <item>
@@ -383,7 +395,8 @@ function fakeDate (fakeToday) {  var BuiltinDate = Date;   spyOn(window, &amp;#3
       <description>A couple of weeks ago David East (@_davideast) gave a talk about app development with AngularJS 2.
 The presentation was followed by a really interesting QAs session, with the participation of Miško Hevery, and Igor Minar.
 This is what seemed most interesting to me:
-  AngularJS 2 is built on top of web standards; so no more AngularJS module, but ECMAScript 2015 module, web components and so on&amp;hellip;</description>
+AngularJS 2 is built on top of web standards; so no more AngularJS module, but ECMAScript 2015 module, web components and so on&amp;hellip;
+There won&amp;rsquo;t be anymore the configuration phase</description>
     </item>
     
     <item>
@@ -414,7 +427,7 @@ A couple of months ago, I started writing a simple AngularJS todo app with the g
       <pubDate>Mon, 30 Dec 2013 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/bye-2013-welcome-2014/</guid>
-      <description>Fireworks in Bologna  The year is near its end.
+      <description>Fireworks in Bologna The year is near its end.
 After I postponed it for a long time, in 2013 I finally started blogging, and would like to continue in the future. There are lots of technologies I would like to try, eg. nodejs.
 My free time in the next months will suffer a significant cut, and I could not be happier. In February, I will become father. Me and my wife decided to call our first daughter Chiara.</description>
     </item>
@@ -458,7 +471,7 @@ Why to use http headers Since RESTful paradigm is stateless we cannot manage aut
       <guid>https://brunoscopelliti.com/blog/building-a-restful-web-service-with-angularjs-and-php-more-power-with-resource/</guid>
       <description>This is a two parts post about how to make RESTful requests through an AngularJS web application.
 The index of this brief series of posts is quite simple.
-  Backend setup is the first post in the series. As the subtitle, its main focus is (at least this time) on the backend domain. It will tackle how to setup a RESTful web service. I used PHP for all the examples; however at least the basic concepts beyond a RESTful service are language agnostic.</description>
+Backend setup is the first post in the series. As the subtitle, its main focus is (at least this time) on the backend domain. It will tackle how to setup a RESTful web service. I used PHP for all the examples; however at least the basic concepts beyond a RESTful service are language agnostic.</description>
     </item>
     
     <item>
@@ -469,7 +482,7 @@ The index of this brief series of posts is quite simple.
       <guid>https://brunoscopelliti.com/blog/building-a-restful-service-with-angularjs-and-php-backend-setup/</guid>
       <description>This is a two parts post about how to make RESTful requests through an AngularJS web application.
 The index of this brief series of posts is quite simple.
-  Backend setup is the first post in the series. As the subtitle, its main focus is (at least this time) on the backend domain. It will tackle how to setup a RESTful web service. I used PHP for all the examples; however at least the basic concepts beyond a RESTful service are language agnostic.</description>
+Backend setup is the first post in the series. As the subtitle, its main focus is (at least this time) on the backend domain. It will tackle how to setup a RESTful web service. I used PHP for all the examples; however at least the basic concepts beyond a RESTful service are language agnostic.</description>
     </item>
     
     <item>
@@ -510,7 +523,7 @@ Authentication with Facebook When I started to work on this little experiment I 
       <guid>https://brunoscopelliti.com/blog/how-to-defer-route-definition-in-an-angularjs-web-app/</guid>
       <description>Recently, for a project built on AngularJS, I found myself in front of an unusual requirement: I needed to define dynamically the routes of the web application, on the basis of a response from the server.
 Server response For the sake of simplicity, I assume to have the following backend service, that when called, sends a JSON containing the data about the routes.
-$result = array(  &amp;#34;routes&amp;#34; =&amp;gt; array(  array(&amp;#34;name&amp;#34; =&amp;gt; &amp;#34;/home&amp;#34;,  &amp;#34;templateUrl&amp;#34; =&amp;gt; &amp;#34;partials/home.</description>
+$result = array( &amp;#34;routes&amp;#34; =&amp;gt; array( array(&amp;#34;name&amp;#34; =&amp;gt; &amp;#34;/home&amp;#34;, &amp;#34;templateUrl&amp;#34; =&amp;gt; &amp;#34;partials/home.</description>
     </item>
     
     <item>
@@ -531,7 +544,7 @@ One of the characteristics of this blog even before the restyle, was that, even 
       <pubDate>Tue, 28 May 2013 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/start-using-gruntjs/</guid>
-      <description>Last weekend I finally found few time to give a try to Grunt.  I am surprised by how easy is to get started, and I am curious to experiment the benefits which its usage can bring in a real world app.
+      <description>Last weekend I finally found few time to give a try to Grunt. I am surprised by how easy is to get started, and I am curious to experiment the benefits which its usage can bring in a real world app.
 After some really trivial tests, my first serious attempt to create something useful with Grunt has been to create an automatic process to minify and then concatenate different JavaScript files; this post will collect a few notes about what I learned while I was trying to set up this process.</description>
     </item>
     
@@ -554,7 +567,7 @@ I will talk about how to recognize, and maintain, the status of authentication o
       <description>I&amp;rsquo;m back writing about client side validation in an AngularJS application.
 Lately, I had to work with a form created dynamically on the basis of a JSON response, that I received from the server. In this case the approach is a bit different from the one I discussed in my first post about form validation with AngularJS.
 Consider this markup:
-&amp;lt;form name=&amp;#34;sf&amp;#34; ng-controller=&amp;#34;FormController&amp;#34; novalidate&amp;gt;  &amp;lt;div ng-repeat=&amp;#34;f in fields&amp;#34;&amp;gt;  &amp;lt;input name=&amp;#34;{{ &amp;#34;{{ f.</description>
+&amp;lt;form name=&amp;#34;sf&amp;#34; ng-controller=&amp;#34;FormController&amp;#34; novalidate&amp;gt; &amp;lt;div ng-repeat=&amp;#34;f in fields&amp;#34;&amp;gt; &amp;lt;input name=&amp;#34;{{ &amp;#34;{{ f.</description>
     </item>
     
     <item>
@@ -565,7 +578,8 @@ Consider this markup:
       <guid>https://brunoscopelliti.com/blog/internazionalization-i18n-with-angularjs/</guid>
       <description>These days I am trying the internationalization (and pluralization) capabilities of AngularJS.
 I just defined my personal approach to the internationalization of a web app based on AngularJS, and I would like to share it, to have some feedback about it. My approach is based on two main points:
-  The use of technologies of backend (such as PHP) to detect the most probably preferred language of the user.</description>
+The use of technologies of backend (such as PHP) to detect the most probably preferred language of the user.
+AngularJS filters, to format the data that has to be shown to the users.</description>
     </item>
     
     <item>
@@ -616,9 +630,9 @@ Custom builds allow to choose what features of jQuery are to be included in the 
       <pubDate>Tue, 02 Apr 2013 09:00:00 +0100</pubDate>
       
       <guid>https://brunoscopelliti.com/blog/angularjs-promise-or-dealing-with-asynchronous-requests-in-angularjs/</guid>
-      <description>Promise&amp;rsquo;s support is one of my favorite features of AngularJS.  Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.
-This post will show you a typical use case for the promise in an AngularJS app.  It could be simplified as follows:
-function stageController(scope, p) {  scope.revenues = [];   scope.$watch(&amp;#34;revenues&amp;#34;, function () {  p.</description>
+      <description>Promise&amp;rsquo;s support is one of my favorite features of AngularJS. Promises help a lot by handling asynchronous return of data, and allow to assign properties synchronously even when the return is asynchronous.
+This post will show you a typical use case for the promise in an AngularJS app. It could be simplified as follows:
+function stageController(scope, p) { scope.revenues = []; scope.$watch(&amp;#34;revenues&amp;#34;, function () { p.drawPlot(scope.revenues); }, true); p.getData(); } stageController.</description>
     </item>
     
     <item>
@@ -650,8 +664,8 @@ In this post I will show how to perform client side data validation with Angular
       
       <guid>https://brunoscopelliti.com/blog/run-a-directive-after-the-dom-has-finished-rendering/</guid>
       <description>You have a custom directive, repeatHelloWorld; it has the important task to log the message &amp;ldquo;Hello, world!&amp;rdquo; in the console, the number of times specified by the parameter accepted by the directive, and defined in the controller.
-&amp;lt;body ng-controller=&amp;#34;stageController&amp;#34;&amp;gt;  &amp;lt;div repeat-hello-world=&amp;#34;{{ &amp;#34;{{ repeat &amp;#34; }}}}&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; Controller and directive are defined as:
-// Controller function stageController($scope) {  $scope.repeat = 5; }  angular.module(&amp;#34;myApp&amp;#34;, [&amp;#34;myApp.directives&amp;#34;]);  // Directive angular.module(&amp;#34;myApp.directives&amp;#34;, [])  .</description>
+&amp;lt;body ng-controller=&amp;#34;stageController&amp;#34;&amp;gt; &amp;lt;div repeat-hello-world=&amp;#34;{{ &amp;#34;{{ repeat &amp;#34; }}}}&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; Controller and directive are defined as:
+// Controller function stageController($scope) { $scope.repeat = 5; } angular.module(&amp;#34;myApp&amp;#34;, [&amp;#34;myApp.directives&amp;#34;]); // Directive angular.module(&amp;#34;myApp.directives&amp;#34;, []) .directive(&amp;#34;repeatHelloWorld&amp;#34;, function () { return { link: function (scope, elem, attrs, ctrl) { var hello = function () { for (var i = 0; i &amp;lt; attrs.</description>
     </item>
     
     <item>
