@@ -8,7 +8,21 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 25 Feb 2023 07:00:00 +0100</lastBuildDate><atom:link href="https://brunoscopelliti.com/blog/search/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Notes on “Docker Mastery: ..”</title>
+      <title>Notes on “Docker for Note.js Projects …”</title>
+      <link>https://brunoscopelliti.com/blog/notes-docker-for-node/</link>
+      <pubDate>Sat, 25 Feb 2023 07:00:00 +0100</pubDate>
+      
+      <guid>https://brunoscopelliti.com/blog/notes-docker-for-node/</guid>
+      <description>Reference to the course: Docker for Note.js Projects from a Docker Captain
+I will update this post while continuing advance through the course. Last updated: 25 February 2023.
+Docker Compose basics Docker Compose is made of two things: the Compose CLI, and Compose file.
+Docker Compose CLI is mostly a substitute for Docker CLI. It is most useful in development environment.
+Docker Compose file is usually named docker-compose.yml:
+services: web: image: sample-01 build: .</description>
+    </item>
+    
+    <item>
+      <title>Notes on “Docker Mastery: …”</title>
       <link>https://brunoscopelliti.com/blog/notes-docker-mastery/</link>
       <pubDate>Sat, 25 Feb 2023 07:00:00 +0100</pubDate>
       

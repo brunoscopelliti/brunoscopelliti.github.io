@@ -119,7 +119,12 @@
     
       <div class="post-entry" data-js="post-entry" data-tags="memo,docker,">
         <span class="post-date">25 Feb</span>
-        <a href="/blog/notes-docker-mastery/">Notes on “Docker Mastery: ..”</a>
+        <a href="/blog/notes-docker-mastery/">Notes on “Docker Mastery: …”</a>
+      </div>
+    
+      <div class="post-entry" data-js="post-entry" data-tags="memo,docker,node.js,">
+        <span class="post-date">25 Feb</span>
+        <a href="/blog/notes-docker-for-node/">Notes on “Docker for Note.js Projects …”</a>
       </div>
     
     </div>
@@ -177,11 +182,16 @@
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2023 Bruno Scopelliti
+        <p class="colophon">2013 ~ <span data-js="year">2023</span> Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>
     </footer>
+    
+    <script>
+      (function(){var r=window.BS_blog,t=r.$1,e=t("[data-js='year']");e&&(a=new Date,e.textContent=a.getFullYear());var a;})();
+
+    </script>
 
     
     <script data-goatcounter="https://bscop.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

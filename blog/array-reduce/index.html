@@ -297,11 +297,16 @@ you still need to use <code>[].reduce</code> at the end of the chain.</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2023 Bruno Scopelliti
+        <p class="colophon">2013 ~ <span data-js="year">2023</span> Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>
     </footer>
+    
+    <script>
+      (function(){var r=window.BS_blog,t=r.$1,e=t("[data-js='year']");e&&(a=new Date,e.textContent=a.getFullYear());var a;})();
+
+    </script>
 
     
     <script data-goatcounter="https://bscop.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

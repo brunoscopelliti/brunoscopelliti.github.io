@@ -109,6 +109,15 @@
 <div class="post-list">
   <article class="post-entry">
   <h2>
+    <a href="/blog/the-art-of-controlling-complexity/" title="The art of controlling complexity">The art of controlling complexity</a>
+  </h2>
+  <div class="post-preview">Marijn Haverbeke, in Eloquent Javascript, gives a definition of  "programming" that resonates a lot with me.</div>
+  <div class="post-link">
+    <a href="/blog/the-art-of-controlling-complexity/" title="The art of controlling complexity">Read article</a>
+  </div>
+</article>
+<article class="post-entry">
+  <h2>
     <a href="/blog/status-update/" title="Status update">Status update</a>
   </h2>
   <div class="post-preview">I'm going to start writing on regular basis... stay tuned.</div>
@@ -141,15 +150,6 @@
   <div class="post-preview">In this post I share my approach I share my approach to have a "fake today" in unit tests.</div>
   <div class="post-link">
     <a href="/blog/fake-today-in-unit-tests/" title="Fake today in unit tests">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/first-look-at-app-development-in-angularjs-2/" title="First look at app development in AngularJS 2">First look at app development in AngularJS 2</a>
-  </h2>
-  <div class="post-preview">A couple of weeks ago David East gave a short introduction about application development in AngularJS; this is the video of the talk, and my notes from his talk.</div>
-  <div class="post-link">
-    <a href="/blog/first-look-at-app-development-in-angularjs-2/" title="First look at app development in AngularJS 2">Read article</a>
   </div>
 </article>
 
@@ -246,11 +246,16 @@
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2023 Bruno Scopelliti
+        <p class="colophon">2013 ~ <span data-js="year">2023</span> Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>
     </footer>
+    
+    <script>
+      (function(){var r=window.BS_blog,t=r.$1,e=t("[data-js='year']");e&&(a=new Date,e.textContent=a.getFullYear());var a;})();
+
+    </script>
 
     
     <script data-goatcounter="https://bscop.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

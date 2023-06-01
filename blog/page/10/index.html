@@ -109,6 +109,15 @@
 <div class="post-list">
   <article class="post-entry">
   <h2>
+    <a href="/blog/a-directive-to-manage-file-upload-in-an-angularjs-application/" title="A directive to manage file upload in an AngularJS application">A directive to manage file upload in an AngularJS application</a>
+  </h2>
+  <div class="post-preview">I've wrote a custom AngularJS directive to handle file upload.</div>
+  <div class="post-link">
+    <a href="/blog/a-directive-to-manage-file-upload-in-an-angularjs-application/" title="A directive to manage file upload in an AngularJS application">Read article</a>
+  </div>
+</article>
+<article class="post-entry">
+  <h2>
     <a href="/blog/facebook-authentication-in-your-angularjs-web-app/" title="Facebook authentication in your AngularJS web app">Facebook authentication in your AngularJS web app</a>
   </h2>
   <div class="post-preview">How to implement a portable authentication system based on Facebook into an AngularJS web application.</div>
@@ -141,15 +150,6 @@
   <div class="post-preview">Recently I started learning/using Grunt; I am surprised by how easy is to get started. In this post I share what I learned.</div>
   <div class="post-link">
     <a href="/blog/start-using-gruntjs/" title="Getting started with Grunt">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/deal-with-users-authentication-in-an-angularjs-web-app/" title="Deal with users authentication in an AngularJS web app">Deal with users authentication in an AngularJS web app</a>
-  </h2>
-  <div class="post-preview">How to recognize, and maintain the auth state of an user between different routes of an AngularJS application.</div>
-  <div class="post-link">
-    <a href="/blog/deal-with-users-authentication-in-an-angularjs-web-app/" title="Deal with users authentication in an AngularJS web app">Read article</a>
   </div>
 </article>
 
@@ -246,11 +246,16 @@
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2023 Bruno Scopelliti
+        <p class="colophon">2013 ~ <span data-js="year">2023</span> Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>
     </footer>
+    
+    <script>
+      (function(){var r=window.BS_blog,t=r.$1,e=t("[data-js='year']");e&&(a=new Date,e.textContent=a.getFullYear());var a;})();
+
+    </script>
 
     
     <script data-goatcounter="https://bscop.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

@@ -4,10 +4,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <meta charset="utf-8">
 
-    <title>Notes on “Docker Mastery: ..” | Bruno Scopelliti</title>
+    <title>Notes on “Docker Mastery: …” | Bruno Scopelliti</title>
 
     
-    <meta name="description" content="My notes on Udemy Course: &#39;Docker Mastery: with Kubernetes &#43;Swarm from a Docker Captain&#39;">
+    <meta name="description" content="My notes on Udemy Course: “Docker Mastery: with Kubernetes &#43;Swarm from a Docker Captain”">
     
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="/css/blog.dfea23f01caf35ef9f2e8f05d7ff5ebb1587aecd74c5041d0207692b29575374.css" integrity="sha256-3&#43;oj8ByvNe&#43;fLo8F1/9euxWHrs10xQQdAgdpKylXU3Q=">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@brunoscopelliti">
-<meta name="twitter:title" content="Notes on “Docker Mastery: ..”">
+<meta name="twitter:title" content="Notes on “Docker Mastery: …”">
 
 
 
-<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/notes-on-docker-mastery-...png">
+<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/notes-on-docker-mastery.png">
 <meta name="twitter:description" content="This post collects my notes while following “Docker Mastery: with Kubernetes &#43;Swarm from a Docker Captain” course, by Bret Fisher on Udemy.">
 
 
@@ -119,7 +119,7 @@
     <span>/</span>
     
   </div>
-  <h1>Notes on “Docker Mastery: ..”</h1>
+  <h1>Notes on “Docker Mastery: …”</h1>
   <div class="post-body"><p>Reference to the course: <a href="https://www.udemy.com/course/docker-mastery/">Docker Mastery: with Kubernetes +Swarm from a Docker Captain</a></p>
 <p>I will update this post while continuing advance through the course.<br/>
 Last updated: 25 February 2023.</p>
@@ -151,7 +151,8 @@ Last updated: 25 February 2023.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container logs &lt;container name&gt;
 </span></span></code></pre></div><h3 id="run-command-from-within-container">Run command from within container</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container <span style="color:#8be9fd;font-style:italic">exec</span> -it &lt;container name&gt; &lt;command&gt;
-</span></span></code></pre></div><h3 id="stop-running-container">Stop running container</h3>
+</span></span></code></pre></div><p>You can use <code>docker container run</code> if you need to startup the container.</p>
+<h3 id="stop-running-container">Stop running container</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container stop &lt;container id&gt;
 </span></span></code></pre></div><h3 id="delete-container">Delete container</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container rm &lt;container id&gt; -f
@@ -205,7 +206,7 @@ Docker has two solutions to persist data, known as <strong>data volumes</strong>
 <h3 id="view-existing-volumes">View existing volumes</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker volume ls
 </span></span></code></pre></div><h3 id="bind-mounts">Bind Mounts</h3>
-<p>We can still user <code>-v</code> to create Bind Mounts, altough <code>--mounts</code> option exists (<a href="https://docs.docker.com/storage/bind-mounts/#choose-the--v-or---mount-flag">see differences</a>).</p>
+<p>We can still use <code>-v</code> to create Bind Mounts, altough <code>--mounts</code> option exists (<a href="https://docs.docker.com/storage/bind-mounts/#choose-the--v-or---mount-flag">see differences</a>).</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker container run -d --name ngnix -p 80:80 -v <span style="color:#ff79c6">$(</span><span style="color:#8be9fd;font-style:italic">pwd</span><span style="color:#ff79c6">)</span>:/usr/share/nginx/html nginx
 </span></span></code></pre></div><p>We can use Bind Mounts to quickly edit code running in a container.</p>
 <h2 id="docker-compose">Docker Compose</h2>
@@ -246,8 +247,8 @@ Docker has two solutions to persist data, known as <strong>data volumes</strong>
     <div class="post-share">
       <span class="post-share-line"></span>
       <span class="post-share-text">Share article</span>
-      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fnotes-docker-mastery%2f&text=Notes%20on%20%e2%80%9cDocker%20Mastery%3a%20..%e2%80%9d&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
-      <a class="post-share-link" href="https://www.reddit.com/submit?title=Notes%20on%20%e2%80%9cDocker%20Mastery%3a%20..%e2%80%9d&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fnotes-docker-mastery%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
+      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fnotes-docker-mastery%2f&text=Notes%20on%20%e2%80%9cDocker%20Mastery%3a%20%e2%80%a6%e2%80%9d&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
+      <a class="post-share-link" href="https://www.reddit.com/submit?title=Notes%20on%20%e2%80%9cDocker%20Mastery%3a%20%e2%80%a6%e2%80%9d&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fnotes-docker-mastery%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
     </div>
     <div class="post-author">
       <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>
@@ -320,11 +321,16 @@ Docker has two solutions to persist data, known as <strong>data volumes</strong>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2023 Bruno Scopelliti
+        <p class="colophon">2013 ~ <span data-js="year">2023</span> Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>
     </footer>
+    
+    <script>
+      (function(){var r=window.BS_blog,t=r.$1,e=t("[data-js='year']");e&&(a=new Date,e.textContent=a.getFullYear());var a;})();
+
+    </script>
 
     
     <script data-goatcounter="https://bscop.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

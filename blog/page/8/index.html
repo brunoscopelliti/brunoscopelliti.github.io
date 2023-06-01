@@ -109,6 +109,15 @@
 <div class="post-list">
   <article class="post-entry">
   <h2>
+    <a href="/blog/first-look-at-app-development-in-angularjs-2/" title="First look at app development in AngularJS 2">First look at app development in AngularJS 2</a>
+  </h2>
+  <div class="post-preview">A couple of weeks ago David East gave a short introduction about application development in AngularJS; this is the video of the talk, and my notes from his talk.</div>
+  <div class="post-link">
+    <a href="/blog/first-look-at-app-development-in-angularjs-2/" title="First look at app development in AngularJS 2">Read article</a>
+  </div>
+</article>
+<article class="post-entry">
+  <h2>
     <a href="/blog/goodbye-wordpress/" title="Goodbye WordPress 👋">Goodbye WordPress 👋</a>
   </h2>
   <div class="post-preview">WordPress powered my blog for more than two years, now. Today I am switching to Jekyll... in this post the rationale beyond my choice.</div>
@@ -141,15 +150,6 @@
   <div class="post-preview">AngularJS allows to intercept the response coming from the server.</div>
   <div class="post-link">
     <a href="/blog/xhr-interceptor-in-an-angularjs-web-app/" title="XHR interceptor in an AngularJS web app">Read article</a>
-  </div>
-</article>
-<article class="post-entry">
-  <h2>
-    <a href="/blog/show-route-only-after-all-promises-are-resolved/" title="Show route only after all promises are resolved">Show route only after all promises are resolved</a>
-  </h2>
-  <div class="post-preview">This post is about a trick I learned this summer while reading the book AngularJS, by Brad Green.</div>
-  <div class="post-link">
-    <a href="/blog/show-route-only-after-all-promises-are-resolved/" title="Show route only after all promises are resolved">Read article</a>
   </div>
 </article>
 
@@ -246,11 +246,16 @@
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2023 Bruno Scopelliti
+        <p class="colophon">2013 ~ <span data-js="year">2023</span> Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>
     </footer>
+    
+    <script>
+      (function(){var r=window.BS_blog,t=r.$1,e=t("[data-js='year']");e&&(a=new Date,e.textContent=a.getFullYear());var a;})();
+
+    </script>
 
     
     <script data-goatcounter="https://bscop.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

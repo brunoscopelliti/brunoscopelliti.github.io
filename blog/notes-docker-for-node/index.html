@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <meta charset="utf-8">
+
+    <title>Notes on “Docker for Note.js Projects …” | Bruno Scopelliti</title>
+
+    
+    <meta name="description" content="My notes on Udemy Course: “Docker for Note.js Projects from a Docker Captain”">
+    
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <link rel="stylesheet" href="/css/blog.dfea23f01caf35ef9f2e8f05d7ff5ebb1587aecd74c5041d0207692b29575374.css" integrity="sha256-3&#43;oj8ByvNe&#43;fLo8F1/9euxWHrs10xQQdAgdpKylXU3Q=">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@brunoscopelliti">
+<meta name="twitter:title" content="Notes on “Docker for Note.js Projects …”">
+
+
+
+<meta name="twitter:image" content="https://brunoscopelliti.com/images/post-cards/notes-on-docker-for-note.js-projects.png">
+<meta name="twitter:description" content="This post collects my notes while following “Docker for Note.js Projects from a Docker Captain” course, by Bret Fisher on Udemy.">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    
+    <script>
+      (function(){function s(e,n,r){return e===r?null:e.matches(n)?e:e.parentNode?s(e.parentNode,n,r):null}function c(e,n){return function(u){var a=s(u.target,n,this);a!=null&&e.call(a,u)}}function i(e,n){return function(){n(),e.apply(this,[].slice.call(arguments))}}function o(e,n,r,u){u=u||{};var a=u.useCapture||!1;function t(){n.removeEventListener(e,l,a)}var l=u.once?i(r,t):r;return n.addEventListener(e,l,a),t}function d(e,n){return(n||document.body).querySelector(e)}var f=[].slice;function p(e,n){return f.call((n||document.body).querySelectorAll(e))}function h(e,n,r,u,a){var t=new XMLHttpRequest;t.open(e,n),t.setRequestHeader("Accept","application/json"),t.onreadystatechange=function(){t.readyState===XMLHttpRequest.DONE&&(t.status===200?u(t.response,t.responseType):a(t.status,t.response,t.responseType))},t.send(r)}window.BS_blog={ajax:h,delegate:c,$1:d,$:p,listen:o};})();
+
+    </script>
+
+    <meta name="theme-color" content="#192039">
+  </head>
+  <body class="">
+    <a id="skip-nav" href="#main">Go to content</a>
+
+    <header class="site-header">
+      <div class="site-width-wrapper">
+        <div class="site-nav">
+            <a class="avatar-home-link" href="/">
+              <span class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></span>
+              <span>Bruno Scopelliti</span>
+            </a><button class="menu-btn" data-js="hamburger" aria-label="Open menu">
+  <i class="hamburger" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </i>
+</button>
+<nav class="menu">
+  <ul class="menu-links">
+    
+    
+      <li class="">
+        <a href="/">Home</a>
+      </li>
+    
+      <li class="">
+        <a href="/blog/">Blog</a>
+      </li>
+    
+      <li class="">
+        <a href="/about/">About</a>
+      </li>
+    
+    <li class="search">
+      <a href="/blog/search" aria-label="Search">
+        <svg aria-hidden="true" height="18" viewBox="0 0 48 48" width="18" xmlns="http://www.w3.org/2000/svg">
+          <path fill="white" d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"/>
+          <path d="M0 0h48v48H0z" fill="none"/>
+        </svg>
+        <span>Search</span>
+      </a>
+    </li>
+    <li class="socials"><div class="social-links">
+  <a href="https://twitter.com/brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg height="24px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path fill="#fff" d="M346.8,80c22.3,0,43.8,9.3,59,25.6l6.1,6.5l8.7-1.7c4.5-0.9,8.9-1.9,13.3-3.1c-1,1.4-5.7,6.1-11,10.8  c-4.5,4-17.8,16.5-17.8,16.5s13,4.1,21.1,5s17.4-0.6,18.9-0.8c-2.8,2.3-7.8,5.8-10.8,7.9l-7,5.1l0.4,8.6c0.2,3.8,0.3,7.8,0.3,11.8  c0,30.2-5.9,61.8-17,91.5c-11.7,31.2-28.5,59.4-50,83.8c-23,26.1-50.2,46.5-81.1,60.8c-33.8,15.7-71.3,23.6-111.5,23.6  c-28.9,0-57.4-4.8-84.5-14.2c9.9-1.9,19.6-4.6,29.1-7.9c21.7-7.6,41.9-18.7,60.1-33l35.3-27.7l-44.9-0.8  c-26.1-0.5-49.7-13.4-64.3-33.9c7.3-0.5,14.5-1.8,21.5-3.7l60.7-20.2l-61.7-10.9c-29.6-5.9-52.8-27.9-61.3-55.8  c7.8,2,15.4,2.8,23.9,3.3c0,0,31.8,1.4,55.8-0.1c-13-6.2-46.4-29.2-46.4-29.2c-22.5-15.1-36-40.2-36-67.4c0-6.4,0.8-12.8,2.2-19  c21.9,22.4,47,41.1,75.1,55.5c37,19.1,76.9,29.8,118.6,31.9l21.2,1.1l-4.8-20.7c-1.4-5.9-2.1-12.1-2.1-18.5  C265.9,116.3,302.2,80,346.8,80 M346.8,64c-53.5,0-96.8,43.4-96.8,96.9c0,7.6,0.8,15,2.5,22.1C172,179,100.6,140.4,52.9,81.7  c-8.3,14.3-13.1,31-13.1,48.7c0,33.6,17.1,63.3,43.1,80.7C67,210.7,52,206.3,39,199c0,0.4,0,0.8,0,1.2c0,47,33.4,86.1,77.7,95  c-8.1,2.2-16.7,3.4-25.5,3.4c-6.2,0-12.3-0.6-18.2-1.8c12.3,38.5,48.1,66.5,90.5,67.3c-33.1,26-74.9,41.5-120.3,41.5  c-7.8,0-15.5-0.5-23.1-1.4C62.9,432,113.8,448,168.4,448C346.6,448,444,300.3,444,172.2c0-4.2-0.1-8.4-0.3-12.5  c18.9-13.7,35.3-30.7,48.3-50.2c-17.4,7.7-36,12.9-55.6,15.3c20-12,35.4-31,42.6-53.6c-18.7,11.1-39.4,19.2-61.5,23.5  C399.8,75.8,374.6,64,346.8,64L346.8,64z"/>
+</svg></a>
+  <a href="https://github.com/brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg height="24px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+  <path fill="#fff" d="M256,48.3c28,0,55.2,5.6,80.8,16.7c24.8,10.7,47,26.1,66.1,45.7c19.1,19.6,34.2,42.5,44.7,67.9  c10.9,26.4,16.4,54.4,16.4,83.3c0,45.8-13.9,89.5-40.2,126.3c-12.6,17.7-27.8,33.2-45,46.2c-15.8,11.9-33,21.3-51.2,28.2  c0-1.9,0-4.1,0-6.5c0.1-11.9,0.2-29.8,0.2-50.4c0-12.4-2-22.5-4.9-30.5c37.2-8.3,92-33.7,92-125.4c0-24.6-7.1-46.5-21.2-65.1  c3.1-12.9,5.5-35.6-5.1-63l-2.7-7.1l-7.2-2.4c-1.5-0.5-4.8-1.3-10-1.3c-11.5,0-30.9,3.9-59.5,22.6c-17-4.2-34.8-6.6-53.1-6.6H256  h-0.1c-18.3,0-36.2,2.4-53.1,6.6c-28.6-18.7-48-22.7-59.5-22.7c-5.2,0-8.5,0.9-10,1.4l-7.2,2.4l-2.7,7.1c-10.6,27.5-8.2,50.2-5.1,63  c-14.1,18.7-21.2,40.6-21.2,65.1c0,49.6,16,79.9,36.6,98.5c-8.1-6.6-18.6-12.1-31.2-13l-0.5,0l-0.5,0l-0.3,0  c-13.1,0-22.3,5.4-25.2,14.7c-4.7,14.8,9.8,25,14.6,28.4l0.5,0.6l1.5,0.6c1.6,1,10.1,7,16.9,24.5c2,6.2,6.3,14.5,13.6,22.2  c-13.1-11.2-24.8-24-34.9-38.1C61.9,351.5,48,307.8,48,262c0-28.9,5.5-56.9,16.4-83.3c10.5-25.5,25.5-48.3,44.7-67.9  c19.1-19.6,41.4-35,66.1-45.7C200.8,54,228,48.3,256,48.3 M136.7,351c16.8,14.1,36.3,20.9,52.3,24.5c-0.8,2.2-1.5,4.5-2.1,6.9  c-3.4,1-7.5,1.8-11.7,1.8c-10.9,0-19-5.4-25.6-16.9C147.2,362.7,142.8,356.6,136.7,351 M140.4,439.6c9.8,5.3,22.1,8.8,37.2,8.8  c2.2,0,4.4-0.1,6.7-0.2c0,2.8,0,5.5,0.1,7.9c0,2.4,0,4.6,0.1,6.5C168.9,456.8,154.2,449.1,140.4,439.6 M256,32.3  C132.3,32.3,32,135.2,32,262c0,101.5,64.2,187.5,153.2,217.9c1.4,0.3,2.6,0.4,3.8,0.4c8.3,0,11.5-6.1,11.5-11.4  c0-5.5-0.2-19.9-0.3-39.1c-8.4,1.9-15.9,2.7-22.6,2.7c-43.1,0-52.9-33.5-52.9-33.5c-10.2-26.5-24.9-33.8-24.9-33.8  c-19.5-13.7-0.1-14.2,1.4-14.2c0.1,0,0.1,0,0.1,0c22.5,2,34.3,23.9,34.3,23.9c11.2,19.6,26.2,25.2,39.6,25.2c10.5,0,20-3.4,25.6-6  c2-14.8,7.8-24.9,14.2-30.7c-49.7-5.8-102-25.5-102-113.5c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,1.6-0.5,5-0.5  c8.1,0,26.4,3.1,56.6,24.1c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7c30.2-21,48.5-24.1,56.6-24.1c3.4,0,5,0.5,5,0.5  c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3c8,7.1,15.2,21.1,15.2,42.5  c0,30.7-0.3,55.5-0.3,63c0,5.4,3.1,11.5,11.4,11.5c1.2,0,2.6-0.1,4-0.4C415.9,449.5,480,363.4,480,262  C480,135.2,379.7,32.3,256,32.3L256,32.3z"/>
+</svg></a>
+  <a href="/blog/index.xml" aria-label="RSS"><svg height="24px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g fill="#fff">
+    <path d="M119.9,336.1c-30.8,0-55.9,25.1-55.9,55.8c0,30.8,25.1,55.6,55.9,55.6c30.9,0,55.9-24.9,55.9-55.6   C175.8,361.2,150.8,336.1,119.9,336.1z M119.9,431.5c-22,0-39.9-17.8-39.9-39.6c0-21.9,17.9-39.8,39.9-39.8   c22,0,39.9,17.9,39.9,39.8C159.8,413.7,141.9,431.5,119.9,431.5z"/>
+    <path d="M64,192v79.9c48,0,94.1,14.2,128,48.1c33.9,33.9,48,79.9,48,128h80C320,308.1,204,192,64,192z M303.5,432h-48   c-3.1-49.7-21-92.1-52.2-123.3C172.1,277.4,130,259.5,80,256.4v-47.8c26,1.8,52.1,8,76.7,18.5c28.5,12.2,54.2,29.6,76.4,51.8   c22.2,22.2,39.6,47.9,51.8,76.4C295.5,379.9,301.7,405.6,303.5,432z"/>
+    <path d="M64,64v79.9c171,0,303.9,133,303.9,304.1H448C448,236.3,276,64,64,64z M291.4,220.5C235.4,164.4,161,132,80,128.2V80.3   C270,88.5,423.5,241.8,431.7,432h-48.2C379.7,351.1,347.3,276.5,291.4,220.5z"/>
+  </g>
+</svg></a>
+</div></li>
+  </ul>
+</nav>
+
+<script>
+  (function(){var u=window.BS_blog,l=u.$1,a=u.listen,t={open:!1};function o(){return l("[data-js='hamburger']")}function s(n){n.which===27&&(e&&(e(),e=null),i())}var e;function r(){t.open?e=a("keyup",document,s):(e(),e=null)}function c(){var n=o();document.body.classList.add("menu-open"),n.setAttribute("aria-label","Close menu"),t.open=!0}function i(){var n=o();document.body.classList.remove("menu-open"),n.setAttribute("aria-label","Open menu"),t.open=!1}function f(){t.open?i():c(),r()}a("click",o(),f);})();
+
+</script></div>
+        <div class="page-highlights">
+        </div>
+      </div>
+    </header>
+
+    <div class="page-main-content">
+      <main id="main">
+<article class="post" data-js="post">
+  <div class="post-breadcrumbs">
+    <a href="/blog" aria-label="View all articles">Blog</a>
+    <span>/</span>
+    
+    <a href="/blog/search/memo/">Memo</a>
+    <span>/</span>
+    
+  </div>
+  <h1>Notes on “Docker for Note.js Projects …”</h1>
+  <div class="post-body"><p>Reference to the course: <a href="https://www.udemy.com/course/docker-mastery-for-nodejs/">Docker for Note.js Projects from a Docker Captain</a></p>
+<p>I will update this post while continuing advance through the course.<br/>
+Last updated: 25 February 2023.</p>
+<h2 id="docker-compose-basics">Docker Compose basics</h2>
+<p>Docker Compose is made of two things: the <strong>Compose CLI</strong>, and <strong>Compose file</strong>.</p>
+<p><a href="https://www.udemy.com/course/docker-mastery-for-nodejs/learn/lecture/12624156">Docker Compose CLI</a> is mostly a substitute for Docker CLI.<br/>
+It is most useful in development environment.</p>
+<p>Docker Compose file is usually named <em>docker-compose.yml</em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>    web:
+</span></span><span style="display:flex;"><span>        image: sample-01
+</span></span><span style="display:flex;"><span>        build: .
+</span></span><span style="display:flex;"><span>        ports:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f1fa8c">&#34;3000:3000&#34;</span>
+</span></span></code></pre></div><p>A service in this context is a container based on a single image.</p>
+<h3 id="tips">Tips</h3>
+<p>Get inside the container, and inspect things from inside it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose <span style="color:#8be9fd;font-style:italic">exec</span> &lt;service name&gt; sh
+</span></span></code></pre></div><h2 id="node-dockerfile-best-practice-basics">Node Dockerfile best practice basics</h2>
+<ul>
+<li>
+<p>Prefer <code>COPY</code>, over <code>ADD</code>.
+<code>ADD</code> is much more powerfull, but to put something inside our image <code>COPY</code> is usually enough.</p>
+</li>
+<li>
+<p><code>npm config list &amp;&amp; npm ci</code>
+Print debug info about node/npm environment before installing node dependencies.</p>
+</li>
+<li>
+<p><code>npm ci &amp;&amp; npm cache clean --force</code>
+Always clear cache after installing dependencies, in order to reduce image size.</p>
+</li>
+<li>
+<p><code>CMD node</code>, not <code>npm</code>.</p>
+</li>
+<li>
+<p>Use <code>WORKDIR</code>, not <code>RUN mkdir</code>.</p>
+</li>
+<li>
+<p>Add node_modules/.bin to PATH</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span><span style="color:#6272a4"># Dockerfile</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">ENV</span> <span style="color:#8be9fd;font-style:italic">PATH</span><span style="color:#ff79c6">=</span>/path/to/node_modules/.bin:<span style="color:#8be9fd;font-style:italic">$PATH</span>
+</span></span></code></pre></div><h3 id="base-images">Base Images</h3>
+<p>Alpine is small, and security focused.
+Debian/Ubuntu are small now too (~100MB space savings isn&rsquo;t significant).</p>
+<h3 id="non-root-user">Non-root user</h3>
+<p>Official node image comes already with a predefined <em>node</em> user.
+Change user from root to node:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span><span style="color:#ff79c6">USER</span><span style="color:#f1fa8c"> node</span>
+</span></span></code></pre></div><h2 id="multi-stage-dockerfile">Multi-stage Dockerfile</h2>
+<p>It solves one, major complexity as your complexity grows in your Dockerfiles.
+That is, how do we take a single Dockerfile, with a single FROM, and single CMD. How do we use that in all the different places.</p>
+<p><a href="https://www.udemy.com/course/docker-mastery-for-nodejs/learn/lecture/13325066">Lecture reference</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span><span style="color:#ff79c6">FROM</span><span style="color:#f1fa8c"> node:10-slim as prod</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">ENV</span> <span style="color:#8be9fd;font-style:italic">NODE_ENV</span><span style="color:#ff79c6">=</span>production
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">WORKDIR</span><span style="color:#f1fa8c"> /app</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">COPY</span> package*.json ./
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">RUN</span> npm install --only<span style="color:#ff79c6">=</span>production <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    <span style="color:#ff79c6">&amp;&amp;</span> npm cache clean --force
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">COPY</span> . .
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">CMD</span> [<span style="color:#f1fa8c">&#34;node&#34;</span>, <span style="color:#f1fa8c">&#34;./bin/www&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">FROM</span><span style="color:#f1fa8c"> prod as dev</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">ENV</span> <span style="color:#8be9fd;font-style:italic">NODE_ENV</span><span style="color:#ff79c6">=</span>development
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">RUN</span> npm install --only<span style="color:#ff79c6">=</span>development
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">CMD</span> [<span style="color:#f1fa8c">&#34;node_modules/nodemon/bin/nodemon.js&#34;</span>,  <span style="color:#f1fa8c">&#34;./bin/www&#34;</span>, <span style="color:#f1fa8c">&#34;--inspect=0.0.0.0:9229&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">FROM</span><span style="color:#f1fa8c"> dev as test</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">ENV</span> <span style="color:#8be9fd;font-style:italic">NODE_ENV</span><span style="color:#ff79c6">=</span>development
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">CMD</span> [<span style="color:#f1fa8c">&#34;npm&#34;</span>, <span style="color:#f1fa8c">&#34;test&#34;</span>]
+</span></span></code></pre></div><p>Note: this example uses <code>npm install</code>, but it would be better to use <code>npm ci</code> (<a href="https://docs.npmjs.com/cli/v9/commands/npm-ci">ref</a>) that strictly respects the dependencies version listed in the lock file.
+<code>npm ci</code> uses the <code>NODE_ENV</code> variable to determine whether it should install dev dependencies.</p>
+<p>In <code>docker-compose.yml</code>, use <code>target</code> to target a specific stage; eg.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  my-service:
+</span></span><span style="display:flex;"><span>    build:
+</span></span><span style="display:flex;"><span>      context: .
+</span></span><span style="display:flex;"><span>      target: dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span></code></pre></div><p>A more complex example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span><span style="color:#6272a4">## Stage 1 (production base)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># This gets our prod dependencies installed and out of the way</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">FROM</span><span style="color:#f1fa8c"> node:10-alpine as base</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">EXPOSE</span><span style="color:#f1fa8c"> 3000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">ENV</span> <span style="color:#8be9fd;font-style:italic">NODE_ENV</span><span style="color:#ff79c6">=</span>production
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">WORKDIR</span><span style="color:#f1fa8c"> /opt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">COPY</span> package*.json ./
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># we use npm ci here so only the package-lock.json file is used</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">RUN</span> npm config list <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    <span style="color:#ff79c6">&amp;&amp;</span> npm ci <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    <span style="color:#ff79c6">&amp;&amp;</span> npm cache clean --force
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">## Stage 2 (development)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># we don&#39;t COPY in this stage because for dev you&#39;ll bind-mount anyway</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># this saves time when building locally for dev via docker-compose</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">FROM</span><span style="color:#f1fa8c"> base as dev</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">ENV</span> <span style="color:#8be9fd;font-style:italic">NODE_ENV</span><span style="color:#ff79c6">=</span>development
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">ENV</span> <span style="color:#8be9fd;font-style:italic">PATH</span><span style="color:#ff79c6">=</span>/opt/node_modules/.bin:<span style="color:#8be9fd;font-style:italic">$PATH</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">WORKDIR</span><span style="color:#f1fa8c"> /opt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">RUN</span> npm install --only<span style="color:#ff79c6">=</span>development
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">WORKDIR</span><span style="color:#f1fa8c"> /opt/app</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">CMD</span> [<span style="color:#f1fa8c">&#34;nodemon&#34;</span>, <span style="color:#f1fa8c">&#34;./bin/www&#34;</span>, <span style="color:#f1fa8c">&#34;--inspect=0.0.0.0:9229&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">## Stage 3 (copy in source)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># This gets our source code into builder for use in next two stages</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># It gets its own stage so we don&#39;t have to copy twice</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># this stage starts from the first one and skips the last two</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">FROM</span><span style="color:#f1fa8c"> base as source</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">WORKDIR</span><span style="color:#f1fa8c"> /opt/app</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">COPY</span> . .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">## Stage 4 (testing)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># use this in automated CI</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># it has prod and dev npm dependencies</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># In 18.09 or older builder, this will always run</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># In BuildKit, this will be skipped by default</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">FROM</span><span style="color:#f1fa8c"> source as test</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">ENV</span> <span style="color:#8be9fd;font-style:italic">NODE_ENV</span><span style="color:#ff79c6">=</span>development
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">ENV</span> <span style="color:#8be9fd;font-style:italic">PATH</span><span style="color:#ff79c6">=</span>/opt/node_modules/.bin:<span style="color:#8be9fd;font-style:italic">$PATH</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># this copies all dependencies (prod+dev)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">COPY</span> --from<span style="color:#ff79c6">=</span>dev /opt/node_modules /opt/node_modules
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># run linters as part of build</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># be sure they are installed with devDependencies</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">RUN</span> eslint .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># run unit tests as part of build</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">RUN</span> npm test
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># run integration testing with docker-compose later</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">CMD</span> [<span style="color:#f1fa8c">&#34;npm&#34;</span>, <span style="color:#f1fa8c">&#34;run&#34;</span>, <span style="color:#f1fa8c">&#34;int-test&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">## Stage 5 (default, production)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># this will run by default if you don&#39;t include a target</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># it has prod-only dependencies</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># In BuildKit, this is skipped for dev and test stages</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">FROM</span><span style="color:#f1fa8c"> source as prod</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">CMD</span> [<span style="color:#f1fa8c">&#34;node&#34;</span>, <span style="color:#f1fa8c">&#34;./bin/www&#34;</span>]
+</span></span></code></pre></div><h2 id="the-twelve-factor-app">The Twelve-Factor App</h2>
+<p><a href="https://12factor.net/">Reference</a>.</p>
+<h2 id="dockerignore">.dockerignore</h2>
+<p>Prevent bloat and unneeded files in the image.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>.DS_Store
+</span></span><span style="display:flex;"><span>.git/
+</span></span><span style="display:flex;"><span>node_modules/
+</span></span><span style="display:flex;"><span>npm-debug
+</span></span><span style="display:flex;"><span>docker-compose*.yml
+</span></span></code></pre></div><h2 id="docker-compose">Docker Compose</h2>
+<h3 id="bind-mounting-code">Bind-Mounting Code</h3>
+<ul>
+<li>Don&rsquo;t use host file paths</li>
+<li>Don&rsquo;t bind mount databases</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span><span style="color:#6272a4"># same as</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># docker container run -p 80:4000 -v $(pwd):/site bretfisher/jekyll-serve</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  jekyll:
+</span></span><span style="display:flex;"><span>    image: bretfisher/jekyll-serve
+</span></span><span style="display:flex;"><span>  volumes:
+</span></span><span style="display:flex;"><span>    - .:/site
+</span></span><span style="display:flex;"><span>  ports:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f1fa8c">&#34;80:4000&#34;</span>
+</span></span></code></pre></div><p>Run with: <code>docker compose up</code>.</p>
+<h3 id="node-modules-in-bind-mounts">Node Modules in Bind-Mounts</h3>
+<p>When we bind mount our source in Docker we end up with node_modules from host inside the container. This is not desiderable, especially on MacOS/Windows cause it&rsquo;s a different architecture than Linux.</p>
+<p>There are two ways to avoid this:</p>
+<h4 id="solution-1">Solution 1</h4>
+<p>Never use <code>npm i</code> on host, run <code>npm i</code> in compose.</p>
+<p>Then when there&rsquo;s the bind mount to your host, it will then put those Node modules on the host OS.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6272a4"># Run install command within the container</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># &#39;express&#39; is the service name from the compose file</span>
+</span></span><span style="display:flex;"><span>docker compose run express npm install
+</span></span></code></pre></div><p>This means that you can&rsquo;t do Node development natively on your host anymore because those Node modules are designed for Linux.</p>
+<h4 id="solution-2">Solution 2</h4>
+<p>Move node_modules in image, hide node_modules from host.</p>
+<ul>
+<li>Dockerfile:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span><span style="color:#ff79c6">FROM</span><span style="color:#f1fa8c"> node:10.15-slim</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">ENV</span> <span style="color:#8be9fd;font-style:italic">NODE_ENV</span><span style="color:#ff79c6">=</span>production
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">WORKDIR</span><span style="color:#f1fa8c"> /node</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">COPY</span> package.json package-lock*.json ./
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">RUN</span> npm install <span style="color:#ff79c6">&amp;&amp;</span> npm cache clean --force
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">WORKDIR</span><span style="color:#f1fa8c"> /node/app</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">COPY</span> . .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">CMD</span> [<span style="color:#f1fa8c">&#34;node&#34;</span>, <span style="color:#f1fa8c">&#34;./bin/www&#34;</span>]
+</span></span></code></pre></div><p>node_modules will be installed in <code>/node</code> folder, the source will be in <code>/node/app</code></p>
+<ul>
+<li>docker-compose.yml</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>version: <span style="color:#f1fa8c">&#39;2.4&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  express:
+</span></span><span style="display:flex;"><span>    build: .
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      - 3000:3000
+</span></span><span style="display:flex;"><span>    volumes:
+</span></span><span style="display:flex;"><span>      - .:/node/app
+</span></span><span style="display:flex;"><span>      - /node/app/node_modules <span style="color:#6272a4"># make the node_modules directory empty</span>
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      - <span style="color:#8be9fd;font-style:italic">DEBUG</span><span style="color:#ff79c6">=</span>sample-express:*
+</span></span></code></pre></div><h3 id="run-various-tools-inside-the-container">Run various tools inside the container</h3>
+<ul>
+<li>run</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6272a4"># Start a new container and run command/shell</span>
+</span></span><span style="display:flex;"><span>docker compose run &lt;service&gt; bash
+</span></span><span style="display:flex;"><span>docker compose run &lt;service&gt; npm install
+</span></span></code></pre></div><ul>
+<li>exec</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6272a4"># Run additional command/shell in a currently running container</span>
+</span></span><span style="display:flex;"><span>docker compose <span style="color:#8be9fd;font-style:italic">exec</span> &lt;service&gt; bash
+</span></span><span style="display:flex;"><span>docker compose <span style="color:#8be9fd;font-style:italic">exec</span> &lt;service&gt; npm install
+</span></span></code></pre></div><h3 id="node-auto-restarts">Node Auto Restarts</h3>
+<ul>
+<li>Override startup command from docker-compose.yml</li>
+<li>Use <a href="https://www.npmjs.com/package/nodemon">nodemon</a></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>version: <span style="color:#f1fa8c">&#39;2.4&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  express:
+</span></span><span style="display:flex;"><span>    build: .
+</span></span><span style="display:flex;"><span>    command: /app/node_modules/.bin/nodemon ./bin/www
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      - 3000:3000
+</span></span><span style="display:flex;"><span>    volumes:
+</span></span><span style="display:flex;"><span>      - .:/node/app
+</span></span><span style="display:flex;"><span>      - /node/app/node_modules <span style="color:#6272a4"># make the node_modules directory empty</span>
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      - <span style="color:#8be9fd;font-style:italic">DEBUG</span><span style="color:#ff79c6">=</span>sample-express:*
+</span></span><span style="display:flex;"><span>      - <span style="color:#8be9fd;font-style:italic">NODE_ENV</span><span style="color:#ff79c6">=</span>development
+</span></span></code></pre></div><h3 id="startup-order-and-dependencies">Startup Order and Dependencies</h3>
+<p>Multi-container apps need:</p>
+<ul>
+<li>Dependency awareness, <code>depends_on</code></li>
+<li>Name resolution (DNS)</li>
+<li>Connection failure handling, <code>restart: on-failure</code></li>
+</ul>
+<p><code>depends_on</code> allow to have an healthcheck.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>version: <span style="color:#f1fa8c">&#39;2.4&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  frontend:
+</span></span><span style="display:flex;"><span>    image: nginx
+</span></span><span style="display:flex;"><span>    depends_on:
+</span></span><span style="display:flex;"><span>      api:
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># this requires a compose file version =&gt; 2.3 and &lt; 3.0,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># and to define a healthcheck test for the `api` service</span>
+</span></span><span style="display:flex;"><span>        condition: service_healthy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  api:
+</span></span><span style="display:flex;"><span>    image: node:alpine
+</span></span><span style="display:flex;"><span>    healthcheck:
+</span></span><span style="display:flex;"><span>      test: curl -f http://127.0.0.1
+</span></span></code></pre></div></div>
+  <div class="post-footer">
+    <div class="post-date">February 25, 2023</div>
+    <div class="post-links">
+      <a href="https://twitter.com/search?q=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fnotes-docker-for-node%2f" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a>
+      <span class="post-links-spacer" aria-hidden="true">&bullet;</span>
+      <a href="https://github.com/brunoscopelliti/brunoscopelliti.com/edit/master/www/content/blog/notes-docker-for-node.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a>
+    </div>
+    <div class="post-share">
+      <span class="post-share-line"></span>
+      <span class="post-share-text">Share article</span>
+      <a class="post-share-link" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fnotes-docker-for-node%2f&text=Notes%20on%20%e2%80%9cDocker%20for%20Note.js%20Projects%20%e2%80%a6%e2%80%9d&via=brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Share article on Twitter">Twitter</a>
+      <a class="post-share-link" href="https://www.reddit.com/submit?title=Notes%20on%20%e2%80%9cDocker%20for%20Note.js%20Projects%20%e2%80%a6%e2%80%9d&url=https%3a%2f%2fbrunoscopelliti.com%2fblog%2fnotes-docker-for-node%2f" target="_blank" rel="noopener noreferrer" aria-label="Share article on Reddit">Reddit</a>
+    </div>
+    <div class="post-author">
+      <div class="avatar-frame"><img src="/images/me.jpg" alt="Bruno Scopelliti" /></div>
+      <div class="post-author-bio">
+        <strong>Bruno Scopelliti</strong> is an independent software engineer, with focus on frontend development.
+        <br/>He lives in nice Bologna, Italy.
+      </div>
+    </div>
+  </div>
+</article>
+
+<script>
+  (function(){var a=window.BS_blog,o=a.$,r=o("[data-js='post'] a");for(t=0;t<r.length;t++)e=r[t],e.hostname!==location.hostname&&(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"));var e,t;})();
+
+</script>
+
+<script>
+  (function(){var i=window.BS_blog,M=i.$1,g=i.$,m="<img class='anchor' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwIDEzYTUgNSAwIDAgMCA3LjU0LjU0bDMtM2E1IDUgMCAwIDAtNy4wNy03LjA3bC0xLjcyIDEuNzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+' aria-hidden='true' />",A=M("[data-js='post']"),t=g("h2",A);for(a=0;a<t.length;a++)I=t[a],I.id&&(I.innerHTML=b(I.textContent,I.id));var I,a;function b(D,r){return"<a href='#"+r+"'>"+m+D+"</a>"}})();
+
+</script>
+
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="site-width-wrapper">
+        <div class="footer-content"><div class="contact-form">
+  <h2>Contact me</h2><svg class="svg-airplane" enable-background="new 0 0 32 32" height="24px" version="1.1" viewBox="0 0 32 32" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+  <g>
+    <g>
+      <path d="M1.911,16.179c-1.084,0.568-1.039,1.4,0.098,1.852l3.364,1.331c1.137,0.449,2.856,0.204,3.821-0.55    L23.806,7.289c0.961-0.757,1.064-0.645,0.229,0.249L12.483,19.902c-0.837,0.892-0.59,1.984,0.55,2.425l0.394,0.154    c1.14,0.44,3,1.182,4.132,1.642l3.732,1.521c1.133,0.46,2.06,0.842,2.062,0.849c0.001,0.007,0.006,0.028,0.012,0.03    s0.273-0.962,0.594-2.141l5.688-20.908c0.321-1.18-0.302-1.681-1.385-1.113L1.911,16.179z" fill="#fff"/>
+    </g>
+    <g>
+      <path d="M11.146,29.864c-0.067,0.199,2.301-3.429,2.301-3.429c0.669-1.022,0.29-2.241-0.842-2.703l-2.582-1.058    c-1.132-0.463-1.674,0.08-1.205,1.212C8.818,23.887,11.214,29.66,11.146,29.864z" fill="#fff"/>
+    </g>
+  </g>
+</svg><form action="https://formspree.io/f/xwkwjvzd" method="POST" data-js="contact">
+    <div class="form-field">
+      <label>
+        Your email:
+        <input type="email" name="email" autocomplete="off" placeholder="you@example.com"/>
+      </label>
+    </div>
+    <div  class="form-field">
+      <label>
+        Message:
+        <textarea type="text" name="message" rows="7" placeholder="Hi Bruno!"></textarea>
+      </label>
+    </div>
+    <button type="submit" class="btn-submit">Send</button>
+    <div class="error" data-js="result"></div>
+  </form>
+</div>
+
+<script>
+  (function(){var e=window.BS_blog,n=e.$1,i=e.listen,u=e.ajax,t=n("[data-js='contact']"),l=n("[type='submit']",t);function v(r){r.preventDefault(),u(t.method,t.action,new FormData(t),s,o);function s(){var a=n("[data-js='result']",t);l.style="display: none ",t.reset(),a&&(a.innerHTML="Thanks!")}function o(){var a=n("[data-js='result']",t);a&&(a.innerHTML="Oops! There was a problem.")}}i("submit",t,v);})();
+
+</script><div class="social-links">
+  <a href="https://twitter.com/brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg height="32px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path fill="#fff" d="M346.8,80c22.3,0,43.8,9.3,59,25.6l6.1,6.5l8.7-1.7c4.5-0.9,8.9-1.9,13.3-3.1c-1,1.4-5.7,6.1-11,10.8  c-4.5,4-17.8,16.5-17.8,16.5s13,4.1,21.1,5s17.4-0.6,18.9-0.8c-2.8,2.3-7.8,5.8-10.8,7.9l-7,5.1l0.4,8.6c0.2,3.8,0.3,7.8,0.3,11.8  c0,30.2-5.9,61.8-17,91.5c-11.7,31.2-28.5,59.4-50,83.8c-23,26.1-50.2,46.5-81.1,60.8c-33.8,15.7-71.3,23.6-111.5,23.6  c-28.9,0-57.4-4.8-84.5-14.2c9.9-1.9,19.6-4.6,29.1-7.9c21.7-7.6,41.9-18.7,60.1-33l35.3-27.7l-44.9-0.8  c-26.1-0.5-49.7-13.4-64.3-33.9c7.3-0.5,14.5-1.8,21.5-3.7l60.7-20.2l-61.7-10.9c-29.6-5.9-52.8-27.9-61.3-55.8  c7.8,2,15.4,2.8,23.9,3.3c0,0,31.8,1.4,55.8-0.1c-13-6.2-46.4-29.2-46.4-29.2c-22.5-15.1-36-40.2-36-67.4c0-6.4,0.8-12.8,2.2-19  c21.9,22.4,47,41.1,75.1,55.5c37,19.1,76.9,29.8,118.6,31.9l21.2,1.1l-4.8-20.7c-1.4-5.9-2.1-12.1-2.1-18.5  C265.9,116.3,302.2,80,346.8,80 M346.8,64c-53.5,0-96.8,43.4-96.8,96.9c0,7.6,0.8,15,2.5,22.1C172,179,100.6,140.4,52.9,81.7  c-8.3,14.3-13.1,31-13.1,48.7c0,33.6,17.1,63.3,43.1,80.7C67,210.7,52,206.3,39,199c0,0.4,0,0.8,0,1.2c0,47,33.4,86.1,77.7,95  c-8.1,2.2-16.7,3.4-25.5,3.4c-6.2,0-12.3-0.6-18.2-1.8c12.3,38.5,48.1,66.5,90.5,67.3c-33.1,26-74.9,41.5-120.3,41.5  c-7.8,0-15.5-0.5-23.1-1.4C62.9,432,113.8,448,168.4,448C346.6,448,444,300.3,444,172.2c0-4.2-0.1-8.4-0.3-12.5  c18.9-13.7,35.3-30.7,48.3-50.2c-17.4,7.7-36,12.9-55.6,15.3c20-12,35.4-31,42.6-53.6c-18.7,11.1-39.4,19.2-61.5,23.5  C399.8,75.8,374.6,64,346.8,64L346.8,64z"/>
+</svg></a>
+  <a href="https://github.com/brunoscopelliti" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg height="32px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+  <path fill="#fff" d="M256,48.3c28,0,55.2,5.6,80.8,16.7c24.8,10.7,47,26.1,66.1,45.7c19.1,19.6,34.2,42.5,44.7,67.9  c10.9,26.4,16.4,54.4,16.4,83.3c0,45.8-13.9,89.5-40.2,126.3c-12.6,17.7-27.8,33.2-45,46.2c-15.8,11.9-33,21.3-51.2,28.2  c0-1.9,0-4.1,0-6.5c0.1-11.9,0.2-29.8,0.2-50.4c0-12.4-2-22.5-4.9-30.5c37.2-8.3,92-33.7,92-125.4c0-24.6-7.1-46.5-21.2-65.1  c3.1-12.9,5.5-35.6-5.1-63l-2.7-7.1l-7.2-2.4c-1.5-0.5-4.8-1.3-10-1.3c-11.5,0-30.9,3.9-59.5,22.6c-17-4.2-34.8-6.6-53.1-6.6H256  h-0.1c-18.3,0-36.2,2.4-53.1,6.6c-28.6-18.7-48-22.7-59.5-22.7c-5.2,0-8.5,0.9-10,1.4l-7.2,2.4l-2.7,7.1c-10.6,27.5-8.2,50.2-5.1,63  c-14.1,18.7-21.2,40.6-21.2,65.1c0,49.6,16,79.9,36.6,98.5c-8.1-6.6-18.6-12.1-31.2-13l-0.5,0l-0.5,0l-0.3,0  c-13.1,0-22.3,5.4-25.2,14.7c-4.7,14.8,9.8,25,14.6,28.4l0.5,0.6l1.5,0.6c1.6,1,10.1,7,16.9,24.5c2,6.2,6.3,14.5,13.6,22.2  c-13.1-11.2-24.8-24-34.9-38.1C61.9,351.5,48,307.8,48,262c0-28.9,5.5-56.9,16.4-83.3c10.5-25.5,25.5-48.3,44.7-67.9  c19.1-19.6,41.4-35,66.1-45.7C200.8,54,228,48.3,256,48.3 M136.7,351c16.8,14.1,36.3,20.9,52.3,24.5c-0.8,2.2-1.5,4.5-2.1,6.9  c-3.4,1-7.5,1.8-11.7,1.8c-10.9,0-19-5.4-25.6-16.9C147.2,362.7,142.8,356.6,136.7,351 M140.4,439.6c9.8,5.3,22.1,8.8,37.2,8.8  c2.2,0,4.4-0.1,6.7-0.2c0,2.8,0,5.5,0.1,7.9c0,2.4,0,4.6,0.1,6.5C168.9,456.8,154.2,449.1,140.4,439.6 M256,32.3  C132.3,32.3,32,135.2,32,262c0,101.5,64.2,187.5,153.2,217.9c1.4,0.3,2.6,0.4,3.8,0.4c8.3,0,11.5-6.1,11.5-11.4  c0-5.5-0.2-19.9-0.3-39.1c-8.4,1.9-15.9,2.7-22.6,2.7c-43.1,0-52.9-33.5-52.9-33.5c-10.2-26.5-24.9-33.8-24.9-33.8  c-19.5-13.7-0.1-14.2,1.4-14.2c0.1,0,0.1,0,0.1,0c22.5,2,34.3,23.9,34.3,23.9c11.2,19.6,26.2,25.2,39.6,25.2c10.5,0,20-3.4,25.6-6  c2-14.8,7.8-24.9,14.2-30.7c-49.7-5.8-102-25.5-102-113.5c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,1.6-0.5,5-0.5  c8.1,0,26.4,3.1,56.6,24.1c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7c30.2-21,48.5-24.1,56.6-24.1c3.4,0,5,0.5,5,0.5  c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3c8,7.1,15.2,21.1,15.2,42.5  c0,30.7-0.3,55.5-0.3,63c0,5.4,3.1,11.5,11.4,11.5c1.2,0,2.6-0.1,4-0.4C415.9,449.5,480,363.4,480,262  C480,135.2,379.7,32.3,256,32.3L256,32.3z"/>
+</svg></a>
+  <a href="/blog/index.xml" aria-label="RSS"><svg height="32px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g fill="#fff">
+    <path d="M119.9,336.1c-30.8,0-55.9,25.1-55.9,55.8c0,30.8,25.1,55.6,55.9,55.6c30.9,0,55.9-24.9,55.9-55.6   C175.8,361.2,150.8,336.1,119.9,336.1z M119.9,431.5c-22,0-39.9-17.8-39.9-39.6c0-21.9,17.9-39.8,39.9-39.8   c22,0,39.9,17.9,39.9,39.8C159.8,413.7,141.9,431.5,119.9,431.5z"/>
+    <path d="M64,192v79.9c48,0,94.1,14.2,128,48.1c33.9,33.9,48,79.9,48,128h80C320,308.1,204,192,64,192z M303.5,432h-48   c-3.1-49.7-21-92.1-52.2-123.3C172.1,277.4,130,259.5,80,256.4v-47.8c26,1.8,52.1,8,76.7,18.5c28.5,12.2,54.2,29.6,76.4,51.8   c22.2,22.2,39.6,47.9,51.8,76.4C295.5,379.9,301.7,405.6,303.5,432z"/>
+    <path d="M64,64v79.9c171,0,303.9,133,303.9,304.1H448C448,236.3,276,64,64,64z M291.4,220.5C235.4,164.4,161,132,80,128.2V80.3   C270,88.5,423.5,241.8,431.7,432h-48.2C379.7,351.1,347.3,276.5,291.4,220.5z"/>
+  </g>
+</svg></a>
+</div></div>
+        <p class="colophon">2013 ~ <span data-js="year">2023</span> Bruno Scopelliti
+          <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
+        </p>
+      </div>
+    </footer>
+    
+    <script>
+      (function(){var r=window.BS_blog,t=r.$1,e=t("[data-js='year']");e&&(a=new Date,e.textContent=a.getFullYear());var a;})();
+
+    </script>
+
+    
+    <script data-goatcounter="https://bscop.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    
+  </body>
+</html>

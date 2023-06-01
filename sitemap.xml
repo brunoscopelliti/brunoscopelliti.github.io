@@ -44,6 +44,20 @@
   </url>
   
   <url>
+    <loc>https://brunoscopelliti.com/blog/search/nodejs/</loc>
+    <lastmod>2023-02-25T07:00:00+01:00</lastmod>
+    
+    
+  </url>
+  
+  <url>
+    <loc>https://brunoscopelliti.com/blog/notes-docker-for-node/</loc>
+    <lastmod>2023-02-25T07:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
     <loc>https://brunoscopelliti.com/blog/notes-docker-mastery/</loc>
     <lastmod>2023-02-25T07:00:00+01:00</lastmod>
     <changefreq>yearly</changefreq>
@@ -237,13 +251,6 @@
     <lastmod>2021-01-01T09:00:00+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://brunoscopelliti.com/blog/search/nodejs/</loc>
-    <lastmod>2021-01-01T09:00:00+01:00</lastmod>
-    
-    
   </url>
   
   <url>

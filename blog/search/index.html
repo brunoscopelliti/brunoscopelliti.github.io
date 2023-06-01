@@ -109,7 +109,7 @@
     <div class="search-box">
       <div class="blog-search">
         <input data-js="posts-search" type="search" name="query" placeholder="Enter one, or more comma-separated keywords" />
-        <span data-js="posts-count" class="blog-posts-count">62</span>
+        <span data-js="posts-count" class="blog-posts-count">63</span>
       </div>
       <ul class="keywords" data-js="keywords">
         
@@ -171,7 +171,7 @@
           
           
           <li>
-            <button type="button" class="keyword" data-keyword="docker">Docker<span class="keyword-count" aria-label="Number of results for Docker.">1</span>
+            <button type="button" class="keyword" data-keyword="docker">Docker<span class="keyword-count" aria-label="Number of results for Docker.">2</span>
             </button>
           </li>
           
@@ -240,7 +240,7 @@
           
           
           <li>
-            <button type="button" class="keyword" data-keyword="memo">Memo<span class="keyword-count" aria-label="Number of results for Memo.">11</span>
+            <button type="button" class="keyword" data-keyword="memo">Memo<span class="keyword-count" aria-label="Number of results for Memo.">12</span>
             </button>
           </li>
           
@@ -258,7 +258,7 @@
           
           
           <li>
-            <button type="button" class="keyword" data-keyword="node.js">Node.js<span class="keyword-count" aria-label="Number of results for Node.js.">1</span>
+            <button type="button" class="keyword" data-keyword="node.js">Node.js<span class="keyword-count" aria-label="Number of results for Node.js.">2</span>
             </button>
           </li>
           
@@ -389,7 +389,12 @@
     
       <div class="post-entry" data-js="post-entry" data-tags="memo,docker,">
         <span class="post-date">25 Feb</span>
-        <a href="/blog/notes-docker-mastery/">Notes on “Docker Mastery: ..”</a>
+        <a href="/blog/notes-docker-mastery/">Notes on “Docker Mastery: …”</a>
+      </div>
+    
+      <div class="post-entry" data-js="post-entry" data-tags="memo,docker,node.js,">
+        <span class="post-date">25 Feb</span>
+        <a href="/blog/notes-docker-for-node/">Notes on “Docker for Note.js Projects …”</a>
       </div>
     
     </div>
@@ -807,11 +812,16 @@
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ 2023 Bruno Scopelliti
+        <p class="colophon">2013 ~ <span data-js="year">2023</span> Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>
     </footer>
+    
+    <script>
+      (function(){var r=window.BS_blog,t=r.$1,e=t("[data-js='year']");e&&(a=new Date,e.textContent=a.getFullYear());var a;})();
+
+    </script>
 
     
     <script data-goatcounter="https://bscop.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
