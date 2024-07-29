@@ -158,17 +158,17 @@ so queries can be easily chanined (such as we&rsquo;re accustomed in JavaScript)
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c#" data-lang="c#"><span style="display:flex;"><span><span style="color:#ff79c6">using</span> System;
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">using</span> System.Collections.Generic;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Order</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> Order(<span style="color:#8be9fd">string</span> code, <span style="color:#8be9fd">string</span> name, <span style="color:#8be9fd">double</span> price, <span style="color:#8be9fd">int</span> quantity) {
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Order</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> Order(<span style="color:#8be9fd">string</span> code, <span style="color:#8be9fd">string</span> name, <span style="color:#8be9fd">double</span> price, <span style="color:#8be9fd">int</span> quantity) {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.Code = code;
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.Name = name;
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.Price = price;
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.Quantity = quantity;
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> Code { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> Name { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">double</span> Price { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">int</span> Quantity { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">string</span> Code { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">string</span> Name { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">double</span> Price { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> Quantity { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>If you want quickly try one of the following snippet, you can paste it on
 <a href="https://dotnetfiddle.net/">dotnetfiddle</a>; it&rsquo;s like jsfiddle, but for .NET folks.</p>
@@ -315,7 +315,7 @@ whether all the elements in the collection match the predicate.</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ <span data-js="year">2023</span> Bruno Scopelliti
+        <p class="colophon">2013 ~ <span data-js="year">2024</span> Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>

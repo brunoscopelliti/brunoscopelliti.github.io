@@ -126,18 +126,18 @@ to continue this glorious tradition.</p>
 <p>In C# development it&rsquo;s pretty common to have to map fields between objects of different class.
 <a href="http://automapper.org/">Automapper</a> simplifies a lot the work.</p>
 <p>For instance, in the simplest scenario given the two classes</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c#" data-lang="c#"><span style="display:flex;"><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">ProductDto</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> name { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> code { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">decimal</span> price { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> currency { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c#" data-lang="c#"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">ProductDto</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">string</span> name { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">string</span> code { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">decimal</span> price { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">string</span> currency { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Product</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> Name { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> Code { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">decimal</span> Price { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">public</span> <span style="color:#8be9fd">string</span> Currency { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Product</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">string</span> Name { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">string</span> Code { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">decimal</span> Price { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">string</span> Currency { <span style="color:#ff79c6">get</span>; <span style="color:#ff79c6">set</span>; }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>in order to copy values from <code>ProductDto</code> fields into a new <code>Product</code> instance,
 we&rsquo;ve to execute Automapper&rsquo;s <code>map</code> method</p>
@@ -250,7 +250,7 @@ Let&rsquo;s start changing how we configure the mapping.</p>
   </g>
 </svg></a>
 </div></div>
-        <p class="colophon">2013 ~ <span data-js="year">2023</span> Bruno Scopelliti
+        <p class="colophon">2013 ~ <span data-js="year">2024</span> Bruno Scopelliti
           <br/>Built with <a href="https://gohugo.io/" title="Hugo" target="_blank" rel="noopener noreferrer">Hugo</a>.
         </p>
       </div>
